@@ -14,6 +14,10 @@
 		6333170F20D9990D0063D856 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6333170D20D9990D0063D856 /* LaunchScreen.storyboard */; };
 		6333171A20D9990D0063D856 /* banano_questTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6333171920D9990D0063D856 /* banano_questTests.swift */; };
 		6333172520D9990D0063D856 /* banano_questUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6333172420D9990D0063D856 /* banano_questUITests.swift */; };
+		635F8A9420DD50C3008BA94E /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 635F8A9320DD50C3008BA94E /* Profile.storyboard */; };
+		635F8A9620DD50CC008BA94E /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 635F8A9520DD50CC008BA94E /* Help.storyboard */; };
+		635F8A9820DD50D6008BA94E /* Questing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 635F8A9720DD50D6008BA94E /* Questing.storyboard */; };
+		635F8A9A20DD50E1008BA94E /* CreateQuest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 635F8A9920DD50E1008BA94E /* CreateQuest.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		6333172020D9990D0063D856 /* banano-questUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "banano-questUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6333172420D9990D0063D856 /* banano_questUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = banano_questUITests.swift; sourceTree = "<group>"; };
 		6333172620D9990D0063D856 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		635F8A9320DD50C3008BA94E /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		635F8A9520DD50CC008BA94E /* Help.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Help.storyboard; sourceTree = "<group>"; };
+		635F8A9720DD50D6008BA94E /* Questing.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Questing.storyboard; sourceTree = "<group>"; };
+		635F8A9920DD50E1008BA94E /* CreateQuest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateQuest.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,9 +105,9 @@
 		6333170320D9990B0063D856 /* banano-quest */ = {
 			isa = PBXGroup;
 			children = (
+				635F8A9220DD50A8008BA94E /* Storyboards */,
 				6333170420D9990B0063D856 /* AppDelegate.swift */,
 				6333170620D9990B0063D856 /* ViewController.swift */,
-				6333170820D9990B0063D856 /* Main.storyboard */,
 				6333170B20D9990D0063D856 /* Assets.xcassets */,
 				6333170D20D9990D0063D856 /* LaunchScreen.storyboard */,
 				6333171020D9990D0063D856 /* Info.plist */,
@@ -123,6 +131,18 @@
 				6333172620D9990D0063D856 /* Info.plist */,
 			);
 			path = "banano-questUITests";
+			sourceTree = "<group>";
+		};
+		635F8A9220DD50A8008BA94E /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				6333170820D9990B0063D856 /* Main.storyboard */,
+				635F8A9320DD50C3008BA94E /* Profile.storyboard */,
+				635F8A9520DD50CC008BA94E /* Help.storyboard */,
+				635F8A9720DD50D6008BA94E /* Questing.storyboard */,
+				635F8A9920DD50E1008BA94E /* CreateQuest.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,8 +249,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				635F8A9820DD50D6008BA94E /* Questing.storyboard in Resources */,
 				6333170F20D9990D0063D856 /* LaunchScreen.storyboard in Resources */,
+				635F8A9A20DD50E1008BA94E /* CreateQuest.storyboard in Resources */,
 				6333170C20D9990D0063D856 /* Assets.xcassets in Resources */,
+				635F8A9620DD50CC008BA94E /* Help.storyboard in Resources */,
+				635F8A9420DD50C3008BA94E /* Profile.storyboard in Resources */,
 				6333170A20D9990B0063D856 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
