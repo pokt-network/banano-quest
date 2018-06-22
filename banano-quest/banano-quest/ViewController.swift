@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  BANANOQuest
+//  banano-quest
 //
-//  Created by Michael O'Rourke on 6/15/18.
+//  Created by Michael O'Rourke on 6/19/18.
 //  Copyright © 2018 Michael O'Rourke. All rights reserved.
 //
 

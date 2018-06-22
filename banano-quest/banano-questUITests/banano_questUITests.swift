@@ -1,14 +1,14 @@
 //
-//  BANANOQuestUITests.swift
-//  BANANOQuestUITests
+//  banano_questUITests.swift
+//  banano-questUITests
 //
-//  Created by Michael O'Rourke on 6/15/18.
+//  Created by Michael O'Rourke on 6/19/18.
 //  Copyright © 2018 Michael O'Rourke. All rights reserved.
 //
 
 import XCTest
 
-class BANANOQuestUITests: XCTestCase {
+class banano_questUITests: XCTestCase {
         
     override func setUp() {
         super.setUp()

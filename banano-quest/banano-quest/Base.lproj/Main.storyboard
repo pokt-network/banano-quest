@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="banano_quest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BACKGORUND-x3" translatesAutoresizingMaskIntoConstraints="NO" id="lze-6C-J7F">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LOGO-X3" translatesAutoresizingMaskIntoConstraints="NO" id="T2W-uQ-82M">
+                                <rect key="frame" x="68" y="270" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="7cp-AG-kSY"/>
+                                    <constraint firstAttribute="width" constant="240" id="D3x-0U-Ggd"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MWL-X1" translatesAutoresizingMaskIntoConstraints="NO" id="DLx-yn-0lQ">
+                                <rect key="frame" x="68" y="570" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="0kt-u4-Lx2"/>
+                                    <constraint firstAttribute="height" constant="128" id="brn-dA-wkb"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EuV-6k-xtO">
+                                <rect key="frame" x="214" y="465" width="145" height="69"/>
+                                <state key="normal" image="PLAY-NOW-BUTTON-X1"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="DLx-yn-0lQ" secondAttribute="bottom" constant="-31" id="6zj-Co-d3T"/>
+                            <constraint firstItem="EuV-6k-xtO" firstAttribute="top" secondItem="T2W-uQ-82M" secondAttribute="bottom" constant="67" id="9qw-go-Mje"/>
+                            <constraint firstItem="T2W-uQ-82M" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="XF0-EF-SiG"/>
+                            <constraint firstItem="lze-6C-J7F" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bik-EM-wDk"/>
+                            <constraint firstItem="EuV-6k-xtO" firstAttribute="leading" secondItem="lze-6C-J7F" secondAttribute="trailing" constant="-161" id="i87-Rk-YEz"/>
+                            <constraint firstItem="T2W-uQ-82M" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="i9Z-JO-1TH"/>
+                            <constraint firstItem="lze-6C-J7F" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="le0-3a-Jcv"/>
+                            <constraint firstItem="DLx-yn-0lQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="r9E-7f-Z4Z"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lze-6C-J7F" secondAttribute="trailing" id="riV-p8-Fie"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="lze-6C-J7F" secondAttribute="bottom" id="xd4-9l-DnS"/>
+                            <constraint firstItem="DLx-yn-0lQ" firstAttribute="top" secondItem="EuV-6k-xtO" secondAttribute="bottom" constant="36" id="xv6-gW-mj3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Doj-Ag-pRi"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1076" y="133.5832083958021"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="BACKGORUND-x3" width="749" height="1333"/>
+        <image name="LOGO-X3" width="379" height="164"/>
+        <image name="MWL-X1" width="360" height="74"/>
+        <image name="PLAY-NOW-BUTTON-X1" width="145" height="69"/>
+    </resources>
+</document>
