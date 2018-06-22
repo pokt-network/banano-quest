@@ -18,6 +18,7 @@
 		635F8A9620DD50CC008BA94E /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 635F8A9520DD50CC008BA94E /* Help.storyboard */; };
 		635F8A9820DD50D6008BA94E /* Questing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 635F8A9720DD50D6008BA94E /* Questing.storyboard */; };
 		635F8A9A20DD50E1008BA94E /* CreateQuest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 635F8A9920DD50E1008BA94E /* CreateQuest.storyboard */; };
+		635F8A9C20DD590B008BA94E /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635F8A9B20DD590B008BA94E /* LandingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		635F8A9520DD50CC008BA94E /* Help.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Help.storyboard; sourceTree = "<group>"; };
 		635F8A9720DD50D6008BA94E /* Questing.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Questing.storyboard; sourceTree = "<group>"; };
 		635F8A9920DD50E1008BA94E /* CreateQuest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateQuest.storyboard; sourceTree = "<group>"; };
+		635F8A9B20DD590B008BA94E /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				635F8A9220DD50A8008BA94E /* Storyboards */,
 				6333170420D9990B0063D856 /* AppDelegate.swift */,
 				6333170620D9990B0063D856 /* ViewController.swift */,
+				635F8A9B20DD590B008BA94E /* LandingViewController.swift */,
 				6333170B20D9990D0063D856 /* Assets.xcassets */,
 				6333170D20D9990D0063D856 /* LaunchScreen.storyboard */,
 				6333171020D9990D0063D856 /* Info.plist */,
@@ -281,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6333170720D9990B0063D856 /* ViewController.swift in Sources */,
+				635F8A9C20DD590B008BA94E /* LandingViewController.swift in Sources */,
 				6333170520D9990B0063D856 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
