@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BACKGORUND-x3" translatesAutoresizingMaskIntoConstraints="NO" id="lze-6C-J7F">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="717"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LOGO-X3" translatesAutoresizingMaskIntoConstraints="NO" id="T2W-uQ-82M">
                                 <rect key="frame" x="68" y="270" width="240" height="128"/>
@@ -59,7 +59,7 @@
                             <constraint firstItem="T2W-uQ-82M" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="i9Z-JO-1TH"/>
                             <constraint firstItem="DLx-yn-0lQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="r9E-7f-Z4Z"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lze-6C-J7F" secondAttribute="trailing" id="riV-p8-Fie"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="lze-6C-J7F" secondAttribute="bottom" id="xd4-9l-DnS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="lze-6C-J7F" secondAttribute="bottom" constant="-50" id="xd4-9l-DnS"/>
                             <constraint firstItem="DLx-yn-0lQ" firstAttribute="top" secondItem="EuV-6k-xtO" secondAttribute="bottom" constant="36" id="xv6-gW-mj3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -71,10 +71,10 @@
             </objects>
             <point key="canvasLocation" x="2015.2" y="133.5832083958021"/>
         </scene>
-        <!--View Controller-->
+        <!--New Wallet View Controller-->
         <scene sceneID="sj5-Oj-Kne">
             <objects>
-                <viewController id="qhe-8E-1hW" sceneMemberID="viewController">
+                <viewController id="qhe-8E-1hW" customClass="NewWalletViewController" customModule="banano_quest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VMf-24-fb4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -155,6 +155,9 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="145" id="Q2x-wh-Lpv"/>
                                     <constraint firstAttribute="width" constant="145" id="zhN-d2-JZM"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="continuePressed:" destination="qhe-8E-1hW" eventType="touchUpInside" id="x3V-p1-vec"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
