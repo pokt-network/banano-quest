@@ -10,6 +10,7 @@
 		63091D7C20E126A5002253E5 /* QuestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D7B20E126A5002253E5 /* QuestingViewController.swift */; };
 		63091D7E20E13546002253E5 /* NewWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D7D20E13546002253E5 /* NewWalletViewController.swift */; };
 		63091D8020E3D48C002253E5 /* QuestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D7F20E3D48C002253E5 /* QuestCollectionViewCell.swift */; };
+		63091D8220E3FB7B002253E5 /* CompleteQuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D8120E3FB7A002253E5 /* CompleteQuestViewController.swift */; };
 		6333170520D9990B0063D856 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6333170420D9990B0063D856 /* AppDelegate.swift */; };
 		6333170720D9990B0063D856 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6333170620D9990B0063D856 /* ViewController.swift */; };
 		6333170A20D9990B0063D856 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6333170820D9990B0063D856 /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 		63091D7B20E126A5002253E5 /* QuestingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestingViewController.swift; sourceTree = "<group>"; };
 		63091D7D20E13546002253E5 /* NewWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWalletViewController.swift; sourceTree = "<group>"; };
 		63091D7F20E3D48C002253E5 /* QuestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestCollectionViewCell.swift; sourceTree = "<group>"; };
+		63091D8120E3FB7A002253E5 /* CompleteQuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteQuestViewController.swift; sourceTree = "<group>"; };
 		6333170120D9990B0063D856 /* banano-quest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "banano-quest.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6333170420D9990B0063D856 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6333170620D9990B0063D856 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				635F8A9B20DD590B008BA94E /* LandingViewController.swift */,
 				63091D7D20E13546002253E5 /* NewWalletViewController.swift */,
 				63091D7B20E126A5002253E5 /* QuestingViewController.swift */,
+				63091D8120E3FB7A002253E5 /* CompleteQuestViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6333170720D9990B0063D856 /* ViewController.swift in Sources */,
+				63091D8220E3FB7B002253E5 /* CompleteQuestViewController.swift in Sources */,
 				63091D8020E3D48C002253E5 /* QuestCollectionViewCell.swift in Sources */,
 				63091D7E20E13546002253E5 /* NewWalletViewController.swift in Sources */,
 				635F8A9C20DD590B008BA94E /* LandingViewController.swift in Sources */,
