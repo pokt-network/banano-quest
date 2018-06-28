@@ -10,12 +10,16 @@ import Foundation
 import Pocket
 
 public class QuestDownloadParsing {
-    
+   static let mainContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
     static func parseDownload(dict: QueryResponse) {
+        // TODO: Parse download
+        // return (quest.creator, quest.index, quest.name, quest.hint, quest.merkleRoot, quest.maxWinners,
+        // quest.metadata, quest.valid, quest.winnersIndex.length, quest.claimersIndex.length)
         
-    }
-    
-    func save(quests: [Quest]) {
-        
+        // Save each quest into core data
+        let quest = Quest(obj: dict.result, context: self.mainContext)
+        quest.save()
+        // Save each quest into core data
     }
 }

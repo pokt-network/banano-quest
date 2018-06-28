@@ -23,6 +23,7 @@
 		C535221A20E13B41009745AC /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535221920E13B41009745AC /* Networking.swift */; };
 		C535221C20E13B72009745AC /* BananoQuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535221B20E13B72009745AC /* BananoQuest.swift */; };
 		C5DF9B0520E3E89C00B8D170 /* QuestDownloadParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF9B0420E3E89C00B8D170 /* QuestDownloadParsing.swift */; };
+		C5DF9B0D20E53D4600B8D170 /* Banano.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF9B0C20E53D4600B8D170 /* Banano.swift */; };
 		C5FAB66420E17B8900057041 /* BananoQuest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5FAB66220E17B8900057041 /* BananoQuest.xcdatamodeld */; };
 		C5FAB66B20E2B4FD00057041 /* Quest+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FAB66520E2B4FD00057041 /* Quest+CoreDataClass.swift */; };
 		C5FAB66C20E2B4FD00057041 /* Quest+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FAB66620E2B4FD00057041 /* Quest+CoreDataProperties.swift */; };
@@ -81,6 +82,7 @@
 		C535221920E13B41009745AC /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		C535221B20E13B72009745AC /* BananoQuest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BananoQuest.swift; sourceTree = "<group>"; };
 		C5DF9B0420E3E89C00B8D170 /* QuestDownloadParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestDownloadParsing.swift; sourceTree = "<group>"; };
+		C5DF9B0C20E53D4600B8D170 /* Banano.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banano.swift; sourceTree = "<group>"; };
 		C5FAB66320E17B8900057041 /* BananoQuest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BananoQuest.xcdatamodel; sourceTree = "<group>"; };
 		C5FAB66520E2B4FD00057041 /* Quest+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quest+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C5FAB66620E2B4FD00057041 /* Quest+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quest+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 		6333170320D9990B0063D856 /* banano-quest */ = {
 			isa = PBXGroup;
 			children = (
+				C5DF9B0E20E578FF00B8D170 /* Protocols */,
 				C5FAB66120E17B0000057041 /* Data Models */,
 				C535221820E13B2E009745AC /* Utils */,
 				C535221520E13AF7009745AC /* Models */,
@@ -232,6 +235,14 @@
 				C5DF9B0420E3E89C00B8D170 /* QuestDownloadParsing.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		C5DF9B0E20E578FF00B8D170 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				C5DF9B0C20E53D4600B8D170 /* Banano.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		C5FAB66120E17B0000057041 /* Data Models */ = {
@@ -484,6 +495,7 @@
 				C5FAB66D20E2B4FD00057041 /* Winners+CoreDataClass.swift in Sources */,
 				C535221C20E13B72009745AC /* BananoQuest.swift in Sources */,
 				C5FAB66B20E2B4FD00057041 /* Quest+CoreDataClass.swift in Sources */,
+				C5DF9B0D20E53D4600B8D170 /* Banano.swift in Sources */,
 				C5FAB66420E17B8900057041 /* BananoQuest.xcdatamodeld in Sources */,
 				C535221A20E13B41009745AC /* Networking.swift in Sources */,
 				6333170720D9990B0063D856 /* ViewController.swift in Sources */,
