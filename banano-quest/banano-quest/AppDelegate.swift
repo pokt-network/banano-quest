@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // Initial quest list download
-        Networking.getQuestList()
+        // Networking.getQuestList()
         
         return true
     }
