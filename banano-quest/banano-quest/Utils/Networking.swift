@@ -27,21 +27,16 @@ public class Networking {
             
             Pocket.getInstance(pocketNodeURL: nodeURL!).executeQuery(query: query, handler: { (response, error) in
                 if error != nil {
-                    print("")
+                    print("Failed to get Pocket instance for getQuestList() with error:\(String(describing: error))")
                 }else{
                     // TODO: parse response
                     QuestDownloadParsing.parseDownload(dict: response!)
-                    print("")
                 }
             })
             index = index - 1
         }
         // Refresh current view
-        guard let activeVC = UIApplication.shared.delegate?.window??.rootViewController as? BananoQuestView else{
-            print("")
-            return
-        }
-        activeVC.refreshView()
+        refreshCurrentViewController()
         
     }
     
@@ -56,10 +51,9 @@ public class Networking {
         
         Pocket.getInstance(pocketNodeURL: nodeURL!).executeQuery(query: query, handler: { (response, error) in
             if error != nil {
-                print("")
+                print("Failed to get Pocket Instance for getQuestListCount() with error:\(String(describing: error))")
             }else{
                 questAmount = response?.result!["length"] as? Int32 ?? 0
-                print("")
             }
         })
         return questAmount
@@ -70,36 +64,45 @@ public class Networking {
         
         do {
             query = try PocketEth.createQuery(params: [AnyHashable : Any](), decoder: [AnyHashable : Any]())
-        } catch {
-            print("")
+        } catch let error as NSError{
+            print("Failed to create Query with error:\(error)")
         }
         return query
     }
     
-    public static func uploadNewQuest(quest: Quest) -> Bool {
+    public static func uploadNewQuest(quest: Quest) {
         let params = [AnyHashable : Any]()
         let query = createQuery(with: params)
-        var result = false
         
         Pocket.getInstance(pocketNodeURL: nodeURL!).executeQuery(query: query, handler: { (response, error) in
             if error == nil {
-                result = true
+                // Refresh current view
+                refreshCurrentViewController()
+            }else{
+                print("Failed to execute uploadNewQuest() with error:\(String(describing: error))")
             }
         })
-        
-        return result
     }
     
-    public static func uploadQuestCompletion(quest: Quest, locations: [AnyHashable: Any]) -> Bool {
+    public static func uploadQuestCompletion(quest: Quest, locations: [AnyHashable: Any]) {
         let params = [AnyHashable : Any]()
         let query = createQuery(with: params)
-        var result = false
         
         Pocket.getInstance(pocketNodeURL: nodeURL!).executeQuery(query: query, handler: { (response, error) in
             if error == nil {
-                result = true
+                // Refresh current view
+                refreshCurrentViewController()
+            }else{
+                print("Failed to execute uploadQuestCompletion() with error:\(String(describing: error))")
             }
         })
-        return result
+    }
+    
+    private static func refreshCurrentViewController() {
+        guard let activeVC = UIApplication.shared.delegate?.window??.rootViewController as? BananoQuestView else{
+            print("Failed to instantiate current viewController, returning.")
+            return
+        }
+        activeVC.refreshView()
     }
 }

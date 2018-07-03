@@ -8,10 +8,18 @@
 
 import Foundation
 import Pocket
+import CoreData
 
 public class QuestDownloadParsing {
-   static let mainContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-
+    static var mainContext: NSManagedObjectContext {
+        get {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return NSManagedObjectContext.init(concurrencyType: .mainQueueConcurrencyType)
+            }
+            return appDelegate.persistentContainer.viewContext
+        }
+    }
+    
     static func parseDownload(dict: QueryResponse) {
         // TODO: Parse download
         // return (quest.creator, quest.index, quest.name, quest.hint, quest.merkleRoot, quest.maxWinners,
