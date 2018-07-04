@@ -20,7 +20,7 @@ public class QuestDownloadParsing {
         }
     }
     
-    static func parseDownload(dict: QueryResponse) {
+    static func parseDownload(dict: QueryResponse) -> Quest {
         // TODO: Parse download
         // return (quest.creator, quest.index, quest.name, quest.hint, quest.merkleRoot, quest.maxWinners,
         // quest.metadata, quest.valid, quest.winnersIndex.length, quest.claimersIndex.length)
@@ -28,6 +28,7 @@ public class QuestDownloadParsing {
         // Save each quest into core data
         let quest = Quest(obj: dict.result, context: self.mainContext)
         quest.save()
-        // Save each quest into core data
+        
+        return quest
     }
 }

@@ -11,6 +11,10 @@ import PocketEth
 import Pocket
 import CoreData
 
+public typealias BananoQuestListHandler = (_: [Quest]?, _: Error?) -> Void
+public typealias NewBananoQuestHandler = (_: Quest?, _: Error?) -> Void
+public typealias BananoQuestCompletionHandler = (_: QueryResponse?, _: Error?) -> Void
+
 public class BananoQuest {
     private var mainContext: NSManagedObjectContext {
         get {
@@ -20,10 +24,8 @@ public class BananoQuest {
             return appDelegate.persistentContainer.viewContext
         }
     }
-        
-//        = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    public func getQuestList() -> [Quest] {
+
+    public func getLocalQuestList() -> [Quest] {
         // Quests list retrieved from CoreData
         var quests = [Quest]()
         
@@ -38,32 +40,51 @@ public class BananoQuest {
         return quests
     }
     
-    public func createQuest(obj: [AnyHashable: Any]) -> Quest {
-        // Quest is saved in CoreData
+    public func createQuest(obj: [AnyHashable: Any], handler: @escaping NewBananoQuestHandler) {
         let quest = Quest(obj: obj, context: mainContext)
-        quest.save()
         
         // New Quest submitted
-        Networking.uploadNewQuest(quest: quest)
-        
-        return quest
+        do {
+            try Networking.uploadNewQuest(quest: quest) { (newQuest, error) in
+                if error != nil {
+                    handler(nil,error)
+                }else{
+                    // Quest is saved in CoreData
+                    newQuest?.save()
+                    handler(newQuest,nil)
+                }
+            }
+        } catch let error as NSError {
+            handler(nil,error)
+        }
+
     }
     
-    public func completeQuest(quest: Quest, locations: [AnyHashable: Any]) {
+    public func completeQuest(quest: Quest, locations: [AnyHashable: Any], handler: @escaping BananoQuestCompletionHandler) {
         // Quest completion submitted
-        Networking.uploadQuestCompletion(quest: quest, locations: locations)
+        do {
+            try Networking.uploadQuestCompletion(quest: quest, locations: locations) { (response, error) in
+                if error != nil {
+                    handler(nil,error)
+                }else{
+                    handler(response,nil)
+                }
+            }
+        } catch let error as NSError {
+            handler(nil,error)
+        }
+        
     }
     
-    public func createWallet(dict: [AnyHashable : Any]) -> Wallet {
+    public func createWallet(dict: [AnyHashable : Any]) throws -> Wallet {
         var wallet = Wallet.init(address: "", privateKey: "", network: "", data: [AnyHashable : Any]())
         
         do {
             wallet = try PocketEth.createWallet(data: dict)
             return wallet
         } catch let error as NSError {
-            print("Failed to create wallet with error:\(error)")
+            throw error
         }
-        
-        return wallet
+
     }
 }
