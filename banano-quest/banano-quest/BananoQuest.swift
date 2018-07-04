@@ -16,32 +16,9 @@ public typealias NewBananoQuestHandler = (_: Quest?, _: Error?) -> Void
 public typealias BananoQuestCompletionHandler = (_: QueryResponse?, _: Error?) -> Void
 
 public class BananoQuest {
-    private var mainContext: NSManagedObjectContext {
-        get {
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                return NSManagedObjectContext.init(concurrencyType: .mainQueueConcurrencyType)
-            }
-            return appDelegate.persistentContainer.viewContext
-        }
-    }
-
-    public func getLocalQuestList() -> [Quest] {
-        // Quests list retrieved from CoreData
-        var quests = [Quest]()
-        
-        let fetchRequest = NSFetchRequest<Quest>(entityName: "Quest")
-        
-        do {
-            quests = try mainContext.fetch(fetchRequest) as [Quest]
-        } catch let error as NSError {
-            print("Failed to fetch local Quests with error: \(error)")
-        }
-        
-        return quests
-    }
     
     public func createQuest(obj: [AnyHashable: Any], handler: @escaping NewBananoQuestHandler) {
-        let quest = Quest(obj: obj, context: mainContext)
+        let quest = Quest(obj: obj, context: BaseUtil.mainContext)
         
         // New Quest submitted
         do {

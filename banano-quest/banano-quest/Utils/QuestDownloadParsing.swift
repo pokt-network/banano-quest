@@ -11,14 +11,6 @@ import Pocket
 import CoreData
 
 public class QuestDownloadParsing {
-    static var mainContext: NSManagedObjectContext {
-        get {
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                return NSManagedObjectContext.init(concurrencyType: .mainQueueConcurrencyType)
-            }
-            return appDelegate.persistentContainer.viewContext
-        }
-    }
     
     static func parseDownload(dict: QueryResponse) -> Quest {
         // TODO: Parse download
@@ -26,8 +18,7 @@ public class QuestDownloadParsing {
         // quest.metadata, quest.valid, quest.winnersIndex.length, quest.claimersIndex.length)
         
         // Save each quest into core data
-        let quest = Quest(obj: dict.result, context: self.mainContext)
-        quest.save()
+        let quest = Quest(obj: dict.result, context: BaseUtil.mainContext)
         
         return quest
     }
