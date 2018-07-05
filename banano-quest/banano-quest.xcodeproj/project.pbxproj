@@ -23,6 +23,21 @@
 		635F8A9820DD50D6008BA94E /* Questing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 635F8A9720DD50D6008BA94E /* Questing.storyboard */; };
 		635F8A9A20DD50E1008BA94E /* CreateQuest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 635F8A9920DD50E1008BA94E /* CreateQuest.storyboard */; };
 		635F8A9C20DD590B008BA94E /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635F8A9B20DD590B008BA94E /* LandingViewController.swift */; };
+		9BE76E8FF0B142FCA28771F6 /* Pods_banano_quest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F31C7DBEB8D536175528B49 /* Pods_banano_quest.framework */; };
+		C535221A20E13B41009745AC /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535221920E13B41009745AC /* Networking.swift */; };
+		C535221C20E13B72009745AC /* BananoQuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535221B20E13B72009745AC /* BananoQuest.swift */; };
+		C5DF9B0520E3E89C00B8D170 /* QuestDownloadParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF9B0420E3E89C00B8D170 /* QuestDownloadParsing.swift */; };
+		C5DF9B0D20E53D4600B8D170 /* Banano.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF9B0C20E53D4600B8D170 /* Banano.swift */; };
+		C5F50A9120ED4FB0005BAF9F /* BaseUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F50A9020ED4FB0005BAF9F /* BaseUtil.swift */; };
+		C5FAB66420E17B8900057041 /* BananoQuest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5FAB66220E17B8900057041 /* BananoQuest.xcdatamodeld */; };
+		C5FAB66B20E2B4FD00057041 /* Quest+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FAB66520E2B4FD00057041 /* Quest+CoreDataClass.swift */; };
+		C5FAB66C20E2B4FD00057041 /* Quest+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FAB66620E2B4FD00057041 /* Quest+CoreDataProperties.swift */; };
+		C5FAB66D20E2B4FD00057041 /* Winners+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FAB66720E2B4FD00057041 /* Winners+CoreDataClass.swift */; };
+		C5FAB66E20E2B4FD00057041 /* Winners+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FAB66820E2B4FD00057041 /* Winners+CoreDataProperties.swift */; };
+		C5FAB66F20E2B4FD00057041 /* Metadata+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FAB66920E2B4FD00057041 /* Metadata+CoreDataClass.swift */; };
+		C5FAB67020E2B4FD00057041 /* Metadata+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FAB66A20E2B4FD00057041 /* Metadata+CoreDataProperties.swift */; };
+		F1E89049C4353DE45B6C20AF /* Pods_banano_questTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF5CAD64505A83D7F0AF59EA /* Pods_banano_questTests.framework */; };
+		F9CC122E6D9CAD1B8AB3A822 /* Pods_banano_questUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8107D9C5769F10E6C4459743 /* Pods_banano_questUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +58,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D95C478E7E2C26BC8DC176B /* Pods-banano-quest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-quest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-banano-quest/Pods-banano-quest.debug.xcconfig"; sourceTree = "<group>"; };
+		581C9BCFFEE1D399B6CD443F /* Pods-banano-questUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-questUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-banano-questUITests/Pods-banano-questUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		5F31C7DBEB8D536175528B49 /* Pods_banano_quest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_banano_quest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63091D7B20E126A5002253E5 /* QuestingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestingViewController.swift; sourceTree = "<group>"; };
 		63091D7D20E13546002253E5 /* NewWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWalletViewController.swift; sourceTree = "<group>"; };
 		63091D7F20E3D48C002253E5 /* QuestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -65,6 +83,24 @@
 		635F8A9720DD50D6008BA94E /* Questing.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Questing.storyboard; sourceTree = "<group>"; };
 		635F8A9920DD50E1008BA94E /* CreateQuest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateQuest.storyboard; sourceTree = "<group>"; };
 		635F8A9B20DD590B008BA94E /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		7DD1DAF199528BC137A9ECE3 /* Pods-banano-questTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-questTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-banano-questTests/Pods-banano-questTests.release.xcconfig"; sourceTree = "<group>"; };
+		8107D9C5769F10E6C4459743 /* Pods_banano_questUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_banano_questUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A680A22957A731ACB3BB75BC /* Pods-banano-quest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-quest.release.xcconfig"; path = "Pods/Target Support Files/Pods-banano-quest/Pods-banano-quest.release.xcconfig"; sourceTree = "<group>"; };
+		BF51D8A915598C85A2C55503 /* Pods-banano-questUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-questUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-banano-questUITests/Pods-banano-questUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C28BAABF78BB4019A5874A1D /* Pods-banano-questTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-questTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-banano-questTests/Pods-banano-questTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C535221920E13B41009745AC /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		C535221B20E13B72009745AC /* BananoQuest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BananoQuest.swift; sourceTree = "<group>"; };
+		C5DF9B0420E3E89C00B8D170 /* QuestDownloadParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestDownloadParsing.swift; sourceTree = "<group>"; };
+		C5DF9B0C20E53D4600B8D170 /* Banano.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banano.swift; sourceTree = "<group>"; };
+		C5F50A9020ED4FB0005BAF9F /* BaseUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUtil.swift; sourceTree = "<group>"; };
+		C5FAB66320E17B8900057041 /* BananoQuest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BananoQuest.xcdatamodel; sourceTree = "<group>"; };
+		C5FAB66520E2B4FD00057041 /* Quest+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quest+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C5FAB66620E2B4FD00057041 /* Quest+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quest+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C5FAB66720E2B4FD00057041 /* Winners+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Winners+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C5FAB66820E2B4FD00057041 /* Winners+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Winners+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C5FAB66920E2B4FD00057041 /* Metadata+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Metadata+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C5FAB66A20E2B4FD00057041 /* Metadata+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Metadata+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EF5CAD64505A83D7F0AF59EA /* Pods_banano_questTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_banano_questTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BE76E8FF0B142FCA28771F6 /* Pods_banano_quest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1E89049C4353DE45B6C20AF /* Pods_banano_questTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,12 +124,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9CC122E6D9CAD1B8AB3A822 /* Pods_banano_questUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15E2013A40EA654723D98AEE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5F31C7DBEB8D536175528B49 /* Pods_banano_quest.framework */,
+				EF5CAD64505A83D7F0AF59EA /* Pods_banano_questTests.framework */,
+				8107D9C5769F10E6C4459743 /* Pods_banano_questUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		49B658A0E40EE60B0F5F061A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3D95C478E7E2C26BC8DC176B /* Pods-banano-quest.debug.xcconfig */,
+				A680A22957A731ACB3BB75BC /* Pods-banano-quest.release.xcconfig */,
+				C28BAABF78BB4019A5874A1D /* Pods-banano-questTests.debug.xcconfig */,
+				7DD1DAF199528BC137A9ECE3 /* Pods-banano-questTests.release.xcconfig */,
+				581C9BCFFEE1D399B6CD443F /* Pods-banano-questUITests.debug.xcconfig */,
+				BF51D8A915598C85A2C55503 /* Pods-banano-questUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		63091D7A20E1268A002253E5 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +172,8 @@
 				6333171820D9990D0063D856 /* banano-questTests */,
 				6333172320D9990D0063D856 /* banano-questUITests */,
 				6333170220D9990B0063D856 /* Products */,
+				49B658A0E40EE60B0F5F061A /* Pods */,
+				15E2013A40EA654723D98AEE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,6 +190,10 @@
 		6333170320D9990B0063D856 /* banano-quest */ = {
 			isa = PBXGroup;
 			children = (
+				C5DF9B0E20E578FF00B8D170 /* Protocols */,
+				C5FAB66120E17B0000057041 /* Data Models */,
+				C535221820E13B2E009745AC /* Utils */,
+				C535221520E13AF7009745AC /* Models */,
 				63091D7A20E1268A002253E5 /* View Controllers */,
 				635F8A9220DD50A8008BA94E /* Storyboards */,
 				6333170420D9990B0063D856 /* AppDelegate.swift */,
@@ -134,6 +202,7 @@
 				6333170B20D9990D0063D856 /* Assets.xcassets */,
 				6333170D20D9990D0063D856 /* LaunchScreen.storyboard */,
 				6333171020D9990D0063D856 /* Info.plist */,
+				C535221B20E13B72009745AC /* BananoQuest.swift */,
 			);
 			path = "banano-quest";
 			sourceTree = "<group>";
@@ -168,6 +237,45 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		C535221520E13AF7009745AC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C5FAB66520E2B4FD00057041 /* Quest+CoreDataClass.swift */,
+				C5FAB66620E2B4FD00057041 /* Quest+CoreDataProperties.swift */,
+				C5FAB66720E2B4FD00057041 /* Winners+CoreDataClass.swift */,
+				C5FAB66820E2B4FD00057041 /* Winners+CoreDataProperties.swift */,
+				C5FAB66920E2B4FD00057041 /* Metadata+CoreDataClass.swift */,
+				C5FAB66A20E2B4FD00057041 /* Metadata+CoreDataProperties.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C535221820E13B2E009745AC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C535221920E13B41009745AC /* Networking.swift */,
+				C5DF9B0420E3E89C00B8D170 /* QuestDownloadParsing.swift */,
+				C5F50A9020ED4FB0005BAF9F /* BaseUtil.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		C5DF9B0E20E578FF00B8D170 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				C5DF9B0C20E53D4600B8D170 /* Banano.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		C5FAB66120E17B0000057041 /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				C5FAB66220E17B8900057041 /* BananoQuest.xcdatamodeld */,
+			);
+			path = "Data Models";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -175,9 +283,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6333172920D9990D0063D856 /* Build configuration list for PBXNativeTarget "banano-quest" */;
 			buildPhases = (
+				C0C150B07AFE6EB8402A7D88 /* [CP] Check Pods Manifest.lock */,
 				633316FD20D9990B0063D856 /* Sources */,
 				633316FE20D9990B0063D856 /* Frameworks */,
 				633316FF20D9990B0063D856 /* Resources */,
+				BBE662D35065846F116F7F2F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -192,6 +302,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6333172C20D9990D0063D856 /* Build configuration list for PBXNativeTarget "banano-questTests" */;
 			buildPhases = (
+				79968290E6740E6D392AC76B /* [CP] Check Pods Manifest.lock */,
 				6333171120D9990D0063D856 /* Sources */,
 				6333171220D9990D0063D856 /* Frameworks */,
 				6333171320D9990D0063D856 /* Resources */,
@@ -210,6 +321,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6333172F20D9990D0063D856 /* Build configuration list for PBXNativeTarget "banano-questUITests" */;
 			buildPhases = (
+				2730320C6EFC476E1CDA9C5E /* [CP] Check Pods Manifest.lock */,
 				6333171C20D9990D0063D856 /* Sources */,
 				6333171D20D9990D0063D856 /* Frameworks */,
 				6333171E20D9990D0063D856 /* Resources */,
@@ -298,18 +410,129 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2730320C6EFC476E1CDA9C5E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-banano-questUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		79968290E6740E6D392AC76B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-banano-questTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BBE662D35065846F116F7F2F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-banano-quest/Pods-banano-quest-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-Synchronous/Alamofire_Synchronous.framework",
+				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Pocket/Pocket.framework",
+				"${BUILT_PRODUCTS_DIR}/PocketEth/PocketEth.framework",
+				"${BUILT_PRODUCTS_DIR}/RNCryptor/RNCryptor.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
+				"${BUILT_PRODUCTS_DIR}/libsodium/libsodium.framework",
+				"${BUILT_PRODUCTS_DIR}/secp256k1_ios/secp256k1_ios.framework",
+				"${BUILT_PRODUCTS_DIR}/web3swift/web3swift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire_Synchronous.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pocket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketEth.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCryptor.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SipHash.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libsodium.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1_ios.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/web3swift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-banano-quest/Pods-banano-quest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C0C150B07AFE6EB8402A7D88 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-banano-quest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		633316FD20D9990B0063D856 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5FAB66E20E2B4FD00057041 /* Winners+CoreDataProperties.swift in Sources */,
+				C5FAB66D20E2B4FD00057041 /* Winners+CoreDataClass.swift in Sources */,
+				C5F50A9120ED4FB0005BAF9F /* BaseUtil.swift in Sources */,
+				C535221C20E13B72009745AC /* BananoQuest.swift in Sources */,
+				C5FAB66B20E2B4FD00057041 /* Quest+CoreDataClass.swift in Sources */,
+				C5DF9B0D20E53D4600B8D170 /* Banano.swift in Sources */,
+				C5FAB66420E17B8900057041 /* BananoQuest.xcdatamodeld in Sources */,
+				C535221A20E13B41009745AC /* Networking.swift in Sources */,
 				6333170720D9990B0063D856 /* ViewController.swift in Sources */,
+				C5DF9B0520E3E89C00B8D170 /* QuestDownloadParsing.swift in Sources */,
+				C5FAB66F20E2B4FD00057041 /* Metadata+CoreDataClass.swift in Sources */,
+				C5FAB66C20E2B4FD00057041 /* Quest+CoreDataProperties.swift in Sources */,
 				63091D8220E3FB7B002253E5 /* CompleteQuestViewController.swift in Sources */,
 				63091D8020E3D48C002253E5 /* QuestCollectionViewCell.swift in Sources */,
 				63091D7E20E13546002253E5 /* NewWalletViewController.swift in Sources */,
 				635F8A9C20DD590B008BA94E /* LandingViewController.swift in Sources */,
 				63091D7C20E126A5002253E5 /* QuestingViewController.swift in Sources */,
 				6333170520D9990B0063D856 /* AppDelegate.swift in Sources */,
+				C5FAB67020E2B4FD00057041 /* Metadata+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,10 +703,11 @@
 		};
 		6333172A20D9990D0063D856 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D95C478E7E2C26BC8DC176B /* Pods-banano-quest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N824D47ZU5;
+				DEVELOPMENT_TEAM = 379F9842K2;
 				INFOPLIST_FILE = "banano-quest/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -498,10 +722,11 @@
 		};
 		6333172B20D9990D0063D856 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A680A22957A731ACB3BB75BC /* Pods-banano-quest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N824D47ZU5;
+				DEVELOPMENT_TEAM = 379F9842K2;
 				INFOPLIST_FILE = "banano-quest/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -516,6 +741,7 @@
 		};
 		6333172D20D9990D0063D856 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C28BAABF78BB4019A5874A1D /* Pods-banano-questTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -537,6 +763,7 @@
 		};
 		6333172E20D9990D0063D856 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7DD1DAF199528BC137A9ECE3 /* Pods-banano-questTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -558,6 +785,7 @@
 		};
 		6333173020D9990D0063D856 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 581C9BCFFEE1D399B6CD443F /* Pods-banano-questUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -578,6 +806,7 @@
 		};
 		6333173120D9990D0063D856 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF51D8A915598C85A2C55503 /* Pods-banano-questUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -636,6 +865,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C5FAB66220E17B8900057041 /* BananoQuest.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C5FAB66320E17B8900057041 /* BananoQuest.xcdatamodel */,
+			);
+			currentVersion = C5FAB66320E17B8900057041 /* BananoQuest.xcdatamodel */;
+			path = BananoQuest.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 633316F920D9990B0063D856 /* Project object */;
 }
