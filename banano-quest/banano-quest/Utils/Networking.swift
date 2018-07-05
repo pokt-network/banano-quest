@@ -18,10 +18,10 @@ public typealias QuestCountHandler = (_: Int32?, _: Error?) -> Void
 public class Networking {
     static let nodeURL = URL.init(string: "https://node.url")
     
-    public static func getQuestList(handler: @escaping QuestListHandler) {
+    public static func getQuestList(handler: @escaping QuestListHandler) throws {
         var params = [AnyHashable : Any]()
         // Retrieve Quests count
-        getQuestListCount(handler: { (count, error) in
+        try getQuestListCount(handler: { (count, error) in
             if error != nil {
                 print("\(String(describing: error))")
             }
@@ -39,10 +39,14 @@ public class Networking {
                         if error != nil {
                             print("Failed to get Pocket instance for getQuestList() with error:\(String(describing: error))")
                         }else{
-                            // Quest parsing
-                            let quest = QuestDownloadParsing.parseDownload(dict: response!)
-                            // Quest is saved into CoreData
-                            quest.save()
+                            do{
+                                // Quest parsing
+                                let quest = try QuestDownloadParsing.parseDownload(dict: response!)
+                                // Quest is saved into CoreData
+                                try quest.save()
+                            }catch let error as NSError{
+                                handler(error)
+                            }
                         }
                     })
                 } catch let error as NSError{
@@ -55,40 +59,30 @@ public class Networking {
         })
     }
     
-    public static func getQuestListCount(handler: @escaping QuestCountHandler) {
+    public static func getQuestListCount(handler: @escaping QuestCountHandler) throws {
         // getQuestAmount(address _tokenAddress) returns (uint)
         var params = [AnyHashable : Any]()
         var questAmount = Int32(0)
         
         params["_tokenAddress"] = "tokenaddress"
         
-        do {
             // Create and execute a Query to retrieve quest list count
             let query = try createQuery(with: params)
             
             Pocket.getInstance(pocketNodeURL: nodeURL!).executeQuery(query: query, handler: { (response, error) in
                 if error != nil {
                     handler(nil, error)
-                    print("Failed to get Pocket Instance for getQuestListCount() with error:\(String(describing: error))")
                 }else{
                     questAmount = response?.result!["length"] as? Int32 ?? 0
                     handler(questAmount, nil)
                 }
             })
-        } catch let error as NSError{
-            handler(nil,error)
-        }
-        
     }
     
     static func createQuery(with params: [AnyHashable : Any]) throws -> Query {
         var query = Query()
         
-        do {
             query = try PocketEth.createQuery(params: [AnyHashable : Any](), decoder: [AnyHashable : Any]())
-        } catch let error as NSError{
-            throw error
-        }
         
         return query
     }
@@ -96,26 +90,25 @@ public class Networking {
     public static func uploadNewQuest(quest: Quest, handler: @escaping NewQuestHandler) throws{
         let params = [AnyHashable : Any]()
         
-        do {
             let query = try createQuery(with: params)
             
             Pocket.getInstance(pocketNodeURL: nodeURL!).executeQuery(query: query, handler: { (response, error) in
                 if error == nil {
-                    let parsedQuest = QuestDownloadParsing.parseDownload(dict: response!)
-                    handler(parsedQuest, nil)
+                    do{
+                        let parsedQuest = try QuestDownloadParsing.parseDownload(dict: response!)
+                        handler(parsedQuest, nil)
+                    }catch let error as NSError {
+                        handler(nil, error)
+                    }
                 }else{
                     handler(nil, error)
                 }
             })
-        } catch let error as NSError{
-            throw error
-        }
     }
     
     public static func uploadQuestCompletion(quest: Quest, locations: [AnyHashable: Any], handler: @escaping QuestCompletionHandler) throws {
         let params = [AnyHashable : Any]()
         
-        do {
             let query = try createQuery(with: params)
             
             Pocket.getInstance(pocketNodeURL: nodeURL!).executeQuery(query: query, handler: { (response, error) in
@@ -125,8 +118,5 @@ public class Networking {
                     handler(nil, error)
                 }
             })
-        } catch let error as NSError{
-            throw error
-        }
     }
 }

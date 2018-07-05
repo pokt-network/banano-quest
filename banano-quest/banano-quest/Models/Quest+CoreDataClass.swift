@@ -13,9 +13,9 @@ import CoreData
 @objc(Quest)
 public class Quest: NSManagedObject {
     
-    convenience init(obj: [AnyHashable: Any]!, context: NSManagedObjectContext) {
+    convenience init(obj: [AnyHashable: Any]!, context: NSManagedObjectContext) throws {
         self.init(context: context)
-        self.questID = getLocalQuestCount(context: context) + 1
+        self.questID = try getLocalQuestCount(context: context) + 1
         self.creator = obj["creator"] as? String
         self.name = obj["name"] as? String
         self.hint = obj["hint"] as? String
@@ -25,38 +25,26 @@ public class Quest: NSManagedObject {
         self.winners = Winners(obj: obj["metadata"] as? [AnyHashable:Any], context: context)
     }
     
-    func save() {
-        do {
-            try self.managedObjectContext?.save()
-        } catch let error as NSError {
-            print("Failed to save Quest with error: \(error)")
-        }
+    func save() throws {
+        try self.managedObjectContext?.save()
     }
     
-    func reset() {
-        do {
-            self.managedObjectContext?.reset()
-        }
+    func reset() throws {
+        self.managedObjectContext?.reset()
     }
     
-    func delete() {
-        do {
-            self.managedObjectContext?.delete(self)
-            self.save()
-        }
+    func delete() throws {
+        self.managedObjectContext?.delete(self)
+        try self.save()
     }
     
-    private func getLocalQuestCount(context: NSManagedObjectContext) -> Int32{
+    private func getLocalQuestCount(context: NSManagedObjectContext) throws -> Int32{
         var quests = [Quest]()
         
         let fetchRequest = NSFetchRequest<Quest>(entityName: "Quest")
         
-        do {
-            quests = try context.fetch(fetchRequest) as [Quest]
-        } catch let error as NSError {
-            print("Failed to fetch local Quests count with error: \(error)")
-        }
-        
+        quests = try context.fetch(fetchRequest) as [Quest]
+
         return Int32(quests.count)
     }
     

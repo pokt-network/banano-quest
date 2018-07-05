@@ -17,51 +17,40 @@ public typealias BananoQuestCompletionHandler = (_: QueryResponse?, _: Error?) -
 
 public class BananoQuest {
     
-    public func createQuest(obj: [AnyHashable: Any], handler: @escaping NewBananoQuestHandler) {
-        let quest = Quest(obj: obj, context: BaseUtil.mainContext)
+    public func createQuest(obj: [AnyHashable: Any], handler: @escaping NewBananoQuestHandler) throws {
+        let quest = try Quest(obj: obj, context: BaseUtil.mainContext)
         
         // New Quest submitted
-        do {
-            try Networking.uploadNewQuest(quest: quest) { (newQuest, error) in
-                if error != nil {
-                    handler(nil,error)
-                }else{
-                    // Quest is saved in CoreData
-                    newQuest?.save()
+        try Networking.uploadNewQuest(quest: quest) { (newQuest, error) in
+            if error != nil {
+                handler(nil,error)
+            }else{
+                // Quest is saved in CoreData
+                do{
+                    try newQuest?.save()
                     handler(newQuest,nil)
+                }catch let error as NSError {
+                    handler(nil,error)
                 }
             }
-        } catch let error as NSError {
-            handler(nil,error)
         }
-
     }
     
-    public func completeQuest(quest: Quest, locations: [AnyHashable: Any], handler: @escaping BananoQuestCompletionHandler) {
+    public func completeQuest(quest: Quest, locations: [AnyHashable: Any], handler: @escaping BananoQuestCompletionHandler) throws {
         // Quest completion submitted
-        do {
-            try Networking.uploadQuestCompletion(quest: quest, locations: locations) { (response, error) in
-                if error != nil {
-                    handler(nil,error)
-                }else{
-                    handler(response,nil)
-                }
+        try Networking.uploadQuestCompletion(quest: quest, locations: locations) { (response, error) in
+            if error != nil {
+                handler(nil,error)
+            }else{
+                handler(response,nil)
             }
-        } catch let error as NSError {
-            handler(nil,error)
         }
-        
     }
     
     public func createWallet(dict: [AnyHashable : Any]) throws -> Wallet {
         var wallet = Wallet.init(address: "", privateKey: "", network: "", data: [AnyHashable : Any]())
         
-        do {
-            wallet = try PocketEth.createWallet(data: dict)
-            return wallet
-        } catch let error as NSError {
-            throw error
-        }
-
+        wallet = try PocketEth.createWallet(data: dict)
+        return wallet
     }
 }

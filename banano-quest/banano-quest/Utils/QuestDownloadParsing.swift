@@ -12,13 +12,13 @@ import CoreData
 
 public class QuestDownloadParsing {
     
-    static func parseDownload(dict: QueryResponse) -> Quest {
+    static func parseDownload(dict: QueryResponse) throws -> Quest {
         // TODO: Parse download
         // return (quest.creator, quest.index, quest.name, quest.hint, quest.merkleRoot, quest.maxWinners,
         // quest.metadata, quest.valid, quest.winnersIndex.length, quest.claimersIndex.length)
         
         // Save each quest into core data
-        let quest = Quest(obj: dict.result, context: BaseUtil.mainContext)
+        let quest = try Quest(obj: dict.result, context: BaseUtil.mainContext)
         
         return quest
     }

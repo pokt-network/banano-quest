@@ -36,7 +36,7 @@ extension Quest {
         
         let fetchRequest = NSFetchRequest<Quest>(entityName: "Quest")
         // Sync quest list
-        Networking.getQuestList { (error) in
+        try Networking.getQuestList { (error) in
             do {
                 // Retrieve quest list from coreData
                 quests = try BaseUtil.mainContext.fetch(fetchRequest) as [Quest]
