@@ -13,7 +13,6 @@
 		63091D8220E3FB7B002253E5 /* CompleteQuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D8120E3FB7A002253E5 /* CompleteQuestViewController.swift */; };
 		63091D8420EA7920002253E5 /* CreateQuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D8320EA7920002253E5 /* CreateQuestViewController.swift */; };
 		6333170520D9990B0063D856 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6333170420D9990B0063D856 /* AppDelegate.swift */; };
-		6333170720D9990B0063D856 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6333170620D9990B0063D856 /* ViewController.swift */; };
 		6333170A20D9990B0063D856 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6333170820D9990B0063D856 /* Main.storyboard */; };
 		6333170C20D9990D0063D856 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6333170B20D9990D0063D856 /* Assets.xcassets */; };
 		6333170F20D9990D0063D856 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6333170D20D9990D0063D856 /* LaunchScreen.storyboard */; };
@@ -27,8 +26,8 @@
 		9BE76E8FF0B142FCA28771F6 /* Pods_banano_quest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F31C7DBEB8D536175528B49 /* Pods_banano_quest.framework */; };
 		C535221A20E13B41009745AC /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535221920E13B41009745AC /* Networking.swift */; };
 		C535221C20E13B72009745AC /* BananoQuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535221B20E13B72009745AC /* BananoQuest.swift */; };
+		C572CFBD20EF920B009428C2 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572CFBC20EF920B009428C2 /* UIViewController+extension.swift */; };
 		C5DF9B0520E3E89C00B8D170 /* QuestDownloadParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF9B0420E3E89C00B8D170 /* QuestDownloadParsing.swift */; };
-		C5DF9B0D20E53D4600B8D170 /* Banano.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF9B0C20E53D4600B8D170 /* Banano.swift */; };
 		C5F50A9120ED4FB0005BAF9F /* BaseUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F50A9020ED4FB0005BAF9F /* BaseUtil.swift */; };
 		C5FAB66420E17B8900057041 /* BananoQuest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5FAB66220E17B8900057041 /* BananoQuest.xcdatamodeld */; };
 		C5FAB66B20E2B4FD00057041 /* Quest+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FAB66520E2B4FD00057041 /* Quest+CoreDataClass.swift */; };
@@ -69,7 +68,6 @@
 		63091D8320EA7920002253E5 /* CreateQuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuestViewController.swift; sourceTree = "<group>"; };
 		6333170120D9990B0063D856 /* banano-quest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "banano-quest.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6333170420D9990B0063D856 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6333170620D9990B0063D856 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6333170920D9990B0063D856 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6333170B20D9990D0063D856 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6333170E20D9990D0063D856 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -92,8 +90,8 @@
 		C28BAABF78BB4019A5874A1D /* Pods-banano-questTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-questTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-banano-questTests/Pods-banano-questTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C535221920E13B41009745AC /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		C535221B20E13B72009745AC /* BananoQuest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BananoQuest.swift; sourceTree = "<group>"; };
+		C572CFBC20EF920B009428C2 /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
 		C5DF9B0420E3E89C00B8D170 /* QuestDownloadParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestDownloadParsing.swift; sourceTree = "<group>"; };
-		C5DF9B0C20E53D4600B8D170 /* Banano.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banano.swift; sourceTree = "<group>"; };
 		C5F50A9020ED4FB0005BAF9F /* BaseUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUtil.swift; sourceTree = "<group>"; };
 		C5FAB66320E17B8900057041 /* BananoQuest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BananoQuest.xcdatamodel; sourceTree = "<group>"; };
 		C5FAB66520E2B4FD00057041 /* Quest+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quest+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -156,7 +154,7 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		63091D7A20E1268A002253E5 /* View Controllers */ = {
+		63091D7A20E1268A002253E5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				635F8A9B20DD590B008BA94E /* LandingViewController.swift */,
@@ -165,7 +163,7 @@
 				63091D8120E3FB7A002253E5 /* CompleteQuestViewController.swift */,
 				63091D8320EA7920002253E5 /* CreateQuestViewController.swift */,
 			);
-			path = "View Controllers";
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		633316F820D9990B0063D856 = {
@@ -193,19 +191,17 @@
 		6333170320D9990B0063D856 /* banano-quest */ = {
 			isa = PBXGroup;
 			children = (
-				C5DF9B0E20E578FF00B8D170 /* Protocols */,
+				C572CFBE20EFA061009428C2 /* Views */,
+				C572CFBB20EF91CC009428C2 /* Extensions */,
 				C5FAB66120E17B0000057041 /* Data Models */,
 				C535221820E13B2E009745AC /* Utils */,
 				C535221520E13AF7009745AC /* Models */,
-				63091D7A20E1268A002253E5 /* View Controllers */,
+				63091D7A20E1268A002253E5 /* ViewControllers */,
 				635F8A9220DD50A8008BA94E /* Storyboards */,
 				6333170420D9990B0063D856 /* AppDelegate.swift */,
-				63091D7F20E3D48C002253E5 /* QuestCollectionViewCell.swift */,
-				6333170620D9990B0063D856 /* ViewController.swift */,
 				6333170B20D9990D0063D856 /* Assets.xcassets */,
 				6333170D20D9990D0063D856 /* LaunchScreen.storyboard */,
 				6333171020D9990D0063D856 /* Info.plist */,
-				C535221B20E13B72009745AC /* BananoQuest.swift */,
 			);
 			path = "banano-quest";
 			sourceTree = "<group>";
@@ -256,6 +252,7 @@
 		C535221820E13B2E009745AC /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				C535221B20E13B72009745AC /* BananoQuest.swift */,
 				C535221920E13B41009745AC /* Networking.swift */,
 				C5DF9B0420E3E89C00B8D170 /* QuestDownloadParsing.swift */,
 				C5F50A9020ED4FB0005BAF9F /* BaseUtil.swift */,
@@ -263,12 +260,28 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		C5DF9B0E20E578FF00B8D170 /* Protocols */ = {
+		C572CFBB20EF91CC009428C2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				C5DF9B0C20E53D4600B8D170 /* Banano.swift */,
+				C572CFBC20EF920B009428C2 /* UIViewController+extension.swift */,
 			);
-			path = Protocols;
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C572CFBE20EFA061009428C2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C572CFBF20EFA079009428C2 /* CollectionViewCells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C572CFBF20EFA079009428C2 /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				63091D7F20E3D48C002253E5 /* QuestCollectionViewCell.swift */,
+			);
+			path = CollectionViewCells;
 			sourceTree = "<group>";
 		};
 		C5FAB66120E17B0000057041 /* Data Models */ = {
@@ -524,11 +537,10 @@
 				C5F50A9120ED4FB0005BAF9F /* BaseUtil.swift in Sources */,
 				C535221C20E13B72009745AC /* BananoQuest.swift in Sources */,
 				C5FAB66B20E2B4FD00057041 /* Quest+CoreDataClass.swift in Sources */,
-				C5DF9B0D20E53D4600B8D170 /* Banano.swift in Sources */,
 				C5FAB66420E17B8900057041 /* BananoQuest.xcdatamodeld in Sources */,
 				C535221A20E13B41009745AC /* Networking.swift in Sources */,
-				6333170720D9990B0063D856 /* ViewController.swift in Sources */,
 				C5DF9B0520E3E89C00B8D170 /* QuestDownloadParsing.swift in Sources */,
+				C572CFBD20EF920B009428C2 /* UIViewController+extension.swift in Sources */,
 				C5FAB66F20E2B4FD00057041 /* Metadata+CoreDataClass.swift in Sources */,
 				C5FAB66C20E2B4FD00057041 /* Quest+CoreDataProperties.swift in Sources */,
 				63091D8220E3FB7B002253E5 /* CompleteQuestViewController.swift in Sources */,

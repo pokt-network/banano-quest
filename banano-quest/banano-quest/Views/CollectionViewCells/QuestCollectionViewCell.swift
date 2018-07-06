@@ -14,7 +14,6 @@ class QuestCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var bananoBackground: UIView!
     @IBOutlet weak var bananoStamp: UIImageView!
     
-   
     override func layoutSubviews() {
         super.layoutSubviews()
         
