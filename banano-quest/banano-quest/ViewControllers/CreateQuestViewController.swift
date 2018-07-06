@@ -30,13 +30,16 @@ class CreateQuestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
         addColorView.layer.cornerRadius = addColorView.frame.size.width / 2
         addColorView.clipsToBounds = true
         
         addColorButton.layer.cornerRadius = addColorButton.frame.size.width / 2
         addColorButton.clipsToBounds = true
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
