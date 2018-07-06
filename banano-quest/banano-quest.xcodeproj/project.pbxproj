@@ -11,6 +11,7 @@
 		63091D7E20E13546002253E5 /* NewWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D7D20E13546002253E5 /* NewWalletViewController.swift */; };
 		63091D8020E3D48C002253E5 /* QuestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D7F20E3D48C002253E5 /* QuestCollectionViewCell.swift */; };
 		63091D8220E3FB7B002253E5 /* CompleteQuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D8120E3FB7A002253E5 /* CompleteQuestViewController.swift */; };
+		63091D8420EA7920002253E5 /* CreateQuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D8320EA7920002253E5 /* CreateQuestViewController.swift */; };
 		6333170520D9990B0063D856 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6333170420D9990B0063D856 /* AppDelegate.swift */; };
 		6333170A20D9990B0063D856 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6333170820D9990B0063D856 /* Main.storyboard */; };
 		6333170C20D9990D0063D856 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6333170B20D9990D0063D856 /* Assets.xcassets */; };
@@ -64,6 +65,7 @@
 		63091D7D20E13546002253E5 /* NewWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWalletViewController.swift; sourceTree = "<group>"; };
 		63091D7F20E3D48C002253E5 /* QuestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestCollectionViewCell.swift; sourceTree = "<group>"; };
 		63091D8120E3FB7A002253E5 /* CompleteQuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteQuestViewController.swift; sourceTree = "<group>"; };
+		63091D8320EA7920002253E5 /* CreateQuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuestViewController.swift; sourceTree = "<group>"; };
 		6333170120D9990B0063D856 /* banano-quest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "banano-quest.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6333170420D9990B0063D856 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6333170920D9990B0063D856 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				63091D7D20E13546002253E5 /* NewWalletViewController.swift */,
 				63091D7B20E126A5002253E5 /* QuestingViewController.swift */,
 				63091D8120E3FB7A002253E5 /* CompleteQuestViewController.swift */,
+				63091D8320EA7920002253E5 /* CreateQuestViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				"${BUILT_PRODUCTS_DIR}/PocketEth/PocketEth.framework",
 				"${BUILT_PRODUCTS_DIR}/RNCryptor/RNCryptor.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SidebarOverlay/SidebarOverlay.framework",
 				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/libsodium/libsodium.framework",
@@ -491,6 +495,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketEth.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCryptor.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SidebarOverlay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SipHash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libsodium.framework",
@@ -544,6 +549,7 @@
 				635F8A9C20DD590B008BA94E /* LandingViewController.swift in Sources */,
 				63091D7C20E126A5002253E5 /* QuestingViewController.swift in Sources */,
 				6333170520D9990B0063D856 /* AppDelegate.swift in Sources */,
+				63091D8420EA7920002253E5 /* CreateQuestViewController.swift in Sources */,
 				C5FAB67020E2B4FD00057041 /* Metadata+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
