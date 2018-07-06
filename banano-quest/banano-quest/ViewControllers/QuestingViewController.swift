@@ -14,9 +14,9 @@ class QuestingViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet weak var prizeLabel: UILabel!
     @IBOutlet weak var bananosLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 

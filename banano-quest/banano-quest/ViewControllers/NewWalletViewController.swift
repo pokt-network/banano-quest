@@ -1,19 +1,17 @@
 //
-//  LandingViewController.swift
+//  NewWalletViewController.swift
 //  banano-quest
 //
-//  Created by Michael O'Rourke on 6/22/18.
+//  Created by Michael O'Rourke on 6/25/18.
 //  Copyright © 2018 Michael O'Rourke. All rights reserved.
 //
 
 import UIKit
 
-class LandingViewController: UIViewController {
+class NewWalletViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
 
         // Do any additional setup after loading the view.
     }
@@ -24,6 +22,18 @@ class LandingViewController: UIViewController {
     }
     
 
+    @IBAction func continuePressed(_ sender: Any) {
+        
+        do {
+            let vc = try self.instantiateViewController(identifier: "QuestingVC", storyboardName: "Questing") as? QuestingViewController
+            
+            self.navigationController?.pushViewController(vc!, animated: true)
+            
+        } catch let error as NSError {
+            print("Failed to instantiate QuestingViewController with error: \(error)")
+        }
+        
+    }
     /*
     // MARK: - Navigation
 
