@@ -1,14 +1,14 @@
 //
-//  NewWalletViewController.swift
+//  MenuViewController.swift
 //  banano-quest
 //
-//  Created by Michael O'Rourke on 6/25/18.
+//  Created by Michael O'Rourke on 7/6/18.
 //  Copyright © 2018 Michael O'Rourke. All rights reserved.
 //
 
 import UIKit
 
-class NewWalletViewController: UIViewController {
+class MenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,18 +22,6 @@ class NewWalletViewController: UIViewController {
     }
     
 
-    @IBAction func continuePressed(_ sender: Any) {
-        
-        do {
-            let vc = try self.instantiateViewController(identifier: "ContainerVC", storyboardName: "Questing") as? ContainerViewController
-            
-            self.navigationController?.pushViewController(vc!, animated: true)
-            
-        } catch let error as NSError {
-            print("Failed to instantiate QuestingViewController with error: \(error)")
-        }
-        
-    }
     /*
     // MARK: - Navigation
 

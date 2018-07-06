@@ -1,19 +1,21 @@
 //
-//  NewWalletViewController.swift
+//  ContainerViewController.swift
 //  banano-quest
 //
-//  Created by Michael O'Rourke on 6/25/18.
+//  Created by Michael O'Rourke on 7/6/18.
 //  Copyright © 2018 Michael O'Rourke. All rights reserved.
 //
 
 import UIKit
+import SidebarOverlay
 
-class NewWalletViewController: UIViewController {
+class ContainerViewController: SOContainerViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.menuSide = .left
+        self.topViewController = self.storyboard?.instantiateViewController(withIdentifier: "QuestingVC")
+        self.sideViewController = self.storyboard?.instantiateViewController(withIdentifier: "MenuVC")
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,18 +24,6 @@ class NewWalletViewController: UIViewController {
     }
     
 
-    @IBAction func continuePressed(_ sender: Any) {
-        
-        do {
-            let vc = try self.instantiateViewController(identifier: "ContainerVC", storyboardName: "Questing") as? ContainerViewController
-            
-            self.navigationController?.pushViewController(vc!, animated: true)
-            
-        } catch let error as NSError {
-            print("Failed to instantiate QuestingViewController with error: \(error)")
-        }
-        
-    }
     /*
     // MARK: - Navigation
 

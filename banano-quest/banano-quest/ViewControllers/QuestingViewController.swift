@@ -39,6 +39,11 @@ class QuestingViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBAction func locationButtonPressed(_ sender: Any) {
         
     }
+    @IBAction func menuButtonPressed(_ sender: Any) {
+        if let container = self.so_containerViewController {
+            container.isSideViewControllerPresented = true
+        }
+    }
     
     @IBAction func unwindToThisViewController(segue: UIStoryboardSegue) {
         print("IM BACK")
