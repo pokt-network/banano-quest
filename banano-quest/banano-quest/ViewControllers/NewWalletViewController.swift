@@ -7,23 +7,58 @@
 //
 
 import UIKit
+//import Pocket
+import PocketEth
 
 class NewWalletViewController: UIViewController {
-
+    @IBOutlet weak var passphraseTextField: UITextField!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var addBalanceButton: UIButton!
+    @IBOutlet weak var continueButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Initial setup
+        addBalanceButton.isEnabled = false
+        continueButton.isEnabled = false
+    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK: - Actions
+    
+    @IBAction func copyAddressBtnPressed(_ sender: Any) {
+        if !(addressLabel.text ?? "").isEmpty {
+            UIPasteboard.general.string = addressLabel.text
+        }else {
+            print("Address label is empty, nothing to copy")
+        }
     }
     
-
-    @IBAction func continuePressed(_ sender: Any) {
+    @IBAction func createWallet(_ sender: Any) {
+        guard let passphrase = passphraseTextField.text else { return  }
         
+        do {
+            let wallet = try PocketEth.createWallet(data: nil)
+            if try wallet.save(passphrase: passphrase) {
+                continueButton.isEnabled = true
+                addBalanceButton.isEnabled = true
+                
+                addressLabel.text = wallet.address
+                print("Wallet saved successfully with address: \(wallet.address) and privateKey: \(wallet.privateKey)")
+            }else {
+                print("Failed to save wallet")
+            }
+        } catch let error as NSError {
+            print("Failed to create wallet with error: \(error)")
+        }
+    }
+    
+    @IBAction func continuePressed(_ sender: Any) {
         do {
             let vc = try self.instantiateViewController(identifier: "QuestingVC", storyboardName: "Questing") as? QuestingViewController
             
@@ -32,16 +67,6 @@ class NewWalletViewController: UIViewController {
         } catch let error as NSError {
             print("Failed to instantiate QuestingViewController with error: \(error)")
         }
-        
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

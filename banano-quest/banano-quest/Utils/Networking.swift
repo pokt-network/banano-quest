@@ -35,7 +35,7 @@ public class Networking {
                 do {
                     let query = try createQuery(with: params)
                     // Query execution to retrieve a single quest
-                    Pocket.getInstance(pocketNodeURL: nodeURL!).executeQuery(query: query, handler: { (response, error) in
+                    Pocket.shared.executeQuery(query: query, handler: { (response, error) in
                         if error != nil {
                             print("Failed to get Pocket instance for getQuestList() with error:\(String(describing: error))")
                         }else{
@@ -69,7 +69,7 @@ public class Networking {
             // Create and execute a Query to retrieve quest list count
             let query = try createQuery(with: params)
             
-            Pocket.getInstance(pocketNodeURL: nodeURL!).executeQuery(query: query, handler: { (response, error) in
+            Pocket.shared.executeQuery(query: query, handler: { (response, error) in
                 if error != nil {
                     handler(nil, error)
                 }else{
@@ -92,7 +92,7 @@ public class Networking {
         
             let query = try createQuery(with: params)
             
-            Pocket.getInstance(pocketNodeURL: nodeURL!).executeQuery(query: query, handler: { (response, error) in
+            Pocket.shared.executeQuery(query: query, handler: { (response, error) in
                 if error == nil {
                     do{
                         let parsedQuest = try QuestDownloadParsing.parseDownload(dict: response!)
@@ -111,7 +111,7 @@ public class Networking {
         
             let query = try createQuery(with: params)
             
-            Pocket.getInstance(pocketNodeURL: nodeURL!).executeQuery(query: query, handler: { (response, error) in
+            Pocket.shared.executeQuery(query: query, handler: { (response, error) in
                 if error == nil {
                     handler(response, nil)
                 }else{
