@@ -10,14 +10,23 @@ import UIKit
 
 class QuestCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var questName: UILabel!
-    @IBOutlet weak var bananoBackground: UIView!
-    @IBOutlet weak var bananoStamp: UIImageView!
+    @IBOutlet weak var questNameLabel: UILabel!
+    @IBOutlet weak var bananoBackgroundView: UIView!
+    @IBOutlet weak var bananoStampImage: UIImageView!
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        bananoBackground.layer.cornerRadius = bananoBackground.frame.size.width / 2
-        bananoBackground.clipsToBounds = true
+        bananoBackgroundView.layer.cornerRadius = bananoBackgroundView.frame.size.width / 2
+        bananoBackgroundView.clipsToBounds = true
+    }
+    
+    func configureCell(quest: Quest) {
+        questNameLabel.text = quest.name
+        
+    }
+    
+    func configureEmptyCell() {
+        
     }
 }
