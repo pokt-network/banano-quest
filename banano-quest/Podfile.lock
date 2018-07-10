@@ -5,6 +5,7 @@ PODS:
   - BigInt (3.0.1):
     - SipHash (~> 1.2)
   - CryptoSwift (0.9.0)
+  - FlexColorPicker (1.1)
   - libsodium (1.0.12)
   - Pocket (0.0.1):
     - RNCryptor (~> 5.0)
@@ -31,6 +32,7 @@ PODS:
 
 DEPENDENCIES:
   - CryptoSwift
+  - FlexColorPicker (from `https://github.com/RastislavMirek/FlexColorPicker`, branch `master`)
   - Pocket (from `https://github.com/pokt-network/pocket-ios-sdk.git`, branch `master`)
   - PocketEth (from `https://github.com/pokt-network/pocket-ios-eth.git`, branch `master`)
   - SidebarOverlay
@@ -52,6 +54,9 @@ SPEC REPOS:
     - web3swift
 
 EXTERNAL SOURCES:
+  FlexColorPicker:
+    :branch: master
+    :git: https://github.com/RastislavMirek/FlexColorPicker
   Pocket:
     :branch: master
     :git: https://github.com/pokt-network/pocket-ios-sdk.git
@@ -64,6 +69,9 @@ EXTERNAL SOURCES:
     :git: "git@github.com:jrendel/SwiftKeychainWrapper.git"
 
 CHECKOUT OPTIONS:
+  FlexColorPicker:
+    :commit: 87ee44e9838660694a7cb3c84ee0e9151e76087f
+    :git: https://github.com/RastislavMirek/FlexColorPicker
   Pocket:
     :commit: bc0d02d7882f3fe935ac6fe83293a4b80a5a7a49
     :git: https://github.com/pokt-network/pocket-ios-sdk.git
@@ -79,6 +87,7 @@ SPEC CHECKSUMS:
   Alamofire-Synchronous: eedf1e6e961c3795a63c74990b3f7d9fbfac7e50
   BigInt: 8e8a52161c745cd3ab78e3dc346a9fbee51e6cf6
   CryptoSwift: bca8c5b653dcc2d9734409242a070ff53bafac86
+  FlexColorPicker: 795d037b14af62c0fb353a505662846e92296abe
   libsodium: 9a8faa5ef2fa0d2d57bd7f7d79bf8fb7c1a9f0ea
   Pocket: 344f3e28516ada825a5e481b9d1a89e0c453e63e
   PocketEth: fea0608a72387995790fcb60c727dd0367ae319a
@@ -90,6 +99,6 @@ SPEC CHECKSUMS:
   SwiftKeychainWrapper: fe63ac0e19acd227aa031043de5a8f88a3ff23da
   web3swift: 8f1248592ee8446a03b0ed6e0df15147d60d4202
 
-PODFILE CHECKSUM: b90483ece694879162ac64bc2da612fe46da88a6
+PODFILE CHECKSUM: 5a44b6401602d00628ec30d01b58bbf886001d0d
 
 COCOAPODS: 1.5.2
