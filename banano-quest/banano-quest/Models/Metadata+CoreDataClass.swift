@@ -15,14 +15,14 @@ public class Metadata: NSManagedObject {
     convenience init(obj: [AnyHashable: Any]!, context moc: NSManagedObjectContext) {
         self.init(context: moc)
         self.hexColor = obj["hexColor"] as? String
-        self.lat1 = obj["lat1"] as? Float ?? 0
-        self.lon1 = obj["lon1"] as? Float ?? 0
-        self.lat2 = obj["lat2"] as? Float ?? 0
-        self.lon2 = obj["lon2"] as? Float ?? 0
-        self.lat3 = obj["lat3"] as? Float ?? 0
-        self.lon3 = obj["long3"] as? Float ?? 0
-        self.lat4 = obj["lat4"] as? Float ?? 0
-        self.lon4 = obj["lon4"] as? Float ?? 0
+        self.lat1 = Float(obj["lat1"] as? String ?? "0.0") ?? 0.0
+        self.lon1 = Float(obj["lon1"] as? String ?? "0.0") ?? 0.0
+        self.lat2 = Float(obj["lat2"] as? String ?? "0.0") ?? 0.0
+        self.lon2 = Float(obj["lon2"] as? String ?? "0.0") ?? 0.0
+        self.lat3 = Float(obj["lat3"] as? String ?? "0.0") ?? 0.0
+        self.lon3 = Float(obj["lon3"] as? String ?? "0.0") ?? 0.0
+        self.lat4 = Float(obj["lat4"] as? String ?? "0.0") ?? 0.0
+        self.lon4 = Float(obj["lon4"] as? String ?? "0.0") ?? 0.0
     }
     
     func save() {

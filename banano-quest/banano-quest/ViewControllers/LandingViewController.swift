@@ -7,32 +7,41 @@
 //
 
 import UIKit
+import Pocket
 
 class LandingViewController: UIViewController {
-
+    var wallets = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        // Initial setup
+        wallets = Wallet.retrieveWalletRecordKeys()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    // MARK: - Actions
+    
+    @IBAction func playNowPressed(_ sender: Any) {
+        if wallets.count == 0 {
+            do {
+                let vc = try self.instantiateViewController(identifier: "walletCreationViewControllerID", storyboardName: "Main") as? NewWalletViewController
+                self.navigationController?.pushViewController(vc!, animated: false)
+            }catch let error as NSError {
+                print("Failed to instantiate NewWalletViewController with error: \(error)")
+            }
+        }else {
+            do {
+                let vc = try self.instantiateViewController(identifier: "QuestingVC", storyboardName: "Questing") as? QuestingViewController
+                self.navigationController?.pushViewController(vc!, animated: false)
+            }catch let error as NSError {
+                print("Failed to instantiate QuestingViewController with error: \(error)")
+            }
+        }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

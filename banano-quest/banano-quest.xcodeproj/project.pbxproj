@@ -24,6 +24,7 @@
 		635F8A9A20DD50E1008BA94E /* CreateQuest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 635F8A9920DD50E1008BA94E /* CreateQuest.storyboard */; };
 		635F8A9C20DD590B008BA94E /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635F8A9B20DD590B008BA94E /* LandingViewController.swift */; };
 		9BE76E8FF0B142FCA28771F6 /* Pods_banano_quest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F31C7DBEB8D536175528B49 /* Pods_banano_quest.framework */; };
+		C5338BD320FA861D004923D0 /* DebugUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5338BD220FA861D004923D0 /* DebugUtil.swift */; };
 		C535221A20E13B41009745AC /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535221920E13B41009745AC /* Networking.swift */; };
 		C535221C20E13B72009745AC /* BananoQuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535221B20E13B72009745AC /* BananoQuest.swift */; };
 		C572CFBD20EF920B009428C2 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572CFBC20EF920B009428C2 /* UIViewController+extension.swift */; };
@@ -88,6 +89,7 @@
 		A680A22957A731ACB3BB75BC /* Pods-banano-quest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-quest.release.xcconfig"; path = "Pods/Target Support Files/Pods-banano-quest/Pods-banano-quest.release.xcconfig"; sourceTree = "<group>"; };
 		BF51D8A915598C85A2C55503 /* Pods-banano-questUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-questUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-banano-questUITests/Pods-banano-questUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C28BAABF78BB4019A5874A1D /* Pods-banano-questTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-questTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-banano-questTests/Pods-banano-questTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C5338BD220FA861D004923D0 /* DebugUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugUtil.swift; sourceTree = "<group>"; };
 		C535221920E13B41009745AC /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		C535221B20E13B72009745AC /* BananoQuest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BananoQuest.swift; sourceTree = "<group>"; };
 		C572CFBC20EF920B009428C2 /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				C535221920E13B41009745AC /* Networking.swift */,
 				C5DF9B0420E3E89C00B8D170 /* QuestDownloadParsing.swift */,
 				C5F50A9020ED4FB0005BAF9F /* BaseUtil.swift */,
+				C5338BD220FA861D004923D0 /* DebugUtil.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -470,12 +473,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-banano-quest/Pods-banano-quest-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-Synchronous/Alamofire_Synchronous.framework",
 				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Pocket/Pocket.framework",
 				"${BUILT_PRODUCTS_DIR}/PocketEth/PocketEth.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RNCryptor/RNCryptor.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SidebarOverlay/SidebarOverlay.framework",
@@ -487,12 +489,11 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire_Synchronous.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketEth.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCryptor.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SidebarOverlay.framework",
@@ -551,6 +552,7 @@
 				6333170520D9990B0063D856 /* AppDelegate.swift in Sources */,
 				63091D8420EA7920002253E5 /* CreateQuestViewController.swift in Sources */,
 				C5FAB67020E2B4FD00057041 /* Metadata+CoreDataProperties.swift in Sources */,
+				C5338BD320FA861D004923D0 /* DebugUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

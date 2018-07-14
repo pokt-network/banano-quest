@@ -9,18 +9,25 @@
 import UIKit
 import CoreData
 import PocketEth
+import Pocket
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
+class AppDelegate: UIResponder, UIApplicationDelegate, Configuration {
+    var nodeURL: URL {
+        get {
+            return URL.init(string: "https://node.url")!
+        }
+    }
     var window: UIWindow?
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        // Initial quest list download
-        // Networking.getQuestList()
+        // Pocket configuration
+        Pocket.shared.setConfiguration(config: self)
+        
+        // Debug mode only
+        // DebugUtil.debugDataSetup()
         
         return true
     }

@@ -9,8 +9,9 @@
 import Foundation
 import CoreData
 import UIKit
+import MapKit
 
-public class BaseUtil {
+public class BaseUtil {    
     public static var mainContext: NSManagedObjectContext {
         get {
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -19,4 +20,5 @@ public class BaseUtil {
             return appDelegate.persistentContainer.viewContext
         }
     }
+
 }
