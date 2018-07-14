@@ -18,6 +18,7 @@
         <attribute name="maxWinners" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="merkleRoot" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="prize" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="questID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="metadata" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Metadata" inverseName="quest" inverseEntity="Metadata" syncable="YES"/>
         <relationship name="winners" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Winners" inverseName="quest" inverseEntity="Winners" syncable="YES"/>
@@ -27,8 +28,8 @@
         <relationship name="quest" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Quest" inverseName="winners" inverseEntity="Quest" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Quest" positionX="-63" positionY="-18" width="128" height="165"/>
-        <element name="Winners" positionX="-54" positionY="27" width="128" height="75"/>
         <element name="Metadata" positionX="-36" positionY="54" width="128" height="195"/>
+        <element name="Quest" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="Winners" positionX="-54" positionY="27" width="128" height="75"/>
     </elements>
 </model>

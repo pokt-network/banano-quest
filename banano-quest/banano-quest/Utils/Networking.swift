@@ -20,6 +20,7 @@ public class Networking {
     
     public static func getQuestList(handler: @escaping QuestListHandler) throws {
         var params = [AnyHashable : Any]()
+        
         // Retrieve Quests count
         try getQuestListCount(handler: { (count, error) in
             if error != nil {
@@ -31,9 +32,11 @@ public class Networking {
             while index >= 0 {
                 params["_tokenAddress"] = "tokenaddress"
                 params["_questIndex"] = index
+                params["rpcMethod"] = "rpc_method_value"
+                params["rpcParams"] = "rpc_params_value" as Any
                 
                 do {
-                    let query = try createQuery(with: params)
+                    let query = try createQuery(params: params)
                     // Query execution to retrieve a single quest
                     Pocket.shared.executeQuery(query: query, handler: { (response, error) in
                         if error != nil {
@@ -61,28 +64,28 @@ public class Networking {
     
     public static func getQuestListCount(handler: @escaping QuestCountHandler) throws {
         // getQuestAmount(address _tokenAddress) returns (uint)
-        var params = [AnyHashable : Any]()
+        var params = [AnyHashable: Any]()
         var questAmount = Int32(0)
         
-        params["_tokenAddress"] = "tokenaddress"
+        params["rpcMethod"] = "rpc_method_value"
+        params["rpcParams"] = [Any]()
         
-            // Create and execute a Query to retrieve quest list count
-            let query = try createQuery(with: params)
-            
-            Pocket.shared.executeQuery(query: query, handler: { (response, error) in
-                if error != nil {
-                    handler(nil, error)
-                }else{
-                    questAmount = response?.result!["length"] as? Int32 ?? 0
-                    handler(questAmount, nil)
-                }
-            })
+        // Create and execute a Query to retrieve quest list count
+        let query = try createQuery(params: params)
+        
+        Pocket.shared.executeQuery(query: query, handler: { (response, error) in
+            if error != nil {
+                handler(nil, error)
+            }else {
+                questAmount = response?.result!["length"] as? Int32 ?? 0
+                handler(questAmount, nil)
+            }
+        })
     }
     
-    static func createQuery(with params: [AnyHashable : Any]) throws -> Query {
-        var query = Query()
-        
-            query = try PocketEth.createQuery(params: [AnyHashable : Any](), decoder: [AnyHashable : Any]())
+    public static func createQuery(params: [AnyHashable : Any]) throws -> Query {
+        let decoder = [AnyHashable: Any]()
+        let query = try PocketEth.createQuery(params: params, decoder: decoder)
         
         return query
     }
@@ -90,7 +93,7 @@ public class Networking {
     public static func uploadNewQuest(quest: Quest, handler: @escaping NewQuestHandler) throws{
         let params = [AnyHashable : Any]()
         
-            let query = try createQuery(with: params)
+            let query = try createQuery(params: params)
             
             Pocket.shared.executeQuery(query: query, handler: { (response, error) in
                 if error == nil {
@@ -109,7 +112,7 @@ public class Networking {
     public static func uploadQuestCompletion(quest: Quest, locations: [AnyHashable: Any], handler: @escaping QuestCompletionHandler) throws {
         let params = [AnyHashable : Any]()
         
-            let query = try createQuery(with: params)
+            let query = try createQuery(params: params)
             
             Pocket.shared.executeQuery(query: query, handler: { (response, error) in
                 if error == nil {

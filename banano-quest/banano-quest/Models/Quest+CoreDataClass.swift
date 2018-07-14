@@ -13,16 +13,16 @@ import CoreData
 @objc(Quest)
 public class Quest: NSManagedObject {
     
-    convenience init(obj: [AnyHashable: Any]!, context: NSManagedObjectContext) throws {
+    convenience init(obj: [AnyHashable: Any]!, metadata: [AnyHashable: Any]!, context: NSManagedObjectContext) throws {
         self.init(context: context)
         self.questID = try getLocalQuestCount(context: context) + 1
         self.creator = obj["creator"] as? String
         self.name = obj["name"] as? String
         self.hint = obj["hint"] as? String
-        self.maxWinners = (obj["maxWinners"] as? Int16) ?? 0
+        self.maxWinners = Int16(obj["maxWinners"] as? String ?? "") ?? 0
+        self.prize = Int32(obj["prize"] as? String ?? "") ?? 0
         self.merkleRoot = obj["merkleRoot"] as? String
-        self.metadata = Metadata(obj: obj["metadata"] as? [AnyHashable:Any], context: context)
-        self.winners = Winners(obj: obj["metadata"] as? [AnyHashable:Any], context: context)
+        self.metadata = Metadata(obj: metadata, context: context)
     }
     
     func save() throws {
@@ -52,6 +52,8 @@ public class Quest: NSManagedObject {
         var dict = [AnyHashable: Any]()
         dict["questID"] = questID
         dict["creator"] = creator
+        dict["name"] = name
+        dict["prize"] = prize
         dict["hint"] = hint
         dict["maxWinners"] = maxWinners
         dict["merkleRoot"] = merkleRoot

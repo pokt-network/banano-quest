@@ -24,6 +24,7 @@ extension Quest {
     @NSManaged public var merkleRoot: String?
     @NSManaged public var maxWinners: Int16
     @NSManaged public var questID: Int32
+    @NSManaged public var prize: Int32
     @NSManaged public var winners: Winners?
     @NSManaged public var metadata: Metadata?
 
@@ -35,16 +36,25 @@ extension Quest {
         var quests = [Quest]()
         
         let fetchRequest = NSFetchRequest<Quest>(entityName: "Quest")
-        // Sync quest list
-        try Networking.getQuestList { (error) in
-            do {
-                // Retrieve quest list from coreData
-                quests = try BaseUtil.mainContext.fetch(fetchRequest) as [Quest]
-                handler(quests,nil)
+        
+        do {            
+            // Sync quest list
+            try Networking.getQuestList { (error) in
+                do {
+                    // Retrieve quest list from coreData
+                    quests = try BaseUtil.mainContext.fetch(fetchRequest) as [Quest]
+                    handler(quests,nil)
+                }
+                catch let error as NSError {
+                    handler(nil,error)
+                }
             }
-            catch let error as NSError {
-                handler(nil,error)
-            }
+            
         }
+        catch let error as NSError {
+            handler(nil,error)
+        }
+        
+
     }
 }
