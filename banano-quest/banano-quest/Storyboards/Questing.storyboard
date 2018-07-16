@@ -12,6 +12,36 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Container View Controller-->
+        <scene sceneID="Ncr-6P-zbg">
+            <objects>
+                <viewController storyboardIdentifier="ContainerVC" id="G4U-w7-WQp" customClass="ContainerViewController" customModule="banano_quest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nIw-ZC-lzm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="NIr-D4-xjG"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xzF-pJ-54N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1583" y="189"/>
+        </scene>
+        <!--Menu View Controller-->
+        <scene sceneID="n5h-Or-CsB">
+            <objects>
+                <viewController storyboardIdentifier="MenuVC" id="Zkd-6T-kW6" customClass="MenuViewController" customModule="banano_quest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hk7-Uy-dIl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="H9B-NA-o9P"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a1o-of-4dd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-825" y="188"/>
+        </scene>
         <!--Questing View Controller-->
         <scene sceneID="Ya0-tU-2Hk">
             <objects>
@@ -62,6 +92,9 @@
                                     <constraint firstAttribute="height" constant="36" id="vYN-Xr-0Gi"/>
                                 </constraints>
                                 <state key="normal" image="MENUX1"/>
+                                <connections>
+                                    <action selector="menuButtonPressed:" destination="kQ9-IP-T6f" eventType="touchUpInside" id="Fad-7C-nmL"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SAMALL BANNERx1" translatesAutoresizingMaskIntoConstraints="NO" id="s9R-2F-4Nz" userLabel="Summary background image">
                                 <rect key="frame" x="0.0" y="342" width="375" height="193"/>

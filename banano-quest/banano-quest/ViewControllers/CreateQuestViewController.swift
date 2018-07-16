@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FlexColorPicker
 
 class CreateQuestViewController: UIViewController {
 
@@ -51,6 +52,10 @@ class CreateQuestViewController: UIViewController {
     }
     
     @IBAction func addLocationPressed(_ sender: Any) {
+        
+//        let colorPickerController = DefaultColorPickerViewController()
+//        colorPickerController.delegate = self
+//        navigationController?.pushViewController(colorPickerController, animated: true)
     }
     
     /*
