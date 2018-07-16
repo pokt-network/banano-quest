@@ -57,6 +57,9 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
                 }
             }
         }catch let error as NSError{
+            let alert = self.bananoAlertView(title: "Error", message: "Failed to retrieve quest list with error:")
+            self.present(alert, animated: false, completion: nil)
+            
             print("Failed to retrieve quest list with error: \(error)")
         }
     }
@@ -138,6 +141,9 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     
     @IBAction func completeButtonPressed(_ sender: Any) {
         guard let quest = quests?[currentIndex] else {
+            let alert = self.bananoAlertView(title: "Error", message: "Failed to retrieve current quest, please try again later.")
+            self.present(alert, animated: false, completion: nil)
+            
             print("Failed to retrieve current quest, returning")
             return
         }
@@ -148,6 +154,9 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
             
             self.navigationController?.pushViewController(vc!, animated: false)
         }catch let error as NSError {
+            let alert = self.bananoAlertView(title: "Error", message: "Ups, something happened, please try again later.")
+            self.present(alert, animated: false, completion: nil)
+            
             print("Failed to instantiate NewWalletViewController with error: \(error)")
         }
     }

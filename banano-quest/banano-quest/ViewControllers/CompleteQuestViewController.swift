@@ -51,6 +51,8 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
         }else{
+            let alertView = self.bananoAlertView(title: "Error", message: "Location services are disabled, please enable before trying again.")
+            self.present(alertView, animated: false, completion: nil)
             print("Location services are disabled, please enable before trying again.")
         }
         
@@ -97,16 +99,42 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
                 print("Location accuracy is not under 100 meters, skipping...")
             }
         }else{
+            let alertView = self.bananoAlertView(title: "Error", message: "Failed to get current location.")
+            self.present(alertView, animated: false, completion: nil)
+            
             print("Failed to get current location")
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedAlways {
-            // TODO: Update authorize/denied location access flow
+        switch status {
+        case .notDetermined:
+            locationManager.requestAlwaysAuthorization()
+            break
+        case .authorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+            break
+        case .authorizedAlways:
+            locationManager.startUpdatingLocation()
+            break
+        case .restricted:
+            // restricted by e.g. parental controls. User can't enable Location Services
+            let alertView = self.bananoAlertView(title: "Error", message: "Restricted by parental controls. User can't enable Location Services.")
+            self.present(alertView, animated: false, completion: nil)
+            
+            print("restricted by e.g. parental controls. User can't enable Location Services")
+            break
+        case .denied:
+            // user denied your app access to Location Services, but can grant access from Settings.app
+            let alertView = self.bananoAlertView(title: "Error", message: "User denied your app access to Location Services, but can grant access from Settings.app.")
+            self.present(alertView, animated: false, completion: nil)
+            
+            print("user denied your app access to Location Services, but can grant access from Settings.app")
+            break
         }
     }
     @IBAction func completeButtonPressed(_ sender: Any) {
+        
     }
     
 }

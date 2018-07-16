@@ -32,4 +32,12 @@ extension UIViewController {
         
         return label
     }
+    
+    func bananoAlertView(title: String, message: String) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        
+        return alert
+    }
 }
