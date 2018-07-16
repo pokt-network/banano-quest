@@ -25,6 +25,7 @@
 		635F8A9C20DD590B008BA94E /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635F8A9B20DD590B008BA94E /* LandingViewController.swift */; };
 		637C03EC20EFB8BD002D4652 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637C03EB20EFB8BD002D4652 /* ContainerViewController.swift */; };
 		637C03EE20EFC0A2002D4652 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637C03ED20EFC0A2002D4652 /* MenuViewController.swift */; };
+		637C03F220F50374002D4652 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637C03F120F50374002D4652 /* ColorPickerViewController.swift */; };
 		9BE76E8FF0B142FCA28771F6 /* Pods_banano_quest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F31C7DBEB8D536175528B49 /* Pods_banano_quest.framework */; };
 		C535221A20E13B41009745AC /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535221920E13B41009745AC /* Networking.swift */; };
 		C535221C20E13B72009745AC /* BananoQuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535221B20E13B72009745AC /* BananoQuest.swift */; };
@@ -87,6 +88,7 @@
 		635F8A9B20DD590B008BA94E /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		637C03EB20EFB8BD002D4652 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		637C03ED20EFC0A2002D4652 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		637C03F120F50374002D4652 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		7DD1DAF199528BC137A9ECE3 /* Pods-banano-questTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-questTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-banano-questTests/Pods-banano-questTests.release.xcconfig"; sourceTree = "<group>"; };
 		8107D9C5769F10E6C4459743 /* Pods_banano_questUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_banano_questUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A680A22957A731ACB3BB75BC /* Pods-banano-quest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-quest.release.xcconfig"; path = "Pods/Target Support Files/Pods-banano-quest/Pods-banano-quest.release.xcconfig"; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				63091D8320EA7920002253E5 /* CreateQuestViewController.swift */,
 				637C03ED20EFC0A2002D4652 /* MenuViewController.swift */,
 				637C03EB20EFB8BD002D4652 /* ContainerViewController.swift */,
+				637C03F120F50374002D4652 /* ColorPickerViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				C5FAB66D20E2B4FD00057041 /* Winners+CoreDataClass.swift in Sources */,
 				637C03EC20EFB8BD002D4652 /* ContainerViewController.swift in Sources */,
 				C5F50A9120ED4FB0005BAF9F /* BaseUtil.swift in Sources */,
+				637C03F220F50374002D4652 /* ColorPickerViewController.swift in Sources */,
 				C535221C20E13B72009745AC /* BananoQuest.swift in Sources */,
 				C5FAB66B20E2B4FD00057041 /* Quest+CoreDataClass.swift in Sources */,
 				C5FAB66420E17B8900057041 /* BananoQuest.xcdatamodeld in Sources */,
