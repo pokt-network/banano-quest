@@ -10,30 +10,19 @@ import UIKit
 import Pocket
 import MapKit
 
-class QuestingViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate {
+class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var previousButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var completeButton: UIButton!
     
     var quests: [Quest]?
     var currentIndex = 0
-    var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestAlwaysAuthorization()
-        
-        // Checks is location services are enabled to start updating location
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.startUpdatingLocation()
-            locationManager.requestWhenInUseAuthorization()
-        }else{
-            print("Location services are disabled, please enable before trying again.")
-        }
         
         // Quest list
         loadQuestList()
@@ -44,9 +33,9 @@ class QuestingViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         //Looks for single or multiple taps.
         let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        
+        tapOutside.cancelsTouchesInView = false
         view.addGestureRecognizer(tapOutside)
-        
+    
         refreshView()
     }
     
@@ -55,16 +44,37 @@ class QuestingViewController: UIViewController, UICollectionViewDelegate, UIColl
         do {
             try Quest.retrieveQuestList { (questList, error) in
                 self.quests = questList
-                self.refreshView()
+                
+                if self.quests?.count == 0 {
+                    DispatchQueue.main.async {
+                        self.hideElements(bool: true)
+                        let label = self.showLabelWith(message: "No Quests available, please try again later...")
+                        self.view.addSubview(label)
+                    }
+                }else {
+                    self.hideElements(bool: false)
+                    self.refreshView()
+                }
             }
         }catch let error as NSError{
             print("Failed to retrieve quest list with error: \(error)")
         }
     }
-    
+
     func refreshView() {
         // Every UI refresh should be done here
-        collectionView.reloadData()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    func hideElements(bool: Bool) {
+        DispatchQueue.main.async {
+            self.collectionView.isHidden = bool
+            self.previousButton.isHidden = bool
+            self.nextButton.isHidden = bool
+            self.completeButton.isHidden = bool
+        }
     }
     
     @objc func dismissKeyboard() {
@@ -76,6 +86,9 @@ class QuestingViewController: UIViewController, UICollectionViewDelegate, UIColl
             currentIndex = currentIndex + 1
             let indexPath = IndexPath(item: currentIndex, section: 0)
             collectionView.scrollToItem(at: indexPath, at: .right, animated: true)
+            print("Moving to next")
+        }else{
+            print("Failed to move next")
         }
     }
     
@@ -85,12 +98,24 @@ class QuestingViewController: UIViewController, UICollectionViewDelegate, UIColl
                 currentIndex = currentIndex - 1
                 let indexPath = IndexPath(item: currentIndex, section: 0)
                 collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+                print("Moving to previous")
+            } else{
+                print("Previous index > 0")
             }
+        }else{
+            print("Failed to move previous")
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return quests?.count ?? 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = UIScreen.main.bounds.width - 10
+        let height = collectionView.frame.height
+        
+        return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -100,6 +125,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegate, UIColl
             cell.configureEmptyCell()
             return cell
         }
+        currentIndex = indexPath.item
         
         cell.configureCell(quest: quest)
         
@@ -107,12 +133,22 @@ class QuestingViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     @IBAction func unwindToThisViewController(segue: UIStoryboardSegue) {
-        print("IM BACK")
+        print("Back to QuestingViewController")
     }
     
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedAlways {
-            // TODO: Update authorize/denied location access flow
+    @IBAction func completeButtonPressed(_ sender: Any) {
+        guard let quest = quests?[currentIndex] else {
+            print("Failed to retrieve current quest, returning")
+            return
+        }
+        
+        do {
+            let vc = try self.instantiateViewController(identifier: "completeQuestViewControllerID", storyboardName: "Questing") as? CompleteQuestViewController
+            vc?.quest = quest
+            
+            self.navigationController?.pushViewController(vc!, animated: false)
+        }catch let error as NSError {
+            print("Failed to instantiate NewWalletViewController with error: \(error)")
         }
     }
 }
