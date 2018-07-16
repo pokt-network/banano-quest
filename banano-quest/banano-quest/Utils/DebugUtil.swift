@@ -13,7 +13,7 @@ import MapKit
 
 public class DebugUtil {
     // Change isDebug to true or false to enable dummy data for testing.
-    static var isDebug = false
+    static var isDebug = true
     
     // Creates 10 dummy quests and saves them into CoreData
     // Only if there are 0 quests saved locally
