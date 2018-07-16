@@ -10,14 +10,42 @@ import UIKit
 
 class QuestCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var questName: UILabel!
-    @IBOutlet weak var bananoBackground: UIView!
-    @IBOutlet weak var bananoStamp: UIImageView!
+    @IBOutlet weak var questNameLabel: UILabel!
+    @IBOutlet weak var bananosCountLabel: UILabel!
+    @IBOutlet weak var prizeValueLabel: UILabel!
+    @IBOutlet weak var questDistanceLabel: UILabel!
+    @IBOutlet weak var bananoBackgroundView: UIImageView!
+    @IBOutlet weak var bananoStampImage: UIImageView!
+    @IBOutlet weak var hintTextView: UITextView!
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        bananoBackground.layer.cornerRadius = bananoBackground.frame.size.width / 2
-        bananoBackground.clipsToBounds = true
+        bananoBackgroundView.layer.cornerRadius = bananoBackgroundView.frame.size.width / 2
+        bananoBackgroundView.clipsToBounds = true
+    }
+    
+    func configureCell(quest: Quest) {
+        // TODO:
+        // WINNERS COUNT
+        // PRIZE VALUE
+        // DISTANCE FROM QUEST
+        questNameLabel.text = quest.name
+        bananosCountLabel.text = String(quest.maxWinners)
+        prizeValueLabel.text = "1.00 USD"
+        questDistanceLabel.text = "30M"
+        hintTextView.text = quest.hint
+
+    }
+    
+    func configureEmptyCell() {
+        questNameLabel.text = "NONE"
+        bananosCountLabel.text = "0/0"
+        prizeValueLabel.text = "0.00 USD"
+        questDistanceLabel.text = "0M"
+        hintTextView.text = "NONE"
+    }
+    
+    @IBAction func locationButtonPressed(_ sender: Any) {
     }
 }

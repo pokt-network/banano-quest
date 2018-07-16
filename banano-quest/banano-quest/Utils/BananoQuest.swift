@@ -17,8 +17,8 @@ public typealias BananoQuestCompletionHandler = (_: QueryResponse?, _: Error?) -
 
 public class BananoQuest {
     
-    public func createQuest(obj: [AnyHashable: Any], handler: @escaping NewBananoQuestHandler) throws {
-        let quest = try Quest(obj: obj, context: BaseUtil.mainContext)
+    public func createQuest(obj: [AnyHashable: Any], metadata: [AnyHashable: Any], handler: @escaping NewBananoQuestHandler) throws {
+        let quest = try Quest(obj: obj, metadata: metadata, context: BaseUtil.mainContext)
         
         // New Quest submitted
         try Networking.uploadNewQuest(quest: quest) { (newQuest, error) in

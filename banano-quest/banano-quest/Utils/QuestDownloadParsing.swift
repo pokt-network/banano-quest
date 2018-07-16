@@ -18,7 +18,8 @@ public class QuestDownloadParsing {
         // quest.metadata, quest.valid, quest.winnersIndex.length, quest.claimersIndex.length)
         
         // Save each quest into core data
-        let quest = try Quest(obj: dict.result, context: BaseUtil.mainContext)
+        let metadata = [AnyHashable: Any]()
+        let quest = try Quest(obj: dict.result, metadata: metadata, context: BaseUtil.mainContext)
         
         return quest
     }
