@@ -1,9 +1,10 @@
 PODS:
-  - BigInt (3.0.1):
+  - BigInt (3.1.0):
     - SipHash (~> 1.2)
   - CryptoSwift (0.10.0)
+  - FlexColorPicker (1.1)
   - libsodium (1.0.12)
-  - Pocket (0.0.1):
+  - Pocket (0.0.2):
     - RNCryptor (~> 5.0)
     - SwiftKeychainWrapper
   - PocketEth (0.0.1):
@@ -26,8 +27,8 @@ PODS:
   - SidebarOverlay (4.2.2)
   - SipHash (1.2.2)
   - SwiftKeychainWrapper (3.1.0)
-  - web3swift (1.0.0):
-    - BigInt (~> 3.0.1)
+  - web3swift (1.0.1):
+    - BigInt (~> 3.1.0)
     - CryptoSwift (~> 0.10.0)
     - libsodium (~> 1.0.12)
     - PromiseKit (~> 6.3.0)
@@ -36,6 +37,7 @@ PODS:
 
 DEPENDENCIES:
   - CryptoSwift
+  - FlexColorPicker (from `https://github.com/RastislavMirek/FlexColorPicker`, branch `master`)
   - Pocket (from `https://github.com/pokt-network/pocket-ios-sdk.git`, branch `master`)
   - PocketEth (from `https://github.com/pokt-network/pocket-ios-eth.git`, branch `master`)
   - SidebarOverlay
@@ -56,6 +58,9 @@ SPEC REPOS:
     - web3swift
 
 EXTERNAL SOURCES:
+  FlexColorPicker:
+    :branch: master
+    :git: https://github.com/RastislavMirek/FlexColorPicker
   Pocket:
     :branch: master
     :git: https://github.com/pokt-network/pocket-ios-sdk.git
@@ -68,8 +73,11 @@ EXTERNAL SOURCES:
     :git: "git@github.com:jrendel/SwiftKeychainWrapper.git"
 
 CHECKOUT OPTIONS:
+  FlexColorPicker:
+    :commit: 87ee44e9838660694a7cb3c84ee0e9151e76087f
+    :git: https://github.com/RastislavMirek/FlexColorPicker
   Pocket:
-    :commit: a212ed94a45bf04d5448fc10ebb3742ae2ae050f
+    :commit: 16d034937b766115dd0b7fb5e861a750617d44fe
     :git: https://github.com/pokt-network/pocket-ios-sdk.git
   PocketEth:
     :commit: 729716627a840c69df7f15bfaafbe003ff9999d5
@@ -79,10 +87,11 @@ CHECKOUT OPTIONS:
     :git: "git@github.com:jrendel/SwiftKeychainWrapper.git"
 
 SPEC CHECKSUMS:
-  BigInt: 8e8a52161c745cd3ab78e3dc346a9fbee51e6cf6
+  BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
   CryptoSwift: 6c778d69282bed3b4e975ff97a79d074f20bb011
+  FlexColorPicker: 795d037b14af62c0fb353a505662846e92296abe
   libsodium: 9a8faa5ef2fa0d2d57bd7f7d79bf8fb7c1a9f0ea
-  Pocket: 344f3e28516ada825a5e481b9d1a89e0c453e63e
+  Pocket: 40c168b11a5ac170336445a1d34accc6c8c4989e
   PocketEth: fea0608a72387995790fcb60c727dd0367ae319a
   PromiseKit: e1425568123ec844a944c93f2bcb29d511d39cf5
   Result: 1b3e431f37cbcd3ad89c6aa9ab0ae55515fae3b6
@@ -91,8 +100,8 @@ SPEC CHECKSUMS:
   SidebarOverlay: a5365455a2f9d54f70d0765764ca1a2806b1b11d
   SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
   SwiftKeychainWrapper: fe63ac0e19acd227aa031043de5a8f88a3ff23da
-  web3swift: 93e24a7cf3b65a2d508cd3d1e8f26990df9c869a
+  web3swift: a1db39ac09f6538adb248e2011911348cc88c2c3
 
-PODFILE CHECKSUM: b90483ece694879162ac64bc2da612fe46da88a6
+PODFILE CHECKSUM: 5a44b6401602d00628ec30d01b58bbf886001d0d
 
 COCOAPODS: 1.5.3

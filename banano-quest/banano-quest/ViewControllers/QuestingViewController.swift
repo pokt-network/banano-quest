@@ -130,6 +130,11 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         
         return cell
     }
+    @IBAction func menuButtonPressed(_ sender: Any) {
+        if let container = self.so_containerViewController {
+            container.isSideViewControllerPresented = true
+        }
+    }
     
     @IBAction func unwindToThisViewController(segue: UIStoryboardSegue) {
         print("Back to QuestingViewController")

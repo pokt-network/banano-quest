@@ -12,6 +12,7 @@ target 'banano-quest' do
   pod 'CryptoSwift'
   pod 'SwiftKeychainWrapper', :git => 'git@github.com:jrendel/SwiftKeychainWrapper.git', :branch => 'develop', :commit => '77f73c354d695d976bcf1437fc9fbcea981aa2b4'
   pod 'SidebarOverlay'
+  pod 'FlexColorPicker', :git => 'https://github.com/RastislavMirek/FlexColorPicker', :branch => 'master'
   target 'banano-questTests' do
     inherit! :search_paths
     # Pods for testing

@@ -105,6 +105,7 @@
                                         <rect key="frame" x="35.5" y="5.5" width="30" height="30"/>
                                         <connections>
                                             <action selector="addColorPressed:" destination="kIW-Lt-zHE" eventType="touchUpInside" id="mRH-s3-OfP"/>
+                                            <segue destination="SBb-hC-hlX" kind="show" id="hDI-fj-cZO"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QYd-zA-I7H" userLabel="Separator label">
@@ -162,6 +163,7 @@
                                         <state key="normal" image="MAP-BLUEx1"/>
                                         <connections>
                                             <action selector="addLocationPressed:" destination="kIW-Lt-zHE" eventType="touchUpInside" id="OJe-nu-lBr"/>
+                                            <segue destination="S3U-Dw-yc0" kind="show" id="IIL-Ah-zV8"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvX-OC-3B1" userLabel="Quest Name separator label">
@@ -466,6 +468,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iPY-Yy-3P7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-58.399999999999999" y="-160.56971514242881"/>
+        </scene>
+        <!--Color Picker View Controller-->
+        <scene sceneID="CsF-j5-Qh5">
+            <objects>
+                <viewController id="SBb-hC-hlX" customClass="ColorPickerViewController" customModule="banano_quest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="J7L-5J-PrC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="lKA-01-Q6J"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8cr-01-ld4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1060" y="-328"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="AKo-sw-0r4">
+            <objects>
+                <viewController id="S3U-Dw-yc0" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yea-1F-A8a">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="k4a-lz-Zxj"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LDK-Gg-F9Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1078" y="384"/>
         </scene>
     </scenes>
     <resources>
