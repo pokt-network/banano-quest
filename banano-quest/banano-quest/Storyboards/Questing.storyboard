@@ -34,13 +34,57 @@
                     <view key="view" contentMode="scaleToFill" id="hk7-Uy-dIl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MENU LAYERx1" translatesAutoresizingMaskIntoConstraints="NO" id="CTf-LG-GkW">
+                                <rect key="frame" x="-20" y="0.0" width="395" height="667"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTy-kV-IjH">
+                                <rect key="frame" x="117" y="85" width="141" height="57"/>
+                                <state key="normal" title="     Explore" image="EXPLOREx1">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="exploreButtonTapped:" destination="Zkd-6T-kW6" eventType="touchUpInside" id="yNC-tM-qLB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q0H-0s-oYK">
+                                <rect key="frame" x="87" y="166" width="202" height="57"/>
+                                <state key="normal" title="     Create a Quest" image="CREATE-QX1">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="createQuestButtonTapped:" destination="Zkd-6T-kW6" eventType="touchUpInside" id="Nnc-oe-w4k"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yze-E9-O7c">
+                                <rect key="frame" x="122" y="250" width="132" height="57"/>
+                                <state key="normal" title="     Profile" image="PROFILEx1">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="profileButtonTapped:" destination="Zkd-6T-kW6" eventType="touchUpInside" id="TYt-nW-jSg"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="CTf-LG-GkW" secondAttribute="trailing" id="0gw-Ia-n0i"/>
+                            <constraint firstItem="q0H-0s-oYK" firstAttribute="top" secondItem="cTy-kV-IjH" secondAttribute="bottom" constant="24" id="1xM-6Y-4bt"/>
+                            <constraint firstItem="q0H-0s-oYK" firstAttribute="centerX" secondItem="hk7-Uy-dIl" secondAttribute="centerX" id="COr-WQ-04X"/>
+                            <constraint firstItem="cTy-kV-IjH" firstAttribute="top" secondItem="H9B-NA-o9P" secondAttribute="top" constant="65" id="J8f-qS-ffc"/>
+                            <constraint firstItem="CTf-LG-GkW" firstAttribute="leading" secondItem="H9B-NA-o9P" secondAttribute="leading" constant="-20" id="LPH-KQ-ThV"/>
+                            <constraint firstItem="CTf-LG-GkW" firstAttribute="top" secondItem="hk7-Uy-dIl" secondAttribute="top" id="X1m-ls-ScE"/>
+                            <constraint firstItem="CTf-LG-GkW" firstAttribute="bottom" secondItem="H9B-NA-o9P" secondAttribute="bottom" id="bC8-i3-V0b"/>
+                            <constraint firstItem="Yze-E9-O7c" firstAttribute="centerX" secondItem="q0H-0s-oYK" secondAttribute="centerX" id="bj7-rL-6Sa"/>
+                            <constraint firstItem="cTy-kV-IjH" firstAttribute="centerX" secondItem="hk7-Uy-dIl" secondAttribute="centerX" id="iNO-Ia-nJq"/>
+                            <constraint firstItem="Yze-E9-O7c" firstAttribute="top" secondItem="q0H-0s-oYK" secondAttribute="bottom" constant="27" id="tHR-Zx-Epx"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="H9B-NA-o9P"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a1o-of-4dd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-825" y="188"/>
+            <point key="canvasLocation" x="-826.39999999999998" y="187.55622188905548"/>
         </scene>
         <!--Questing View Controller-->
         <scene sceneID="Ya0-tU-2Hk">
@@ -576,9 +620,13 @@
         <image name="BOTTOM BANNERx1" width="748" height="220"/>
         <image name="CIRCLE STAMP x1" width="280" height="280"/>
         <image name="COMPLETE-BUTTON-x1" width="267" height="140"/>
+        <image name="CREATE-QX1" width="57" height="57"/>
+        <image name="EXPLOREx1" width="57" height="57"/>
         <image name="FORTHx1" width="57" height="57"/>
         <image name="MAP-BLUEx1" width="57" height="57"/>
+        <image name="MENU LAYERx1" width="375" height="1333"/>
         <image name="MENUX1" width="57" height="57"/>
+        <image name="PROFILEx1" width="57" height="57"/>
         <image name="SAMALL BANNERx1" width="750" height="330"/>
     </resources>
 </document>

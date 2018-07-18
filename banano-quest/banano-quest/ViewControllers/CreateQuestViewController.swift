@@ -127,6 +127,11 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
     }
     
     // MARK: - IBActions
+    @IBAction func menuPressed(_ sender: Any) {
+        if let container = self.so_containerViewController {
+            container.isSideViewControllerPresented = true
+        }
+    }
     @IBAction func addColorPressed(_ sender: Any) {
         do {
             let colorPickerController = try self.instantiateViewController(identifier: "colorPickerViewControllerID", storyboardName: "CreateQuest") as! ColorPickerViewController

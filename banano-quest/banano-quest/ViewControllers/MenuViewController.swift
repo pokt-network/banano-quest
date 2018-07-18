@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class MenuViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -21,15 +22,45 @@ class MenuViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func exploreButtonTapped(_ sender: Any) {
+        if let container = self.so_containerViewController {
+            container.isSideViewControllerPresented = false
+        }
+        do {
+            let vc = try self.instantiateViewController(identifier: "QuestingVC", storyboardName: "Questing") as? QuestingViewController
+            self.so_containerViewController?.topViewController = vc
+        } catch let error as NSError {
+            print("Failed to instantiate QuestingViewController with error: \(error)")
+        }
     }
-    */
-
-}
+    
+    @IBAction func createQuestButtonTapped(_ sender: Any) {
+        
+        if let container = self.so_containerViewController {
+            container.isSideViewControllerPresented = false
+        }
+        do {
+        let vc = try self.instantiateViewController(identifier: "CreateQuestVC", storyboardName: "CreateQuest") as? CreateQuestViewController
+            self.so_containerViewController?.topViewController = vc
+        } catch let error as NSError {
+            print("Failed to instantiate QuestingViewController with error: \(error)")
+        }
+        
+        }
+    
+    
+    @IBAction func profileButtonTapped(_ sender: Any) {
+        if let container = self.so_containerViewController {
+            container.isSideViewControllerPresented = false
+        }
+        do {
+            let vc = try self.instantiateViewController(identifier: "ProfileVC", storyboardName: "Profile") as? ProfileViewController
+            self.so_containerViewController?.topViewController = vc
+        } catch let error as NSError {
+            print("Failed to instantiate QuestingViewController with error: \(error)")
+        }
+        
+    }
+    
+    
+    }

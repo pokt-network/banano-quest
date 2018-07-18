@@ -12,6 +12,10 @@
 		63091D8020E3D48C002253E5 /* QuestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D7F20E3D48C002253E5 /* QuestCollectionViewCell.swift */; };
 		63091D8220E3FB7B002253E5 /* CompleteQuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D8120E3FB7A002253E5 /* CompleteQuestViewController.swift */; };
 		63091D8420EA7920002253E5 /* CreateQuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D8320EA7920002253E5 /* CreateQuestViewController.swift */; };
+		6316E9E920FF4FAC00F7C790 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9E820FF4FAC00F7C790 /* ProfileViewController.swift */; };
+		6316E9EB20FF534600F7C790 /* SearchOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9EA20FF534600F7C790 /* SearchOnboardingViewController.swift */; };
+		6316E9ED20FF535400F7C790 /* FindOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9EC20FF535400F7C790 /* FindOnboardingViewController.swift */; };
+		6316E9EF20FF538500F7C790 /* ClaimOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9EE20FF538500F7C790 /* ClaimOnboardingViewController.swift */; };
 		6333170520D9990B0063D856 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6333170420D9990B0063D856 /* AppDelegate.swift */; };
 		6333170A20D9990B0063D856 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6333170820D9990B0063D856 /* Main.storyboard */; };
 		6333170C20D9990D0063D856 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6333170B20D9990D0063D856 /* Assets.xcassets */; };
@@ -70,6 +74,10 @@
 		63091D7F20E3D48C002253E5 /* QuestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestCollectionViewCell.swift; sourceTree = "<group>"; };
 		63091D8120E3FB7A002253E5 /* CompleteQuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteQuestViewController.swift; sourceTree = "<group>"; };
 		63091D8320EA7920002253E5 /* CreateQuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuestViewController.swift; sourceTree = "<group>"; };
+		6316E9E820FF4FAC00F7C790 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		6316E9EA20FF534600F7C790 /* SearchOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOnboardingViewController.swift; sourceTree = "<group>"; };
+		6316E9EC20FF535400F7C790 /* FindOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindOnboardingViewController.swift; sourceTree = "<group>"; };
+		6316E9EE20FF538500F7C790 /* ClaimOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimOnboardingViewController.swift; sourceTree = "<group>"; };
 		6333170120D9990B0063D856 /* banano-quest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "banano-quest.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6333170420D9990B0063D856 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6333170920D9990B0063D856 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -173,6 +181,10 @@
 				637C03ED20EFC0A2002D4652 /* MenuViewController.swift */,
 				637C03EB20EFB8BD002D4652 /* ContainerViewController.swift */,
 				637C03F120F50374002D4652 /* ColorPickerViewController.swift */,
+				6316E9E820FF4FAC00F7C790 /* ProfileViewController.swift */,
+				6316E9EA20FF534600F7C790 /* SearchOnboardingViewController.swift */,
+				6316E9EC20FF535400F7C790 /* FindOnboardingViewController.swift */,
+				6316E9EE20FF538500F7C790 /* ClaimOnboardingViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -549,11 +561,15 @@
 				637C03EC20EFB8BD002D4652 /* ContainerViewController.swift in Sources */,
 				C5F50A9120ED4FB0005BAF9F /* BaseUtil.swift in Sources */,
 				637C03F220F50374002D4652 /* ColorPickerViewController.swift in Sources */,
+				6316E9EB20FF534600F7C790 /* SearchOnboardingViewController.swift in Sources */,
 				C535221C20E13B72009745AC /* BananoQuest.swift in Sources */,
+				6316E9E920FF4FAC00F7C790 /* ProfileViewController.swift in Sources */,
+				6316E9EF20FF538500F7C790 /* ClaimOnboardingViewController.swift in Sources */,
 				C5FAB66B20E2B4FD00057041 /* Quest+CoreDataClass.swift in Sources */,
 				C5FAB66420E17B8900057041 /* BananoQuest.xcdatamodeld in Sources */,
 				C535221A20E13B41009745AC /* Networking.swift in Sources */,
 				C5DF9B0520E3E89C00B8D170 /* QuestDownloadParsing.swift in Sources */,
+				6316E9ED20FF535400F7C790 /* FindOnboardingViewController.swift in Sources */,
 				C572CFBD20EF920B009428C2 /* UIViewController+extension.swift in Sources */,
 				637C03EE20EFC0A2002D4652 /* MenuViewController.swift in Sources */,
 				C5FAB66F20E2B4FD00057041 /* Metadata+CoreDataClass.swift in Sources */,

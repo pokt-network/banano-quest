@@ -36,7 +36,7 @@ class LandingViewController: UIViewController {
             }
         }else {
             do {
-                let vc = try self.instantiateViewController(identifier: "QuestingVC", storyboardName: "Questing") as? QuestingViewController
+                let vc = try self.instantiateViewController(identifier: "ContainerVC", storyboardName: "Questing") as? ContainerViewController
                 self.navigationController?.pushViewController(vc!, animated: false)
             }catch let error as NSError {
                 print("Failed to instantiate QuestingViewController with error: \(error)")
