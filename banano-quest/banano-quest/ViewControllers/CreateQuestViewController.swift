@@ -47,6 +47,11 @@ class CreateQuestViewController: UIViewController {
     }
     
 
+    @IBAction func menuPressed(_ sender: Any) {
+        if let container = self.so_containerViewController {
+            container.isSideViewControllerPresented = true
+        }
+    }
     @IBAction func addColorPressed(_ sender: Any) {
         
     }

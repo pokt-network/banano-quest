@@ -71,6 +71,21 @@
             </objects>
             <point key="canvasLocation" x="2015.2" y="133.5832083958021"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="zze-DA-btI">
+            <objects>
+                <viewController id="FGj-Lb-fYs" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ca7-wa-gNQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="hyN-eS-E9g"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ulc-o8-An3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2734" y="134"/>
+        </scene>
         <!--New Wallet View Controller-->
         <scene sceneID="sj5-Oj-Kne">
             <objects>
@@ -86,8 +101,8 @@
                                     <constraint firstAttribute="height" constant="200" id="yy5-WK-8RT"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WALLET CREATION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tor-6w-gQR" userLabel="Top banner title">
-                                <rect key="frame" x="112" y="27" width="151" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOUNT CREATION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tor-6w-gQR" userLabel="Top banner title">
+                                <rect key="frame" x="103.5" y="27" width="168" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -223,7 +238,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="09w-ll-6eV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2888.8000000000002" y="133.5832083958021"/>
+            <point key="canvasLocation" x="3678" y="126"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CyS-uh-HJM">

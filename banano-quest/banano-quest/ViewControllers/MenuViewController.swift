@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class MenuViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -21,6 +22,31 @@ class MenuViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func exploreButtonTapped(_ sender: Any) {
+        if let container = self.so_containerViewController {
+            container.isSideViewControllerPresented = false
+        }
+        do {
+            let vc = try self.instantiateViewController(identifier: "QuestingVC", storyboardName: "Questing") as? QuestingViewController
+            self.so_containerViewController?.topViewController = vc
+        } catch let error as NSError {
+            print("Failed to instantiate QuestingViewController with error: \(error)")
+        }
+    }
+    
+    @IBAction func createQuestButtonTapped(_ sender: Any) {
+        
+        if let container = self.so_containerViewController {
+            container.isSideViewControllerPresented = false
+        }
+        do {
+        let vc = try self.instantiateViewController(identifier: "CreateQuestVC", storyboardName: "CreateQuest") as? CreateQuestViewController
+            self.so_containerViewController?.topViewController = vc
+        } catch let error as NSError {
+            print("Failed to instantiate QuestingViewController with error: \(error)")
+        }
+        }
+    }
 
     /*
     // MARK: - Navigation
@@ -32,4 +58,3 @@ class MenuViewController: UIViewController {
     }
     */
 
-}
