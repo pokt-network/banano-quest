@@ -16,7 +16,7 @@ public typealias NewBananoQuestHandler = (_: Quest?, _: Error?) -> Void
 public typealias BananoQuestCompletionHandler = (_: QueryResponse?, _: Error?) -> Void
 
 public class BananoQuest {
-    
+
     public func createQuest(obj: [AnyHashable: Any], metadata: [AnyHashable: Any], handler: @escaping NewBananoQuestHandler) throws {
         let quest = try Quest(obj: obj, metadata: metadata, context: BaseUtil.mainContext)
         
@@ -53,4 +53,24 @@ public class BananoQuest {
         wallet = try PocketEth.createWallet(data: dict)
         return wallet
     }
+    
+//    public func getCurrentWallet(passphrase: String) throws -> Wallet {
+//        let wallets = Wallet.retrieveWalletRecordKeys()
+//        
+//        if wallets.count > 0 {
+//            do {
+//                let wallet = try Wallet.retrieveWallet(network: "ETH", address: wallets[0], passphrase: passphrase)
+//                return wallet
+//            } catch let error as NSError {
+//                print("failed with error: \(error)")
+//            }
+//        }else {
+//            do {
+//                return try Wallet(jsonString: "")
+//            } catch let error as NSError {
+//                print("failed with error: \(error)")
+//            }
+//        }
+//        
+//    }
 }

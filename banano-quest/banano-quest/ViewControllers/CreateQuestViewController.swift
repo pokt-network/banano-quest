@@ -9,8 +9,8 @@
 import UIKit
 import FlexColorPicker
 
-class CreateQuestViewController: UIViewController {
-
+class CreateQuestViewController: UIViewController, ColorPickerDelegate {
+    // UI Elements
     @IBOutlet weak var addColorButton: UIButton!
     @IBOutlet weak var addColorView: UIView!
     @IBOutlet weak var questNameTextField: UITextField!
@@ -25,17 +25,22 @@ class CreateQuestViewController: UIViewController {
     @IBOutlet weak var gasCostUSDLabel: UILabel!
     @IBOutlet weak var gasCostETHLabel: UILabel!
     
+    // Variables
+    var newQuest: Quest?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-
+        // Initial Quest setup
+        do {
+            try newQuest = Quest(obj: [AnyHashable : Any](), metadata: [AnyHashable : Any](), context: BaseUtil.mainContext)
+        } catch let error as NSError {
+            print("Failed to create quest with error: \(error)")
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         // UI Settings
-        addColorView.layer.cornerRadius = addColorView.frame.size.width / 2
-        addColorView.clipsToBounds = true
-        
         addColorButton.layer.cornerRadius = addColorButton.frame.size.width / 2
         addColorButton.clipsToBounds = true
         
@@ -55,6 +60,39 @@ class CreateQuestViewController: UIViewController {
         
         view.addGestureRecognizer(tapOutside)
     }
+    // MARK: - Tools
+    
+    func isNewQuestValid() -> Bool {
+        var isValid = true
+        
+        if !(questNameTextField.text ?? "").isEmpty {
+            newQuest?.name = questNameTextField.text
+        }else {
+            isValid = false
+            return isValid
+        }
+        if !(howManyBananosTextField.text ?? "").isEmpty {
+            newQuest?.maxWinners = Int16(howManyBananosTextField.text ?? "0") ?? 0
+        }else {
+            isValid = false
+            return isValid
+        }
+        // TODO: PRIZE
+        if !(hintTextView.text ?? "").isEmpty {
+            newQuest?.hint = hintTextView.text
+        }else {
+            isValid = false
+            return isValid
+        }
+        
+        return false
+    }
+    
+    func isPrizeEnabled(bool: Bool) {
+        // Enables/Disables prize text fields
+        prizeAmountETHTextField.isEnabled = bool
+        prizeAmountUSDTextField.isEnabled = bool
+    }
     
     @objc func switchChanged(switchButton: UISwitch) {
         // Checks if the button is On or Off to disable/enable prize textFields
@@ -65,14 +103,41 @@ class CreateQuestViewController: UIViewController {
         }
     }
     
-    func isPrizeEnabled(bool: Bool) {
-        // Enables/Disables prize text fields
-        prizeAmountETHTextField.isEnabled = bool
-        prizeAmountUSDTextField.isEnabled = bool
+    // MARK: - colorPicker
+    func colorPicker(_ colorPicker: ColorPickerController, selectedColor: UIColor, usingControl: ColorControl) {
+        addColorView.backgroundColor = selectedColor
+        
+        if newQuest != nil {
+            newQuest?.metadata?.hexColor = selectedColor.hexValue()
+        }else {
+            // If newQuest is nil, create a new one and assign the new hexColor
+            do {
+                var metadata = [AnyHashable : Any]()
+                metadata["hexColor"] = selectedColor.hexValue()
+                
+                try newQuest = Quest(obj: [AnyHashable : Any](), metadata: metadata, context: BaseUtil.mainContext)
+            } catch let error as NSError {
+                print("Failed to create quest with error: \(error)")
+            }
+        }
     }
     
+    func colorPicker(_ colorPicker: ColorPickerController, confirmedColor: UIColor, usingControl: ColorControl) {
+        print("Confirmed a color")
+    }
+    
+    // MARK: - IBActions
     @IBAction func addColorPressed(_ sender: Any) {
-        
+        do {
+            let colorPickerController = try self.instantiateViewController(identifier: "colorPickerViewControllerID", storyboardName: "CreateQuest") as! ColorPickerViewController
+            
+            colorPickerController.delegate = self
+            present(colorPickerController, animated: true, completion: nil)
+            
+        } catch let error as NSError {
+            print("failed: \(error)")
+        }
+
     }
     
     @IBAction func addLocationPressed(_ sender: Any) {
@@ -82,14 +147,9 @@ class CreateQuestViewController: UIViewController {
 //        navigationController?.pushViewController(colorPickerController, animated: true)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func createQuestButtonPressed(_ sender: Any) {
+        
+        
     }
-    */
 
 }
