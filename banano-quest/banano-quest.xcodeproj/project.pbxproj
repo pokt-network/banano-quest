@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		102A035120FE3E3C00B47CEA /* QuestMerkleTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A035020FE3E3C00B47CEA /* QuestMerkleTree.swift */; };
+		102A035320FE4CDE00B47CEA /* MerkleTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A035220FE4CDE00B47CEA /* MerkleTree.swift */; };
 		63091D7C20E126A5002253E5 /* QuestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D7B20E126A5002253E5 /* QuestingViewController.swift */; };
 		63091D7E20E13546002253E5 /* NewWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D7D20E13546002253E5 /* NewWalletViewController.swift */; };
 		63091D8020E3D48C002253E5 /* QuestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D7F20E3D48C002253E5 /* QuestCollectionViewCell.swift */; };
@@ -66,6 +68,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		102A035020FE3E3C00B47CEA /* QuestMerkleTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestMerkleTree.swift; sourceTree = "<group>"; };
+		102A035220FE4CDE00B47CEA /* MerkleTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerkleTree.swift; sourceTree = "<group>"; };
 		3D95C478E7E2C26BC8DC176B /* Pods-banano-quest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-quest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-banano-quest/Pods-banano-quest.debug.xcconfig"; sourceTree = "<group>"; };
 		581C9BCFFEE1D399B6CD443F /* Pods-banano-questUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-questUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-banano-questUITests/Pods-banano-questUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5F31C7DBEB8D536175528B49 /* Pods_banano_quest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_banano_quest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -280,6 +284,8 @@
 				C5DF9B0420E3E89C00B8D170 /* QuestDownloadParsing.swift */,
 				C5F50A9020ED4FB0005BAF9F /* BaseUtil.swift */,
 				C5338BD220FA861D004923D0 /* DebugUtil.swift */,
+				102A035020FE3E3C00B47CEA /* QuestMerkleTree.swift */,
+				102A035220FE4CDE00B47CEA /* MerkleTree.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -570,9 +576,11 @@
 				C535221A20E13B41009745AC /* Networking.swift in Sources */,
 				C5DF9B0520E3E89C00B8D170 /* QuestDownloadParsing.swift in Sources */,
 				6316E9ED20FF535400F7C790 /* FindOnboardingViewController.swift in Sources */,
+				102A035120FE3E3C00B47CEA /* QuestMerkleTree.swift in Sources */,
 				C572CFBD20EF920B009428C2 /* UIViewController+extension.swift in Sources */,
 				637C03EE20EFC0A2002D4652 /* MenuViewController.swift in Sources */,
 				C5FAB66F20E2B4FD00057041 /* Metadata+CoreDataClass.swift in Sources */,
+				102A035320FE4CDE00B47CEA /* MerkleTree.swift in Sources */,
 				C5FAB66C20E2B4FD00057041 /* Quest+CoreDataProperties.swift in Sources */,
 				63091D8220E3FB7B002253E5 /* CompleteQuestViewController.swift in Sources */,
 				63091D8020E3D48C002253E5 /* QuestCollectionViewCell.swift in Sources */,

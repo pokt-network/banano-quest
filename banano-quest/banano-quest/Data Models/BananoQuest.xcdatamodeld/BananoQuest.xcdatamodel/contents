@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17D102" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Metadata" representedClassName="Metadata" syncable="YES">
         <attribute name="hexColor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lat1" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -16,6 +16,7 @@
         <attribute name="creator" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="hint" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="maxWinners" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="merkleBody" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="merkleRoot" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="prize" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -29,7 +30,7 @@
     </entity>
     <elements>
         <element name="Metadata" positionX="-36" positionY="54" width="128" height="195"/>
-        <element name="Quest" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="Quest" positionX="-63" positionY="-18" width="128" height="195"/>
         <element name="Winners" positionX="-54" positionY="27" width="128" height="75"/>
     </elements>
 </model>
