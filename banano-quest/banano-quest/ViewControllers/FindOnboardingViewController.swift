@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.swift
+//  FindOnboardingViewController.swift
 //  banano-quest
 //
 //  Created by Michael O'Rourke on 7/18/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class FindOnboardingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,12 +19,6 @@ class ProfileViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    @IBAction func menuPressed(_ sender: Any) {
-        
-        if let container = self.so_containerViewController {
-            container.isSideViewControllerPresented = true
-        }
     }
     
 

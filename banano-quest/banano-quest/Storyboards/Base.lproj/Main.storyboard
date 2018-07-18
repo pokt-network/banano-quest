@@ -78,13 +78,106 @@
                     <view key="view" contentMode="scaleToFill" id="ca7-wa-gNQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NUXONBOARDING 1-x1" translatesAutoresizingMaskIntoConstraints="NO" id="iZ3-MB-myx">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dTt-JV-5wL">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <connections>
+                                    <segue destination="p8r-oR-KRh" kind="show" id="ftI-hU-bDg"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hyN-eS-E9g" firstAttribute="bottom" secondItem="dTt-JV-5wL" secondAttribute="bottom" id="6Mv-Kq-47J"/>
+                            <constraint firstItem="dTt-JV-5wL" firstAttribute="top" secondItem="hyN-eS-E9g" secondAttribute="top" id="DHQ-P3-mSk"/>
+                            <constraint firstItem="hyN-eS-E9g" firstAttribute="trailing" secondItem="dTt-JV-5wL" secondAttribute="trailing" id="E4C-lG-Uc4"/>
+                            <constraint firstItem="dTt-JV-5wL" firstAttribute="leading" secondItem="hyN-eS-E9g" secondAttribute="leading" id="HgA-Fz-u10"/>
+                            <constraint firstItem="iZ3-MB-myx" firstAttribute="leading" secondItem="hyN-eS-E9g" secondAttribute="leading" id="Q3x-do-Nud"/>
+                            <constraint firstItem="hyN-eS-E9g" firstAttribute="bottom" secondItem="iZ3-MB-myx" secondAttribute="bottom" id="cUB-xh-6l5"/>
+                            <constraint firstItem="hyN-eS-E9g" firstAttribute="trailing" secondItem="iZ3-MB-myx" secondAttribute="trailing" id="cd6-pH-25f"/>
+                            <constraint firstItem="iZ3-MB-myx" firstAttribute="top" secondItem="ca7-wa-gNQ" secondAttribute="top" id="xle-WQ-Eo5"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="hyN-eS-E9g"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ulc-o8-An3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2734" y="134"/>
+            <point key="canvasLocation" x="2813.5999999999999" y="133.5832083958021"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="VRq-ih-yeA">
+            <objects>
+                <viewController id="p8r-oR-KRh" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XxF-iM-oQr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NUXONBOARDING-2x1" translatesAutoresizingMaskIntoConstraints="NO" id="Ve2-dm-Kep">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9y-3N-AaN">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <connections>
+                                    <segue destination="leg-ja-YQu" kind="show" id="Hp6-Pe-swT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cm1-S9-9mY" firstAttribute="bottom" secondItem="a9y-3N-AaN" secondAttribute="bottom" id="6Ve-9m-9xV"/>
+                            <constraint firstItem="cm1-S9-9mY" firstAttribute="trailing" secondItem="a9y-3N-AaN" secondAttribute="trailing" id="IvJ-2D-djI"/>
+                            <constraint firstItem="Ve2-dm-Kep" firstAttribute="top" secondItem="XxF-iM-oQr" secondAttribute="top" id="PmQ-mA-SFV"/>
+                            <constraint firstItem="a9y-3N-AaN" firstAttribute="leading" secondItem="cm1-S9-9mY" secondAttribute="leading" id="RQP-t5-vq4"/>
+                            <constraint firstItem="a9y-3N-AaN" firstAttribute="top" secondItem="cm1-S9-9mY" secondAttribute="top" id="Wxn-o2-8IH"/>
+                            <constraint firstItem="cm1-S9-9mY" firstAttribute="bottom" secondItem="Ve2-dm-Kep" secondAttribute="bottom" id="eHT-YX-ez1"/>
+                            <constraint firstItem="cm1-S9-9mY" firstAttribute="trailing" secondItem="Ve2-dm-Kep" secondAttribute="trailing" id="epS-cJ-jk8"/>
+                            <constraint firstItem="Ve2-dm-Kep" firstAttribute="leading" secondItem="cm1-S9-9mY" secondAttribute="leading" id="sd1-QX-ugW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cm1-S9-9mY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nKe-C5-P2I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3583.1999999999998" y="135.38230884557723"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="LgP-BO-HIR">
+            <objects>
+                <viewController id="leg-ja-YQu" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="S65-eX-DkY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NUXONBOARDING-3x1" translatesAutoresizingMaskIntoConstraints="NO" id="yfg-Iz-70L">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dCJ-57-dya">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <connections>
+                                    <segue destination="qhe-8E-1hW" kind="show" id="1kg-TD-fkI"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dCJ-57-dya" firstAttribute="leading" secondItem="vOK-9J-e0Q" secondAttribute="leading" id="3wH-94-rd7"/>
+                            <constraint firstItem="yfg-Iz-70L" firstAttribute="leading" secondItem="vOK-9J-e0Q" secondAttribute="leading" id="Ecr-50-5kR"/>
+                            <constraint firstItem="yfg-Iz-70L" firstAttribute="top" secondItem="S65-eX-DkY" secondAttribute="top" id="IqC-7x-ls3"/>
+                            <constraint firstItem="dCJ-57-dya" firstAttribute="top" secondItem="vOK-9J-e0Q" secondAttribute="top" id="PYD-Wd-XJR"/>
+                            <constraint firstItem="vOK-9J-e0Q" firstAttribute="bottom" secondItem="yfg-Iz-70L" secondAttribute="bottom" id="RY2-Vp-sHQ"/>
+                            <constraint firstItem="vOK-9J-e0Q" firstAttribute="trailing" secondItem="yfg-Iz-70L" secondAttribute="trailing" id="VKa-tG-SzU"/>
+                            <constraint firstItem="vOK-9J-e0Q" firstAttribute="bottom" secondItem="dCJ-57-dya" secondAttribute="bottom" id="XRW-77-zIJ"/>
+                            <constraint firstItem="vOK-9J-e0Q" firstAttribute="trailing" secondItem="dCJ-57-dya" secondAttribute="trailing" id="fAI-t1-5ah"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vOK-9J-e0Q"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pYo-ib-4yQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4253.6000000000004" y="135.38230884557723"/>
         </scene>
         <!--New Wallet View Controller-->
         <scene sceneID="sj5-Oj-Kne">
@@ -238,7 +331,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="09w-ll-6eV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3678" y="126"/>
+            <point key="canvasLocation" x="4942" y="135"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CyS-uh-HJM">
@@ -258,6 +351,21 @@
             </objects>
             <point key="canvasLocation" x="1076" y="133.5832083958021"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="WCm-Eb-im8">
+            <objects>
+                <viewController id="DaG-m2-Ub4" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="s25-iO-uKT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="gPG-BK-BFx"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xeY-8Z-LBw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2815" y="134"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ADD-BANLANCE-BUTTON-X1" width="316" height="139"/>
@@ -266,6 +374,9 @@
         <image name="FORTHx1" width="57" height="57"/>
         <image name="LOGO-X3" width="379" height="164"/>
         <image name="MWL-X1" width="360" height="74"/>
+        <image name="NUXONBOARDING 1-x1" width="375" height="667"/>
+        <image name="NUXONBOARDING-2x1" width="750" height="1334"/>
+        <image name="NUXONBOARDING-3x1" width="750" height="1334"/>
         <image name="PLAY-NOW-BUTTON-X1" width="145" height="69"/>
         <image name="SAMALL BANNERx1" width="750" height="330"/>
     </resources>

@@ -45,16 +45,22 @@ class MenuViewController: UIViewController {
         } catch let error as NSError {
             print("Failed to instantiate QuestingViewController with error: \(error)")
         }
+        
         }
+    
+    
+    @IBAction func profileButtonTapped(_ sender: Any) {
+        if let container = self.so_containerViewController {
+            container.isSideViewControllerPresented = false
+        }
+        do {
+            let vc = try self.instantiateViewController(identifier: "ProfileVC", storyboardName: "Profile") as? ProfileViewController
+            self.so_containerViewController?.topViewController = vc
+        } catch let error as NSError {
+            print("Failed to instantiate QuestingViewController with error: \(error)")
+        }
+        
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    
     }
-    */
-
