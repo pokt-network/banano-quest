@@ -30,6 +30,7 @@ class LandingViewController: UIViewController {
         if wallets.count == 0 {
             do {
                 let vc = try self.instantiateViewController(identifier: "walletCreationViewControllerID", storyboardName: "Main") as? NewWalletViewController
+
                 self.navigationController?.pushViewController(vc!, animated: false)
             }catch let error as NSError {
                 print("Failed to instantiate NewWalletViewController with error: \(error)")
@@ -37,7 +38,24 @@ class LandingViewController: UIViewController {
         }else {
             do {
                 let vc = try self.instantiateViewController(identifier: "ContainerVC", storyboardName: "Questing") as? ContainerViewController
-                self.navigationController?.pushViewController(vc!, animated: false)
+                
+                var wallet: Wallet?
+                
+                let alertView = requestPassphraseAlertView { (passphrase, error) in
+                    if error != nil {
+                        print("Failed to retrieve passphrase from textfield.")
+                    }else {
+                        do {
+                            wallet = try BananoQuest.getCurrentWallet(passphrase: passphrase ?? "")
+                            self.navigationController?.pushViewController(vc!, animated: false)
+                            print("address: \(wallet?.address ?? "none")")
+                        }catch let error as NSError {
+                            print("Failed with error: \(error)")
+                        }
+                    }
+                }
+                
+                present(alertView, animated: false, completion: nil)
             }catch let error as NSError {
                 print("Failed to instantiate QuestingViewController with error: \(error)")
             }
