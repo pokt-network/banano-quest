@@ -59,14 +59,14 @@ class NewWalletViewController: UIViewController {
     }
     
     @IBAction func continuePressed(_ sender: Any) {
+        
         do {
-            let vc = try self.instantiateViewController(identifier: "QuestingVC", storyboardName: "Questing") as? QuestingViewController
-            
-            self.navigationController?.pushViewController(vc!, animated: true)
-            
-        } catch let error as NSError {
+            let vc = try self.instantiateViewController(identifier: "ContainerVC", storyboardName: "Questing") as? ContainerViewController
+            self.navigationController?.pushViewController(vc!, animated: false)
+        }catch let error as NSError {
             print("Failed to instantiate QuestingViewController with error: \(error)")
         }
+
     }
 
 }
