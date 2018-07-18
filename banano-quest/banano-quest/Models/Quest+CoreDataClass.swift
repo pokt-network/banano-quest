@@ -20,7 +20,7 @@ public class Quest: NSManagedObject {
         self.name = obj["name"] as? String
         self.hint = obj["hint"] as? String
         self.maxWinners = Int16(obj["maxWinners"] as? String ?? "") ?? 0
-        self.prize = Int32(obj["prize"] as? String ?? "") ?? 0
+        self.prize = Double(obj["prize"] as? String ?? "0.0") ?? 0.0
         self.merkleRoot = obj["merkleRoot"] as? String
         self.metadata = Metadata(obj: metadata, context: context)
     }

@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-    
+    public typealias passphraseRequestHandler = (_: String?, _: Error?) -> Void
+
     func instantiateViewController(identifier: String, storyboardName: String) throws -> UIViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: storyboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: identifier)
@@ -37,6 +38,23 @@ extension UIViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        
+        return alert
+    }
+    
+    func requestPassphraseAlertView(handler: @escaping passphraseRequestHandler) -> UIAlertController {
+        let alert = UIAlertController(title: "Wallet Passphrase", message: "", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.placeholder = "Passphrase"
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in
+            if let passphraseTextField = alert.textFields?.first {
+                handler(passphraseTextField.text, nil)
+            }else {
+                handler(nil, "Failed to retrieve passphraseTextField" as? Error)
+            }
+        }))
         
         return alert
     }

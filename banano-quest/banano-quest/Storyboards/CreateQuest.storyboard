@@ -221,7 +221,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0.0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="85f-ev-Ihk" userLabel="Prize Amount USD Text Field">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0.0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="85f-ev-Ihk" userLabel="Prize Amount USD Text Field">
                                         <rect key="frame" x="91" y="118" width="41.5" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="a02-Kw-8X8"/>
@@ -554,6 +554,5 @@
         <image name="MAP-BLUEx1" width="57" height="57"/>
         <image name="MENUX1" width="57" height="57"/>
         <image name="SAMALL BANNERx1" width="750" height="330"/>
-        <image name="WhatsApp Image 2018-06-27 at 10.23.43 AM" width="640" height="214"/>
     </resources>
 </document>

@@ -20,5 +20,9 @@ public class BaseUtil {
             return appDelegate.persistentContainer.viewContext
         }
     }
-
+    
+    public static func retrieveDataFrom(address: String) -> [String] {
+        let stringArray = address.components(separatedBy: "/")
+        return stringArray
+    }
 }

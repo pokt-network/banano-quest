@@ -17,7 +17,7 @@ public typealias BananoQuestCompletionHandler = (_: QueryResponse?, _: Error?) -
 
 public class BananoQuest {
 
-    public func createQuest(obj: [AnyHashable: Any], metadata: [AnyHashable: Any], handler: @escaping NewBananoQuestHandler) throws {
+    public static func createQuest(obj: [AnyHashable: Any], metadata: [AnyHashable: Any], handler: @escaping NewBananoQuestHandler) throws {
         let quest = try Quest(obj: obj, metadata: metadata, context: BaseUtil.mainContext)
         
         // New Quest submitted
@@ -36,7 +36,7 @@ public class BananoQuest {
         }
     }
     
-    public func completeQuest(quest: Quest, locations: [AnyHashable: Any], handler: @escaping BananoQuestCompletionHandler) throws {
+    public static func completeQuest(quest: Quest, locations: [AnyHashable: Any], handler: @escaping BananoQuestCompletionHandler) throws {
         // Quest completion submitted
         try Networking.uploadQuestCompletion(quest: quest, locations: locations) { (response, error) in
             if error != nil {
@@ -47,30 +47,33 @@ public class BananoQuest {
         }
     }
     
-    public func createWallet(dict: [AnyHashable : Any]) throws -> Wallet {
+    public static func createWallet(dict: [AnyHashable : Any]) throws -> Wallet {
         var wallet = Wallet.init(address: "", privateKey: "", network: "", data: [AnyHashable : Any]())
         
         wallet = try PocketEth.createWallet(data: dict)
         return wallet
     }
     
-//    public func getCurrentWallet(passphrase: String) throws -> Wallet {
-//        let wallets = Wallet.retrieveWalletRecordKeys()
-//        
-//        if wallets.count > 0 {
-//            do {
-//                let wallet = try Wallet.retrieveWallet(network: "ETH", address: wallets[0], passphrase: passphrase)
-//                return wallet
-//            } catch let error as NSError {
-//                print("failed with error: \(error)")
-//            }
-//        }else {
-//            do {
-//                return try Wallet(jsonString: "")
-//            } catch let error as NSError {
-//                print("failed with error: \(error)")
-//            }
-//        }
-//        
-//    }
+    public static func getCurrentWallet(passphrase: String) throws -> Wallet? {
+        let wallets = Wallet.retrieveWalletRecordKeys()
+        
+        if wallets.count > 0 {
+            do {
+                let stringArray = BaseUtil.retrieveDataFrom(address: wallets[0])
+                let wallet = try Wallet.retrieveWallet(network: stringArray[0], address: stringArray[1], passphrase: passphrase)
+                return wallet
+            } catch let error as NSError {
+                print("failed with error: \(error)")
+            }
+        }else {
+            do {
+                let wallet = try Wallet(jsonString: "")
+                return wallet
+            } catch let error as NSError {
+                print("failed with error: \(error)")
+            }
+        }
+        
+        return nil
+    }
 }

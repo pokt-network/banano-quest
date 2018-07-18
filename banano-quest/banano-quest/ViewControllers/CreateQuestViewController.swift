@@ -8,6 +8,7 @@
 
 import UIKit
 import FlexColorPicker
+import Pocket
 
 class CreateQuestViewController: UIViewController, ColorPickerDelegate {
     // UI Elements
@@ -27,6 +28,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
     
     // Variables
     var newQuest: Quest?
+    var currentWallet: Wallet?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +40,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
             print("Failed to create quest with error: \(error)")
         }
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         // UI Settings
         addColorButton.layer.cornerRadius = addColorButton.frame.size.width / 2
@@ -50,7 +52,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
         
         // Prize switch toggle action
         isTherePrizeSwitch.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
-
+        
         // Prize is enabled by default
         isPrizeEnabled(bool: true)
         
@@ -71,27 +73,36 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
             isValid = false
             return isValid
         }
-        if !(howManyBananosTextField.text ?? "").isEmpty {
+        if !(howManyBananosTextField.text ?? "0.0").isEmpty {
             newQuest?.maxWinners = Int16(howManyBananosTextField.text ?? "0") ?? 0
         }else {
             isValid = false
             return isValid
         }
         // TODO: PRIZE
+        if !(prizeAmountETHTextField.text ?? "0.0").isEmpty {
+            newQuest?.prize = Double(prizeAmountETHTextField.text ?? "0.0") ?? 0.0
+        }else {
+            isValid = false
+            return isValid
+        }
         if !(hintTextView.text ?? "").isEmpty {
             newQuest?.hint = hintTextView.text
         }else {
             isValid = false
             return isValid
         }
+        if newQuest?.metadata?.hexColor == nil {
+            isValid = false
+            return isValid
+        }
         
-        return false
+        return isValid
     }
     
     func isPrizeEnabled(bool: Bool) {
-        // Enables/Disables prize text fields
+        // Enables/Disables prize text field
         prizeAmountETHTextField.isEnabled = bool
-        prizeAmountUSDTextField.isEnabled = bool
     }
     
     @objc func switchChanged(switchButton: UISwitch) {
@@ -142,19 +153,36 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
         } catch let error as NSError {
             print("failed: \(error)")
         }
-
+        
     }
     
     @IBAction func addLocationPressed(_ sender: Any) {
         
-//        let colorPickerController = DefaultColorPickerViewController()
-//        colorPickerController.delegate = self
-//        navigationController?.pushViewController(colorPickerController, animated: true)
+        //        let colorPickerController = DefaultColorPickerViewController()
+        //        colorPickerController.delegate = self
+        //        navigationController?.pushViewController(colorPickerController, animated: true)
     }
     
     @IBAction func createQuestButtonPressed(_ sender: Any) {
-        
-        
+        if isNewQuestValid() {
+            let alertView = requestPassphraseAlertView { (passphrase, error) in
+                if error != nil {
+                    print("Failed to retrieve passphrase from textfield.")
+                }else {
+                    do {
+                        self.currentWallet = try BananoQuest.getCurrentWallet(passphrase: passphrase ?? "")
+                        print("address: \(self.currentWallet?.address ?? "none")")
+                    }catch let error as NSError {
+                        print("Failed with error: \(error)")
+                    }
+                }
+            }
+            
+            self.present(alertView, animated: false, completion: nil)
+        }else {
+            let alertView = self.bananoAlertView(title: "Invalid", message: "Invalid quest, please complete the fields properly.")
+            self.present(alertView, animated: false, completion: nil)
+        }
     }
-
+    
 }

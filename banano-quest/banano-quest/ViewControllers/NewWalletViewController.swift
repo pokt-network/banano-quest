@@ -27,6 +27,12 @@ class NewWalletViewController: UIViewController {
         // Initial setup
         addBalanceButton.isEnabled = false
         continueButton.isEnabled = false
+        
+        // Gesture recognizer that dismiss the keyboard when tapped outside
+        let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        tapOutside.cancelsTouchesInView = false
+        
+        view.addGestureRecognizer(tapOutside)
     }
 
     // MARK: - Actions
@@ -43,7 +49,7 @@ class NewWalletViewController: UIViewController {
         guard let passphrase = passphraseTextField.text else { return  }
         
         do {
-            let wallet = try PocketEth.createWallet(data: nil)
+            let wallet = try BananoQuest.createWallet(dict: [AnyHashable : Any]())
             if try wallet.save(passphrase: passphrase) {
                 continueButton.isEnabled = true
                 addBalanceButton.isEnabled = true
