@@ -1,8 +1,8 @@
 # BANANO Quest
 
-BANANO Quest is a proof of concept game meant to show mobile developers the possiblities of developing blockchain applications using the blockchain and Pocket iOS SDK. A mix between geocaching and Pokemon Go, players use quest hints to walk to specific coordinates in real life, and attempt to complete the quest by sending in their coordinates to the Tavern smart contract deployed on Ethereum. If the coordinates are correct, the contract will reward the player with a unique ERC721 BANANO Token. The important piece to understand is that these BANANO Tokens can be used and transferred outside the game itself, and are not controlled in any way by the creators. 
+BANANO Quest is a proof of concept game meant to show mobile developers the possiblities of developing blockchain applications using the blockchain and Pocket iOS SDK. A mix between geocaching and Pokemon Go, players use quest hints to walk to specific coordinates in real life, and attempt to complete the quest by sending in their coordinates to the Tavern smart contract deployed on Ethereum. If the coordinates are correct, the contract will reward the player with a unique ERC721 BANANO Token. 
 
-The Pocket Network team decided to open source the app as an example developers wishing to dive into mobile blockchain development. We hope this serves as inspiration for taking advantage of the different game mechanics and revenue opportunities outside of the App Store.
+The important piece to understand is that these BANANO Tokens can be used and transferred outside the game itself, and are not controlled in any way by the creators. The Pocket Network team decided to open source the app as an example developers wishing to dive into mobile blockchain development. We hope this serves as inspiration for taking advantage of the different game mechanics and revenue opportunities outside of the App Store.
 
 # Gameplay
 
@@ -38,9 +38,12 @@ We chose Ethereum as the decentralized "backend" for BANANO Quest due to our fam
 
 ## Tavern smart contract
 
-Named after the classic location where gamers go and collect quests, Tavern is a smart contract that allows any Solidity developer to easily extend and make their own custom quest for their custom application. For more detailed information visit the repo for [Tavern](https://github.com/pokt-network/tavern).
+Named after the classic location where gamers go and collect quests, Tavern is a smart contract that allows any Solidity developer to easily extend and make their own custom quest for their custom application. For more detailed information visit the repo for [Tavern](https://github.com/pokt-network/tavern). 
 
-## Non-Fungible Tokens (NFT's)
+The contract rewards players with a [BananoToken](https://github.com/pokt-network/banano-token) which is a Non-Fungible Token (explained below). While we added the BananoToken to the contract, any Ethereum token or ETH can be added as a prize for quests.  
+ 
+
+## BananoToken and Non-Fungible Tokens (NFT's)
 
 NFT's are based off of an [Ethereum Improvement Proposal](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md) standard popularized by [CryptoKitties](https://www.cryptokitties.co/). Otherwise known as ERC721, NFT's enable unique properties that normal EIP20 tokens do not offer, namely unique metadata that gives tokens within the same family vastly different values based on scarcity. Each BANANO token is an NFT, and depending on how difficult and rare the quest is, can potentially have vastly different value than a common BANANO Token. 
 
@@ -48,8 +51,8 @@ NFT's introduce new game mechanics, such as burning or breeding the tokens for a
 
 ## Pocket iOS SDK
 
-BANANO Quest uses Pocket's iOS SDK. 
+The Pocket iOS SDK contains all the tools needed to send transactions and read data from any blockchain, and is an interface that plugins must conform to in order to provide specific blockchain functionality. For more information please see [our repository](https://github.com/pokt-network/pocket-ios-sdk). 
 
 ## Pocket Ethereum iOS plugin
 
-
+PocketEth is a Ethereum specific plugin that works with the Pocket iOS SDK. It provides all the necessary functionality to create Ethereum transactions and queries based on the Ethereum JSON-RPC Interface. For more information please see [our repository](https://github.com/pokt-network/pocket-ios-eth).
