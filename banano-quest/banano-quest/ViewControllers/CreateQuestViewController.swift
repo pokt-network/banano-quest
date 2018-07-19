@@ -9,6 +9,7 @@
 import UIKit
 import FlexColorPicker
 import Pocket
+import MapKit
 
 class CreateQuestViewController: UIViewController, ColorPickerDelegate {
     // UI Elements
@@ -28,7 +29,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
     
     // Variables
     var newQuest: Quest?
-    var currentWallet: Wallet?
+    var selectedLocation = [AnyHashable: Any]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,8 +97,40 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
             isValid = false
             return isValid
         }
+        // Setup merkleTree
+        setupMerkleTree()
+        
+        if newQuest?.merkleRoot?.isEmpty ?? false {
+            isValid = false
+            return isValid
+        }
+        if newQuest?.merkleBody?.isEmpty ?? false {
+            isValid = false
+            return isValid
+        }
         
         return isValid
+    }
+    
+    func createNewQuest() {
+        // New Quest submission
+        // TODO: //
+    }
+    
+    func setupMerkleTree() {
+        if !(selectedLocation["lat"] as! String).isEmpty && !(selectedLocation["lon"] as! String).isEmpty{
+            let latitude = CLLocationDegrees.init(selectedLocation["lat"] as! Double)
+            let longitude = CLLocationDegrees.init(selectedLocation["lon"] as! Double)
+            
+            let location = CLLocation.init(latitude: latitude, longitude: longitude)
+            let questMerkleTree = QuestMerkleTree.init(questCenter: location )
+            // TODO: merkleRoot == rootHex ? ? ?
+            newQuest?.merkleBody = questMerkleTree.getMerkleBody()
+            newQuest?.merkleRoot = questMerkleTree.getRootHex()
+        }else {
+            let alertView = bananoAlertView(title: "Error", message: "Failed to process the selected location, please try again later")
+            self.present(alertView, animated: false, completion: nil)
+        }
     }
     
     func isPrizeEnabled(bool: Bool) {
@@ -157,28 +190,45 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
     }
     
     @IBAction func addLocationPressed(_ sender: Any) {
+        do {
+            let mapVC = try instantiateViewController(identifier: "createQuestMapViewControllerID", storyboardName: "CreateQuest")
+            
+            present(mapVC, animated: false, completion: nil)
+        } catch let error as NSError {
+            print("Failed to instantiate CreateQuestMapViewController with error: \(error)")
+        }
         
-        //        let colorPickerController = DefaultColorPickerViewController()
-        //        colorPickerController.delegate = self
-        //        navigationController?.pushViewController(colorPickerController, animated: true)
     }
     
     @IBAction func createQuestButtonPressed(_ sender: Any) {
-        if isNewQuestValid() {
-            let alertView = requestPassphraseAlertView { (passphrase, error) in
-                if error != nil {
-                    print("Failed to retrieve passphrase from textfield.")
-                }else {
-                    do {
-                        self.currentWallet = try BananoQuest.getCurrentWallet(passphrase: passphrase ?? "")
-                        print("address: \(self.currentWallet?.address ?? "none")")
-                    }catch let error as NSError {
-                        print("Failed with error: \(error)")
+        // Check if the quest inputs are correct.
+        if isNewQuestValid(){
+            // If current wallet is already unlocked, create new quest
+            if BananoQuest.currentWallet != nil {
+                createNewQuest()
+            }else {
+                // Prompt passphrase input to unlock wallet
+                let alertView = requestPassphraseAlertView { (passphrase, error) in
+                    if error != nil {
+                        // Show alertView for error if passphrase is nil
+                        let alertView = self.bananoAlertView(title: "Failed", message: "Failed to retrieve passphrase from textfield.")
+                        self.present(alertView, animated: false, completion: nil)
+                    }else {
+                        // Retrieve wallet with passphrase
+                        do {
+                            BananoQuest.currentWallet = try BananoQuest.getCurrentWallet(passphrase: passphrase ?? "")
+                            self.createNewQuest()
+                        }catch let error as NSError {
+                            let alertView = self.bananoAlertView(title: "Failed", message: "Failed to retrieve account with passphrase, please try again later.")
+                            self.present(alertView, animated: false, completion: nil)
+                            print("Failed with error: \(error)")
+                        }
                     }
                 }
+                
+                self.present(alertView, animated: false, completion: nil)
             }
             
-            self.present(alertView, animated: false, completion: nil)
         }else {
             let alertView = self.bananoAlertView(title: "Invalid", message: "Invalid quest, please complete the fields properly.")
             self.present(alertView, animated: false, completion: nil)

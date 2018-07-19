@@ -40,7 +40,7 @@ public class DebugUtil {
                             metadata["lon4"] = "-69.971803"
                             
                             // Quest
-                            dict["questID"] = "100\(count)"
+                            dict["index"] = "100\(count)"
                             dict["creator"] = "Pocket"
                             dict["name"] = "Quest#\(count)"
                             dict["prize"] = "1.0"
@@ -52,7 +52,7 @@ public class DebugUtil {
                                 let quest = try Quest(obj: dict, metadata: metadata, context: BaseUtil.mainContext)
                                 try quest.save()
                             } catch let error as NSError {
-                                print("Failed to create ques with error: \(error)")
+                                print("Failed to create quest with error: \(error)")
                             }
                             count = count + 1
                         }

@@ -16,7 +16,8 @@ public typealias NewBananoQuestHandler = (_: Quest?, _: Error?) -> Void
 public typealias BananoQuestCompletionHandler = (_: QueryResponse?, _: Error?) -> Void
 
 public class BananoQuest {
-
+    public static var currentWallet: Wallet?
+    
     public static func createQuest(obj: [AnyHashable: Any], metadata: [AnyHashable: Any], handler: @escaping NewBananoQuestHandler) throws {
         let quest = try Quest(obj: obj, metadata: metadata, context: BaseUtil.mainContext)
         

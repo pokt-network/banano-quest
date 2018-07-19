@@ -25,7 +25,6 @@ class LandingViewController: UIViewController {
     }
     
     // MARK: - Actions
-    
     @IBAction func playNowPressed(_ sender: Any) {
         if wallets.count == 0 {
             do {
@@ -47,8 +46,8 @@ class LandingViewController: UIViewController {
                     }else {
                         do {
                             wallet = try BananoQuest.getCurrentWallet(passphrase: passphrase ?? "")
+                            BananoQuest.currentWallet = wallet
                             self.navigationController?.pushViewController(vc!, animated: false)
-                            print("address: \(wallet?.address ?? "none")")
                         }catch let error as NSError {
                             print("Failed with error: \(error)")
                         }
