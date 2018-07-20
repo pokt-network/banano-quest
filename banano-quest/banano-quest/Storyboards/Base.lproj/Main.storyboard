@@ -326,6 +326,7 @@
                         <outlet property="addBalanceButton" destination="YS9-9n-sCO" id="QXy-fw-jX5"/>
                         <outlet property="addressLabel" destination="RHl-Uf-kbz" id="Xrh-BJ-xaX"/>
                         <outlet property="continueButton" destination="Mhz-P3-nu4" id="139-8r-fmB"/>
+                        <outlet property="createButton" destination="hO3-Yf-Yda" id="BXi-VL-hyY"/>
                         <outlet property="passphraseTextField" destination="Glq-xP-yqV" id="elZ-8A-mZb"/>
                     </connections>
                 </viewController>

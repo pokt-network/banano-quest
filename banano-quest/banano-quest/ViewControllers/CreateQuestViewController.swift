@@ -13,6 +13,8 @@ import MapKit
 
 class CreateQuestViewController: UIViewController, ColorPickerDelegate {
     // UI Elements
+    @IBOutlet weak var addLocationButton: UIButton!
+    @IBOutlet weak var bananoImageBackground: UIImageView!
     @IBOutlet weak var addColorButton: UIButton!
     @IBOutlet weak var addColorView: UIView!
     @IBOutlet weak var questNameTextField: UITextField!
@@ -31,6 +33,9 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
     var newQuest: Quest?
     var selectedLocation = [AnyHashable: Any]()
     
+    // Notifications
+    static let notificationName = Notification.Name("getLocation")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -40,16 +45,14 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
         } catch let error as NSError {
             print("Failed to create quest with error: \(error)")
         }
+        
+        // Notification Center
+        NotificationCenter.default.addObserver(self, selector: #selector(onNotification(notification:)), name: CreateQuestViewController.notificationName, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         // UI Settings
-        addColorButton.layer.cornerRadius = addColorButton.frame.size.width / 2
-        addColorButton.clipsToBounds = true
-        
-        hintTextView.layer.borderWidth = 2.0
-        hintTextView.layer.cornerRadius = 5
-        hintTextView.layer.borderColor = UIColor(red: (253/255), green: (204/255), blue: (48/255), alpha: 1.0).cgColor
+        defaultUIElementsStyle()
         
         // Prize switch toggle action
         isTherePrizeSwitch.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
@@ -63,68 +66,123 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
         
         view.addGestureRecognizer(tapOutside)
     }
+    
     // MARK: - Tools
+    @objc func onNotification(notification:Notification)
+    {
+        if notification.userInfo != nil {
+            selectedLocation = notification.userInfo ?? [AnyHashable: Any]()
+        }
+    }
+    
+    func defaultUIElementsStyle() {
+        addColorButton.layer.cornerRadius = addColorButton.frame.size.width / 2
+        addColorButton.layer.borderWidth = 1
+        addColorButton.layer.borderColor = UIColor.clear.cgColor
+        addColorButton.clipsToBounds = true
+        
+        addLocationButton.layer.borderWidth = 1
+        addLocationButton.layer.borderColor = UIColor.clear.cgColor
+        
+        questNameTextField.layer.borderWidth = 1
+        questNameTextField.layer.borderColor = UIColor.clear.cgColor
+        
+        prizeAmountETHTextField.layer.borderWidth = 1
+        prizeAmountETHTextField.layer.borderColor = UIColor.clear.cgColor
+        
+        howManyBananosTextField.layer.borderWidth = 1
+        howManyBananosTextField.layer.borderColor = UIColor.clear.cgColor
+        
+        hintTextView.layer.borderWidth = 2.0
+        hintTextView.layer.cornerRadius = 5
+        hintTextView.layer.borderColor = UIColor(red: (253/255), green: (204/255), blue: (48/255), alpha: 1.0).cgColor
+        
+    }
     
     func isNewQuestValid() -> Bool {
-        var isValid = true
+        var isValid = [Bool]()
         
         if !(questNameTextField.text ?? "").isEmpty {
+            questNameTextField.layer.borderColor = UIColor.clear.cgColor
             newQuest?.name = questNameTextField.text
         }else {
-            isValid = false
-            return isValid
+            questNameTextField.layer.borderColor = UIColor.red.cgColor
+            isValid.append(false)
         }
         if !(howManyBananosTextField.text ?? "0.0").isEmpty {
+            howManyBananosTextField.layer.borderColor = UIColor.clear.cgColor
             newQuest?.maxWinners = Int16(howManyBananosTextField.text ?? "0") ?? 0
         }else {
-            isValid = false
-            return isValid
+            howManyBananosTextField.layer.borderColor = UIColor.red.cgColor
+            isValid.append(false)
         }
-        // TODO: PRIZE
-        if !(prizeAmountETHTextField.text ?? "0.0").isEmpty {
-            newQuest?.prize = Double(prizeAmountETHTextField.text ?? "0.0") ?? 0.0
-        }else {
-            isValid = false
-            return isValid
+        // TODO: PRIZE value in USD api
+        if isTherePrizeSwitch.isOn {
+            if !(prizeAmountETHTextField.text ?? "0.0").isEmpty {
+                prizeAmountETHTextField.layer.borderColor = UIColor.clear.cgColor
+                newQuest?.prize = Double(prizeAmountETHTextField.text ?? "0.0") ?? 0.0
+            }else {
+                prizeAmountETHTextField.layer.borderColor = UIColor.red.cgColor
+                isValid.append(false)
+            }
         }
+
         if !(hintTextView.text ?? "").isEmpty {
+            hintTextView.layer.borderColor = UIColor.clear.cgColor
             newQuest?.hint = hintTextView.text
         }else {
-            isValid = false
-            return isValid
+            hintTextView.layer.borderColor = UIColor(red: (253/255), green: (204/255), blue: (48/255), alpha: 1.0).cgColor
+            isValid.append(false)
         }
         if newQuest?.metadata?.hexColor == nil {
-            isValid = false
-            return isValid
+            addColorButton.layer.borderColor = UIColor.red.cgColor
+            isValid.append(false)
+        }else {
+            addColorButton.layer.borderColor = UIColor.clear.cgColor
         }
+        
         // Setup merkleTree
         setupMerkleTree()
         
-        if newQuest?.merkleRoot?.isEmpty ?? false {
-            isValid = false
-            return isValid
+        if newQuest?.merkleRoot?.isEmpty ?? false || newQuest?.merkleRoot == nil {
+            addLocationButton.layer.borderColor = UIColor.red.cgColor
+            isValid.append(false)
+        }else{
+            addLocationButton.layer.borderColor = UIColor.clear.cgColor
         }
-        if newQuest?.merkleBody?.isEmpty ?? false {
-            isValid = false
-            return isValid
+        if newQuest?.merkleBody?.isEmpty ?? false || newQuest?.merkleBody == nil{
+            addLocationButton.layer.borderColor = UIColor.red.cgColor
+            isValid.append(false)
+        }else{
+            addLocationButton.layer.borderColor = UIColor.clear.cgColor
         }
         
-        return isValid
+        if isValid.contains(false) {
+            return false
+        }else {
+            return true
+        }
     }
     
     func createNewQuest() {
         // New Quest submission
         // TODO: //
+        print("New quest: \(newQuest!)")
     }
     
     func setupMerkleTree() {
-        if !(selectedLocation["lat"] as! String).isEmpty && !(selectedLocation["lon"] as! String).isEmpty{
-            let latitude = CLLocationDegrees.init(selectedLocation["lat"] as! Double)
-            let longitude = CLLocationDegrees.init(selectedLocation["lon"] as! Double)
+        if selectedLocation.count < 2 {
+            return
+        }
+        
+        if !(selectedLocation["lat"] as! String).isEmpty && !(selectedLocation["lon"] as! String).isEmpty {
+            let latitude = CLLocationDegrees.init(Double(selectedLocation["lat"] as! String) ?? 0.0)
+            let longitude = CLLocationDegrees.init(Double(selectedLocation["lon"] as! String) ?? 0.0)
             
             let location = CLLocation.init(latitude: latitude, longitude: longitude)
             let questMerkleTree = QuestMerkleTree.init(questCenter: location )
-            // TODO: merkleRoot == rootHex ? ? ?
+            
+            // Assign properties
             newQuest?.merkleBody = questMerkleTree.getMerkleBody()
             newQuest?.merkleRoot = questMerkleTree.getRootHex()
         }else {
@@ -176,6 +234,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
             container.isSideViewControllerPresented = true
         }
     }
+    
     @IBAction func addColorPressed(_ sender: Any) {
         do {
             let colorPickerController = try self.instantiateViewController(identifier: "colorPickerViewControllerID", storyboardName: "CreateQuest") as! ColorPickerViewController

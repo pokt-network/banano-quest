@@ -93,7 +93,7 @@ class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate,
         annotationView.addSubview(imageView)
         annotationView.annotation = annotation
         annotationView.canShowCallout = false
-
+        
         return annotationView
     }
     
@@ -106,7 +106,7 @@ class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate,
         // Location update
         if locations.count > 0 {
             let location = locations.last!
-        
+            
             print("Accuracy: \(location.horizontalAccuracy)")
             if location.horizontalAccuracy < 100 {
                 
@@ -157,14 +157,9 @@ class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate,
     }
     // MARK: - IBActions
     @IBAction func backButtonPressed(_ sender: Any) {
-        do {
-            let vc = try instantiateViewController(identifier: "CreateQuestVC", storyboardName: "CreateQuest") as? CreateQuestViewController
-            if self.selectedLocation.count > 0 {
-                vc?.selectedLocation = self.selectedLocation
-            }
-            self.dismiss(animated: false, completion: nil)
-        } catch let error as NSError {
-            print("Failed to instantiate CreateQuestViewController with error: \(error)")
+        if self.selectedLocation.count > 0 {
+            NotificationCenter.default.post(name: CreateQuestViewController.notificationName, object: nil, userInfo:self.selectedLocation)
         }
+        self.dismiss(animated: false, completion: nil)
     }
 }

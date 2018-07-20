@@ -24,6 +24,19 @@ class LandingViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
+    func handleWrongPassphrase() {
+        let alertView = bananoAlertView(title: "Invalid", message: "Invalid passphrase for acccount: \(BaseUtil.retrieveDataFrom(address: wallets.first!).last ?? "none")")
+        alertView.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (UIAlertAction) in
+            self.playNowPressed(self)
+        }))
+        alertView.addAction(UIAlertAction(title: "Create New", style: .default, handler: { (UIAlertAction) in
+            self.wallets.removeAll()
+            self.playNowPressed(self)
+        }))
+
+        present(alertView, animated: false, completion: nil)
+    }
+    
     // MARK: - Actions
     @IBAction func playNowPressed(_ sender: Any) {
         if wallets.count == 0 {
@@ -43,14 +56,23 @@ class LandingViewController: UIViewController {
                 let alertView = requestPassphraseAlertView { (passphrase, error) in
                     if error != nil {
                         print("Failed to retrieve passphrase from textfield.")
-                    }else {
+                        return
+                    }
+                    if !(passphrase ?? "").isEmpty{
                         do {
                             wallet = try BananoQuest.getCurrentWallet(passphrase: passphrase ?? "")
+                            if wallet == nil {
+                                self.handleWrongPassphrase()
+                                return
+                            }
                             BananoQuest.currentWallet = wallet
                             self.navigationController?.pushViewController(vc!, animated: false)
                         }catch let error as NSError {
                             print("Failed with error: \(error)")
                         }
+                    }else{
+                        let alertView = self.bananoAlertView(title: "Invalid", message: "Passphrase can't be empty")
+                        self.present(alertView, animated: false, completion: nil)
                     }
                 }
                 

@@ -15,6 +15,7 @@ class NewWalletViewController: UIViewController {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var addBalanceButton: UIButton!
     @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet weak var createButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +25,12 @@ class NewWalletViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Initial setup
+        // Initial UI setup
         addBalanceButton.isEnabled = false
         continueButton.isEnabled = false
+        
+        createButton.setTitleColor(UIColor.darkGray, for: UIControlState.disabled)
+        createButton.setTitleColor(UIColor.black, for: UIControlState.normal)
         
         // Gesture recognizer that dismiss the keyboard when tapped outside
         let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
@@ -34,9 +38,13 @@ class NewWalletViewController: UIViewController {
         
         view.addGestureRecognizer(tapOutside)
     }
-
-    // MARK: - Actions
     
+    // MARK: - Tools
+    func refreshView() {
+        //
+    }
+    
+    // MARK: - Actions
     @IBAction func copyAddressBtnPressed(_ sender: Any) {
         if !(addressLabel.text ?? "").isEmpty {
             UIPasteboard.general.string = addressLabel.text
@@ -46,8 +54,19 @@ class NewWalletViewController: UIViewController {
     }
     
     @IBAction func createWallet(_ sender: Any) {
-        guard let passphrase = passphraseTextField.text else { return  }
+        guard let passphrase = passphraseTextField.text else {
+            let alertView = bananoAlertView(title: "Error", message: "Failed to get password, please try again later")
+            present(alertView, animated: false, completion: nil)
+            return
+        }
         
+        if passphrase.isEmpty {
+            let alertView = bananoAlertView(title: "Invalid", message: "Password shouldn't be empty")
+            present(alertView, animated: false, completion: nil)
+            return
+        }
+        
+        createButton.isEnabled = false
         do {
             let wallet = try BananoQuest.createWallet(dict: [AnyHashable : Any]())
             if try wallet.save(passphrase: passphrase) {
@@ -57,9 +76,11 @@ class NewWalletViewController: UIViewController {
                 addressLabel.text = wallet.address
                 print("Wallet saved successfully with address: \(wallet.address) and privateKey: \(wallet.privateKey)")
             }else {
+                createButton.isEnabled = true
                 print("Failed to save wallet")
             }
         } catch let error as NSError {
+            createButton.isEnabled = true
             print("Failed to create wallet with error: \(error)")
         }
     }
