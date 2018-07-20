@@ -22,6 +22,9 @@ public class Quest: NSManagedObject {
         self.maxWinners = Int16(obj["maxWinners"] as? String ?? "0") ?? 0
         self.prize = Double(obj["prize"] as? String ?? "0.0") ?? 0.0
         self.merkleRoot = obj["merkleRoot"] as? String
+        self.merkleBody = obj["merkleBody"] as? String
+        self.winnersAmount = obj["winnersAmount"] as? Int64 ?? 0
+        self.claimersAmount = obj["claimersAmount"] as? Int64 ?? 0
         self.metadata = Metadata(obj: metadata, context: context)
     }
     
@@ -57,6 +60,7 @@ public class Quest: NSManagedObject {
         dict["hint"] = hint
         dict["maxWinners"] = maxWinners
         dict["merkleRoot"] = merkleRoot
+        dict["merkleBody"] = merkleBody
         dict["metadata"] = metadata?.dictionary()
         dict["winners"] = winners?.dictionary()
         

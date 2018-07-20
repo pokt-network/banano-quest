@@ -12,6 +12,11 @@
         <attribute name="lon4" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="quest" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Quest" inverseName="metadata" inverseEntity="Quest" syncable="YES"/>
     </entity>
+    <entity name="Player" representedClassName="Player" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="balanceWei" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="transactionCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <entity name="Quest" representedClassName="Quest" syncable="YES">
         <attribute name="creator" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="hint" optional="YES" attributeType="String" syncable="YES"/>
@@ -35,7 +40,8 @@
     </entity>
     <elements>
         <element name="Metadata" positionX="-36" positionY="54" width="128" height="195"/>
-        <element name="Quest" positionX="-63" positionY="-18" width="128" height="30"/>
+        <element name="Player" positionX="-45" positionY="108" width="128" height="90"/>
+        <element name="Quest" positionX="-63" positionY="-18" width="128" height="195"/>
         <element name="Winners" positionX="-54" positionY="27" width="128" height="75"/>
     </elements>
 </model>
