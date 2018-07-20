@@ -36,6 +36,7 @@
 		C5338BD320FA861D004923D0 /* DebugUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5338BD220FA861D004923D0 /* DebugUtil.swift */; };
 		C535221A20E13B41009745AC /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535221920E13B41009745AC /* Networking.swift */; };
 		C535221C20E13B72009745AC /* BananoQuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535221B20E13B72009745AC /* BananoQuest.swift */; };
+		C53B586020FFDC390062BD64 /* CreateQuestMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B585F20FFDC390062BD64 /* CreateQuestMapViewController.swift */; };
 		C572CFBD20EF920B009428C2 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572CFBC20EF920B009428C2 /* UIViewController+extension.swift */; };
 		C5DF9B0520E3E89C00B8D170 /* QuestDownloadParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF9B0420E3E89C00B8D170 /* QuestDownloadParsing.swift */; };
 		C5F50A9120ED4FB0005BAF9F /* BaseUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F50A9020ED4FB0005BAF9F /* BaseUtil.swift */; };
@@ -110,6 +111,7 @@
 		C5338BD220FA861D004923D0 /* DebugUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugUtil.swift; sourceTree = "<group>"; };
 		C535221920E13B41009745AC /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		C535221B20E13B72009745AC /* BananoQuest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BananoQuest.swift; sourceTree = "<group>"; };
+		C53B585F20FFDC390062BD64 /* CreateQuestMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuestMapViewController.swift; sourceTree = "<group>"; };
 		C572CFBC20EF920B009428C2 /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
 		C5DF9B0420E3E89C00B8D170 /* QuestDownloadParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestDownloadParsing.swift; sourceTree = "<group>"; };
 		C5F50A9020ED4FB0005BAF9F /* BaseUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUtil.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				6316E9EA20FF534600F7C790 /* SearchOnboardingViewController.swift */,
 				6316E9EC20FF535400F7C790 /* FindOnboardingViewController.swift */,
 				6316E9EE20FF538500F7C790 /* ClaimOnboardingViewController.swift */,
+				C53B585F20FFDC390062BD64 /* CreateQuestMapViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 				C5FAB66C20E2B4FD00057041 /* Quest+CoreDataProperties.swift in Sources */,
 				63091D8220E3FB7B002253E5 /* CompleteQuestViewController.swift in Sources */,
 				63091D8020E3D48C002253E5 /* QuestCollectionViewCell.swift in Sources */,
+				C53B586020FFDC390062BD64 /* CreateQuestMapViewController.swift in Sources */,
 				63091D7E20E13546002253E5 /* NewWalletViewController.swift in Sources */,
 				635F8A9C20DD590B008BA94E /* LandingViewController.swift in Sources */,
 				63091D7C20E126A5002253E5 /* QuestingViewController.swift in Sources */,

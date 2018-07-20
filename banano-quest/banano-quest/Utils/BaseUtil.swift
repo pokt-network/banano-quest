@@ -15,10 +15,17 @@ public class BaseUtil {
     public static var mainContext: NSManagedObjectContext {
         get {
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                return NSManagedObjectContext.init(concurrencyType: .mainQueueConcurrencyType)
+                let context = NSManagedObjectContext.init(concurrencyType: .mainQueueConcurrencyType)
+                context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+                return context
             }
+            appDelegate.persistentContainer.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
             return appDelegate.persistentContainer.viewContext
         }
     }
-
+    
+    public static func retrieveDataFrom(address: String) -> [String] {
+        let stringArray = address.components(separatedBy: "/")
+        return stringArray
+    }
 }

@@ -31,7 +31,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //Looks for single or multiple taps.
+        // Gesture recognizer that dismiss the keyboard when tapped outside
         let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         tapOutside.cancelsTouchesInView = false
         view.addGestureRecognizer(tapOutside)
@@ -78,10 +78,6 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
             self.nextButton.isHidden = bool
             self.completeButton.isHidden = bool
         }
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
     }
     
     @IBAction func nextButtonPressed(_ sender: Any) {

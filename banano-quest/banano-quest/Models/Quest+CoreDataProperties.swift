@@ -25,7 +25,7 @@ extension Quest {
     @NSManaged public var merkleBody: String?
     @NSManaged public var maxWinners: Int16
     @NSManaged public var questID: Int32
-    @NSManaged public var prize: Int32
+    @NSManaged public var prize: Double
     @NSManaged public var winners: Winners?
     @NSManaged public var metadata: Metadata?
 

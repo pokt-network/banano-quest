@@ -221,7 +221,7 @@
                                     <action selector="copyAddressBtnPressed:" destination="qhe-8E-1hW" eventType="touchUpInside" id="a0K-ot-Eak"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0xk2khak20aplqkfh920ooxnghsk3901710" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHl-Uf-kbz" userLabel="Address label">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x0000000000000000000000000000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHl-Uf-kbz" userLabel="Address label">
                                 <rect key="frame" x="16" y="330" width="293" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
@@ -326,6 +326,7 @@
                         <outlet property="addBalanceButton" destination="YS9-9n-sCO" id="QXy-fw-jX5"/>
                         <outlet property="addressLabel" destination="RHl-Uf-kbz" id="Xrh-BJ-xaX"/>
                         <outlet property="continueButton" destination="Mhz-P3-nu4" id="139-8r-fmB"/>
+                        <outlet property="createButton" destination="hO3-Yf-Yda" id="BXi-VL-hyY"/>
                         <outlet property="passphraseTextField" destination="Glq-xP-yqV" id="elZ-8A-mZb"/>
                     </connections>
                 </viewController>

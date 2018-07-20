@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration {
         Pocket.shared.setConfiguration(config: self)
         
         // Debug mode only
-        // DebugUtil.debugDataSetup()
+        //DebugUtil.debugDataSetup()
         
         return true
     }
