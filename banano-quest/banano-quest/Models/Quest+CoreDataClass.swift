@@ -15,11 +15,11 @@ public class Quest: NSManagedObject {
     
     convenience init(obj: [AnyHashable: Any]!, metadata: [AnyHashable: Any]!, context: NSManagedObjectContext) throws {
         self.init(context: context)
-        self.questID = Int32(obj["index"] as? String ?? "0") ?? 0
+        self.questID = Int64(obj["index"] as? String ?? "0") ?? 0
         self.creator = obj["creator"] as? String
         self.name = obj["name"] as? String
         self.hint = obj["hint"] as? String
-        self.maxWinners = Int16(obj["maxWinners"] as? String ?? "0") ?? 0
+        self.maxWinners = Int64(obj["maxWinners"] as? String ?? "0") ?? 0
         self.prize = Double(obj["prize"] as? String ?? "0.0") ?? 0.0
         self.merkleRoot = obj["merkleRoot"] as? String
         self.merkleBody = obj["merkleBody"] as? String

@@ -31,6 +31,7 @@ public class DownloadBalanceOperation: AsynchronousOperation {
         ] as [AnyHashable: Any]
         
         guard let query = try? PocketEth.createQuery(params: params, decoder: nil) else {
+            self.error = PocketPluginError.queryCreationError("Error creating query")
             self.finish()
             return
         }

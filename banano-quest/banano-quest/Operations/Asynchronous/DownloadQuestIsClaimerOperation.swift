@@ -10,27 +10,31 @@ import Foundation
 import PocketEth
 import Pocket
 
-public enum DownloadQuestAmountOperationError: Error {
-    case amountParsing
+public enum DownloadQuestIsClaimerOperationError: Error {
+    case resultParsing
 }
 
-public class DownloadQuestAmountOperation: AsynchronousOperation {
+public class DownloadQuestIsClaimerOperation: AsynchronousOperation {
     
     public var tavernAddress: String
     public var tokenAddress: String
-    public var questAmount: Int64?
+    public var questIndex: Int64
+    public var alledgedClaimer: String
+    public var isClaimer: Bool?
     
-    public init(tavernAddress: String, tokenAddress: String) {
+    public init(tavernAddress: String, tokenAddress: String, questIndex: Int64, alledgedClaimer: String) {
         self.tavernAddress = tavernAddress
         self.tokenAddress = tokenAddress
+        self.questIndex = questIndex
+        self.alledgedClaimer = alledgedClaimer
         super.init()
     }
     
     open override func main() {
         var tx = [AnyHashable: Any]()
         
-        let functionABI = "{\"constant\":true,\"inputs\":[{\"name\":\"_tokenAddress\",\"type\":\"address\"}],\"name\":\"getQuestAmount\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}"
-        let functionParameters = [tokenAddress] as [AnyObject]
+        let functionABI = "{\"constant\":true,\"inputs\":[{\"name\":\"_tokenAddress\",\"type\":\"address\"},{\"name\":\"_questIndex\",\"type\":\"uint256\"},{\"name\":\"_allegedClaimer\",\"type\":\"address\"}],\"name\":\"isClaimer\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}"
+        let functionParameters = [tokenAddress, questIndex, alledgedClaimer] as [AnyObject]
         tx["to"] = tavernAddress
         tx["data"] = PocketEth.encodeFunction(functionABI: functionABI, parameters: functionParameters).toHexString()
         
@@ -52,21 +56,20 @@ public class DownloadQuestAmountOperation: AsynchronousOperation {
                 return
             }
             
-            guard let questAmountHex = queryResponse?.stringResult else {
-                self.error = DownloadQuestAmountOperationError.amountParsing
+            guard let isClaimerStr = queryResponse?.stringResult else {
+                self.error = DownloadQuestIsClaimerOperationError.resultParsing
                 self.finish()
                 return
             }
             
-            guard let questAmount = Int64(questAmountHex, radix: 16) else {
-                self.error = DownloadQuestAmountOperationError.amountParsing
+            guard let isClaimerBool = Bool.init(isClaimerStr) else {
+                self.error = DownloadQuestIsClaimerOperationError.resultParsing
                 self.finish()
                 return
             }
             
-            self.questAmount = questAmount
+            self.isClaimer = isClaimerBool
             self.finish()
         }
     }
-    
 }
