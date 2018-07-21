@@ -38,6 +38,7 @@ public class UploadQuestEstimateOperation: AsynchronousOperation {
         self.merkleBody = merkleBody
         self.metadata = metadata
         self.ethPrizeWei = ethPrizeWei
+        self.wallet = wallet
         super.init()
     }
     
@@ -46,10 +47,11 @@ public class UploadQuestEstimateOperation: AsynchronousOperation {
         let functionParameters = [tokenAddress, questName, hint, maxWinners, merkleRoot, merkleBody, metadata] as [Any]
         
         let txParams = [
+            "from": wallet.address,
             "to": tavernAddress,
             "value": ethPrizeWei,
             "data": PocketEth.encodeFunction(functionABI: functionABI, parameters: functionParameters as [AnyObject]).toHexString()
-            ] as [AnyHashable: Any]
+        ] as [AnyHashable: Any]
         
         let params = [
             "rpcMethod": "eth_estimateGas",

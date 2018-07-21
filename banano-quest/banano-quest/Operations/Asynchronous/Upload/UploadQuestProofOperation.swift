@@ -40,6 +40,7 @@ public class UploadQuestProofOperation: AsynchronousOperation {
         let functionABI = "{\"constant\":false,\"inputs\":[{\"name\":\"_tokenAddress\",\"type\":\"address\"},{\"name\":\"_questIndex\",\"type\":\"uint256\"},{\"name\":\"_proof\",\"type\":\"bytes32[]\"},{\"name\":\"_answer\",\"type\":\"bytes32\"}],\"name\":\"submitProof\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}"
         let functionParameters = [tokenAddress, questIndex, proof, answer] as [Any]
         let txParams = [
+            "from": wallet.address,
             "nonce": transactionCount + 1,
             "to": tavernAddress,
             "data": [
