@@ -15,6 +15,8 @@
     <entity name="Player" representedClassName="Player" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="balanceWei" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="ethUsdPrice" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="tavernQuestAmount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="transactionCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Quest" representedClassName="Quest" syncable="YES">
@@ -44,7 +46,7 @@
     </entity>
     <elements>
         <element name="Metadata" positionX="-36" positionY="54" width="128" height="195"/>
-        <element name="Player" positionX="-45" positionY="108" width="128" height="90"/>
+        <element name="Player" positionX="-45" positionY="108" width="128" height="120"/>
         <element name="Quest" positionX="-63" positionY="-18" width="128" height="30"/>
         <element name="Winners" positionX="-54" positionY="27" width="128" height="75"/>
     </elements>
