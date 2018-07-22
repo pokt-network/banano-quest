@@ -41,7 +41,8 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
         // Do any additional setup after loading the view.
         // Initial Quest setup
         do {
-            try newQuest = Quest(obj: [AnyHashable : Any](), metadata: [AnyHashable : Any](), context: BaseUtil.mainContext)
+            try newQuest = Quest.init(obj: [:], context: BaseUtil.mainContext)
+            //try newQuest = Quest(obj: [AnyHashable : Any](), metadata: [AnyHashable : Any](), context: BaseUtil.mainContext)
         } catch let error as NSError {
             print("Failed to create quest with error: \(error)")
         }
@@ -134,7 +135,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
             hintTextView.layer.borderColor = UIColor(red: (253/255), green: (204/255), blue: (48/255), alpha: 1.0).cgColor
             isValid.append(false)
         }
-        if newQuest?.metadata?.hexColor == nil {
+        if newQuest?.hexColor == nil {
             addColorButton.layer.borderColor = UIColor.red.cgColor
             isValid.append(false)
         }else {
@@ -210,14 +211,15 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
         addColorView.backgroundColor = selectedColor
         
         if newQuest != nil {
-            newQuest?.metadata?.hexColor = selectedColor.hexValue()
+            newQuest?.hexColor = selectedColor.hexValue()
         }else {
             // If newQuest is nil, create a new one and assign the new hexColor
             do {
                 var metadata = [AnyHashable : Any]()
                 metadata["hexColor"] = selectedColor.hexValue()
                 
-                try newQuest = Quest(obj: [AnyHashable : Any](), metadata: metadata, context: BaseUtil.mainContext)
+                //try newQuest = Quest(obj: [AnyHashable : Any](), metadata: metadata, context: BaseUtil.mainContext)
+                try newQuest = Quest.init(obj: [:], context: BaseUtil.mainContext)
             } catch let error as NSError {
                 print("Failed to create quest with error: \(error)")
             }

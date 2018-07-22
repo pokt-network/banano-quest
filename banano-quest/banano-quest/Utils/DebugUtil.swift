@@ -49,8 +49,8 @@ public class DebugUtil {
                             dict["merkleRoot"] = "DOEIUFDH230I43EHT09FJEQ0WREJR0DGJ3294H3REOSF8DGQWOEUIHS0FUI"
                             
                             do{
-                                let quest = try Quest(obj: dict, metadata: metadata, context: BaseUtil.mainContext)
-                                try quest.save()
+                                //let quest = try Quest(obj: dict, metadata: metadata, context: BaseUtil.mainContext)
+                                //try quest.save()
                             } catch let error as NSError {
                                 print("Failed to create quest with error: \(error)")
                             }

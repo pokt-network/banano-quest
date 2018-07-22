@@ -26,6 +26,7 @@
 		10A5600E21038B2600B85950 /* DownloadEthUsdPriceOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A5600D21038B2600B85950 /* DownloadEthUsdPriceOperation.swift */; };
 		10A560122104DA3600B85950 /* QuestMerkleTreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A560112104DA3600B85950 /* QuestMerkleTreeTests.swift */; };
 		10A560142104DDFE00B85950 /* UpdatePlayerOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A560132104DDFE00B85950 /* UpdatePlayerOperation.swift */; };
+		10A560162104EEB900B85950 /* UpdateQuestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A560152104EEB900B85950 /* UpdateQuestOperation.swift */; };
 		63091D7C20E126A5002253E5 /* QuestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D7B20E126A5002253E5 /* QuestingViewController.swift */; };
 		63091D7E20E13546002253E5 /* NewWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D7D20E13546002253E5 /* NewWalletViewController.swift */; };
 		63091D8020E3D48C002253E5 /* QuestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D7F20E3D48C002253E5 /* QuestCollectionViewCell.swift */; };
@@ -62,8 +63,6 @@
 		C5FAB66C20E2B4FD00057041 /* Quest+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FAB66620E2B4FD00057041 /* Quest+CoreDataProperties.swift */; };
 		C5FAB66D20E2B4FD00057041 /* Winners+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FAB66720E2B4FD00057041 /* Winners+CoreDataClass.swift */; };
 		C5FAB66E20E2B4FD00057041 /* Winners+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FAB66820E2B4FD00057041 /* Winners+CoreDataProperties.swift */; };
-		C5FAB66F20E2B4FD00057041 /* Metadata+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FAB66920E2B4FD00057041 /* Metadata+CoreDataClass.swift */; };
-		C5FAB67020E2B4FD00057041 /* Metadata+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FAB66A20E2B4FD00057041 /* Metadata+CoreDataProperties.swift */; };
 		F1E89049C4353DE45B6C20AF /* Pods_banano_questTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF5CAD64505A83D7F0AF59EA /* Pods_banano_questTests.framework */; };
 		F9CC122E6D9CAD1B8AB3A822 /* Pods_banano_questUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8107D9C5769F10E6C4459743 /* Pods_banano_questUITests.framework */; };
 /* End PBXBuildFile section */
@@ -105,6 +104,7 @@
 		10A5600D21038B2600B85950 /* DownloadEthUsdPriceOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadEthUsdPriceOperation.swift; sourceTree = "<group>"; };
 		10A560112104DA3600B85950 /* QuestMerkleTreeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestMerkleTreeTests.swift; sourceTree = "<group>"; };
 		10A560132104DDFE00B85950 /* UpdatePlayerOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePlayerOperation.swift; sourceTree = "<group>"; };
+		10A560152104EEB900B85950 /* UpdateQuestOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateQuestOperation.swift; sourceTree = "<group>"; };
 		3D95C478E7E2C26BC8DC176B /* Pods-banano-quest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-quest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-banano-quest/Pods-banano-quest.debug.xcconfig"; sourceTree = "<group>"; };
 		581C9BCFFEE1D399B6CD443F /* Pods-banano-questUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-questUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-banano-questUITests/Pods-banano-questUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5F31C7DBEB8D536175528B49 /* Pods_banano_quest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_banano_quest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,8 +154,6 @@
 		C5FAB66620E2B4FD00057041 /* Quest+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quest+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C5FAB66720E2B4FD00057041 /* Winners+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Winners+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C5FAB66820E2B4FD00057041 /* Winners+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Winners+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		C5FAB66920E2B4FD00057041 /* Metadata+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Metadata+CoreDataClass.swift"; sourceTree = "<group>"; };
-		C5FAB66A20E2B4FD00057041 /* Metadata+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Metadata+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EF5CAD64505A83D7F0AF59EA /* Pods_banano_questTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_banano_questTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -211,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				10A560132104DDFE00B85950 /* UpdatePlayerOperation.swift */,
+				10A560152104EEB900B85950 /* UpdateQuestOperation.swift */,
 			);
 			path = Synchronous;
 			sourceTree = "<group>";
@@ -364,8 +363,6 @@
 				C5FAB66620E2B4FD00057041 /* Quest+CoreDataProperties.swift */,
 				C5FAB66720E2B4FD00057041 /* Winners+CoreDataClass.swift */,
 				C5FAB66820E2B4FD00057041 /* Winners+CoreDataProperties.swift */,
-				C5FAB66920E2B4FD00057041 /* Metadata+CoreDataClass.swift */,
-				C5FAB66A20E2B4FD00057041 /* Metadata+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -662,6 +659,7 @@
 				C5F50A9120ED4FB0005BAF9F /* BaseUtil.swift in Sources */,
 				637C03F220F50374002D4652 /* ColorPickerViewController.swift in Sources */,
 				6316E9EB20FF534600F7C790 /* SearchOnboardingViewController.swift in Sources */,
+				10A560162104EEB900B85950 /* UpdateQuestOperation.swift in Sources */,
 				10A55FFE21027BF600B85950 /* DownloadQuestOperation.swift in Sources */,
 				10A560142104DDFE00B85950 /* UpdatePlayerOperation.swift in Sources */,
 				C535221C20E13B72009745AC /* BananoQuest.swift in Sources */,
@@ -680,7 +678,6 @@
 				1098FD1521026E6900E76682 /* SynchronousOperation.swift in Sources */,
 				637C03EE20EFC0A2002D4652 /* MenuViewController.swift in Sources */,
 				10A5600821037FE800B85950 /* UploadQuestEstimateOperation.swift in Sources */,
-				C5FAB66F20E2B4FD00057041 /* Metadata+CoreDataClass.swift in Sources */,
 				102A035320FE4CDE00B47CEA /* MerkleTree.swift in Sources */,
 				1098FD1321026E0000E76682 /* AsynchronousOperation.swift in Sources */,
 				C5FAB66C20E2B4FD00057041 /* Quest+CoreDataProperties.swift in Sources */,
@@ -700,7 +697,6 @@
 				10A106B52100E51300544E0A /* Player+CoreDataClass.swift in Sources */,
 				10A106B62100E51300544E0A /* Player+CoreDataProperties.swift in Sources */,
 				63091D8420EA7920002253E5 /* CreateQuestViewController.swift in Sources */,
-				C5FAB67020E2B4FD00057041 /* Metadata+CoreDataProperties.swift in Sources */,
 				C5338BD320FA861D004923D0 /* DebugUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -24,12 +24,23 @@ extension Quest {
     @NSManaged public var merkleRoot: String?
     @NSManaged public var merkleBody: String?
     @NSManaged public var maxWinners: Int64
-    @NSManaged public var questID: Int64
+    @NSManaged public var index: Int64
     @NSManaged public var prize: Double
     @NSManaged public var winners: Winners?
-    @NSManaged public var metadata: Metadata?
     @NSManaged public var winnersAmount: Int64
     @NSManaged public var claimersAmount: Int64
+    @NSManaged public var metadata: String?
+    @NSManaged public var hexColor: String?
+    @NSManaged public var lat1: Float
+    @NSManaged public var lat2: Float
+    @NSManaged public var lat3: Float
+    @NSManaged public var lat4: Float
+    @NSManaged public var lon1: Float
+    @NSManaged public var lon2: Float
+    @NSManaged public var lon3: Float
+    @NSManaged public var lon4: Float
+    @NSManaged public var isWinner: Bool
+    @NSManaged public var isClaimer: Bool
 
 }
 
@@ -42,16 +53,16 @@ extension Quest {
         
         do {            
             // Sync quest list
-            try Networking.getQuestList { (error) in
-                do {
-                    // Retrieve quest list from coreData
-                    quests = try BaseUtil.mainContext.fetch(fetchRequest) as [Quest]
-                    handler(quests,nil)
-                }
-                catch let error as NSError {
-                    handler(nil,error)
-                }
-            }
+//            try Networking.getQuestList { (error) in
+//                do {
+//                    // Retrieve quest list from coreData
+//                    quests = try BaseUtil.mainContext.fetch(fetchRequest) as [Quest]
+//                    handler(quests,nil)
+//                }
+//                catch let error as NSError {
+//                    handler(nil,error)
+//                }
+//            }
             
         }
         catch let error as NSError {

@@ -19,7 +19,7 @@ public class DownloadQuestOperation: AsynchronousOperation {
     public var tavernAddress: String
     public var tokenAddress: String
     public var questIndex: Int64
-    public var queryDict: [AnyHashable: Any]?
+    public var questDict: [AnyHashable: Any]?
     
     public init(tavernAddress: String, tokenAddress: String, questIndex: Int64) {
         self.tavernAddress = tavernAddress
@@ -64,7 +64,7 @@ public class DownloadQuestOperation: AsynchronousOperation {
                 return
             }
             
-            self.queryDict = [
+            self.questDict = [
                 "creator": questArr[0],
                 "index": questArr[1],
                 "name": questArr[2],
