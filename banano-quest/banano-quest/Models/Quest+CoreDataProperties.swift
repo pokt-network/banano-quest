@@ -23,11 +23,13 @@ extension Quest {
     @NSManaged public var hint: String?
     @NSManaged public var merkleRoot: String?
     @NSManaged public var merkleBody: String?
-    @NSManaged public var maxWinners: Int16
-    @NSManaged public var questID: Int32
+    @NSManaged public var maxWinners: Int64
+    @NSManaged public var questID: Int64
     @NSManaged public var prize: Double
     @NSManaged public var winners: Winners?
     @NSManaged public var metadata: Metadata?
+    @NSManaged public var winnersAmount: Int64
+    @NSManaged public var claimersAmount: Int64
 
 }
 

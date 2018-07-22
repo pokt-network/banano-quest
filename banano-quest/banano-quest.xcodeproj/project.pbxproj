@@ -9,6 +9,21 @@
 /* Begin PBXBuildFile section */
 		102A035120FE3E3C00B47CEA /* QuestMerkleTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A035020FE3E3C00B47CEA /* QuestMerkleTree.swift */; };
 		102A035320FE4CDE00B47CEA /* MerkleTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A035220FE4CDE00B47CEA /* MerkleTree.swift */; };
+		1098FD1321026E0000E76682 /* AsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098FD1221026E0000E76682 /* AsynchronousOperation.swift */; };
+		1098FD1521026E6900E76682 /* SynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098FD1421026E6900E76682 /* SynchronousOperation.swift */; };
+		1098FD192102729100E76682 /* DownloadBalanceOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098FD182102729100E76682 /* DownloadBalanceOperation.swift */; };
+		1098FD1B2102756900E76682 /* DownloadTransactionCountOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098FD1A2102756900E76682 /* DownloadTransactionCountOperation.swift */; };
+		1098FD1D2102764400E76682 /* DownloadQuestAmountOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098FD1C2102764400E76682 /* DownloadQuestAmountOperation.swift */; };
+		10A106B52100E51300544E0A /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A106B32100E51200544E0A /* Player+CoreDataClass.swift */; };
+		10A106B62100E51300544E0A /* Player+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A106B42100E51200544E0A /* Player+CoreDataProperties.swift */; };
+		10A55FFE21027BF600B85950 /* DownloadQuestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A55FFD21027BF600B85950 /* DownloadQuestOperation.swift */; };
+		10A560002102882A00B85950 /* UploadQuestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A55FFF2102882A00B85950 /* UploadQuestOperation.swift */; };
+		10A560022102987D00B85950 /* UploadQuestProofOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A560012102987D00B85950 /* UploadQuestProofOperation.swift */; };
+		10A5600421037AB600B85950 /* DownloadQuestIsClaimerOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A5600321037AB600B85950 /* DownloadQuestIsClaimerOperation.swift */; };
+		10A5600621037DF800B85950 /* DownloadQuestIsWinnerOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A5600521037DF800B85950 /* DownloadQuestIsWinnerOperation.swift */; };
+		10A5600821037FE800B85950 /* UploadQuestEstimateOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A5600721037FE800B85950 /* UploadQuestEstimateOperation.swift */; };
+		10A5600A21037FF700B85950 /* UploadQuestProofEstimateOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A5600921037FF700B85950 /* UploadQuestProofEstimateOperation.swift */; };
+		10A5600E21038B2600B85950 /* DownloadEthUsdPriceOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A5600D21038B2600B85950 /* DownloadEthUsdPriceOperation.swift */; };
 		63091D7C20E126A5002253E5 /* QuestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D7B20E126A5002253E5 /* QuestingViewController.swift */; };
 		63091D7E20E13546002253E5 /* NewWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D7D20E13546002253E5 /* NewWalletViewController.swift */; };
 		63091D8020E3D48C002253E5 /* QuestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D7F20E3D48C002253E5 /* QuestCollectionViewCell.swift */; };
@@ -71,6 +86,21 @@
 /* Begin PBXFileReference section */
 		102A035020FE3E3C00B47CEA /* QuestMerkleTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestMerkleTree.swift; sourceTree = "<group>"; };
 		102A035220FE4CDE00B47CEA /* MerkleTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerkleTree.swift; sourceTree = "<group>"; };
+		1098FD1221026E0000E76682 /* AsynchronousOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousOperation.swift; sourceTree = "<group>"; };
+		1098FD1421026E6900E76682 /* SynchronousOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronousOperation.swift; sourceTree = "<group>"; };
+		1098FD182102729100E76682 /* DownloadBalanceOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadBalanceOperation.swift; sourceTree = "<group>"; };
+		1098FD1A2102756900E76682 /* DownloadTransactionCountOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTransactionCountOperation.swift; sourceTree = "<group>"; };
+		1098FD1C2102764400E76682 /* DownloadQuestAmountOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadQuestAmountOperation.swift; sourceTree = "<group>"; };
+		10A106B32100E51200544E0A /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Player+CoreDataClass.swift"; path = "/Users/luyzdeleon/current_projects/banano-quest/banano-quest/banano-quest/Models/Player+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		10A106B42100E51200544E0A /* Player+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Player+CoreDataProperties.swift"; path = "/Users/luyzdeleon/current_projects/banano-quest/banano-quest/banano-quest/Models/Player+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		10A55FFD21027BF600B85950 /* DownloadQuestOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadQuestOperation.swift; sourceTree = "<group>"; };
+		10A55FFF2102882A00B85950 /* UploadQuestOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadQuestOperation.swift; sourceTree = "<group>"; };
+		10A560012102987D00B85950 /* UploadQuestProofOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadQuestProofOperation.swift; sourceTree = "<group>"; };
+		10A5600321037AB600B85950 /* DownloadQuestIsClaimerOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadQuestIsClaimerOperation.swift; sourceTree = "<group>"; };
+		10A5600521037DF800B85950 /* DownloadQuestIsWinnerOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadQuestIsWinnerOperation.swift; sourceTree = "<group>"; };
+		10A5600721037FE800B85950 /* UploadQuestEstimateOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadQuestEstimateOperation.swift; sourceTree = "<group>"; };
+		10A5600921037FF700B85950 /* UploadQuestProofEstimateOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadQuestProofEstimateOperation.swift; sourceTree = "<group>"; };
+		10A5600D21038B2600B85950 /* DownloadEthUsdPriceOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadEthUsdPriceOperation.swift; sourceTree = "<group>"; };
 		3D95C478E7E2C26BC8DC176B /* Pods-banano-quest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-quest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-banano-quest/Pods-banano-quest.debug.xcconfig"; sourceTree = "<group>"; };
 		581C9BCFFEE1D399B6CD443F /* Pods-banano-questUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-questUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-banano-questUITests/Pods-banano-questUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5F31C7DBEB8D536175528B49 /* Pods_banano_quest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_banano_quest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +183,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1098FD0F210268A100E76682 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				1098FD172102718100E76682 /* Synchronous */,
+				1098FD162102717900E76682 /* Asynchronous */,
+				1098FD1221026E0000E76682 /* AsynchronousOperation.swift */,
+				1098FD1421026E6900E76682 /* SynchronousOperation.swift */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
+		1098FD162102717900E76682 /* Asynchronous */ = {
+			isa = PBXGroup;
+			children = (
+				10A5600C210387DE00B85950 /* Upload */,
+				10A5600B210387D600B85950 /* Download */,
+			);
+			path = Asynchronous;
+			sourceTree = "<group>";
+		};
+		1098FD172102718100E76682 /* Synchronous */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Synchronous;
+			sourceTree = "<group>";
+		};
+		10A5600B210387D600B85950 /* Download */ = {
+			isa = PBXGroup;
+			children = (
+				1098FD182102729100E76682 /* DownloadBalanceOperation.swift */,
+				1098FD1A2102756900E76682 /* DownloadTransactionCountOperation.swift */,
+				1098FD1C2102764400E76682 /* DownloadQuestAmountOperation.swift */,
+				10A55FFD21027BF600B85950 /* DownloadQuestOperation.swift */,
+				10A5600321037AB600B85950 /* DownloadQuestIsClaimerOperation.swift */,
+				10A5600521037DF800B85950 /* DownloadQuestIsWinnerOperation.swift */,
+				10A5600D21038B2600B85950 /* DownloadEthUsdPriceOperation.swift */,
+			);
+			path = Download;
+			sourceTree = "<group>";
+		};
+		10A5600C210387DE00B85950 /* Upload */ = {
+			isa = PBXGroup;
+			children = (
+				10A55FFF2102882A00B85950 /* UploadQuestOperation.swift */,
+				10A560012102987D00B85950 /* UploadQuestProofOperation.swift */,
+				10A5600721037FE800B85950 /* UploadQuestEstimateOperation.swift */,
+				10A5600921037FF700B85950 /* UploadQuestProofEstimateOperation.swift */,
+			);
+			path = Upload;
+			sourceTree = "<group>";
+		};
 		15E2013A40EA654723D98AEE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +303,7 @@
 		6333170320D9990B0063D856 /* banano-quest */ = {
 			isa = PBXGroup;
 			children = (
+				1098FD0F210268A100E76682 /* Operations */,
 				C572CFBE20EFA061009428C2 /* Views */,
 				C572CFBB20EF91CC009428C2 /* Extensions */,
 				C5FAB66120E17B0000057041 /* Data Models */,
@@ -269,6 +352,8 @@
 		C535221520E13AF7009745AC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				10A106B32100E51200544E0A /* Player+CoreDataClass.swift */,
+				10A106B42100E51200544E0A /* Player+CoreDataProperties.swift */,
 				C5FAB66520E2B4FD00057041 /* Quest+CoreDataClass.swift */,
 				C5FAB66620E2B4FD00057041 /* Quest+CoreDataProperties.swift */,
 				C5FAB66720E2B4FD00057041 /* Winners+CoreDataClass.swift */,
@@ -571,27 +656,42 @@
 				C5F50A9120ED4FB0005BAF9F /* BaseUtil.swift in Sources */,
 				637C03F220F50374002D4652 /* ColorPickerViewController.swift in Sources */,
 				6316E9EB20FF534600F7C790 /* SearchOnboardingViewController.swift in Sources */,
+				10A55FFE21027BF600B85950 /* DownloadQuestOperation.swift in Sources */,
 				C535221C20E13B72009745AC /* BananoQuest.swift in Sources */,
 				6316E9E920FF4FAC00F7C790 /* ProfileViewController.swift in Sources */,
 				6316E9EF20FF538500F7C790 /* ClaimOnboardingViewController.swift in Sources */,
 				C5FAB66B20E2B4FD00057041 /* Quest+CoreDataClass.swift in Sources */,
+				10A5600421037AB600B85950 /* DownloadQuestIsClaimerOperation.swift in Sources */,
+				1098FD192102729100E76682 /* DownloadBalanceOperation.swift in Sources */,
+				10A560002102882A00B85950 /* UploadQuestOperation.swift in Sources */,
 				C5FAB66420E17B8900057041 /* BananoQuest.xcdatamodeld in Sources */,
 				C535221A20E13B41009745AC /* Networking.swift in Sources */,
 				C5DF9B0520E3E89C00B8D170 /* QuestDownloadParsing.swift in Sources */,
 				6316E9ED20FF535400F7C790 /* FindOnboardingViewController.swift in Sources */,
 				102A035120FE3E3C00B47CEA /* QuestMerkleTree.swift in Sources */,
 				C572CFBD20EF920B009428C2 /* UIViewController+extension.swift in Sources */,
+				1098FD1521026E6900E76682 /* SynchronousOperation.swift in Sources */,
 				637C03EE20EFC0A2002D4652 /* MenuViewController.swift in Sources */,
+				10A5600821037FE800B85950 /* UploadQuestEstimateOperation.swift in Sources */,
 				C5FAB66F20E2B4FD00057041 /* Metadata+CoreDataClass.swift in Sources */,
 				102A035320FE4CDE00B47CEA /* MerkleTree.swift in Sources */,
+				1098FD1321026E0000E76682 /* AsynchronousOperation.swift in Sources */,
 				C5FAB66C20E2B4FD00057041 /* Quest+CoreDataProperties.swift in Sources */,
 				63091D8220E3FB7B002253E5 /* CompleteQuestViewController.swift in Sources */,
+				10A5600A21037FF700B85950 /* UploadQuestProofEstimateOperation.swift in Sources */,
+				1098FD1D2102764400E76682 /* DownloadQuestAmountOperation.swift in Sources */,
 				63091D8020E3D48C002253E5 /* QuestCollectionViewCell.swift in Sources */,
+				10A5600E21038B2600B85950 /* DownloadEthUsdPriceOperation.swift in Sources */,
 				C53B586020FFDC390062BD64 /* CreateQuestMapViewController.swift in Sources */,
+				1098FD1B2102756900E76682 /* DownloadTransactionCountOperation.swift in Sources */,
+				10A5600621037DF800B85950 /* DownloadQuestIsWinnerOperation.swift in Sources */,
 				63091D7E20E13546002253E5 /* NewWalletViewController.swift in Sources */,
 				635F8A9C20DD590B008BA94E /* LandingViewController.swift in Sources */,
+				10A560022102987D00B85950 /* UploadQuestProofOperation.swift in Sources */,
 				63091D7C20E126A5002253E5 /* QuestingViewController.swift in Sources */,
 				6333170520D9990B0063D856 /* AppDelegate.swift in Sources */,
+				10A106B52100E51300544E0A /* Player+CoreDataClass.swift in Sources */,
+				10A106B62100E51300544E0A /* Player+CoreDataProperties.swift in Sources */,
 				63091D8420EA7920002253E5 /* CreateQuestViewController.swift in Sources */,
 				C5FAB67020E2B4FD00057041 /* Metadata+CoreDataProperties.swift in Sources */,
 				C5338BD320FA861D004923D0 /* DebugUtil.swift in Sources */,

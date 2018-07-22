@@ -77,7 +77,7 @@ public class Networking {
             if error != nil {
                 handler(nil, error)
             }else {
-                questAmount = response?.result!["length"] as? Int32 ?? 0
+                //questAmount = response?.result!["length"] as? Int32 ?? 0
                 handler(questAmount, nil)
             }
         })
