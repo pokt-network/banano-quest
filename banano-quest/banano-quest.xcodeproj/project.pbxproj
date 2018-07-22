@@ -10,6 +10,7 @@
 		102A035120FE3E3C00B47CEA /* QuestMerkleTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A035020FE3E3C00B47CEA /* QuestMerkleTree.swift */; };
 		102A035320FE4CDE00B47CEA /* MerkleTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A035220FE4CDE00B47CEA /* MerkleTree.swift */; };
 		108BDF4921052E3000405693 /* AppInitQueueDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108BDF4821052E3000405693 /* AppInitQueueDispatcher.swift */; };
+		108BDF4B2105382A00405693 /* QueueDispatcherProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108BDF4A2105382A00405693 /* QueueDispatcherProtocol.swift */; };
 		1098FD1321026E0000E76682 /* AsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098FD1221026E0000E76682 /* AsynchronousOperation.swift */; };
 		1098FD1521026E6900E76682 /* SynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098FD1421026E6900E76682 /* SynchronousOperation.swift */; };
 		1098FD192102729100E76682 /* DownloadBalanceOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098FD182102729100E76682 /* DownloadBalanceOperation.swift */; };
@@ -89,6 +90,7 @@
 		102A035020FE3E3C00B47CEA /* QuestMerkleTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestMerkleTree.swift; sourceTree = "<group>"; };
 		102A035220FE4CDE00B47CEA /* MerkleTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerkleTree.swift; sourceTree = "<group>"; };
 		108BDF4821052E3000405693 /* AppInitQueueDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInitQueueDispatcher.swift; sourceTree = "<group>"; };
+		108BDF4A2105382A00405693 /* QueueDispatcherProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueDispatcherProtocol.swift; sourceTree = "<group>"; };
 		1098FD1221026E0000E76682 /* AsynchronousOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousOperation.swift; sourceTree = "<group>"; };
 		1098FD1421026E6900E76682 /* SynchronousOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronousOperation.swift; sourceTree = "<group>"; };
 		1098FD182102729100E76682 /* DownloadBalanceOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadBalanceOperation.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				108BDF4821052E3000405693 /* AppInitQueueDispatcher.swift */,
+				108BDF4A2105382A00405693 /* QueueDispatcherProtocol.swift */,
 			);
 			path = "Queue Dispatchers";
 			sourceTree = "<group>";
@@ -677,6 +680,7 @@
 				C535221C20E13B72009745AC /* BananoQuest.swift in Sources */,
 				6316E9E920FF4FAC00F7C790 /* ProfileViewController.swift in Sources */,
 				6316E9EF20FF538500F7C790 /* ClaimOnboardingViewController.swift in Sources */,
+				108BDF4B2105382A00405693 /* QueueDispatcherProtocol.swift in Sources */,
 				C5FAB66B20E2B4FD00057041 /* Quest+CoreDataClass.swift in Sources */,
 				10A5600421037AB600B85950 /* DownloadQuestIsClaimerOperation.swift in Sources */,
 				1098FD192102729100E76682 /* DownloadBalanceOperation.swift in Sources */,
