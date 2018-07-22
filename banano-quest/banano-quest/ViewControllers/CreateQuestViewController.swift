@@ -102,37 +102,38 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
     func isNewQuestValid() -> Bool {
         var isValid = [Bool]()
         
-        if !(questNameTextField.text ?? "").isEmpty {
-            questNameTextField.layer.borderColor = UIColor.clear.cgColor
-            newQuest?.name = questNameTextField.text
-        }else {
+        if (questNameTextField.text ?? "").isEmpty {
             questNameTextField.layer.borderColor = UIColor.red.cgColor
             isValid.append(false)
-        }
-        if !(howManyBananosTextField.text ?? "0.0").isEmpty {
-            howManyBananosTextField.layer.borderColor = UIColor.clear.cgColor
-            newQuest?.maxWinners = Int64(howManyBananosTextField.text ?? "0") ?? 0
         }else {
+            questNameTextField.layer.borderColor = UIColor.clear.cgColor
+            newQuest?.name = questNameTextField.text
+        }
+        if (howManyBananosTextField.text ?? "0.0").isEmpty {
             howManyBananosTextField.layer.borderColor = UIColor.red.cgColor
             isValid.append(false)
+        }else {
+            howManyBananosTextField.layer.borderColor = UIColor.clear.cgColor
+            newQuest?.maxWinners = Int64(howManyBananosTextField.text ?? "0") ?? 0
+            
         }
         // TODO: PRIZE value in USD api
         if isTherePrizeSwitch.isOn {
-            if !(prizeAmountETHTextField.text ?? "0.0").isEmpty {
-                prizeAmountETHTextField.layer.borderColor = UIColor.clear.cgColor
-                newQuest?.prize = Double(prizeAmountETHTextField.text ?? "0.0") ?? 0.0
-            }else {
+            if (prizeAmountETHTextField.text ?? "0.0").isEmpty {
                 prizeAmountETHTextField.layer.borderColor = UIColor.red.cgColor
                 isValid.append(false)
+            }else {
+                prizeAmountETHTextField.layer.borderColor = UIColor.clear.cgColor
+                newQuest?.prize = Double(prizeAmountETHTextField.text ?? "0.0") ?? 0.0
             }
         }
 
-        if !(hintTextView.text ?? "").isEmpty {
-            hintTextView.layer.borderColor = UIColor.clear.cgColor
-            newQuest?.hint = hintTextView.text
+        if (hintTextView.text ?? "").isEmpty {
+            hintTextView.layer.borderColor = UIColor.red.cgColor
+            isValid.append(false)
         }else {
             hintTextView.layer.borderColor = UIColor(red: (253/255), green: (204/255), blue: (48/255), alpha: 1.0).cgColor
-            isValid.append(false)
+            newQuest?.hint = hintTextView.text
         }
         if newQuest?.metadata?.hexColor == nil {
             addColorButton.layer.borderColor = UIColor.red.cgColor
