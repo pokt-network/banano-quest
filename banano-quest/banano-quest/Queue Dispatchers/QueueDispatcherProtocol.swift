@@ -14,4 +14,5 @@ public protocol QueueDispatcherProtocol {
     
     func initDisplatchSequence(completionHandler: @escaping QueueDispatcherCompletionHandler)
     func isQueueFinished() -> Bool
+    func cancelAllOperations()
 }

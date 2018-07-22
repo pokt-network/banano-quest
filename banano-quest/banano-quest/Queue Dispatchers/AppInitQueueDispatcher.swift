@@ -39,6 +39,10 @@ public class AppInitQueueDispatcher: QueueDispatcherProtocol {
         }
     }
     
+    public func cancelAllOperations() {
+        self.operationQueue.cancelAllOperations()
+    }
+    
     // Private interfaces
     private func attempToExecuteCompletionHandler() {
         if self.isQueueFinished(), let completionHandler = self.completionHandler {
