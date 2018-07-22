@@ -10,6 +10,18 @@ import Foundation
 import MapKit
 import CryptoSwift
 
+extension Data {
+    struct HexEncodingOptions: OptionSet {
+        let rawValue: Int
+        static let upperCase = HexEncodingOptions(rawValue: 1 << 0)
+    }
+    
+    func hexEncodedString(options: HexEncodingOptions = []) -> String {
+        let format = options.contains(.upperCase) ? "%02hhX" : "%02hhx"
+        return map { String(format: format, $0) }.joined()
+    }
+}
+
 extension FloatingPoint {
     var degreesToRadians: Self { return self * .pi / 180 }
     var radiansToDegrees: Self { return self * 180 / .pi }
@@ -45,12 +57,15 @@ public struct QuestProofSubmission {
 public class QuestMerkleTree: MerkleTree {
     
     public init(questCenter: CLLocation) {
-        super.init(elements: QuestMerkleTree.allPossiblePoints(center: questCenter), hashFunction: { (currElement) -> Data? in
-            if let currLocation = currElement as? CLLocation {
-                return currLocation.concatenatedMagnitudes().data(using: .utf8)?.sha3(.keccak256)
+        let elements = QuestMerkleTree.allPossiblePoints(center: questCenter).map { (currLocation) -> Data in
+            if let locData = currLocation.concatenatedMagnitudes().data(using: .utf8) {
+                return locData
             } else {
                 return Data()
             }
+        }
+        super.init(elements: elements, hashFunction: { (currElement) -> Data? in
+            return currElement.sha3(.keccak256)
         })
     }
     
