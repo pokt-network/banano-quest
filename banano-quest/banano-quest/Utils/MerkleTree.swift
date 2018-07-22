@@ -8,7 +8,7 @@
 
 import Foundation
 
-public typealias MerkleTreeHashFunction = (_ element: Any) -> Data?
+public typealias MerkleTreeHashFunction = (_ element: Data) -> Data?
 public class MerkleTree {
     
     var layers:[[Data]] = [[Data]]()
@@ -16,7 +16,7 @@ public class MerkleTree {
     public var sorted:Bool = false
     
     // Public interface
-    public init(elements: [Any], hashFunction: @escaping MerkleTreeHashFunction, sort: Bool = true) {
+    public init(elements: [Data], hashFunction: @escaping MerkleTreeHashFunction, sort: Bool = true) {
         self.hashFunction = hashFunction
         self.sorted = sort
         self.layers = generateLayers(elements: elements)
@@ -57,7 +57,7 @@ public class MerkleTree {
         return self.layers[0]
     }
     
-    func generateLayers(elements: [Any]) -> [[Data]] {
+    func generateLayers(elements: [Data]) -> [[Data]] {
         var layers = [[Data]]()
         var leaves = elements.map({ (element) -> Data in
             if let hashedElem = self.hashFunction(element) {
