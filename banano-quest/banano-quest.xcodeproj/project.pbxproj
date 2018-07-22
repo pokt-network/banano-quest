@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		102A035120FE3E3C00B47CEA /* QuestMerkleTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A035020FE3E3C00B47CEA /* QuestMerkleTree.swift */; };
 		102A035320FE4CDE00B47CEA /* MerkleTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A035220FE4CDE00B47CEA /* MerkleTree.swift */; };
+		108BDF4921052E3000405693 /* AppInitQueueDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108BDF4821052E3000405693 /* AppInitQueueDispatcher.swift */; };
 		1098FD1321026E0000E76682 /* AsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098FD1221026E0000E76682 /* AsynchronousOperation.swift */; };
 		1098FD1521026E6900E76682 /* SynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098FD1421026E6900E76682 /* SynchronousOperation.swift */; };
 		1098FD192102729100E76682 /* DownloadBalanceOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098FD182102729100E76682 /* DownloadBalanceOperation.swift */; };
@@ -87,6 +88,7 @@
 /* Begin PBXFileReference section */
 		102A035020FE3E3C00B47CEA /* QuestMerkleTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestMerkleTree.swift; sourceTree = "<group>"; };
 		102A035220FE4CDE00B47CEA /* MerkleTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerkleTree.swift; sourceTree = "<group>"; };
+		108BDF4821052E3000405693 /* AppInitQueueDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInitQueueDispatcher.swift; sourceTree = "<group>"; };
 		1098FD1221026E0000E76682 /* AsynchronousOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousOperation.swift; sourceTree = "<group>"; };
 		1098FD1421026E6900E76682 /* SynchronousOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronousOperation.swift; sourceTree = "<group>"; };
 		1098FD182102729100E76682 /* DownloadBalanceOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadBalanceOperation.swift; sourceTree = "<group>"; };
@@ -185,6 +187,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		108BDF4721052E1200405693 /* Queue Dispatchers */ = {
+			isa = PBXGroup;
+			children = (
+				108BDF4821052E3000405693 /* AppInitQueueDispatcher.swift */,
+			);
+			path = "Queue Dispatchers";
+			sourceTree = "<group>";
+		};
 		1098FD0F210268A100E76682 /* Operations */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,6 +317,7 @@
 		6333170320D9990B0063D856 /* banano-quest */ = {
 			isa = PBXGroup;
 			children = (
+				108BDF4721052E1200405693 /* Queue Dispatchers */,
 				1098FD0F210268A100E76682 /* Operations */,
 				C572CFBE20EFA061009428C2 /* Views */,
 				C572CFBB20EF91CC009428C2 /* Extensions */,
@@ -661,6 +672,7 @@
 				6316E9EB20FF534600F7C790 /* SearchOnboardingViewController.swift in Sources */,
 				10A560162104EEB900B85950 /* UpdateQuestOperation.swift in Sources */,
 				10A55FFE21027BF600B85950 /* DownloadQuestOperation.swift in Sources */,
+				108BDF4921052E3000405693 /* AppInitQueueDispatcher.swift in Sources */,
 				10A560142104DDFE00B85950 /* UpdatePlayerOperation.swift in Sources */,
 				C535221C20E13B72009745AC /* BananoQuest.swift in Sources */,
 				6316E9E920FF4FAC00F7C790 /* ProfileViewController.swift in Sources */,

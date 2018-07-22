@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-public class UpdateTavernQuestAmountOperation: SynchronousOperation {
+public class UpdatePlayerOperation: SynchronousOperation {
     
     private var balanceWei: Int64?
     private var transactionCount: Int64?
