@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class CoreDataOperation: Operation {
+public class SynchronousOperation: Operation {
     /// State for this operation.
     
     @objc private enum OperationState: Int {

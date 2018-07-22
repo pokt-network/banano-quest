@@ -12,15 +12,15 @@ import CoreData
 
 public class QuestDownloadParsing {
     
-    static func parseDownload(dict: QueryResponse) throws -> Quest {
-        // TODO: Parse download
-        // return (quest.creator, quest.index, quest.name, quest.hint, quest.merkleRoot, quest.maxWinners,
-        // quest.metadata, quest.valid, quest.winnersIndex.length, quest.claimersIndex.length)
-        
-        // Save each quest into core data
-        let metadata = [AnyHashable: Any]()
-        let quest = try Quest(obj: [:], metadata: metadata, context: BaseUtil.mainContext)
-        
-        return quest
-    }
+//    static func parseDownload(dict: QueryResponse) throws -> Quest {
+//        // TODO: Parse download
+//        // return (quest.creator, quest.index, quest.name, quest.hint, quest.merkleRoot, quest.maxWinners,
+//        // quest.metadata, quest.valid, quest.winnersIndex.length, quest.claimersIndex.length)
+//        
+//        // Save each quest into core data
+//        let metadata = [AnyHashable: Any]()
+//        let quest = try Quest(obj: [:], metadata: metadata, context: BaseUtil.mainContext)
+//        
+//        return quest
+//    }
 }
