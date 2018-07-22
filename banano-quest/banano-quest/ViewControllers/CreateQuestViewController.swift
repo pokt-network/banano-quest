@@ -111,7 +111,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
         }
         if !(howManyBananosTextField.text ?? "0.0").isEmpty {
             howManyBananosTextField.layer.borderColor = UIColor.clear.cgColor
-            newQuest?.maxWinners = Int16(howManyBananosTextField.text ?? "0") ?? 0
+            newQuest?.maxWinners = Int64(howManyBananosTextField.text ?? "0") ?? 0
         }else {
             howManyBananosTextField.layer.borderColor = UIColor.red.cgColor
             isValid.append(false)
