@@ -28,7 +28,7 @@ public struct EthUtils {
         var result = 0.0
         var player: Player?
         do {
-            player = try Player.getPlayer(context: NSManagedObjectContext.init(concurrencyType: .privateQueueConcurrencyType))
+            player = try Player.getPlayer(context: try CoreDataUtil.mainPersistentContext(mergePolicy: NSMergePolicy.mergeByPropertyObjectTrump))
         } catch {
             return result
         }

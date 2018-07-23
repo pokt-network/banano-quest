@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		102A035120FE3E3C00B47CEA /* QuestMerkleTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A035020FE3E3C00B47CEA /* QuestMerkleTree.swift */; };
 		102A035320FE4CDE00B47CEA /* MerkleTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A035220FE4CDE00B47CEA /* MerkleTree.swift */; };
+		10403109210629D40091B5FE /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10403108210629D40091B5FE /* Onboarding.storyboard */; };
+		1040310B21062BBB0091B5FE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1040310A21062BBB0091B5FE /* OnboardingViewController.swift */; };
+		1040310D2106673D0091B5FE /* CoreDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1040310C2106673D0091B5FE /* CoreDataUtil.swift */; };
+		1040310F21066D960091B5FE /* CreateAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1040310E21066D960091B5FE /* CreateAccount.storyboard */; };
 		108BDF4921052E3000405693 /* AppInitQueueDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108BDF4821052E3000405693 /* AppInitQueueDispatcher.swift */; };
 		108BDF4B2105382A00405693 /* QueueDispatcherProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108BDF4A2105382A00405693 /* QueueDispatcherProtocol.swift */; };
 		108BDF4D21053B7100405693 /* AllQuestsQueueDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108BDF4C21053B7100405693 /* AllQuestsQueueDispatcher.swift */; };
@@ -93,6 +97,10 @@
 /* Begin PBXFileReference section */
 		102A035020FE3E3C00B47CEA /* QuestMerkleTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestMerkleTree.swift; sourceTree = "<group>"; };
 		102A035220FE4CDE00B47CEA /* MerkleTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerkleTree.swift; sourceTree = "<group>"; };
+		10403108210629D40091B5FE /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		1040310A21062BBB0091B5FE /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		1040310C2106673D0091B5FE /* CoreDataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtil.swift; sourceTree = "<group>"; };
+		1040310E21066D960091B5FE /* CreateAccount.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateAccount.storyboard; sourceTree = "<group>"; };
 		108BDF4821052E3000405693 /* AppInitQueueDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInitQueueDispatcher.swift; sourceTree = "<group>"; };
 		108BDF4A2105382A00405693 /* QueueDispatcherProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueDispatcherProtocol.swift; sourceTree = "<group>"; };
 		108BDF4C21053B7100405693 /* AllQuestsQueueDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllQuestsQueueDispatcher.swift; sourceTree = "<group>"; };
@@ -301,6 +309,7 @@
 				6316E9EC20FF535400F7C790 /* FindOnboardingViewController.swift */,
 				6316E9EE20FF538500F7C790 /* ClaimOnboardingViewController.swift */,
 				C53B585F20FFDC390062BD64 /* CreateQuestMapViewController.swift */,
+				1040310A21062BBB0091B5FE /* OnboardingViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -374,6 +383,8 @@
 				635F8A9520DD50CC008BA94E /* Help.storyboard */,
 				635F8A9720DD50D6008BA94E /* Questing.storyboard */,
 				635F8A9920DD50E1008BA94E /* CreateQuest.storyboard */,
+				10403108210629D40091B5FE /* Onboarding.storyboard */,
+				1040310E21066D960091B5FE /* CreateAccount.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -403,6 +414,7 @@
 				102A035220FE4CDE00B47CEA /* MerkleTree.swift */,
 				108BDF5021061A7B00405693 /* EthUtils.swift */,
 				108BDF5221061BF400405693 /* AppConfiguration.swift */,
+				1040310C2106673D0091B5FE /* CoreDataUtil.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -554,6 +566,8 @@
 				635F8A9620DD50CC008BA94E /* Help.storyboard in Resources */,
 				635F8A9420DD50C3008BA94E /* Profile.storyboard in Resources */,
 				6333170A20D9990B0063D856 /* Main.storyboard in Resources */,
+				10403109210629D40091B5FE /* Onboarding.storyboard in Resources */,
+				1040310F21066D960091B5FE /* CreateAccount.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,6 +734,8 @@
 				1098FD1D2102764400E76682 /* DownloadQuestAmountOperation.swift in Sources */,
 				63091D8020E3D48C002253E5 /* QuestCollectionViewCell.swift in Sources */,
 				10A5600E21038B2600B85950 /* DownloadEthUsdPriceOperation.swift in Sources */,
+				1040310D2106673D0091B5FE /* CoreDataUtil.swift in Sources */,
+				1040310B21062BBB0091B5FE /* OnboardingViewController.swift in Sources */,
 				C53B586020FFDC390062BD64 /* CreateQuestMapViewController.swift in Sources */,
 				C51C07A02104E1C400E423D2 /* Player+CoreDataClass.swift in Sources */,
 				1098FD1B2102756900E76682 /* DownloadTransactionCountOperation.swift in Sources */,
@@ -730,8 +746,6 @@
 				63091D7C20E126A5002253E5 /* QuestingViewController.swift in Sources */,
 				6333170520D9990B0063D856 /* AppDelegate.swift in Sources */,
 				108BDF4F2105482D00405693 /* SingleQuestQueueDispatcher.swift in Sources */,
-				10A106B52100E51300544E0A /* Player+CoreDataClass.swift in Sources */,
-				10A106B62100E51300544E0A /* Player+CoreDataProperties.swift in Sources */,
 				63091D8420EA7920002253E5 /* CreateQuestViewController.swift in Sources */,
 				C5338BD320FA861D004923D0 /* DebugUtil.swift in Sources */,
 			);
@@ -909,7 +923,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 379F9842K2;
+				DEVELOPMENT_TEAM = 89229Z2MHH;
 				INFOPLIST_FILE = "banano-quest/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -928,7 +942,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 379F9842K2;
+				DEVELOPMENT_TEAM = 89229Z2MHH;
 				INFOPLIST_FILE = "banano-quest/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -25,10 +25,9 @@ public class UpdateQuestOperation: SynchronousOperation {
     }
     
     open override func main() {
-        let context = NSManagedObjectContext.init(concurrencyType: .privateQueueConcurrencyType)
-        context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
-        self.questDict["index"] = self.questIndex
         do {
+            let context = try CoreDataUtil.backgroundPersistentContext(mergePolicy: NSMergePolicy.mergeByPropertyObjectTrump)
+            self.questDict["index"] = self.questIndex
             let quest = try Quest.init(obj: questDict, context: context)
             try quest.save()
         } catch {

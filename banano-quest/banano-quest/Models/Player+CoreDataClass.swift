@@ -9,9 +9,12 @@
 import Foundation
 import CoreData
 import Pocket
+import PocketEth
 
 public enum PlayerPersistenceError: Error {
     case retrievalError
+    case creationError
+    case walletCreationError
 }
 
 @objc(Player)
@@ -55,5 +58,19 @@ public class Player: NSManagedObject {
             result = try Wallet.retrieveWallet(network: "ETH", address: playerAddress, passphrase: passphrase)
         }
         return result
+    }
+    
+    public static func createPlayer(walletPassphrase: String) throws -> Player {
+        // First create the wallet
+        let wallet = try PocketEth.createWallet(data: nil)
+        if try wallet.save(passphrase: walletPassphrase) == false {
+            throw PlayerPersistenceError.walletCreationError
+        }
+        
+        // Create the player
+        let context = try CoreDataUtil.mainPersistentContext(mergePolicy: NSMergePolicy.mergeByPropertyObjectTrump)
+        let player = try Player.init(obj: ["address":wallet.address], context: context)
+        try player.save()
+        return player
     }
 }

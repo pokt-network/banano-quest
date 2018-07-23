@@ -67,26 +67,21 @@ class NewWalletViewController: UIViewController {
         }
         
         createButton.isEnabled = false
+        // Create the player
         do {
-            let wallet = try BananoQuest.createWallet(dict: [AnyHashable : Any]())
-            if try wallet.save(passphrase: passphrase) {
-                continueButton.isEnabled = true
-                addBalanceButton.isEnabled = true
-                
-                addressLabel.text = wallet.address
-                print("Wallet saved successfully with address: \(wallet.address) and privateKey: \(wallet.privateKey)")
-            }else {
-                createButton.isEnabled = true
-                print("Failed to save wallet")
-            }
+            let player = try Player.createPlayer(walletPassphrase: passphrase)
+            self.addressLabel.text = player.address
+            self.present(self.bananoAlertView(title: "Success", message: "Account created succesfully"), animated: true, completion: nil)
+            continueButton.isEnabled = true
+            addBalanceButton.isEnabled = true
         } catch let error as NSError {
-            createButton.isEnabled = true
             print("Failed to create wallet with error: \(error)")
+            self.present(self.bananoAlertView(title: "Error", message: "Error creating your account, please try again"), animated: true, completion: nil)
         }
+        createButton.isEnabled = true
     }
     
     @IBAction func continuePressed(_ sender: Any) {
-        
         do {
             let vc = try self.instantiateViewController(identifier: "ContainerVC", storyboardName: "Questing") as? ContainerViewController
             self.navigationController?.pushViewController(vc!, animated: false)

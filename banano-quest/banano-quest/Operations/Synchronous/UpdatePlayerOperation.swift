@@ -26,7 +26,7 @@ public class UpdatePlayerOperation: SynchronousOperation {
     
     open override func main() {
         do {
-            let player = try Player.getPlayer(context: NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType))
+            let player = try Player.getPlayer(context: CoreDataUtil.backgroundPersistentContext(mergePolicy: NSMergePolicy.mergeByPropertyObjectTrump))
             
             if let balanceWei = self.balanceWei {
                 player.balanceWei = balanceWei
