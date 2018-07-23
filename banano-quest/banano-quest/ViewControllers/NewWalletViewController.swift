@@ -69,7 +69,8 @@ class NewWalletViewController: UIViewController {
         createButton.isEnabled = false
         // Create the player
         do {
-            _ = try Player.createPlayer(walletPassphrase: passphrase)
+            let player = try Player.createPlayer(walletPassphrase: passphrase)
+            self.addressLabel.text = player.address
             self.present(self.bananoAlertView(title: "Success", message: "Account created succesfully"), animated: true, completion: nil)
             continueButton.isEnabled = true
             addBalanceButton.isEnabled = true
