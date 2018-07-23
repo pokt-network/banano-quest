@@ -113,6 +113,22 @@ public class Quest: NSManagedObject {
         return Int64(quests.count)
     }
     
+    public static func retrieveQuestList(handler: @escaping QuestListCompletionHandler) throws {
+        // Quests list retrieved from CoreData
+        var quests = [Quest]()
+        
+        let fetchRequest = NSFetchRequest<Quest>(entityName: "Quest")
+        
+        do {
+            quests = try BaseUtil.mainContext.fetch(fetchRequest) as [Quest]
+            handler(quests,nil)
+        }
+        catch let error as NSError {
+            handler(nil,error)
+        }
+        
+    }
+    
     func dictionary() -> [AnyHashable: Any] {
         var dict = [AnyHashable: Any]()
         dict["index"] = index
