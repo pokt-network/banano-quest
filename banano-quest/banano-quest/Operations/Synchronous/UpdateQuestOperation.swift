@@ -25,20 +25,10 @@ public class UpdateQuestOperation: SynchronousOperation {
     }
     
     open override func main() {
-        var quest: Quest
-        if let localQuest = Quest.getQuestByIndex(questIndex: self.questIndex, context: NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)) {
-            quest = localQuest
-            quest.replaceValues(obj: self.questDict)
-        } else {
-            do {
-                quest = try Quest.init(obj: questDict, context: NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType))
-            } catch {
-                self.error = error
-                return
-            }
-        }
-        
+        let context = NSManagedObjectContext.init(concurrencyType: .privateQueueConcurrencyType)
+        context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
         do {
+            let quest = try Quest.init(obj: questDict, context: context)
             try quest.save()
         } catch {
             self.error = error

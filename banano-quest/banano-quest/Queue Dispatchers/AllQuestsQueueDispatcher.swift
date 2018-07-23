@@ -35,6 +35,7 @@ public class AllQuestsQueueDispatcher: QueueDispatcherProtocol {
         if self.tavernQuestAmount == 0 {
             return
         }
+        processNextQuest()
     }
     
     public func isQueueFinished() -> Bool {
