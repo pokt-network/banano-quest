@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -36,6 +37,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Search for Quests around your area, pay attention to: Quest Distance, # Bananos Available and ETH Prizes" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOR-R3-Vd8">
+                                            <rect key="frame" x="20" y="485" width="335" height="162"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
                                     </subviews>
                                 </view>
                                 <color key="backgroundColor" red="0.5244060386509517" green="1" blue="0.28656560477085835" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -48,9 +55,15 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NUXONBOARDING-2x1" translatesAutoresizingMaskIntoConstraints="NO" id="aP8-dd-sow">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="667"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Find where the BANANO is hiding by using the hint provided by the Quest!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQr-cB-bS2">
+                                            <rect key="frame" x="20" y="496" width="335" height="151"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
                                     </subviews>
                                 </view>
                                 <color key="backgroundColor" red="1" green="0.26544584314682362" blue="0.29716329906120365" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -62,14 +75,28 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NUXONBOARDING-3x1" translatesAutoresizingMaskIntoConstraints="NO" id="Do0-xA-1EJ">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NUXONBOARDING-3x1" translatesAutoresizingMaskIntoConstraints="NO" id="Do0-xA-1EJ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQ1-LK-8Ue">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Collect them all in your account!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ea9-XS-yR6">
+                                            <rect key="frame" x="20" y="487" width="335" height="97"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="97" id="BUI-OZ-7zU"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQ1-LK-8Ue">
                                             <rect key="frame" x="125" y="592" width="124" height="55"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" backgroundImage="ADD-BANLANCE-BUTTON-X1"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="124" id="0eH-24-e1r"/>
+                                                <constraint firstAttribute="height" constant="55" id="T4i-DR-7bs"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <state key="normal" title="Start!">
+                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            </state>
                                             <connections>
                                                 <action selector="onboardingCompleted:" destination="q4P-ue-rVC" eventType="touchUpInside" id="clR-pW-yQL"/>
                                             </connections>
@@ -77,6 +104,20 @@
                                     </subviews>
                                 </view>
                                 <color key="backgroundColor" red="0.26657537999243486" green="0.29055825590415607" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="ea9-XS-yR6" firstAttribute="leading" secondItem="UXo-fd-LEb" secondAttribute="leadingMargin" constant="4" id="39R-wv-ysW"/>
+                                    <constraint firstItem="fQ1-LK-8Ue" firstAttribute="centerX" secondItem="ea9-XS-yR6" secondAttribute="centerX" id="G0O-ow-C0J"/>
+                                    <constraint firstItem="fQ1-LK-8Ue" firstAttribute="centerX" secondItem="Do0-xA-1EJ" secondAttribute="centerX" id="OfL-YS-BY3"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="fQ1-LK-8Ue" secondAttribute="bottom" constant="20" id="Q2A-Q6-Aaf"/>
+                                    <constraint firstItem="Do0-xA-1EJ" firstAttribute="centerX" secondItem="ea9-XS-yR6" secondAttribute="centerX" id="WT0-6M-kSV"/>
+                                    <constraint firstItem="Do0-xA-1EJ" firstAttribute="top" secondItem="UXo-fd-LEb" secondAttribute="top" id="akU-WI-De0"/>
+                                    <constraint firstItem="fQ1-LK-8Ue" firstAttribute="top" secondItem="ea9-XS-yR6" secondAttribute="bottom" constant="8" symbolic="YES" id="bVF-QN-57b"/>
+                                    <constraint firstItem="fQ1-LK-8Ue" firstAttribute="top" secondItem="ea9-XS-yR6" secondAttribute="bottom" constant="8" id="ePD-61-Z1D"/>
+                                    <constraint firstItem="Do0-xA-1EJ" firstAttribute="leading" secondItem="UXo-fd-LEb" secondAttribute="leading" id="iWS-Pf-xyg"/>
+                                    <constraint firstItem="fQ1-LK-8Ue" firstAttribute="centerX" secondItem="UXo-fd-LEb" secondAttribute="centerX" id="tTn-od-Z4n"/>
+                                    <constraint firstAttribute="bottom" secondItem="Do0-xA-1EJ" secondAttribute="bottom" id="vat-Ft-gNg"/>
+                                    <constraint firstItem="fQ1-LK-8Ue" firstAttribute="top" secondItem="ea9-XS-yR6" secondAttribute="bottom" constant="8" id="vbJ-PL-LdD"/>
+                                </constraints>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -93,7 +134,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ADD-BANLANCE-BUTTON-X1" width="316" height="139"/>
         <image name="NUXONBOARDING 1-x1" width="375" height="667"/>
         <image name="NUXONBOARDING-2x1" width="750" height="1334"/>
         <image name="NUXONBOARDING-3x1" width="750" height="1334"/>
