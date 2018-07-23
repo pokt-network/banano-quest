@@ -19,7 +19,7 @@ class LandingViewController: UIViewController {
     
     func launchQuesting() {
         do {
-            try _ = Player.getPlayer(context: NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType))
+            try _ = Player.getPlayer(context: CoreDataUtil.mainPersistentContext(mergePolicy: nil))
         } catch PlayerPersistenceError.retrievalError {
             // Player doesn't exist, redirect to wallet creation flow
             launchWalletCreation()
@@ -44,7 +44,7 @@ class LandingViewController: UIViewController {
     
     func launchWalletCreation() {
         do {
-            let vc = try self.instantiateViewController(identifier: "walletCreationViewControllerID", storyboardName: "Main") as? NewWalletViewController
+            let vc = try self.instantiateViewController(identifier: "AccountCreationViewController", storyboardName: "CreateAccount") as? NewWalletViewController
             
             self.navigationController?.pushViewController(vc!, animated: false)
         }catch let error as NSError {

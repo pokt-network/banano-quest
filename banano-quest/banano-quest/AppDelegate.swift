@@ -26,6 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration {
         // Pocket configuration
         Pocket.shared.setConfiguration(config: self)
         
+        // Set main persistent context merge policy
+        self.persistentContainer.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+        
         // Debug mode only
         //DebugUtil.debugDataSetup()
         

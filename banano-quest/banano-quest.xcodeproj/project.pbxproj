@@ -11,6 +11,8 @@
 		102A035320FE4CDE00B47CEA /* MerkleTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A035220FE4CDE00B47CEA /* MerkleTree.swift */; };
 		10403109210629D40091B5FE /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10403108210629D40091B5FE /* Onboarding.storyboard */; };
 		1040310B21062BBB0091B5FE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1040310A21062BBB0091B5FE /* OnboardingViewController.swift */; };
+		1040310D2106673D0091B5FE /* CoreDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1040310C2106673D0091B5FE /* CoreDataUtil.swift */; };
+		1040310F21066D960091B5FE /* CreateAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1040310E21066D960091B5FE /* CreateAccount.storyboard */; };
 		108BDF4921052E3000405693 /* AppInitQueueDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108BDF4821052E3000405693 /* AppInitQueueDispatcher.swift */; };
 		108BDF4B2105382A00405693 /* QueueDispatcherProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108BDF4A2105382A00405693 /* QueueDispatcherProtocol.swift */; };
 		108BDF4D21053B7100405693 /* AllQuestsQueueDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108BDF4C21053B7100405693 /* AllQuestsQueueDispatcher.swift */; };
@@ -97,6 +99,8 @@
 		102A035220FE4CDE00B47CEA /* MerkleTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerkleTree.swift; sourceTree = "<group>"; };
 		10403108210629D40091B5FE /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		1040310A21062BBB0091B5FE /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		1040310C2106673D0091B5FE /* CoreDataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtil.swift; sourceTree = "<group>"; };
+		1040310E21066D960091B5FE /* CreateAccount.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateAccount.storyboard; sourceTree = "<group>"; };
 		108BDF4821052E3000405693 /* AppInitQueueDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInitQueueDispatcher.swift; sourceTree = "<group>"; };
 		108BDF4A2105382A00405693 /* QueueDispatcherProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueDispatcherProtocol.swift; sourceTree = "<group>"; };
 		108BDF4C21053B7100405693 /* AllQuestsQueueDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllQuestsQueueDispatcher.swift; sourceTree = "<group>"; };
@@ -380,6 +384,7 @@
 				635F8A9720DD50D6008BA94E /* Questing.storyboard */,
 				635F8A9920DD50E1008BA94E /* CreateQuest.storyboard */,
 				10403108210629D40091B5FE /* Onboarding.storyboard */,
+				1040310E21066D960091B5FE /* CreateAccount.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -409,6 +414,7 @@
 				102A035220FE4CDE00B47CEA /* MerkleTree.swift */,
 				108BDF5021061A7B00405693 /* EthUtils.swift */,
 				108BDF5221061BF400405693 /* AppConfiguration.swift */,
+				1040310C2106673D0091B5FE /* CoreDataUtil.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -561,6 +567,7 @@
 				635F8A9420DD50C3008BA94E /* Profile.storyboard in Resources */,
 				6333170A20D9990B0063D856 /* Main.storyboard in Resources */,
 				10403109210629D40091B5FE /* Onboarding.storyboard in Resources */,
+				1040310F21066D960091B5FE /* CreateAccount.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,6 +734,7 @@
 				1098FD1D2102764400E76682 /* DownloadQuestAmountOperation.swift in Sources */,
 				63091D8020E3D48C002253E5 /* QuestCollectionViewCell.swift in Sources */,
 				10A5600E21038B2600B85950 /* DownloadEthUsdPriceOperation.swift in Sources */,
+				1040310D2106673D0091B5FE /* CoreDataUtil.swift in Sources */,
 				1040310B21062BBB0091B5FE /* OnboardingViewController.swift in Sources */,
 				C53B586020FFDC390062BD64 /* CreateQuestMapViewController.swift in Sources */,
 				C51C07A02104E1C400E423D2 /* Player+CoreDataClass.swift in Sources */,

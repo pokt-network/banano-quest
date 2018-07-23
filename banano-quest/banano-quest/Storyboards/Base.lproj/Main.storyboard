@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -71,161 +70,6 @@
             </objects>
             <point key="canvasLocation" x="2015.2" y="133.5832083958021"/>
         </scene>
-        <!--New Wallet View Controller-->
-        <scene sceneID="sj5-Oj-Kne">
-            <objects>
-                <viewController storyboardIdentifier="walletCreationViewControllerID" id="qhe-8E-1hW" customClass="NewWalletViewController" customModule="banano_quest" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="VMf-24-fb4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SAMALL BANNERx1" translatesAutoresizingMaskIntoConstraints="NO" id="iTo-vD-hb9" userLabel="Top banner image">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="Fii-yf-IyU"/>
-                                    <constraint firstAttribute="height" constant="200" id="yy5-WK-8RT"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOUNT CREATION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tor-6w-gQR" userLabel="Top banner title">
-                                <rect key="frame" x="103.5" y="27" width="168" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To start collecting BANANOS you will need to create a wallet and add some ETH to it" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8LD-bV-dCR" userLabel="Top banner text">
-                                <rect key="frame" x="42.5" y="86" width="290.5" height="72"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="301" id="pC9-4L-J7T"/>
-                                    <constraint firstAttribute="height" constant="72" id="z1B-cX-7Fo"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4lc-AI-8hb" userLabel="Copy address button">
-                                <rect key="frame" x="319" y="314" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="J7r-K6-P6n"/>
-                                    <constraint firstAttribute="width" constant="40" id="jQV-hN-ISq"/>
-                                </constraints>
-                                <state key="normal" image="COPY-x1"/>
-                                <connections>
-                                    <action selector="copyAddressBtnPressed:" destination="qhe-8E-1hW" eventType="touchUpInside" id="a0K-ot-Eak"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x0000000000000000000000000000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHl-Uf-kbz" userLabel="Address label">
-                                <rect key="frame" x="16" y="330" width="293" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGk-wR-onH" userLabel="Address label underline">
-                                <rect key="frame" x="16" y="352" width="293" height="2"/>
-                                <color key="backgroundColor" red="0.25490196078431371" green="0.72549019607843135" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="2" id="YE1-6m-Qox"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YS9-9n-sCO" userLabel="Add balance button">
-                                <rect key="frame" x="193" y="462" width="145" height="69"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="145" id="cCH-YR-TA4"/>
-                                    <constraint firstAttribute="height" constant="69" id="nJP-cb-6Ic"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="ADD-BANLANCE-BUTTON-X1"/>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FORTHx1" translatesAutoresizingMaskIntoConstraints="NO" id="3Ah-R4-yfw" userLabel="Forward icon">
-                                <rect key="frame" x="308" y="547" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="KvP-DS-uQu"/>
-                                    <constraint firstAttribute="height" constant="30" id="beH-ds-TCz"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mhz-P3-nu4" userLabel="Continue button">
-                                <rect key="frame" x="180" y="542" width="145" height="40"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Oev-vT-42h"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="145" id="Q2x-wh-Lpv"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
-                                <state key="normal" title="CONTINUE">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="continuePressed:" destination="qhe-8E-1hW" eventType="touchUpInside" id="x3V-p1-vec"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Passphrase" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Glq-xP-yqV" userLabel="Passphrase text">
-                                <rect key="frame" x="16" y="220" width="339" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hO3-Yf-Yda" userLabel="Create button">
-                                <rect key="frame" x="115" y="270" width="145" height="40"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="cu9-Xh-oQk"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="145" id="oA2-hY-Gcz"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
-                                <state key="normal" title="CREATE">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="createWallet:" destination="qhe-8E-1hW" eventType="touchUpInside" id="k2H-qF-2Pb"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="hO3-Yf-Yda" firstAttribute="centerX" secondItem="56p-aq-yCE" secondAttribute="centerX" id="1or-B3-Ynf"/>
-                            <constraint firstItem="4lc-AI-8hb" firstAttribute="centerY" secondItem="VMf-24-fb4" secondAttribute="centerY" id="2U5-J0-uUd"/>
-                            <constraint firstItem="8LD-bV-dCR" firstAttribute="top" secondItem="tor-6w-gQR" secondAttribute="bottom" constant="38" id="355-3S-sa8"/>
-                            <constraint firstItem="56p-aq-yCE" firstAttribute="trailing" secondItem="Glq-xP-yqV" secondAttribute="trailing" constant="20" id="4pe-uh-bAJ"/>
-                            <constraint firstItem="4lc-AI-8hb" firstAttribute="leading" secondItem="hGk-wR-onH" secondAttribute="trailing" constant="10" id="50K-hj-0wK"/>
-                            <constraint firstItem="RHl-Uf-kbz" firstAttribute="leading" secondItem="56p-aq-yCE" secondAttribute="leading" constant="16" id="5mN-TX-ndS"/>
-                            <constraint firstItem="Glq-xP-yqV" firstAttribute="leading" secondItem="hGk-wR-onH" secondAttribute="leading" id="ByU-t0-Mjz"/>
-                            <constraint firstItem="hGk-wR-onH" firstAttribute="bottom" secondItem="4lc-AI-8hb" secondAttribute="bottom" id="Ctp-vJ-f1J"/>
-                            <constraint firstItem="YS9-9n-sCO" firstAttribute="top" secondItem="hGk-wR-onH" secondAttribute="bottom" constant="108" id="IkZ-C5-0ur"/>
-                            <constraint firstItem="56p-aq-yCE" firstAttribute="trailing" secondItem="Mhz-P3-nu4" secondAttribute="trailing" constant="50" id="JFh-cS-zKv"/>
-                            <constraint firstItem="YS9-9n-sCO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="56p-aq-yCE" secondAttribute="leading" constant="193" id="JMh-8z-W60"/>
-                            <constraint firstItem="Mhz-P3-nu4" firstAttribute="top" secondItem="YS9-9n-sCO" secondAttribute="bottom" constant="11" id="LDc-1M-edH"/>
-                            <constraint firstItem="4lc-AI-8hb" firstAttribute="leading" secondItem="RHl-Uf-kbz" secondAttribute="trailing" constant="10" id="LRJ-jE-0Hy"/>
-                            <constraint firstItem="hGk-wR-onH" firstAttribute="leading" secondItem="VMf-24-fb4" secondAttribute="leadingMargin" id="LTa-GX-kl8"/>
-                            <constraint firstItem="8LD-bV-dCR" firstAttribute="centerX" secondItem="VMf-24-fb4" secondAttribute="centerX" id="NCl-TO-EYU"/>
-                            <constraint firstItem="tor-6w-gQR" firstAttribute="top" secondItem="56p-aq-yCE" secondAttribute="top" constant="7" id="SMd-MH-9uu"/>
-                            <constraint firstItem="hO3-Yf-Yda" firstAttribute="top" secondItem="Glq-xP-yqV" secondAttribute="bottom" constant="20" id="STc-tm-8YO"/>
-                            <constraint firstItem="Glq-xP-yqV" firstAttribute="top" secondItem="iTo-vD-hb9" secondAttribute="bottom" constant="20" id="XDV-Ko-G6B"/>
-                            <constraint firstItem="hGk-wR-onH" firstAttribute="top" secondItem="RHl-Uf-kbz" secondAttribute="bottom" constant="4" id="YjH-n0-KYS"/>
-                            <constraint firstItem="tor-6w-gQR" firstAttribute="centerX" secondItem="VMf-24-fb4" secondAttribute="centerX" id="gZj-M9-Sfu"/>
-                            <constraint firstItem="iTo-vD-hb9" firstAttribute="trailing" secondItem="56p-aq-yCE" secondAttribute="trailing" id="hZd-4Z-uld"/>
-                            <constraint firstItem="56p-aq-yCE" firstAttribute="trailing" secondItem="4lc-AI-8hb" secondAttribute="trailing" constant="16" id="j09-3c-1sC"/>
-                            <constraint firstItem="56p-aq-yCE" firstAttribute="trailing" secondItem="3Ah-R4-yfw" secondAttribute="trailing" constant="37" id="nmE-c1-bgh"/>
-                            <constraint firstItem="iTo-vD-hb9" firstAttribute="top" secondItem="VMf-24-fb4" secondAttribute="top" id="ohz-cz-EeE"/>
-                            <constraint firstItem="Mhz-P3-nu4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="56p-aq-yCE" secondAttribute="leading" constant="180" id="uBV-2e-cVi"/>
-                            <constraint firstItem="iTo-vD-hb9" firstAttribute="leading" secondItem="56p-aq-yCE" secondAttribute="leading" id="uTe-47-Gd0"/>
-                            <constraint firstItem="56p-aq-yCE" firstAttribute="trailing" secondItem="YS9-9n-sCO" secondAttribute="trailing" constant="37" id="uqR-po-mFt"/>
-                            <constraint firstItem="3Ah-R4-yfw" firstAttribute="top" secondItem="YS9-9n-sCO" secondAttribute="bottom" constant="16" id="wsC-uE-t51"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="56p-aq-yCE"/>
-                    </view>
-                    <connections>
-                        <outlet property="addBalanceButton" destination="YS9-9n-sCO" id="QXy-fw-jX5"/>
-                        <outlet property="addressLabel" destination="RHl-Uf-kbz" id="Xrh-BJ-xaX"/>
-                        <outlet property="continueButton" destination="Mhz-P3-nu4" id="139-8r-fmB"/>
-                        <outlet property="createButton" destination="hO3-Yf-Yda" id="BXi-VL-hyY"/>
-                        <outlet property="passphraseTextField" destination="Glq-xP-yqV" id="elZ-8A-mZb"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="09w-ll-6eV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4942" y="135"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="CyS-uh-HJM">
             <objects>
@@ -246,13 +90,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ADD-BANLANCE-BUTTON-X1" width="316" height="139"/>
         <image name="BACKGORUND-x3" width="749" height="1333"/>
-        <image name="COPY-x1" width="57" height="57"/>
-        <image name="FORTHx1" width="57" height="57"/>
         <image name="LOGO-X3" width="379" height="164"/>
         <image name="MWL-X1" width="360" height="74"/>
         <image name="PLAY-NOW-BUTTON-X1" width="145" height="69"/>
-        <image name="SAMALL BANNERx1" width="750" height="330"/>
     </resources>
 </document>
