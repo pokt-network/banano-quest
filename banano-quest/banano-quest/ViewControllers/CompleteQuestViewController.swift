@@ -63,15 +63,10 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
     func refreshView() {
         // Details view
         bananoCountLabel.text = "0/\(quest?.maxWinners ?? 1)"
-        prizeValueLabel.text = "\(quest?.prize ?? 1).0 USD"
+        prizeValueLabel.text = "\(quest?.prize ?? 1) ETH"
         // TODO: Get location from merkleRoot
         distanceValueLabel.text = "20M"
         questDetailTextView.text = quest?.hint
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -132,6 +127,9 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
             print("user denied your app access to Location Services, but can grant access from Settings.app")
             break
         }
+    }
+    @IBAction func backButtonPressed(_ sender: Any) {
+        self.dismiss(animated: false, completion: nil)
     }
     @IBAction func completeButtonPressed(_ sender: Any) {
         

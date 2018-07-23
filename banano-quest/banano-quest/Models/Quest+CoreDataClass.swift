@@ -41,14 +41,14 @@ public class Quest: NSManagedObject {
         try self.save()
     }
     
-    func getLocalQuestCount(context: NSManagedObjectContext) throws -> Int32{
+    func getLocalQuestCount(context: NSManagedObjectContext) throws -> Int64 {
         var quests = [Quest]()
         
         let fetchRequest = NSFetchRequest<Quest>(entityName: "Quest")
         
         quests = try context.fetch(fetchRequest) as [Quest]
 
-        return Int32(quests.count)
+        return Int64(quests.count)
     }
     
     func dictionary() -> [AnyHashable: Any] {
@@ -61,6 +61,8 @@ public class Quest: NSManagedObject {
         dict["maxWinners"] = maxWinners
         dict["merkleRoot"] = merkleRoot
         dict["merkleBody"] = merkleBody
+        dict["winnersAmount"] = winnersAmount
+        dict["claimersAmount"] = claimersAmount
         dict["metadata"] = metadata?.dictionary()
         dict["winners"] = winners?.dictionary()
         
