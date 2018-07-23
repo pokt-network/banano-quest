@@ -49,4 +49,8 @@ public struct EthUtils {
         return result
     }
     
+    public static func convertEthToWei(eth: Double) -> Int64 {
+        return Int64(eth * Double(EthUtils.unitaryEthToWeiQuotient))
+    }
+    
 }

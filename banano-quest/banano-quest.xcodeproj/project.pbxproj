@@ -730,8 +730,6 @@
 				63091D7C20E126A5002253E5 /* QuestingViewController.swift in Sources */,
 				6333170520D9990B0063D856 /* AppDelegate.swift in Sources */,
 				108BDF4F2105482D00405693 /* SingleQuestQueueDispatcher.swift in Sources */,
-				10A106B52100E51300544E0A /* Player+CoreDataClass.swift in Sources */,
-				10A106B62100E51300544E0A /* Player+CoreDataProperties.swift in Sources */,
 				63091D8420EA7920002253E5 /* CreateQuestViewController.swift in Sources */,
 				C5338BD320FA861D004923D0 /* DebugUtil.swift in Sources */,
 			);
@@ -909,7 +907,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 379F9842K2;
+				DEVELOPMENT_TEAM = 89229Z2MHH;
 				INFOPLIST_FILE = "banano-quest/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -928,7 +926,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 379F9842K2;
+				DEVELOPMENT_TEAM = 89229Z2MHH;
 				INFOPLIST_FILE = "banano-quest/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
