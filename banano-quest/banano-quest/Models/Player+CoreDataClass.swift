@@ -23,11 +23,17 @@ public class Player: NSManagedObject {
             self.address = playerObj["address"] as? String ?? ""
             self.balanceWei = playerObj["balanceWei"] as? Int64 ?? 0
             self.transactionCount = playerObj["transactionCount"] as? Int64 ?? 0
+            self.tavernQuestAmount = playerObj["tavernQuestAmount"] as? Int64 ?? 0
+            self.ethUsdPrice = playerObj["ethUsdPrice"] as? Double ?? 0.0
         }
     }
     
+    func save() throws {
+        try self.managedObjectContext?.save()
+    }
+    
     // Either returns a new player to save data to, or returns the existing player
-    public static func getPlayer(context: NSManagedObjectContext) throws -> Player{
+    public static func getPlayer(context: NSManagedObjectContext) throws -> Player {
         var result: Player
         let fetchRequest: NSFetchRequest<Player> = Player.fetchRequest()
         let playerStore = try context.fetch(fetchRequest) as [Player]
@@ -38,7 +44,7 @@ public class Player: NSManagedObject {
             }
             result = player
         } else {
-            result = try Player.init(obj: nil, context: context)
+            throw PlayerPersistenceError.retrievalError
         }
         return result
     }

@@ -19,33 +19,33 @@ public class BananoQuest {
     public static var currentWallet: Wallet?
     
     public static func createQuest(obj: [AnyHashable: Any], metadata: [AnyHashable: Any], handler: @escaping NewBananoQuestHandler) throws {
-        let quest = try Quest(obj: obj, metadata: metadata, context: BaseUtil.mainContext)
+        //let quest = try Quest(obj: obj, metadata: metadata, context: BaseUtil.mainContext)
         
         // New Quest submitted
-        try Networking.uploadNewQuest(quest: quest) { (newQuest, error) in
-            if error != nil {
-                handler(nil,error)
-            }else{
-                // Quest is saved in CoreData
-                do{
-                    try newQuest?.save()
-                    handler(newQuest,nil)
-                }catch let error as NSError {
-                    handler(nil,error)
-                }
-            }
-        }
+//        try Networking.uploadNewQuest(quest: quest) { (newQuest, error) in
+//            if error != nil {
+//                handler(nil,error)
+//            }else{
+//                // Quest is saved in CoreData
+//                do{
+//                    try newQuest?.save()
+//                    handler(newQuest,nil)
+//                }catch let error as NSError {
+//                    handler(nil,error)
+//                }
+//            }
+//        }
     }
     
     public static func completeQuest(quest: Quest, locations: [AnyHashable: Any], handler: @escaping BananoQuestCompletionHandler) throws {
         // Quest completion submitted
-        try Networking.uploadQuestCompletion(quest: quest, locations: locations) { (response, error) in
-            if error != nil {
-                handler(nil,error)
-            }else{
-                handler(response,nil)
-            }
-        }
+//        try Networking.uploadQuestCompletion(quest: quest, locations: locations) { (response, error) in
+//            if error != nil {
+//                handler(nil,error)
+//            }else{
+//                handler(response,nil)
+//            }
+//        }
     }
     
     public static func createWallet(dict: [AnyHashable : Any]) throws -> Wallet {

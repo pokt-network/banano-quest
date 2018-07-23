@@ -34,7 +34,7 @@ class QuestCollectionViewCell: UICollectionViewCell {
         prizeValueLabel.text = "\(quest.prize) ETH"
         questDistanceLabel.text = "30M"
         hintTextView.text = quest.hint
-        let bananoColor = UIColor(hexString: quest.metadata?.hexColor ?? "31AADE")
+        let bananoColor = UIColor(hexString: quest.hexColor ?? "31AADE")
         bananoBackgroundView.backgroundColor = bananoColor
 
     }
