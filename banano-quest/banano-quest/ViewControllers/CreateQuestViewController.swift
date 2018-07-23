@@ -6,6 +6,7 @@
 //  Copyright © 2018 Michael O'Rourke. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import FlexColorPicker
 import Pocket
@@ -31,6 +32,8 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
     
     // Variables
     var newQuest: Quest?
+    var currentPlayer: Player?
+    var currentWallet: Wallet?
     var selectedLocation = [AnyHashable: Any]()
     
     // Notifications
@@ -38,13 +41,18 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
         // Initial Quest setup
         do {
-            try newQuest = Quest.init(obj: [:], context: BaseUtil.mainContext)
-            //try newQuest = Quest(obj: [AnyHashable : Any](), metadata: [AnyHashable : Any](), context: BaseUtil.mainContext)
+            newQuest = try Quest.init(obj: [:], context: BaseUtil.mainContext)
         } catch let error as NSError {
             print("Failed to create quest with error: \(error)")
+        }
+        // Get current player
+        do {
+            currentPlayer = try Player.getPlayer(context: BaseUtil.mainContext)
+        } catch {
+            print("Failed to retrieve current player")
         }
         
         // Notification Center
@@ -187,32 +195,21 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
     }
     func createNewQuest() {
         // New Quest submission
-        // TODO: assign the questID based on the tavern contract quest count + 1
-        do {
-            newQuest?.index = try newQuest?.getLocalQuestCount(context: BaseUtil.mainContext) ?? 0 + 1
-        } catch let error as NSError {
-            print("Failed to create quest with error: \(error)")
-            return
-        }
-        do {
-            try newQuest?.save()
-            print("New quest: \(newQuest!)")
-            enableElements(bool: false)
-            
-            let alertView = UIAlertController(title: "Success", message: "Quest created successfully", preferredStyle: .alert)
-            
-            alertView.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in
-                self.presentQuestListView()
-            }))
-            present(alertView, animated: false, completion: nil)
-        } catch let error as NSError {
-            let failedAlertView = self.bananoAlertView(title: "Failed", message: "Failed to create the new quest, please try again later")
-            failedAlertView.addAction(UIAlertAction(title: "Try again", style: .default, handler: { (UIAlertAction) in
-                self.enableElements(bool: true)
-            }))
-            self.present(failedAlertView, animated: false, completion: nil)
-            print("Failed to save wallet with error: \(error)")
-        }
+        // Upload quest operation
+        let operation = UploadQuestOperation.init(wallet: currentWallet!, tavernAddress: AppConfiguration.tavernAddress, tokenAddress: AppConfiguration.bananoTokenAddress, questName: newQuest?.name ?? "", hint: newQuest?.hint ?? "", maxWinners: newQuest?.maxWinners ?? 0, merkleRoot: newQuest?.merkleRoot ?? "", merkleBody: newQuest?.merkleBody ?? "", metadata: newQuest?.metadata ?? "", transactionCount: currentPlayer?.transactionCount ?? 0, ethPrizeWei: EthUtils.convertEthToWei(eth: newQuest?.prize ?? 0.0))
+        // Operation Queue
+        let operationQueue = OperationQueue.init()
+        
+        operationQueue.addOperation(operation)
+        
+        enableElements(bool: false)
+        
+        let alertView = UIAlertController(title: "Success", message: "Quest creation submitted successfully, we will let you know when it's done :D .", preferredStyle: .alert)
+        
+        alertView.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in
+            self.presentQuestListView()
+        }))
+        present(alertView, animated: false, completion: nil)
         
     }
     
@@ -309,31 +306,25 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
     @IBAction func createQuestButtonPressed(_ sender: Any) {
         // Check if the quest inputs are correct.
         if isNewQuestValid(){
-            // If current wallet is already unlocked, create new quest
-            if BananoQuest.currentWallet != nil {
-                createNewQuest()
-            }else {
-                // Prompt passphrase input to unlock wallet
-                let alertView = requestPassphraseAlertView { (passphrase, error) in
-                    if error != nil {
-                        // Show alertView for error if passphrase is nil
-                        let alertView = self.bananoAlertView(title: "Failed", message: "Failed to retrieve passphrase from textfield.")
+            // Prompt passphrase input to unlock wallet
+            let alertView = requestPassphraseAlertView { (passphrase, error) in
+                if error != nil {
+                    // Show alertView for error if passphrase is nil
+                    let alertView = self.bananoAlertView(title: "Failed", message: "Failed to retrieve passphrase from textfield.")
+                    self.present(alertView, animated: false, completion: nil)
+                }else {
+                    // Retrieve wallet with passphrase
+                    do {
+                        self.currentWallet = try self.currentPlayer?.getWallet(passphrase: passphrase ?? "")
+                        self.createNewQuest()
+                    }catch let error as NSError {
+                        let alertView = self.bananoAlertView(title: "Failed", message: "Failed to retrieve account with passphrase, please try again later.")
                         self.present(alertView, animated: false, completion: nil)
-                    }else {
-                        // Retrieve wallet with passphrase
-                        do {
-                            BananoQuest.currentWallet = try BananoQuest.getCurrentWallet(passphrase: passphrase ?? "")
-                            self.createNewQuest()
-                        }catch let error as NSError {
-                            let alertView = self.bananoAlertView(title: "Failed", message: "Failed to retrieve account with passphrase, please try again later.")
-                            self.present(alertView, animated: false, completion: nil)
-                            print("Failed with error: \(error)")
-                        }
+                        print("Failed with error: \(error)")
                     }
                 }
-                
-                self.present(alertView, animated: false, completion: nil)
             }
+            self.present(alertView, animated: false, completion: nil)
             
         }else {
             let alertView = self.bananoAlertView(title: "Invalid", message: "Invalid quest, please complete the fields properly.")
