@@ -43,32 +43,3 @@ extension Quest {
     @NSManaged public var isClaimer: Bool
 
 }
-
-extension Quest {
-    public static func retrieveQuestList(handler: @escaping QuestListCompletionHandler) throws {
-        // Quests list retrieved from CoreData
-        var quests = [Quest]()
-        
-        let fetchRequest = NSFetchRequest<Quest>(entityName: "Quest")
-        
-        do {            
-            // Sync quest list
-//            try Networking.getQuestList { (error) in
-//                do {
-//                    // Retrieve quest list from coreData
-//                    quests = try BaseUtil.mainContext.fetch(fetchRequest) as [Quest]
-//                    handler(quests,nil)
-//                }
-//                catch let error as NSError {
-//                    handler(nil,error)
-//                }
-//            }
-            
-        }
-        catch let error as NSError {
-            handler(nil,error)
-        }
-        
-
-    }
-}

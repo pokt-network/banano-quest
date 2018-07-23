@@ -103,14 +103,30 @@ public class Quest: NSManagedObject {
         return result
     }
     
-    func getLocalQuestCount(context: NSManagedObjectContext) throws -> Int32{
+    func getLocalQuestCount(context: NSManagedObjectContext) throws -> Int64{
         var quests = [Quest]()
         
         let fetchRequest = NSFetchRequest<Quest>(entityName: "Quest")
         
         quests = try context.fetch(fetchRequest) as [Quest]
 
-        return Int32(quests.count)
+        return Int64(quests.count)
+    }
+    
+    public static func retrieveQuestList(handler: @escaping QuestListCompletionHandler) throws {
+        // Quests list retrieved from CoreData
+        var quests = [Quest]()
+        
+        let fetchRequest = NSFetchRequest<Quest>(entityName: "Quest")
+        
+        do {
+            quests = try BaseUtil.mainContext.fetch(fetchRequest) as [Quest]
+            handler(quests,nil)
+        }
+        catch let error as NSError {
+            handler(nil,error)
+        }
+        
     }
     
     func dictionary() -> [AnyHashable: Any] {

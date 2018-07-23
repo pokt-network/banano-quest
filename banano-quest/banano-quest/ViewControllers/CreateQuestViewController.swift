@@ -100,40 +100,51 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
         
     }
     
+    func enableElements(bool: Bool) {
+        addLocationButton.isEnabled = bool
+        addColorButton.isEnabled = bool
+        questNameTextField.isEnabled = bool
+        prizeAmountETHTextField.isEnabled = bool
+        isTherePrizeSwitch.isEnabled = bool
+        hintTextView.isEditable = bool
+        
+    }
+    
     func isNewQuestValid() -> Bool {
         var isValid = [Bool]()
         
-        if !(questNameTextField.text ?? "").isEmpty {
-            questNameTextField.layer.borderColor = UIColor.clear.cgColor
-            newQuest?.name = questNameTextField.text
-        }else {
+        if (questNameTextField.text ?? "").isEmpty {
             questNameTextField.layer.borderColor = UIColor.red.cgColor
             isValid.append(false)
-        }
-        if !(howManyBananosTextField.text ?? "0.0").isEmpty {
-            howManyBananosTextField.layer.borderColor = UIColor.clear.cgColor
-            newQuest?.maxWinners = Int64(howManyBananosTextField.text ?? "0") ?? 0
         }else {
+            questNameTextField.layer.borderColor = UIColor.clear.cgColor
+            newQuest?.name = questNameTextField.text
+        }
+        if (howManyBananosTextField.text ?? "0.0").isEmpty {
             howManyBananosTextField.layer.borderColor = UIColor.red.cgColor
             isValid.append(false)
+        }else {
+            howManyBananosTextField.layer.borderColor = UIColor.clear.cgColor
+            newQuest?.maxWinners = Int64(howManyBananosTextField.text ?? "0") ?? 0
+            
         }
         // TODO: PRIZE value in USD api
         if isTherePrizeSwitch.isOn {
-            if !(prizeAmountETHTextField.text ?? "0.0").isEmpty {
-                prizeAmountETHTextField.layer.borderColor = UIColor.clear.cgColor
-                newQuest?.prize = Double(prizeAmountETHTextField.text ?? "0.0") ?? 0.0
-            }else {
+            if (prizeAmountETHTextField.text ?? "0.0").isEmpty {
                 prizeAmountETHTextField.layer.borderColor = UIColor.red.cgColor
                 isValid.append(false)
+            }else {
+                prizeAmountETHTextField.layer.borderColor = UIColor.clear.cgColor
+                newQuest?.prize = Double(prizeAmountETHTextField.text ?? "0.0") ?? 0.0
             }
         }
 
-        if !(hintTextView.text ?? "").isEmpty {
-            hintTextView.layer.borderColor = UIColor.clear.cgColor
-            newQuest?.hint = hintTextView.text
+        if (hintTextView.text ?? "").isEmpty || hintTextView.text == "HINT GOES HERE" {
+            hintTextView.layer.borderColor = UIColor.red.cgColor
+            isValid.append(false)
         }else {
             hintTextView.layer.borderColor = UIColor(red: (253/255), green: (204/255), blue: (48/255), alpha: 1.0).cgColor
-            isValid.append(false)
+            newQuest?.hint = hintTextView.text
         }
         if newQuest?.hexColor == nil {
             addColorButton.layer.borderColor = UIColor.red.cgColor
@@ -164,11 +175,45 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
             return true
         }
     }
-    
+    func presentQuestListView() {
+        do {
+            let vc = try self.instantiateViewController(identifier: "QuestingVC", storyboardName: "Questing") as! QuestingViewController
+
+            self.present(vc, animated: false, completion: nil)
+        }catch {
+            let failedAlertView = self.bananoAlertView(title: "Error:", message: "Oops something didn't happen, please try again")
+            self.present(failedAlertView, animated: false, completion: nil)
+        }
+    }
     func createNewQuest() {
         // New Quest submission
-        // TODO: //
-        print("New quest: \(newQuest!)")
+        // TODO: assign the questID based on the tavern contract quest count + 1
+        do {
+            newQuest?.index = try newQuest?.getLocalQuestCount(context: BaseUtil.mainContext) ?? 0 + 1
+        } catch let error as NSError {
+            print("Failed to create quest with error: \(error)")
+            return
+        }
+        do {
+            try newQuest?.save()
+            print("New quest: \(newQuest!)")
+            enableElements(bool: false)
+            
+            let alertView = UIAlertController(title: "Success", message: "Quest created successfully", preferredStyle: .alert)
+            
+            alertView.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in
+                self.presentQuestListView()
+            }))
+            present(alertView, animated: false, completion: nil)
+        } catch let error as NSError {
+            let failedAlertView = self.bananoAlertView(title: "Failed", message: "Failed to create the new quest, please try again later")
+            failedAlertView.addAction(UIAlertAction(title: "Try again", style: .default, handler: { (UIAlertAction) in
+                self.enableElements(bool: true)
+            }))
+            self.present(failedAlertView, animated: false, completion: nil)
+            print("Failed to save wallet with error: \(error)")
+        }
+        
     }
     
     func setupMerkleTree() {

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SwiftHEXColors
 class QuestCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var questNameLabel: UILabel!
@@ -27,14 +27,15 @@ class QuestCollectionViewCell: UICollectionViewCell {
     
     func configureCell(quest: Quest) {
         // TODO:
-        // WINNERS COUNT
         // PRIZE VALUE
         // DISTANCE FROM QUEST
         questNameLabel.text = quest.name
-        bananosCountLabel.text = String(quest.maxWinners)
-        prizeValueLabel.text = "1.00 USD"
+        bananosCountLabel.text = "\(quest.winnersAmount)/\(quest.maxWinners)"
+        prizeValueLabel.text = "\(quest.prize) ETH"
         questDistanceLabel.text = "30M"
         hintTextView.text = quest.hint
+        let bananoColor = UIColor(hexString: quest.hexColor ?? "31AADE")
+        bananoBackgroundView.backgroundColor = bananoColor
 
     }
     
