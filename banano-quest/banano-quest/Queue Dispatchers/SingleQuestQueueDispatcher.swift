@@ -22,10 +22,12 @@ public class SingleQuestQueueDispatcher: QueueDispatcherProtocol {
         self.questIndex = questIndex
     }
     
-    public func initDisplatchSequence(completionHandler: @escaping QueueDispatcherCompletionHandler) {
+    public func initDisplatchSequence(completionHandler: QueueDispatcherCompletionHandler?) {
         self.completionHandler = completionHandler
         if self.questIndex < 0 {
-            completionHandler()
+            if let completionHandler = self.completionHandler {
+                completionHandler()
+            }
             return
         }
         

@@ -30,7 +30,7 @@ public class AllQuestsQueueDispatcher: QueueDispatcherProtocol {
         self.operationQueue.maxConcurrentOperationCount = 2
     }
     
-    public func initDisplatchSequence(completionHandler: @escaping QueueDispatcherCompletionHandler) {
+    public func initDisplatchSequence(completionHandler: QueueDispatcherCompletionHandler?) {
         self.completionHandler = completionHandler
         if self.tavernQuestAmount == 0 {
             return
