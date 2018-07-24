@@ -12,7 +12,7 @@ import FlexColorPicker
 import Pocket
 import MapKit
 
-class CreateQuestViewController: UIViewController, ColorPickerDelegate {
+class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFieldDelegate {
     // UI Elements
     @IBOutlet weak var addLocationButton: UIButton!
     @IBOutlet weak var bananoImageBackground: UIImageView!
@@ -39,6 +39,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
     // Notifications
     static let notificationName = Notification.Name("getLocation")
     
+    // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -60,20 +61,26 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // UI Settings
-        defaultUIElementsStyle()
+        // UI Setup
+        bananoImageBackground.layer.cornerRadius = bananoImageBackground.frame.size.width / 2
+        prizeAmountETHTextField.delegate = self
         
         // Prize switch toggle action
         isTherePrizeSwitch.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
-        
-        // Prize is enabled by default
-        isPrizeEnabled(bool: true)
         
         // Gesture recognizer that dismiss the keyboard when tapped outside
         let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         tapOutside.cancelsTouchesInView = false
         
         view.addGestureRecognizer(tapOutside)
+    }
+    
+    func refreshView() {
+        // UI Settings
+        defaultUIElementsStyle()
+        
+        // Prize is enabled by default
+        isPrizeEnabled(bool: true)
     }
     
     // MARK: - Tools
@@ -115,7 +122,6 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
         prizeAmountETHTextField.isEnabled = bool
         isTherePrizeSwitch.isEnabled = bool
         hintTextView.isEditable = bool
-        
     }
     
     func isNewQuestValid() -> Bool {
@@ -183,6 +189,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
             return true
         }
     }
+    
     func presentQuestListView() {
         do {
             let vc = try self.instantiateViewController(identifier: "QuestingVC", storyboardName: "Questing") as! QuestingViewController
@@ -193,22 +200,24 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
             self.present(failedAlertView, animated: false, completion: nil)
         }
     }
+    
     func createNewQuest() {
         // New Quest submission
         // Upload quest operation
         let operation = UploadQuestOperation.init(wallet: currentWallet!, tavernAddress: AppConfiguration.tavernAddress, tokenAddress: AppConfiguration.bananoTokenAddress, questName: newQuest?.name ?? "", hint: newQuest?.hint ?? "", maxWinners: newQuest?.maxWinners ?? 0, merkleRoot: newQuest?.merkleRoot ?? "", merkleBody: newQuest?.merkleBody ?? "", metadata: newQuest?.metadata ?? "", transactionCount: currentPlayer?.transactionCount ?? 0, ethPrizeWei: EthUtils.convertEthToWei(eth: newQuest?.prize ?? 0.0))
         // Operation Queue
         let operationQueue = OperationQueue.init()
-        
         operationQueue.addOperation(operation)
         
+        // UI Elements disabled
         enableElements(bool: false)
         
+        // Let the user knows and present Quest list
         let alertView = UIAlertController(title: "Success", message: "Quest creation submitted successfully, we will let you know when it's done :D .", preferredStyle: .alert)
-        
         alertView.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in
             self.presentQuestListView()
         }))
+        
         present(alertView, animated: false, completion: nil)
         
     }
@@ -329,6 +338,21 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate {
         }else {
             let alertView = self.bananoAlertView(title: "Invalid", message: "Invalid quest, please complete the fields properly.")
             self.present(alertView, animated: false, completion: nil)
+        }
+    }
+    
+    // MARK: - IBActions
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == prizeAmountETHTextField {
+            if prizeAmountETHTextField.text != "0.0" {
+                let ethValue = Double(prizeAmountETHTextField.text ?? "0.0")
+                let weiValue = EthUtils.convertEthToWei(eth: ethValue!)
+                let usdValue = EthUtils.convertWeiToUSD(wei: weiValue)
+                
+                prizeAmountUSDTextField.text = "\(usdValue)"
+            }else{
+                prizeAmountUSDTextField.text = "0.0"
+            }
         }
     }
     
