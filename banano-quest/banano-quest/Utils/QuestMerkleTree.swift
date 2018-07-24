@@ -22,21 +22,6 @@ extension Data {
     }
 }
 
-extension FloatingPoint {
-    var degreesToRadians: Self { return self * .pi / 180 }
-    var radiansToDegrees: Self { return self * 180 / .pi }
-}
-
-extension CLLocation {
-    
-    public func concatenatedMagnitudes() -> String {
-        let latitude = String(format: "%.4f", self.coordinate.latitude)
-        let longitude = String(format: "%.4f", self.coordinate.longitude)
-        return latitude + longitude
-    }
-    
-}
-
 struct MatchingMerkleHash {
     var left:String
     var right:String
@@ -57,7 +42,7 @@ public struct QuestProofSubmission {
 public class QuestMerkleTree: MerkleTree {
     
     public init(questCenter: CLLocation) {
-        let elements = QuestMerkleTree.allPossiblePoints(center: questCenter).map { (currLocation) -> Data in
+        let elements = LocationUtils.allPossiblePoints(center: questCenter, diameterMT: 0.02, gpsCoordIncrements: 0.0001).map { (currLocation) -> Data in
             if let locData = currLocation.concatenatedMagnitudes().data(using: .utf8) {
                 return locData
             } else {
@@ -95,7 +80,7 @@ public class QuestMerkleTree: MerkleTree {
     public static func generateQuestProofSubmission(answer: CLLocation, merkleBody: String) -> QuestProofSubmission? {
         // Setup
         var result:QuestProofSubmission?
-        let pointHashes = QuestMerkleTree.allPossiblePoints(center: answer).map { (currPoint) -> String? in
+        let pointHashes = LocationUtils.allPossiblePoints(center: answer, diameterMT: 0.02, gpsCoordIncrements: 0.0001).map { (currPoint) -> String? in
             if let hexResult = currPoint.concatenatedMagnitudes().data(using: .utf8)?.sha3(.keccak256).toHexString() {
                 return hexResult
             } else {
@@ -165,40 +150,40 @@ public class QuestMerkleTree: MerkleTree {
     }
 
     // Internal functions
-    private static func allPossiblePoints(center: CLLocation) -> [CLLocation] {
-        let coordsIncrement = 0.0001
-        let distance = 0.02
-        let radius = 6371.0
-        let quotient = (distance/radius).radiansToDegrees;
-        let lat = center.coordinate.latitude
-        let lon = center.coordinate.longitude
-        let maxLat = lat + quotient;
-        let minLat = lat - quotient;
-        let maxLon = lon + quotient;
-        let minLon = lon - quotient;
-        
-        var latList = [CLLocationDegrees]();
-        var lonList = [CLLocationDegrees]();
-        var currentLat = minLat;
-        var currentLon = minLon;
-        var coordList = [CLLocation]();
-        
-        while(currentLat <= maxLat) {
-            latList.append(currentLat);
-            currentLat += coordsIncrement;
-        }
-        
-        while(currentLon <= maxLon) {
-            lonList.append(currentLon);
-            currentLon += coordsIncrement;
-        }
-        
-        for latitude in latList {
-            for longitude in lonList {
-                coordList.append(CLLocation.init(latitude: latitude, longitude: longitude))
-            }
-        }
-        
-        return coordList;
-    }
+//    private static func allPossiblePoints(center: CLLocation) -> [CLLocation] {
+//        let coordsIncrement = 0.0001
+//        let distance = 0.02
+//        let radius = 6371.0
+//        let quotient = (distance/radius).radiansToDegrees;
+//        let lat = center.coordinate.latitude
+//        let lon = center.coordinate.longitude
+//        let maxLat = lat + quotient;
+//        let minLat = lat - quotient;
+//        let maxLon = lon + quotient;
+//        let minLon = lon - quotient;
+//        
+//        var latList = [CLLocationDegrees]();
+//        var lonList = [CLLocationDegrees]();
+//        var currentLat = minLat;
+//        var currentLon = minLon;
+//        var coordList = [CLLocation]();
+//        
+//        while(currentLat <= maxLat) {
+//            latList.append(currentLat);
+//            currentLat += coordsIncrement;
+//        }
+//        
+//        while(currentLon <= maxLon) {
+//            lonList.append(currentLon);
+//            currentLon += coordsIncrement;
+//        }
+//        
+//        for latitude in latList {
+//            for longitude in lonList {
+//                coordList.append(CLLocation.init(latitude: latitude, longitude: longitude))
+//            }
+//        }
+//        
+//        return coordList;
+//    }
 }
