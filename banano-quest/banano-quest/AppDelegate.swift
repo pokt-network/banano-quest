@@ -35,7 +35,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration {
             if let playerAddress = player.address {
                 let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
                 appInitQueueDispatcher.initDisplatchSequence {
-                    print("Finished app data download")
+                    do {
+                        let updatedPlayer = try Player.getPlayer(context: CoreDataUtil.mainPersistentContext(mergePolicy: NSMergePolicy.mergeByPropertyObjectTrump))
+                        let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernQuestAmount: updatedPlayer.tavernQuestAmount, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
+                        questListQueueDispatcher.initDisplatchSequence(completionHandler: nil)
+                    } catch {
+                        print("Error initializing AllQuestsQueueDispatcher")
+                    }
                 }
             }
         } catch {
