@@ -34,7 +34,7 @@ public class DownloadQuestOperation: AsynchronousOperation {
         let functionABI = "{\"constant\":true,\"inputs\":[{\"name\":\"_tokenAddress\",\"type\":\"address\"},{\"name\":\"_questIndex\",\"type\":\"uint256\"}],\"name\":\"getQuest\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"},{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"string\"},{\"name\":\"\",\"type\":\"string\"},{\"name\":\"\",\"type\":\"bytes32\"},{\"name\":\"\",\"type\":\"string\"},{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"string\"},{\"name\":\"\",\"type\":\"bool\"},{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}"
         let functionParameters = [tokenAddress, questIndex] as [AnyObject]
         tx["to"] = tavernAddress
-        tx["data"] = PocketEth.encodeFunction(functionABI: functionABI, parameters: functionParameters).toHexString()
+        tx["data"] = "0x" + PocketEth.encodeFunction(functionABI: functionABI, parameters: functionParameters).toHexString()
         
         let params = [
             "rpcMethod": "eth_call",
@@ -58,24 +58,36 @@ public class DownloadQuestOperation: AsynchronousOperation {
                 return
             }
             
-            guard let questArr = queryResponse?.arrResult else {
+            guard let questArr = queryResponse?.result?.value() as! [JSON]? else {
                 self.error = DownloadQuestOperationError.questParsing
                 self.finish()
                 return
             }
             
+            let creator = questArr[0].value() as? String ?? ""
+            let index = questArr[1].value() as? Int ?? 0
+            let name = questArr[2].value() as? String ?? ""
+            let hint = questArr[3].value() as? String ?? ""
+            let merkleRoot = questArr[4].value() as? String ?? ""
+            let merkleBody = questArr[5].value() as? String ?? ""
+            let maxWinners = questArr[6].value() as? Int ?? 0
+            let metadata = questArr[7].value() as? String ?? ""
+            let valid = questArr[8].value() as? Bool ?? false
+            let winnersAmount = questArr[9].value() as? Int ?? 0
+            let claimersAmount = questArr[10].value() as? Int ?? 0
+            
             self.questDict = [
-                "creator": questArr[0],
-                "index": questArr[1],
-                "name": questArr[2],
-                "hint": questArr[3],
-                "merkleRoot": questArr[4],
-                "merkleBody": questArr[5],
-                "maxWinners": questArr[6],
-                "metadata": questArr[7],
-                "valid": questArr[8],
-                "winnersAmount": questArr[9],
-                "claimersAmount": questArr[10]
+                "creator": creator,
+                "index": index,
+                "name": name,
+                "hint": hint,
+                "merkleRoot": merkleRoot,
+                "merkleBody": merkleBody,
+                "maxWinners": maxWinners,
+                "metadata": metadata,
+                "valid": valid,
+                "winnersAmount": winnersAmount,
+                "claimersAmount": claimersAmount
             ] as [AnyHashable: Any]
             self.finish()
         }

@@ -32,7 +32,7 @@ public class DownloadQuestAmountOperation: AsynchronousOperation {
         let functionABI = "{\"constant\":true,\"inputs\":[{\"name\":\"_tokenAddress\",\"type\":\"address\"}],\"name\":\"getQuestAmount\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}"
         let functionParameters = [tokenAddress] as [AnyObject]
         tx["to"] = tavernAddress
-        tx["data"] = PocketEth.encodeFunction(functionABI: functionABI, parameters: functionParameters).toHexString()
+        tx["data"] = "0x" + PocketEth.encodeFunction(functionABI: functionABI, parameters: functionParameters).toHexString()
         
         let params = [
             "rpcMethod": "eth_call",
@@ -52,7 +52,7 @@ public class DownloadQuestAmountOperation: AsynchronousOperation {
                 return
             }
             
-            guard let questAmountHex = queryResponse?.stringResult else {
+            guard let questAmountHex = (queryResponse?.result?.value() as? String)?.replacingOccurrences(of: "0x", with: "") else {
                 self.error = DownloadQuestAmountOperationError.amountParsing
                 self.finish()
                 return

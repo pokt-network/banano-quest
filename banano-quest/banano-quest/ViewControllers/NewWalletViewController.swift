@@ -9,6 +9,7 @@
 import UIKit
 //import Pocket
 import PocketEth
+import CoreData
 
 class NewWalletViewController: UIViewController {
     @IBOutlet weak var passphraseTextField: UITextField!
@@ -74,6 +75,19 @@ class NewWalletViewController: UIViewController {
             self.present(self.bananoAlertView(title: "Success", message: "Account created succesfully"), animated: true, completion: nil)
             continueButton.isEnabled = true
             addBalanceButton.isEnabled = true
+            if let playerAddress = player.address {
+                let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
+                appInitQueueDispatcher.initDisplatchSequence {
+                    print("Finished app data download")
+                    do {
+                        let updatedPlayer = try Player.getPlayer(context: CoreDataUtil.mainPersistentContext(mergePolicy: NSMergePolicy.mergeByPropertyObjectTrump))
+                        let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernQuestAmount: updatedPlayer.tavernQuestAmount, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
+                        questListQueueDispatcher.initDisplatchSequence(completionHandler: nil)
+                    } catch {
+                        print("Error initializing AllQuestsQueueDispatcher")
+                    }
+                }
+            }
         } catch let error as NSError {
             print("Failed to create wallet with error: \(error)")
             self.present(self.bananoAlertView(title: "Error", message: "Error creating your account, please try again"), animated: true, completion: nil)
@@ -88,7 +102,5 @@ class NewWalletViewController: UIViewController {
         }catch let error as NSError {
             print("Failed to instantiate QuestingViewController with error: \(error)")
         }
-
     }
-
 }

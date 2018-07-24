@@ -50,7 +50,7 @@ public class UploadQuestEstimateOperation: AsynchronousOperation {
             "from": wallet.address,
             "to": tavernAddress,
             "value": ethPrizeWei,
-            "data": PocketEth.encodeFunction(functionABI: functionABI, parameters: functionParameters as [AnyObject]).toHexString()
+            "data": "0x" + PocketEth.encodeFunction(functionABI: functionABI, parameters: functionParameters as [AnyObject]).toHexString()
         ] as [AnyHashable: Any]
         
         let params = [
@@ -71,7 +71,7 @@ public class UploadQuestEstimateOperation: AsynchronousOperation {
                 return
             }
             
-            guard let estimatedGasHex = queryResponse?.stringResult else {
+            guard let estimatedGasHex = (queryResponse?.result?.value() as? String)?.replacingOccurrences(of: "0x", with: "") else {
                 self.error = UploadQuestEstimateOperationError.resultParsing
                 self.finish()
                 return

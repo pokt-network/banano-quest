@@ -43,7 +43,7 @@ public class DownloadTransactionCountOperation: AsynchronousOperation {
                 return
             }
             
-            guard let transactionCountHex = queryResponse?.stringResult else {
+            guard let transactionCountHex = (queryResponse?.result?.value() as? String)?.replacingOccurrences(of: "0x", with: "") else {
                 self.error = DownloadTransactionCountOperationError.responseParsing
                 self.finish()
                 return

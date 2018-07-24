@@ -36,7 +36,7 @@ public class DownloadQuestIsWinnerOperation: AsynchronousOperation {
         let functionABI = "{\"constant\":true,\"inputs\":[{\"name\":\"_tokenAddress\",\"type\":\"address\"},{\"name\":\"_questIndex\",\"type\":\"uint256\"},{\"name\":\"_allegedWinner\",\"type\":\"address\"}],\"name\":\"isWinner\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}"
         let functionParameters = [tokenAddress, questIndex, alledgedWinner] as [AnyObject]
         tx["to"] = tavernAddress
-        tx["data"] = PocketEth.encodeFunction(functionABI: functionABI, parameters: functionParameters).toHexString()
+        tx["data"] = "0x" + PocketEth.encodeFunction(functionABI: functionABI, parameters: functionParameters).toHexString()
         
         let params = [
             "rpcMethod": "eth_call",
@@ -56,13 +56,7 @@ public class DownloadQuestIsWinnerOperation: AsynchronousOperation {
                 return
             }
             
-            guard let isWinnerStr = queryResponse?.stringResult else {
-                self.error = DownloadQuestIsWinnerOperationError.resultParsing
-                self.finish()
-                return
-            }
-            
-            guard let isWinnerBool = Bool.init(isWinnerStr) else {
+            guard let isWinnerBool = queryResponse?.result?.value() as? Bool else {
                 self.error = DownloadQuestIsWinnerOperationError.resultParsing
                 self.finish()
                 return

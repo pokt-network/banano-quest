@@ -29,13 +29,19 @@ struct CMCEthereumTickerQuotes: Decodable {
     }
 }
 
-struct CMCEthereumTicker: Decodable {
+struct CMCEthereumTickerData: Decodable {
     let quotes: CMCEthereumTickerQuotes?
-    let lastUpdated: Date
     
     private enum CodingKeys: String, CodingKey {
         case quotes
-        case lastUpdated = "last_update"
+    }
+}
+
+struct CMCEthereumTicker: Decodable {
+    let data: CMCEthereumTickerData?
+    
+    private enum CodingKeys: String, CodingKey {
+        case data
     }
 }
 
@@ -67,8 +73,8 @@ public class DownloadEthUsdPriceOperation: AsynchronousOperation {
             
             do {
                 let ethereumTicker = try JSONDecoder().decode(CMCEthereumTicker.self, from: data)
-                self.usdPrice = ethereumTicker.quotes?.usd?.price
-                self.lastUpdated = ethereumTicker.lastUpdated
+                self.usdPrice = ethereumTicker.data?.quotes?.usd?.price
+                //self.lastUpdated = ethereumTicker.lastUpdated
             } catch {
                 self.error = error
                 self.finish()

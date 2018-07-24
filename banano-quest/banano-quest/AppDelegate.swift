@@ -15,7 +15,7 @@ import Pocket
 class AppDelegate: UIResponder, UIApplicationDelegate, Configuration {
     var nodeURL: URL {
         get {
-            return URL.init(string: "https://node.url")!
+            return URL.init(string: "http://red.pokt.network")!
         }
     }
     var window: UIWindow?
@@ -29,8 +29,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration {
         // Set main persistent context merge policy
         self.persistentContainer.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
         
-        // Debug mode only
-        //DebugUtil.debugDataSetup()
+        // Launch Queue Dispatchers
+        do {
+            let player = try Player.getPlayer(context: CoreDataUtil.mainPersistentContext(mergePolicy: NSMergePolicy.mergeByPropertyObjectTrump))
+            if let playerAddress = player.address {
+                let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
+                appInitQueueDispatcher.initDisplatchSequence {
+                    do {
+                        let updatedPlayer = try Player.getPlayer(context: CoreDataUtil.mainPersistentContext(mergePolicy: NSMergePolicy.mergeByPropertyObjectTrump))
+                        let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernQuestAmount: updatedPlayer.tavernQuestAmount, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
+                        questListQueueDispatcher.initDisplatchSequence(completionHandler: nil)
+                    } catch {
+                        print("Error initializing AllQuestsQueueDispatcher")
+                    }
+                }
+            }
+        } catch {
+            print("\(error)")
+        }
         
         return true
     }
