@@ -74,6 +74,12 @@ class NewWalletViewController: UIViewController {
             self.present(self.bananoAlertView(title: "Success", message: "Account created succesfully"), animated: true, completion: nil)
             continueButton.isEnabled = true
             addBalanceButton.isEnabled = true
+            if let playerAddress = player.address {
+                let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
+                appInitQueueDispatcher.initDisplatchSequence {
+                    print("Finished app data download")
+                }
+            }
         } catch let error as NSError {
             print("Failed to create wallet with error: \(error)")
             self.present(self.bananoAlertView(title: "Error", message: "Error creating your account, please try again"), animated: true, completion: nil)
@@ -88,7 +94,5 @@ class NewWalletViewController: UIViewController {
         }catch let error as NSError {
             print("Failed to instantiate QuestingViewController with error: \(error)")
         }
-
     }
-
 }

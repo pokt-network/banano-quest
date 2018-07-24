@@ -43,7 +43,7 @@ public class DownloadBalanceOperation: AsynchronousOperation {
                 return
             }
             
-            guard let balanceHex = queryResponse?.stringResult else {
+            guard let balanceHex: String = (queryResponse?.result?.value() as? String)?.replacingOccurrences(of: "0x", with: "") else {
                 self.error = DownloadBalanceOperationError.responseParsing
                 self.finish()
                 return

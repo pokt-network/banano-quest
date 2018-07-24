@@ -28,7 +28,7 @@ public class AppInitQueueDispatcher: QueueDispatcherProtocol {
     
     public func initDisplatchSequence(completionHandler: QueueDispatcherCompletionHandler?) {
         self.completionHandler = completionHandler
-        self.operationQueue.addOperations([self.downloadBalanceOperation, self.transactionCountOperation, self.questAmounOperation, self.ethUsdPriceOperation], waitUntilFinished: true)
+        self.operationQueue.addOperations([self.downloadBalanceOperation, self.transactionCountOperation, self.questAmounOperation, self.ethUsdPriceOperation], waitUntilFinished: false)
     }
     
     public func isQueueFinished() -> Bool {
@@ -45,37 +45,30 @@ public class AppInitQueueDispatcher: QueueDispatcherProtocol {
     
     // Private interfaces
     private func attempToExecuteCompletionHandler() {
-        if self.isQueueFinished(), let completionHandler = self.completionHandler {
-            completionHandler()
+        if self.isQueueFinished() {
+            if let completionHandler = self.completionHandler {
+                completionHandler()
+            }
+            
+            // Update the player record
+            self.operationQueue.addOperation(UpdatePlayerOperation.init(balanceWei: self.downloadBalanceOperation.balance, transactionCount: self.transactionCountOperation.transactionCount, questAmount: self.questAmounOperation.questAmount, ethUsdPrice: self.ethUsdPriceOperation.usdPrice))
         }
     }
     
     private func setOperationsCompletionBlocks() {
         self.downloadBalanceOperation.completionBlock = {
-            if self.downloadBalanceOperation.finishedSuccesfully {
-                self.operationQueue.addOperation(UpdatePlayerOperation.init(balanceWei: self.downloadBalanceOperation.balance, transactionCount: nil, questAmount: nil, ethUsdPrice: nil))
-            }
             self.attempToExecuteCompletionHandler()
         }
         
         self.transactionCountOperation.completionBlock = {
-            if self.transactionCountOperation.finishedSuccesfully {
-                self.operationQueue.addOperation(UpdatePlayerOperation.init(balanceWei: nil, transactionCount: self.transactionCountOperation.transactionCount, questAmount: nil, ethUsdPrice: nil))
-            }
             self.attempToExecuteCompletionHandler()
         }
         
         self.questAmounOperation.completionBlock = {
-            if self.questAmounOperation.finishedSuccesfully {
-                self.operationQueue.addOperation(UpdatePlayerOperation.init(balanceWei: nil, transactionCount: nil, questAmount: self.questAmounOperation.questAmount, ethUsdPrice: nil))
-            }
             self.attempToExecuteCompletionHandler()
         }
         
         self.ethUsdPriceOperation.completionBlock = {
-            if self.ethUsdPriceOperation.finishedSuccesfully {
-                self.operationQueue.addOperation(UpdatePlayerOperation.init(balanceWei: nil, transactionCount: nil, questAmount: nil, ethUsdPrice: self.ethUsdPriceOperation.usdPrice))
-            }
             self.attempToExecuteCompletionHandler()
         }
     }
