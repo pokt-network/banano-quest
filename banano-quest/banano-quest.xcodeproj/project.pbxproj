@@ -13,6 +13,7 @@
 		1040310B21062BBB0091B5FE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1040310A21062BBB0091B5FE /* OnboardingViewController.swift */; };
 		1040310D2106673D0091B5FE /* CoreDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1040310C2106673D0091B5FE /* CoreDataUtil.swift */; };
 		1040310F21066D960091B5FE /* CreateAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1040310E21066D960091B5FE /* CreateAccount.storyboard */; };
+		10403113210763240091B5FE /* LocationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10403112210763240091B5FE /* LocationUtils.swift */; };
 		108BDF4921052E3000405693 /* AppInitQueueDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108BDF4821052E3000405693 /* AppInitQueueDispatcher.swift */; };
 		108BDF4B2105382A00405693 /* QueueDispatcherProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108BDF4A2105382A00405693 /* QueueDispatcherProtocol.swift */; };
 		108BDF4D21053B7100405693 /* AllQuestsQueueDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108BDF4C21053B7100405693 /* AllQuestsQueueDispatcher.swift */; };
@@ -101,6 +102,7 @@
 		1040310A21062BBB0091B5FE /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		1040310C2106673D0091B5FE /* CoreDataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtil.swift; sourceTree = "<group>"; };
 		1040310E21066D960091B5FE /* CreateAccount.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateAccount.storyboard; sourceTree = "<group>"; };
+		10403112210763240091B5FE /* LocationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUtils.swift; sourceTree = "<group>"; };
 		108BDF4821052E3000405693 /* AppInitQueueDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInitQueueDispatcher.swift; sourceTree = "<group>"; };
 		108BDF4A2105382A00405693 /* QueueDispatcherProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueDispatcherProtocol.swift; sourceTree = "<group>"; };
 		108BDF4C21053B7100405693 /* AllQuestsQueueDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllQuestsQueueDispatcher.swift; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 				108BDF5021061A7B00405693 /* EthUtils.swift */,
 				108BDF5221061BF400405693 /* AppConfiguration.swift */,
 				1040310C2106673D0091B5FE /* CoreDataUtil.swift */,
+				10403112210763240091B5FE /* LocationUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -737,6 +740,7 @@
 				1040310D2106673D0091B5FE /* CoreDataUtil.swift in Sources */,
 				1040310B21062BBB0091B5FE /* OnboardingViewController.swift in Sources */,
 				C53B586020FFDC390062BD64 /* CreateQuestMapViewController.swift in Sources */,
+				10403113210763240091B5FE /* LocationUtils.swift in Sources */,
 				C51C07A02104E1C400E423D2 /* Player+CoreDataClass.swift in Sources */,
 				1098FD1B2102756900E76682 /* DownloadTransactionCountOperation.swift in Sources */,
 				10A5600621037DF800B85950 /* DownloadQuestIsWinnerOperation.swift in Sources */,
