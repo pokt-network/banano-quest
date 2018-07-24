@@ -7,35 +7,62 @@
 //
 
 import UIKit
+import PocketEth
+import Pocket
 
 class ProfileViewController: UIViewController {
-
+    @IBOutlet weak var walletAddressLabel: UILabel!
+    @IBOutlet weak var usdValueLabel: UILabel!
+    @IBOutlet weak var ethValueLabel: UILabel!
+    
+    var currentPlayer: Player?
+    
+    // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
+        do {
+            currentPlayer = try Player.getPlayer(context: BaseUtil.mainContext)
+        } catch let error as NSError {
+            print("Failed to retrieve current player with error: \(error)")
+        }
 
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        refreshView()
     }
-    @IBAction func menuPressed(_ sender: Any) {
+    
+    func refreshView() {
+        if currentPlayer == nil  {
+            let alertView = bananoAlertView(title: "Error:", message: "Failed to retrieve current player, please try again later")
+            present(alertView, animated: false, completion: nil)
+            
+            return
+        }
         
+        // Labels setup
+        walletAddressLabel.text = currentPlayer?.address
+        ethValueLabel.text = "\(EthUtils.convertWeiToEth(wei: currentPlayer?.balanceWei ?? 0))"
+        usdValueLabel.text = "\(EthUtils.convertWeiToUSD(wei: currentPlayer?.balanceWei ?? 0))"
+    }
+    
+    // MARK: - IBActions
+    @IBAction func copyAddressButtonPressed(_ sender: Any) {
+        if walletAddressLabel.text?.isEmpty ?? true {
+            let alertView = bananoAlertView(title: "Error:", message: "Address field is empty, please try again later")
+            present(alertView, animated: false, completion: nil)
+            
+            return
+        }
+        
+        UIPasteboard.general.string = walletAddressLabel.text
+    }
+    
+    @IBAction func menuPressed(_ sender: Any) {
         if let container = self.so_containerViewController {
             container.isSideViewControllerPresented = true
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
