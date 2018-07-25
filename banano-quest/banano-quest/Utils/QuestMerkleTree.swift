@@ -69,8 +69,7 @@ public class QuestMerkleTree: MerkleTree {
         layers = layers.reversed()
         let layersStrArr = layers.reduce(into: [String]()) { (result, currLayer) in
             let currLayerStr = currLayer.map({ (currNode) -> String in
-                let nodeHex = currNode.toHexString()
-                return nodeHex.hasPrefix("0x") ? nodeHex : "0x" + nodeHex
+                return currNode.toHexString()
             })
             result.append(currLayerStr.joined(separator: ","))
         }
@@ -91,7 +90,9 @@ public class QuestMerkleTree: MerkleTree {
             return currPointHash != nil
         }
         let merkleLayers = merkleBody.split(separator: "-").map { (currLayer) -> [String] in
-            return currLayer.components(separatedBy: ",")
+            return currLayer.components(separatedBy: ",").map({ (currHash) -> String in
+                return currHash.hasPrefix("0x") ? currHash : "0x" + currHash
+            })
         }
         let reversedMerkleLayers = merkleLayers.reversed()
         let deepestLevel = merkleLayers[merkleLayers.count - 1]
@@ -148,42 +149,4 @@ public class QuestMerkleTree: MerkleTree {
         
         return result
     }
-
-    // Internal functions
-//    private static func allPossiblePoints(center: CLLocation) -> [CLLocation] {
-//        let coordsIncrement = 0.0001
-//        let distance = 0.02
-//        let radius = 6371.0
-//        let quotient = (distance/radius).radiansToDegrees;
-//        let lat = center.coordinate.latitude
-//        let lon = center.coordinate.longitude
-//        let maxLat = lat + quotient;
-//        let minLat = lat - quotient;
-//        let maxLon = lon + quotient;
-//        let minLon = lon - quotient;
-//        
-//        var latList = [CLLocationDegrees]();
-//        var lonList = [CLLocationDegrees]();
-//        var currentLat = minLat;
-//        var currentLon = minLon;
-//        var coordList = [CLLocation]();
-//        
-//        while(currentLat <= maxLat) {
-//            latList.append(currentLat);
-//            currentLat += coordsIncrement;
-//        }
-//        
-//        while(currentLon <= maxLon) {
-//            lonList.append(currentLon);
-//            currentLon += coordsIncrement;
-//        }
-//        
-//        for latitude in latList {
-//            for longitude in lonList {
-//                coordList.append(CLLocation.init(latitude: latitude, longitude: longitude))
-//            }
-//        }
-//        
-//        return coordList;
-//    }
 }

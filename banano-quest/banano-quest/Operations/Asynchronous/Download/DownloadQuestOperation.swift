@@ -33,8 +33,14 @@ public class DownloadQuestOperation: AsynchronousOperation {
         
         let functionABI = "{\"constant\":true,\"inputs\":[{\"name\":\"_tokenAddress\",\"type\":\"address\"},{\"name\":\"_questIndex\",\"type\":\"uint256\"}],\"name\":\"getQuest\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"},{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"string\"},{\"name\":\"\",\"type\":\"string\"},{\"name\":\"\",\"type\":\"bytes32\"},{\"name\":\"\",\"type\":\"string\"},{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"string\"},{\"name\":\"\",\"type\":\"bool\"},{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}"
         let functionParameters = [tokenAddress, questIndex] as [AnyObject]
+        guard let data = try? PocketEth.encodeFunction(functionABI: functionABI, parameters: functionParameters).toHexString() else {
+            self.error = PocketPluginError.queryCreationError("Error creating query")
+            self.finish()
+            return
+        }
+        
         tx["to"] = tavernAddress
-        tx["data"] = "0x" + PocketEth.encodeFunction(functionABI: functionABI, parameters: functionParameters).toHexString()
+        tx["data"] = "0x" + data
         
         let params = [
             "rpcMethod": "eth_call",
@@ -42,7 +48,7 @@ public class DownloadQuestOperation: AsynchronousOperation {
             ] as [AnyHashable: Any]
         
         let decoder = [
-            "returnTypes": ["address", "uint", "string", "string", "bytes32", "string", "uint", "string", "bool", "uint", "uint"]
+            "returnTypes": ["address", "uint256", "string", "string", "bytes32", "string", "uint256", "string", "bool", "uint256", "uint256"]
         ] as [AnyHashable : Any]
         
         guard let query = try? PocketEth.createQuery(params: params, decoder: decoder) else {
@@ -58,7 +64,7 @@ public class DownloadQuestOperation: AsynchronousOperation {
                 return
             }
             
-            guard let questArr = queryResponse?.result?.value() as! [JSON]? else {
+            guard let questArr = queryResponse?.result?.value() as? [JSON] else {
                 self.error = DownloadQuestOperationError.questParsing
                 self.finish()
                 return

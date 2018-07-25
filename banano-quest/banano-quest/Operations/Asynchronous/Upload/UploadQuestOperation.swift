@@ -1,3 +1,4 @@
+
 //
 //  UploadQuestOperation.swift
 //  banano-quest
@@ -9,6 +10,7 @@
 import Foundation
 import PocketEth
 import Pocket
+import BigInt
 
 public enum UploadQuestOperationError: Error {
     case invalidTxHash
@@ -46,12 +48,23 @@ public class UploadQuestOperation: AsynchronousOperation {
     
     open override func main() {
         let functionABI = "{\"constant\":false,\"inputs\":[{\"name\":\"_tokenAddress\",\"type\":\"address\"},{\"name\":\"_name\",\"type\":\"string\"},{\"name\":\"_hint\",\"type\":\"string\"},{\"name\":\"_maxWinners\",\"type\":\"uint256\"},{\"name\":\"_merkleRoot\",\"type\":\"bytes32\"},{\"name\":\"_merkleBody\",\"type\":\"string\"},{\"name\":\"_metadata\",\"type\":\"string\"}],\"name\":\"createQuest\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"}"
-        let functionParameters = [tokenAddress, questName, hint, maxWinners, merkleRoot, merkleBody, metadata] as [Any]
+        var functionParameters = [AnyObject]()
+        functionParameters.append(tokenAddress as AnyObject)
+        functionParameters.append(questName.description as AnyObject)
+        functionParameters.append(hint.description as AnyObject)
+        functionParameters.append(maxWinners as AnyObject)
+        functionParameters.append(merkleRoot as AnyObject)
+        functionParameters.append(merkleBody as AnyObject)
+        functionParameters.append(metadata as AnyObject)
+        
         let txParams = [
             "from": wallet.address,
-            "nonce": transactionCount + 1,
+            "nonce": BigUInt.init(transactionCount),
             "to": tavernAddress,
-            "value": ethPrizeWei,
+            "value": BigUInt.init(ethPrizeWei),
+            "chainID": AppConfiguration.chainID,
+            "gasLimit": BigUInt.init(2000000),
+            "gasPrice": BigUInt.init(1000000000),
             "data": [
                 "abi": functionABI,
                 "params": functionParameters

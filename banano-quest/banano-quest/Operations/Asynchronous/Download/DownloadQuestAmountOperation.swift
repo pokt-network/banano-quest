@@ -31,8 +31,14 @@ public class DownloadQuestAmountOperation: AsynchronousOperation {
         
         let functionABI = "{\"constant\":true,\"inputs\":[{\"name\":\"_tokenAddress\",\"type\":\"address\"}],\"name\":\"getQuestAmount\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}"
         let functionParameters = [tokenAddress] as [AnyObject]
+        guard let data = try? PocketEth.encodeFunction(functionABI: functionABI, parameters: functionParameters).toHexString() else {
+            self.error = PocketPluginError.queryCreationError("Query creation error")
+            self.finish()
+            return
+        }
+        
         tx["to"] = tavernAddress
-        tx["data"] = "0x" + PocketEth.encodeFunction(functionABI: functionABI, parameters: functionParameters).toHexString()
+        tx["data"] = "0x" + data
         
         let params = [
             "rpcMethod": "eth_call",

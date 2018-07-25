@@ -43,6 +43,7 @@ public class UploadQuestProofOperation: AsynchronousOperation {
             "from": wallet.address,
             "nonce": transactionCount + 1,
             "to": tavernAddress,
+            "chainID": AppConfiguration.chainID,
             "data": [
                 "abi": functionABI,
                 "params": functionParameters

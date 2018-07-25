@@ -74,6 +74,7 @@ public class DownloadEthUsdPriceOperation: AsynchronousOperation {
             do {
                 let ethereumTicker = try JSONDecoder().decode(CMCEthereumTicker.self, from: data)
                 self.usdPrice = ethereumTicker.data?.quotes?.usd?.price
+                self.finish()
                 //self.lastUpdated = ethereumTicker.lastUpdated
             } catch {
                 self.error = error
