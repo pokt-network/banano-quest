@@ -612,6 +612,27 @@
             </objects>
             <point key="canvasLocation" x="788" y="189.3553223388306"/>
         </scene>
+        <!--Find a Banano-->
+        <scene sceneID="z29-wS-CKe">
+            <objects>
+                <viewController storyboardIdentifier="findBananoViewControllerID" title="Find a Banano" id="LJR-Yr-7zi" customClass="FindBananoViewController" customModule="banano_quest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KPX-V6-87l">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1yN-wJ-Rbg">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </arscnView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Bw9-Gl-pUF"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gmv-2g-GkE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1712.8" y="187.55622188905548"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ARROWx1" width="28" height="28"/>

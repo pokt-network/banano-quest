@@ -6,9 +6,11 @@
 //  Copyright © 2018 Michael O'Rourke. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import MapKit
 import CoreLocation
+import SwiftHEXColors
 
 class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
 
@@ -26,6 +28,7 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
     var currentUserLocation: CLLocation?
     var quest: Quest?
     
+    // MARK: View
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -64,7 +67,9 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
         // Details view
         let maxWinnersDouble = Double(quest?.maxWinners ?? 1)
         let prizeValue = quest?.prize ?? 0.0 / maxWinnersDouble
+        let bananoColor = UIColor(hexString: quest?.hexColor ?? "31AADE")
         
+        bananoBackground.backgroundColor = bananoColor
         prizeValueLabel.text = "\(prizeValue) ETH"
         bananoCountLabel.text = "0/\(quest?.maxWinners ?? 1)"
         // TODO: Get location from merkleRoot
@@ -72,6 +77,7 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
         questDetailTextView.text = quest?.hint
     }
     
+    // MARK: LocationManager
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
     }
@@ -131,11 +137,29 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
             break
         }
     }
+    
+    // MARK: IBActions
     @IBAction func backButtonPressed(_ sender: Any) {
         self.dismiss(animated: false, completion: nil)
     }
+    
+    // TODO: Submit merkle proof before proceeding
     @IBAction func completeButtonPressed(_ sender: Any) {
+        if currentUserLocation == nil {
+            let alertController = bananoAlertView(title: "Wait", message: "Let the app get your current location :D")
+            
+            present(alertController, animated: false, completion: nil)
+        }
         
+        do {
+            let vc = try instantiateViewController(identifier: "findBananoViewControllerID", storyboardName: "Questing") as? FindBananoViewController
+            vc?.currentQuest = quest
+            vc?.currentUserLocation = currentUserLocation
+            
+            present(vc!, animated: false, completion: nil)
+        } catch let error as NSError {
+            print("Failed to instantiate FindBananoViewController with error: \(error)")
+        }
     }
     
 }
