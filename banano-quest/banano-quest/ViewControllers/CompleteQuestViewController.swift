@@ -24,11 +24,11 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var questDetailTextView: UITextView!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var prizeLabel: UILabel!
-    
+
     var locationManager = CLLocationManager()
     var currentUserLocation: CLLocation?
     var quest: Quest?
-    
+
     // MARK: View
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,21 +36,21 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
         // Map settings
         mapView.showsUserLocation = true
         mapView.showsCompass = true
-        
+
         // Location Manager settings
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
-        
+
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Background settings
         bananoBackground.layer.cornerRadius = bananoBackground.frame.size.width / 2
         bananoBackground.clipsToBounds = true
-        
+
         // Checks is location services are enabled to start updating location
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
@@ -59,7 +59,7 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
             self.present(alertView, animated: false, completion: nil)
             print("Location services are disabled, please enable before trying again.")
         }
-        
+
         // Refresh view
         do {
             try refreshView()
@@ -67,7 +67,7 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
             print("Failed to refresh view with error: \(error)")
         }
     }
-    
+
     override func refreshView() throws {
         // Details view
         if let maxWinnersDouble = Double.init(quest?.maxWinners ?? "0.0") {
@@ -77,7 +77,7 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
         } else {
             prizeValueLabel.text = "No ETH Prize"
         }
-        
+
         let bananoColor = UIColor(hexString: quest?.hexColor ?? "31AADE")
         bananoBackground.backgroundColor = bananoColor
         //bananoCountLabel.text = "0/\(quest?.maxWinners ?? 1)"
@@ -85,40 +85,40 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
         distanceValueLabel.text = "20M"
         questDetailTextView.text = quest?.hint
     }
-    
+
     // MARK: LocationManager
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // Location update
         if locations.count > 0 {
             let location = locations.last!
-            
+
             currentUserLocation = location
-            
+
             print("Accuracy: \(location.horizontalAccuracy)")
             if location.horizontalAccuracy < 100 {
-                
+
                 manager.stopUpdatingLocation()
                 // span: is how much it should zoom into the user location
                 let span = MKCoordinateSpan(latitudeDelta: 0.014, longitudeDelta: 0.014)
                 let region = MKCoordinateRegion(center: location.coordinate, span: span)
                 // updates map with current user location
                 mapView.region = region
-                
+
             }else{
                 print("Location accuracy is not under 100 meters, skipping...")
             }
         }else{
             let alertView = self.bananoAlertView(title: "Error", message: "Failed to get current location.")
             self.present(alertView, animated: false, completion: nil)
-            
+
             print("Failed to get current location")
         }
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .notDetermined:
@@ -134,14 +134,14 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
             // restricted by e.g. parental controls. User can't enable Location Services
             let alertView = self.bananoAlertView(title: "Error", message: "Restricted by parental controls. User can't enable Location Services.")
             self.present(alertView, animated: false, completion: nil)
-            
+
             print("restricted by e.g. parental controls. User can't enable Location Services")
             break
         case .denied:
             // user denied your app access to Location Services, but can grant access from Settings.app
             let alertView = self.bananoAlertView(title: "Error", message: "User denied your app access to Location Services, but can grant access from Settings.app.")
             self.present(alertView, animated: false, completion: nil)
-            
+
             print("user denied your app access to Location Services, but can grant access from Settings.app")
             break
         }
@@ -154,38 +154,97 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
             vc?.questProof = proof
             vc?.currentQuest = quest
             vc?.currentUserLocation = currentUserLocation
-            
+
             present(vc!, animated: false, completion: nil)
         } catch let error as NSError {
             print("Failed to instantiate FindBananoViewController with error: \(error)")
         }
     }
-    
+
     // Check if the user is near quest banano
     func checkIfNearBanano() {
         guard let merkle = QuestMerkleTree.generateQuestProofSubmission(answer: currentUserLocation!, merkleBody: (quest?.merkleBody)!) else {
             let alertView = bananoAlertView(title: "Not in range", message: "Sorry, the banano location isn't nearby")
             present(alertView, animated: false, completion: nil)
-            
+
             return
         }
         // Show the Banano :D
         presentFindBananoViewController(proof: merkle)
     }
-    
+
     // MARK: IBActions
     @IBAction func backButtonPressed(_ sender: Any) {
         self.dismiss(animated: false, completion: nil)
     }
-    
+
+<<<<<<< HEAD
+=======
+    func checkIfNearBanano(passphrase: String) {
+        guard let merkle = QuestMerkleTree.generateQuestProofSubmission(answer: currentUserLocation!, merkleBody: (quest?.merkleBody)!) else {
+            return
+        }
+
+        let questProof = QuestProofSubmission.init(answer: merkle.answer, proof: merkle.proof)
+        do {
+            let player = try Player.getPlayer(context: BaseUtil.mainContext)
+            let wallet = try player.getWallet(passphrase: passphrase)
+
+            let operation = UploadQuestProofOperation.init(wallet: wallet!, transactionCount: player.transactionCount, tavernAddress: AppConfiguration.tavernAddress, tokenAddress: AppConfiguration.bananoTokenAddress, questIndex: (quest?.index)!, proof: questProof.proof, answer: questProof.answer)
+
+            operation.completionBlock = {
+
+            }
+            // Operation Queue
+            let operationQueue = AsynchronousOperation.init()
+
+            operationQueue.addDependency(operation)
+
+            let alertView = bananoAlertView(title: "Submitted", message: "Proof submitted, your request is being processed in the background")
+
+            self.present(alertView, animated: false, completion: nil)
+
+        } catch let error as NSError {
+            print("Failed to get player with error: \(error)")
+        }
+
+    }
+
+    // TODO: Submit merkle proof before proceeding
+>>>>>>> 79edc6f... Added proof logic, added submit proof operation, added BananoQuestViewController protocol
     @IBAction func completeButtonPressed(_ sender: Any) {
         if currentUserLocation == nil {
             let alertController = bananoAlertView(title: "Wait!", message: "Let the app get your current location :D")
-            
+
             present(alertController, animated: false, completion: nil)
             return
         }
+<<<<<<< HEAD
         // Check if near banano location
         checkIfNearBanano()
+=======
+        let alertView = requestPassphraseAlertView { (passphrase, error) in
+            if passphrase != nil {
+               self.checkIfNearBanano(passphrase: passphrase ?? "")
+            }
+            if error != nil {
+                print("Failed to get passphrase with error: \(String(describing: error))")
+            }
+
+        }
+        present(alertView, animated: false, completion: nil)
+
+        return
+        // TODO: Move findBananoViewController to a separate method
+//        do {
+//            let vc = try instantiateViewController(identifier: "findBananoViewControllerID", storyboardName: "Questing") as? FindBananoViewController
+//            vc?.currentQuest = quest
+//            vc?.currentUserLocation = currentUserLocation
+//
+//            present(vc!, animated: false, completion: nil)
+//        } catch let error as NSError {
+//            print("Failed to instantiate FindBananoViewController with error: \(error)")
+//        }
+>>>>>>> 79edc6f... Added proof logic, added submit proof operation, added BananoQuestViewController protocol
     }
 }

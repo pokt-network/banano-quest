@@ -11,46 +11,46 @@ import UIKit
 import PocketEth
 import CoreData
 
-class NewWalletViewController: UIViewController {
+class NewWalletViewController: UIViewController, BananoQuestViewController {
     @IBOutlet weak var passphraseTextField: UITextField!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var addBalanceButton: UIButton!
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var createButton: UIButton!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         // Initial UI setup
         addBalanceButton.isEnabled = false
         continueButton.isEnabled = false
-        
+
         createButton.setTitleColor(UIColor.darkGray, for: UIControlState.disabled)
         createButton.setTitleColor(UIColor.black, for: UIControlState.normal)
-        
+
         // Gesture recognizer that dismiss the keyboard when tapped outside
         let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         tapOutside.cancelsTouchesInView = false
-        
+
         view.addGestureRecognizer(tapOutside)
-        
+
         do {
             try refreshView()
         } catch let error as NSError {
             print("Failed to refresh view with error: \(error)")
         }
     }
-    
+
     // MARK: - Tools
     override func refreshView() throws {
         //
     }
-    
+
     // MARK: - Actions
     @IBAction func copyAddressBtnPressed(_ sender: Any) {
         if !(addressLabel.text ?? "").isEmpty {
@@ -59,20 +59,20 @@ class NewWalletViewController: UIViewController {
             print("Address label is empty, nothing to copy")
         }
     }
-    
+
     @IBAction func createWallet(_ sender: Any) {
         guard let passphrase = passphraseTextField.text else {
             let alertView = bananoAlertView(title: "Error", message: "Failed to get password, please try again later")
             present(alertView, animated: false, completion: nil)
             return
         }
-        
+
         if passphrase.isEmpty {
             let alertView = bananoAlertView(title: "Invalid", message: "Password shouldn't be empty")
             present(alertView, animated: false, completion: nil)
             return
         }
-        
+
         createButton.isEnabled = false
         // Create the player
         do {
@@ -99,7 +99,7 @@ class NewWalletViewController: UIViewController {
         }
         createButton.isEnabled = true
     }
-    
+
     @IBAction func continuePressed(_ sender: Any) {
         do {
             let vc = try self.instantiateViewController(identifier: "ContainerVC", storyboardName: "Questing") as? ContainerViewController

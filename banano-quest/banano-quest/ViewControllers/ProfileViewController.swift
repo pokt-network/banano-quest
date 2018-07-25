@@ -11,7 +11,7 @@ import PocketEth
 import Pocket
 import BigInt
 
-class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, BananoQuestViewController {
     @IBOutlet weak var walletAddressLabel: UILabel!
     @IBOutlet weak var usdValueLabel: UILabel!
     @IBOutlet weak var ethValueLabel: UILabel!
