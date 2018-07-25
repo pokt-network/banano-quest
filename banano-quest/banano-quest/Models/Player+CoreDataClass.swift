@@ -25,8 +25,8 @@ public class Player: NSManagedObject {
         if let playerObj = obj {
             self.address = playerObj["address"] as? String ?? ""
             self.balanceWei = playerObj["balanceWei"] as? String ?? "0"
-            self.transactionCount = playerObj["transactionCount"] as? Int64 ?? 0
-            self.tavernQuestAmount = playerObj["tavernQuestAmount"] as? Int64 ?? 0
+            self.transactionCount = playerObj["transactionCount"] as? String ?? "0"
+            self.tavernQuestAmount = playerObj["tavernQuestAmount"] as? String ?? "0"
             self.ethUsdPrice = playerObj["ethUsdPrice"] as? Double ?? 0.0
         }
     }

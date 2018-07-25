@@ -9,6 +9,19 @@
 
 import Foundation
 import CoreData
+import BigInt
+
+public extension BigInt {
+    public static func anyToBigInt(anyValue: Any) -> BigInt?{
+        if let strValue = anyValue as? String {
+            return BigInt.init(strValue)
+        } else if let intValue = anyValue as? Int {
+            return BigInt.init(intValue)
+        } else {
+            return nil
+        }
+    }
+}
 
 @objc(Quest)
 public class Quest: NSManagedObject {
@@ -23,7 +36,7 @@ public class Quest: NSManagedObject {
         _ = obj.map { (key, value) -> Void in
             switch key as? String {
             case "index":
-                self.index = Int64(value as? String ?? "0") ?? 0
+                self.index = String.init(BigInt.anyToBigInt(anyValue: value) ?? BigInt.init(0))
             case "creator":
                 self.creator = value as? String
             case "name":
@@ -31,17 +44,17 @@ public class Quest: NSManagedObject {
             case "hint":
                 self.hint = value as? String
             case "maxWinners":
-                self.maxWinners = Int64(value as? String ?? "0") ?? 0
+                self.maxWinners = String.init(BigInt.anyToBigInt(anyValue: value) ?? BigInt.init(0))
             case "prize":
-                self.prize = Double(value as? String ?? "0.0") ?? 0.0
+                self.prize = String.init(BigInt.anyToBigInt(anyValue: value) ?? BigInt.init(0))
             case "merkleRoot":
                 self.merkleRoot = value as? String
             case "merkleBody":
                 self.merkleBody = value as? String
             case "winnersAmount":
-                self.winnersAmount = value as? Int64 ?? 0
+                self.winnersAmount = String.init(BigInt.anyToBigInt(anyValue: value) ?? BigInt.init(0))
             case "claimersAmount":
-                self.claimersAmount = value as? Int64 ?? 0
+                self.claimersAmount = String.init(BigInt.anyToBigInt(anyValue: value) ?? BigInt.init(0))
             case "isWinner":
                 self.isWinner = value as? Bool ?? false
             case "isClaimer":

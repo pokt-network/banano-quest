@@ -9,6 +9,7 @@
 
 import Foundation
 import CoreData
+import BigInt
 
 public typealias QuestListCompletionHandler = (_: [Quest]?, _: Error?) -> Void
 
@@ -23,12 +24,12 @@ extension Quest {
     @NSManaged public var hint: String?
     @NSManaged public var merkleRoot: String?
     @NSManaged public var merkleBody: String?
-    @NSManaged public var maxWinners: Int64
-    @NSManaged public var index: Int64
-    @NSManaged public var prize: Double
+    @NSManaged public var maxWinners: String
+    @NSManaged public var index: String
+    @NSManaged public var prize: String
     @NSManaged public var winners: Winners?
-    @NSManaged public var winnersAmount: Int64
-    @NSManaged public var claimersAmount: Int64
+    @NSManaged public var winnersAmount: String
+    @NSManaged public var claimersAmount: String
     @NSManaged public var metadata: String?
     @NSManaged public var hexColor: String?
     @NSManaged public var lat1: Float

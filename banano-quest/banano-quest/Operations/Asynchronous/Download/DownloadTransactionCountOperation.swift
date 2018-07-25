@@ -9,6 +9,7 @@
 import Foundation
 import PocketEth
 import Pocket
+import BigInt
 
 public enum DownloadTransactionCountOperationError: Error {
     case responseParsing
@@ -17,7 +18,7 @@ public enum DownloadTransactionCountOperationError: Error {
 public class DownloadTransactionCountOperation: AsynchronousOperation {
     
     public var address: String
-    public var transactionCount: Int64?
+    public var transactionCount: BigInt?
     
     public init(address: String) {
         self.address = address
@@ -49,7 +50,7 @@ public class DownloadTransactionCountOperation: AsynchronousOperation {
                 return
             }
             
-            guard let transactionCount = Int64(transactionCountHex, radix: 16) else {
+            guard let transactionCount = BigInt.init(transactionCountHex, radix: 16) else {
                 self.error = DownloadTransactionCountOperationError.responseParsing
                 self.finish()
                 return

@@ -9,6 +9,7 @@
 import Foundation
 import PocketEth
 import Pocket
+import BigInt
 
 public enum DownloadQuestOperationError: Error {
     case questParsing
@@ -18,10 +19,10 @@ public class DownloadQuestOperation: AsynchronousOperation {
     
     public var tavernAddress: String
     public var tokenAddress: String
-    public var questIndex: Int64
+    public var questIndex: BigInt
     public var questDict: [AnyHashable: Any]?
     
-    public init(tavernAddress: String, tokenAddress: String, questIndex: Int64) {
+    public init(tavernAddress: String, tokenAddress: String, questIndex: BigInt) {
         self.tavernAddress = tavernAddress
         self.tokenAddress = tokenAddress
         self.questIndex = questIndex
@@ -71,16 +72,16 @@ public class DownloadQuestOperation: AsynchronousOperation {
             }
             
             let creator = questArr[0].value() as? String ?? ""
-            let index = questArr[1].value() as? Int ?? 0
+            let index = questArr[1].value() as? String ?? "0"
             let name = questArr[2].value() as? String ?? ""
             let hint = questArr[3].value() as? String ?? ""
             let merkleRoot = questArr[4].value() as? String ?? ""
             let merkleBody = questArr[5].value() as? String ?? ""
-            let maxWinners = questArr[6].value() as? Int ?? 0
+            let maxWinners = questArr[6].value() as? String ?? "0"
             let metadata = questArr[7].value() as? String ?? ""
             let valid = questArr[8].value() as? Bool ?? false
-            let winnersAmount = questArr[9].value() as? Int ?? 0
-            let claimersAmount = questArr[10].value() as? Int ?? 0
+            let winnersAmount = questArr[9].value() as? String ?? "0"
+            let claimersAmount = questArr[10].value() as? String ?? "0"
             
             self.questDict = [
                 "creator": creator,

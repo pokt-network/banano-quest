@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import PocketEth
 import Pocket
+import BigInt
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, Configuration {
@@ -21,8 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        
         // Pocket configuration
         Pocket.shared.setConfiguration(config: self)
         
@@ -35,13 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration {
             if let playerAddress = player.address {
                 let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
                 appInitQueueDispatcher.initDisplatchSequence {
-                    do {
-                        let updatedPlayer = try Player.getPlayer(context: CoreDataUtil.mainPersistentContext(mergePolicy: NSMergePolicy.mergeByPropertyObjectTrump))
-                        let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernQuestAmount: updatedPlayer.tavernQuestAmount, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
-                        questListQueueDispatcher.initDisplatchSequence(completionHandler: nil)
-                    } catch {
-                        print("Error initializing AllQuestsQueueDispatcher")
-                    }
+                    let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
+                    questListQueueDispatcher.initDisplatchSequence(completionHandler: nil)
                 }
             }
         } catch {

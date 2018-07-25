@@ -23,15 +23,15 @@ public class UploadQuestOperation: AsynchronousOperation {
     public var tokenAddress: String
     public var questName: String
     public var hint: String
-    public var maxWinners: Int64
+    public var maxWinners: BigInt
     public var merkleRoot: String
     public var merkleBody: String
     public var metadata: String
     public var wallet: Wallet
-    public var transactionCount: Int64
-    public var ethPrizeWei: Int64
+    public var transactionCount: BigInt
+    public var ethPrizeWei: BigInt
     
-    public init(wallet: Wallet, tavernAddress: String, tokenAddress: String, questName: String, hint: String, maxWinners: Int64, merkleRoot: String, merkleBody: String, metadata: String, transactionCount: Int64, ethPrizeWei: Int64) {
+    public init(wallet: Wallet, tavernAddress: String, tokenAddress: String, questName: String, hint: String, maxWinners: BigInt, merkleRoot: String, merkleBody: String, metadata: String, transactionCount: BigInt, ethPrizeWei: BigInt) {
         self.tavernAddress = tavernAddress
         self.tokenAddress = tokenAddress
         self.questName = questName

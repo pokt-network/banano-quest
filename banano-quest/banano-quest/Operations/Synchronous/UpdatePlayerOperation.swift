@@ -13,11 +13,11 @@ import BigInt
 public class UpdatePlayerOperation: SynchronousOperation {
     
     private var balanceWei: BigInt?
-    private var transactionCount: Int64?
-    private var questAmount: Int64?
+    private var transactionCount: BigInt?
+    private var questAmount: BigInt?
     private var ethUsdPrice: Double?
     
-    public init(balanceWei: BigInt?, transactionCount: Int64?, questAmount: Int64?, ethUsdPrice: Double?) {
+    public init(balanceWei: BigInt?, transactionCount: BigInt?, questAmount: BigInt?, ethUsdPrice: Double?) {
         self.balanceWei = balanceWei
         self.transactionCount = transactionCount
         self.questAmount = questAmount
@@ -36,11 +36,11 @@ public class UpdatePlayerOperation: SynchronousOperation {
                     }
                     
                     if let transactionCount = self.transactionCount {
-                        player.transactionCount = transactionCount
+                        player.transactionCount = String.init(transactionCount)
                     }
                     
                     if let questAmount = self.questAmount {
-                        player.tavernQuestAmount = questAmount
+                        player.tavernQuestAmount = String.init(questAmount)
                     }
                     
                     if let ethUsdPrice = self.ethUsdPrice {
