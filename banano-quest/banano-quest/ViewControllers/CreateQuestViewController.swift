@@ -12,7 +12,7 @@ import FlexColorPicker
 import Pocket
 import MapKit
 
-class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFieldDelegate {
+class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFieldDelegate, BananoQuestViewController {
     // UI Elements
     @IBOutlet weak var addLocationButton: UIButton!
     @IBOutlet weak var bananoImageBackground: UIImageView!
@@ -73,9 +73,15 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
         tapOutside.cancelsTouchesInView = false
         
         view.addGestureRecognizer(tapOutside)
+        
+        do {
+            try refreshView()
+        } catch let error as NSError {
+            print("Failed to refresh view with error: \(error)")
+        }
     }
     
-    func refreshView() {
+    func refreshView() throws {
         // UI Settings
         defaultUIElementsStyle()
         

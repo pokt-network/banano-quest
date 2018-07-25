@@ -10,7 +10,7 @@ import UIKit
 import PocketEth
 import Pocket
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, BananoQuestViewController {
     @IBOutlet weak var walletAddressLabel: UILabel!
     @IBOutlet weak var usdValueLabel: UILabel!
     @IBOutlet weak var ethValueLabel: UILabel!
@@ -30,10 +30,14 @@ class ProfileViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        refreshView()
+        do {
+            try refreshView()
+        } catch let error as NSError {
+            print("Failed to refresh view with error: \(error)")
+        }
     }
     
-    func refreshView() {
+    func refreshView() throws {
         if currentPlayer == nil  {
             let alertView = bananoAlertView(title: "Error:", message: "Failed to retrieve current player, please try again later")
             present(alertView, animated: false, completion: nil)

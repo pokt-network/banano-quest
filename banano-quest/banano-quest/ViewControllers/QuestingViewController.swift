@@ -36,7 +36,11 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         tapOutside.cancelsTouchesInView = false
         view.addGestureRecognizer(tapOutside)
     
-        refreshView()
+        do {
+            try refreshView()
+        } catch let error as NSError {
+            print("Failed to refresh view with error: \(error)")
+        }
     }
     
     func loadQuestList() {
@@ -53,7 +57,11 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
                     }
                 }else {
                     self.hideElements(bool: false)
-                    self.refreshView()
+                    do {
+                        try self.refreshView()
+                    } catch let error as NSError {
+                        print("Failed to refresh view with error: \(error)")
+                    }
                 }
             }
         }catch let error as NSError{
@@ -64,7 +72,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         }
     }
 
-    func refreshView() {
+    func refreshView() throws {
         // Every UI refresh should be done here
         DispatchQueue.main.async {
             self.collectionView.reloadData()

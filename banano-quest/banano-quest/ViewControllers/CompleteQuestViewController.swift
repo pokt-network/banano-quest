@@ -60,10 +60,14 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         // Refresh view
-        refreshView()
+        do {
+            try refreshView()
+        } catch let error as NSError {
+            print("Failed to refresh view with error: \(error)")
+        }
     }
     
-    func refreshView() {
+    func refreshView() throws {
         // Details view
         let maxWinnersDouble = Double(quest?.maxWinners ?? 1)
         let prizeValue = quest?.prize ?? 0.0 / maxWinnersDouble
@@ -143,6 +147,36 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
         self.dismiss(animated: false, completion: nil)
     }
     
+    func checkIfNearBanano(passphrase: String) {
+        guard let merkle = QuestMerkleTree.generateQuestProofSubmission(answer: currentUserLocation!, merkleBody: (quest?.merkleBody)!) else {
+            return
+        }
+        
+        let questProof = QuestProofSubmission.init(answer: merkle.answer, proof: merkle.proof)
+        do {
+            let player = try Player.getPlayer(context: BaseUtil.mainContext)
+            let wallet = try player.getWallet(passphrase: passphrase)
+            
+            let operation = UploadQuestProofOperation.init(wallet: wallet!, transactionCount: player.transactionCount, tavernAddress: AppConfiguration.tavernAddress, tokenAddress: AppConfiguration.bananoTokenAddress, questIndex: (quest?.index)!, proof: questProof.proof, answer: questProof.answer)
+            
+            operation.completionBlock = {
+                
+            }
+            // Operation Queue
+            let operationQueue = AsynchronousOperation.init()
+            
+            operationQueue.addDependency(operation)
+            
+            let alertView = bananoAlertView(title: "Submitted", message: "Proof submitted, your request is being processed in the background")
+            
+            self.present(alertView, animated: false, completion: nil)
+            
+        } catch let error as NSError {
+            print("Failed to get player with error: \(error)")
+        }
+        
+    }
+    
     // TODO: Submit merkle proof before proceeding
     @IBAction func completeButtonPressed(_ sender: Any) {
         if currentUserLocation == nil {
@@ -150,16 +184,28 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
             
             present(alertController, animated: false, completion: nil)
         }
-        
-        do {
-            let vc = try instantiateViewController(identifier: "findBananoViewControllerID", storyboardName: "Questing") as? FindBananoViewController
-            vc?.currentQuest = quest
-            vc?.currentUserLocation = currentUserLocation
+        let alertView = requestPassphraseAlertView { (passphrase, error) in
+            if passphrase != nil {
+               self.checkIfNearBanano(passphrase: passphrase ?? "")
+            }
+            if error != nil {
+                print("Failed to get passphrase with error: \(String(describing: error))")
+            }
             
-            present(vc!, animated: false, completion: nil)
-        } catch let error as NSError {
-            print("Failed to instantiate FindBananoViewController with error: \(error)")
         }
+        present(alertView, animated: false, completion: nil)
+        
+        return
+        // TODO: Move findBananoViewController to a separate method
+//        do {
+//            let vc = try instantiateViewController(identifier: "findBananoViewControllerID", storyboardName: "Questing") as? FindBananoViewController
+//            vc?.currentQuest = quest
+//            vc?.currentUserLocation = currentUserLocation
+//
+//            present(vc!, animated: false, completion: nil)
+//        } catch let error as NSError {
+//            print("Failed to instantiate FindBananoViewController with error: \(error)")
+//        }
     }
     
 }
