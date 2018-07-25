@@ -11,7 +11,7 @@ import UIKit
 import PocketEth
 import CoreData
 
-class NewWalletViewController: UIViewController {
+class NewWalletViewController: UIViewController, BananoQuestViewController {
     @IBOutlet weak var passphraseTextField: UITextField!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var addBalanceButton: UIButton!
@@ -38,10 +38,16 @@ class NewWalletViewController: UIViewController {
         tapOutside.cancelsTouchesInView = false
         
         view.addGestureRecognizer(tapOutside)
+        
+        do {
+            try refreshView()
+        } catch let error as NSError {
+            print("Failed to refresh view with error: \(error)")
+        }
     }
     
     // MARK: - Tools
-    func refreshView() {
+    func refreshView() throws {
         //
     }
     
