@@ -11,16 +11,16 @@ import PocketEth
 import Pocket
 import BigInt
 
-class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, BananoQuestViewController {
     @IBOutlet weak var walletAddressLabel: UILabel!
     @IBOutlet weak var usdValueLabel: UILabel!
     @IBOutlet weak var ethValueLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var scrollView: UIScrollView!
-    
+
     var currentPlayer: Player?
     var quests: [Quest] = [Quest]()
-    
+
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,17 +35,21 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        refreshView()
+        do {
+            try refreshView()
+        } catch let error as NSError {
+            print("Failed to refresh view with error: \(error)")
+        }
     }
-    
-    func refreshView() {
+
+    func refreshView() throws {
         if currentPlayer == nil  {
             let alertView = bananoAlertView(title: "Error:", message: "Failed to retrieve current player, please try again later")
             present(alertView, animated: false, completion: nil)
-            
+
             return
         }
-        
+
         // Labels setup
         walletAddressLabel.text = currentPlayer?.address
         if let weiBalanceStr = currentPlayer?.balanceWei {
@@ -53,32 +57,32 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             ethValueLabel.text = "\(EthUtils.convertWeiToEth(wei: weiBalance)) ETH"
             usdValueLabel.text = "\(EthUtils.convertWeiToUSD(wei: weiBalance)) USD"
         }
-        
+
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
     }
-    
+
     // MARK: - IBActions
     @IBAction func copyAddressButtonPressed(_ sender: Any) {
         if walletAddressLabel.text?.isEmpty ?? true {
             let alertView = bananoAlertView(title: "Error:", message: "Address field is empty, please try again later")
             present(alertView, animated: false, completion: nil)
-            
+
             return
         }
-        
+
         let alertView = bananoAlertView(title: "Success:", message: "Your Address has been copied to the clipboard.")
         present(alertView, animated: false, completion: nil)
         UIPasteboard.general.string = walletAddressLabel.text
     }
-    
+
     @IBAction func menuPressed(_ sender: Any) {
         if let container = self.so_containerViewController {
             container.isSideViewControllerPresented = true
         }
     }
-    
+
     @IBAction func exportPressed(_ sender: Any) {
         // Prompt passphrase input to unlock wallet
         let alertView = requestPassphraseAlertView { (passphrase, error) in
@@ -106,7 +110,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
         self.present(alertView, animated: false, completion: nil)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if self.quests.count == 0 {
             return 1
@@ -114,7 +118,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             return self.quests.count
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if quests.count != 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerQuestCell", for: indexPath) as! QuestCollectionViewCell
@@ -126,7 +130,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             return cell
         }
     }
-    
+
     func loadPlayerCompletedQuests() {
         // Initial load for the local quest list
         do {
