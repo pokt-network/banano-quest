@@ -33,19 +33,15 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
     }
     
     func refreshView() {
-        // Banano Location
+        // Banano Location is generated based in the user location after is confirmed the user is withing the quest
+        // completion range.
         let coordinates = getBananoLocation()
         bananoLocation = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
         
         let questLocation = CLLocation(latitude: bananoLocation?.coordinate.latitude ?? 0.0, longitude: bananoLocation?.coordinate.longitude ?? 0.0)
         let bananoLocationC = CLLocation(coordinate: questLocation.coordinate, altitude: CLLocationDistance.init(40), horizontalAccuracy: CLLocationAccuracy.init(0), verticalAccuracy: CLLocationAccuracy.init(0), timestamp: Date.init())
-        let distance = bananoLocationC.distance(from: currentUserLocation!)
         
-        print("Distance between quest and player \(distance)")
-        print("Quest altitude: \(bananoLocationC.altitude)")
-        print("Player altitude: \(currentUserLocation?.altitude ?? 0.0)")
-        print("Quest latitude:\(bananoLocationC.coordinate.latitude), longitude:\(bananoLocationC.coordinate.longitude)")
-        print("Player latitude:\(currentUserLocation?.coordinate.latitude ?? 0.0), longitude:\(currentUserLocation?.coordinate.longitude ?? 0.0)")
+        let distance = bananoLocationC.distance(from: currentUserLocation!)
         
         if distance <= 50 {
             let annotation = ARAnnotation()
