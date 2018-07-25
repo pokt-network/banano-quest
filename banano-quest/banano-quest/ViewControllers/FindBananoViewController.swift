@@ -11,7 +11,7 @@ import UIKit
 import ARKit
 import MapKit
 
-class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDelegate {
+class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDelegate, BananoQuestViewController {
     fileprivate var arViewController: ARViewController!
     var bananoLocation: CLLocation?
     var currentUserLocation: CLLocation?
@@ -29,10 +29,14 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        refreshView()
+        do {
+            try refreshView()
+        } catch let error as NSError {
+            print("Failed to refresh view with error: \(error)")
+        }
     }
     
-    func refreshView() {
+    func refreshView() throws {
         // Banano Location is generated based in the user location after is confirmed the user is withing the quest
         // completion range.
         let coordinates = getBananoLocation()
