@@ -197,7 +197,11 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
             let vc = try self.instantiateViewController(identifier: "completeQuestViewControllerID", storyboardName: "Questing") as? CompleteQuestViewController
             vc?.quest = quest
 
+<<<<<<< HEAD
             self.present(vc!, animated: false, completion: nil)
+=======
+            self.navigationController?.pushViewController(vc!, animated: false)
+>>>>>>> 79edc6f... Added proof logic, added submit proof operation, added BananoQuestViewController protocol
         }catch let error as NSError {
             let alert = self.bananoAlertView(title: "Error", message: "Ups, something happened, please try again later.")
             self.present(alert, animated: false, completion: nil)
