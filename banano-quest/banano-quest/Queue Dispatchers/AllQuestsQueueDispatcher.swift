@@ -7,27 +7,21 @@
 //
 
 import Foundation
+import BigInt
 
 public class AllQuestsQueueDispatcher: QueueDispatcherProtocol {
     
     private var completionHandler: QueueDispatcherCompletionHandler?
-    private var currentQuestIndex: Int64?
-    private var tavernQuestAmount: Int64?
+    private var currentQuestIndex: BigInt?
+    private var tavernQuestAmount: BigInt?
     private let tavernAddress: String
     private let bananoTokenAddress: String
     private let operationQueue = OperationQueue.init()
     
-    public init(tavernQuestAmount: Int64, tavernAddress: String, bananoTokenAddress: String) {
-        self.tavernQuestAmount = tavernQuestAmount
+    public init(tavernAddress: String, bananoTokenAddress: String) {
         self.tavernAddress = tavernAddress
         self.bananoTokenAddress = bananoTokenAddress
-//        if self.tavernQuestAmount > 0 {
-//            self.currentQuestIndex = (self.tavernQuestAmount - 1)
-//        } else {
-//            self.currentQuestIndex = 0
-//        }
-        // We set this to 2 because of 1 download operation and 1 update operation
-        self.operationQueue.maxConcurrentOperationCount = 2
+        self.operationQueue.maxConcurrentOperationCount = 1
     }
     
     public func initDisplatchSequence(completionHandler: QueueDispatcherCompletionHandler?) {
@@ -79,7 +73,7 @@ public class AllQuestsQueueDispatcher: QueueDispatcherProtocol {
             
             if downloadQuestOperation.finishedSuccesfully {
                 if let questDict = downloadQuestOperation.questDict {
-                    let updateQuestOperation = UpdateQuestOperation.init(questDict: questDict, questIndex: currentQuestIndex)
+                    let updateQuestOperation = UpdateQuestOperation.init(questDict: questDict, questIndex: String.init(currentQuestIndex))
                     updateQuestOperation.completionBlock = {
                         self.attempToExecuteCompletionHandler()
                     }

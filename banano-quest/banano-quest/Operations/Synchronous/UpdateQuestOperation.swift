@@ -16,9 +16,9 @@ public enum UpdateQuestOperationError: Error {
 public class UpdateQuestOperation: SynchronousOperation {
     
     private var questDict: [AnyHashable: Any]
-    private var questIndex: Int64
+    private var questIndex: String
     
-    public init(questDict: [AnyHashable: Any], questIndex: Int64) {
+    public init(questDict: [AnyHashable: Any], questIndex: String) {
         self.questDict = questDict
         self.questIndex = questIndex
         super.init()
@@ -27,7 +27,6 @@ public class UpdateQuestOperation: SynchronousOperation {
     open override func main() {
         do {
             let context = try CoreDataUtil.backgroundPersistentContext(mergePolicy: NSMergePolicy.mergeByPropertyObjectTrump)
-            self.questDict["index"] = self.questIndex
             let quest = try Quest.init(obj: questDict, context: context)
             try quest.save()
         } catch {

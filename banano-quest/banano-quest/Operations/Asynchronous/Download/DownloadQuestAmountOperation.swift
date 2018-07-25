@@ -9,6 +9,7 @@
 import Foundation
 import PocketEth
 import Pocket
+import BigInt
 
 public enum DownloadQuestAmountOperationError: Error {
     case amountParsing
@@ -18,7 +19,7 @@ public class DownloadQuestAmountOperation: AsynchronousOperation {
     
     public var tavernAddress: String
     public var tokenAddress: String
-    public var questAmount: Int64?
+    public var questAmount: BigInt?
     
     public init(tavernAddress: String, tokenAddress: String) {
         self.tavernAddress = tavernAddress
@@ -64,7 +65,7 @@ public class DownloadQuestAmountOperation: AsynchronousOperation {
                 return
             }
             
-            guard let questAmount = Int64(questAmountHex, radix: 16) else {
+            guard let questAmount = BigInt.init(questAmountHex, radix: 16) else {
                 self.error = DownloadQuestAmountOperationError.amountParsing
                 self.finish()
                 return
