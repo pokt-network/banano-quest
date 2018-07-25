@@ -11,12 +11,12 @@ let MAX_VERTICAL_LEVELS: Int = 10                                // Do not chang
 
 internal func radiansToDegrees(_ radians: Double) -> Double
 {
-    return (radians) * (180.0 / M_PI)
+    return (radians) * (180.0 / Double.pi)
 }
 
 internal func degreesToRadians(_ degrees: Double) -> Double
 {
-    return (degrees) * (M_PI / 180.0)
+    return (degrees) * (Double.pi / 180.0)
 }
 
 /// Normalizes degree to 360
@@ -27,6 +27,22 @@ internal func normalizeDegree(_ degree: Double) -> Double
     {
         degreeNormalized = 360 + degreeNormalized
     }
+    return degreeNormalized
+}
+
+/// Normalizes degree to 0...180, 0...-180
+internal func normalizeDegree2(_ degree: Double) -> Double
+{
+    var degreeNormalized = fmod(degree, 360)
+    if degreeNormalized > 180
+    {
+        degreeNormalized -= 360
+    }
+    else if degreeNormalized < -180
+    {
+        degreeNormalized += 360
+    }
+    
     return degreeNormalized
 }
 
