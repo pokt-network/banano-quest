@@ -82,6 +82,8 @@ public class DownloadQuestOperation: AsynchronousOperation {
             let valid = questArr[8].value() as? Bool ?? false
             let winnersAmount = questArr[9].value() as? String ?? "0"
             let claimersAmount = questArr[10].value() as? String ?? "0"
+            //TODO: FIX THIS WHEN NEW CONTRACT IS DEPLOYED
+            let prize = "0"
             
             self.questDict = [
                 "creator": creator,
@@ -94,7 +96,8 @@ public class DownloadQuestOperation: AsynchronousOperation {
                 "metadata": metadata,
                 "valid": valid,
                 "winnersAmount": winnersAmount,
-                "claimersAmount": claimersAmount
+                "claimersAmount": claimersAmount,
+                "prize": prize
             ] as [AnyHashable: Any]
             self.finish()
         }

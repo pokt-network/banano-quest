@@ -42,24 +42,22 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     func loadQuestList() {
         // Initial load for the local quest list
         do {
-            try Quest.retrieveQuestList { (questList, error) in
-                self.quests = questList
-                
-                if self.quests?.count == 0 {
-                    DispatchQueue.main.async {
-                        self.hideElements(bool: true)
-                        let label = self.showLabelWith(message: "No Quests available, please try again later...")
-                        self.view.addSubview(label)
-                    }
-                }else {
-                    self.hideElements(bool: false)
-                    self.refreshView()
+            self.quests = try CoreDataUtil.mainPersistentContext(mergePolicy: nil).fetch(Quest.fetchRequest()) as [Quest]
+            if self.quests?.count == 0 {
+                DispatchQueue.main.async {
+                    self.showElements(bool: true)
+                    let label = self.showLabelWith(message: "No Quests available, please try again later...")
+                    self.view.addSubview(label)
                 }
+            }else {
+                self.showElements(bool: false)
+                self.refreshView()
             }
-        }catch let error as NSError{
+            print("quests found")
+        } catch {
             let alert = self.bananoAlertView(title: "Error", message: "Failed to retrieve quest list with error:")
             self.present(alert, animated: false, completion: nil)
-            
+
             print("Failed to retrieve quest list with error: \(error)")
         }
     }
@@ -71,7 +69,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         }
     }
     
-    func hideElements(bool: Bool) {
+    func showElements(bool: Bool) {
         DispatchQueue.main.async {
             self.collectionView.isHidden = bool
             self.previousButton.isHidden = bool
