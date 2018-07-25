@@ -9,6 +9,7 @@
 import Foundation
 import PocketEth
 import Pocket
+import BigInt
 
 public enum DownloadBalanceOperationError: Error {
     case responseParsing
@@ -17,7 +18,7 @@ public enum DownloadBalanceOperationError: Error {
 public class DownloadBalanceOperation: AsynchronousOperation {
     
     public var address: String
-    public var balance: Int64?
+    public var balance: BigInt?
     
     public init(address: String) {
         self.address = address
@@ -49,7 +50,7 @@ public class DownloadBalanceOperation: AsynchronousOperation {
                 return
             }
             
-            guard let balance = Int64(balanceHex, radix: 16) else {
+            guard let balance = BigInt(balanceHex, radix: 16) else {
                 self.error = DownloadBalanceOperationError.responseParsing
                 self.finish()
                 return

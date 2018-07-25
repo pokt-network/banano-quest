@@ -8,15 +8,16 @@
 
 import Foundation
 import CoreData
+import BigInt
 
 public class UpdatePlayerOperation: SynchronousOperation {
     
-    private var balanceWei: Int64?
+    private var balanceWei: BigInt?
     private var transactionCount: Int64?
     private var questAmount: Int64?
     private var ethUsdPrice: Double?
     
-    public init(balanceWei: Int64?, transactionCount: Int64?, questAmount: Int64?, ethUsdPrice: Double?) {
+    public init(balanceWei: BigInt?, transactionCount: Int64?, questAmount: Int64?, ethUsdPrice: Double?) {
         self.balanceWei = balanceWei
         self.transactionCount = transactionCount
         self.questAmount = questAmount
@@ -26,26 +27,32 @@ public class UpdatePlayerOperation: SynchronousOperation {
     
     open override func main() {
         do {
-            let player = try Player.getPlayer(context: CoreDataUtil.backgroundPersistentContext(mergePolicy: NSMergePolicy.mergeByPropertyObjectTrump))
-            
-            if let balanceWei = self.balanceWei {
-                player.balanceWei = balanceWei
+            let context = try CoreDataUtil.backgroundPersistentContext(mergePolicy: NSMergePolicy.mergeByPropertyObjectTrump)
+            context.performAndWait {
+                do {
+                    let player = try Player.getPlayer(context: context)
+                    if let balanceWei = self.balanceWei {
+                        player.balanceWei = String.init(balanceWei)
+                    }
+                    
+                    if let transactionCount = self.transactionCount {
+                        player.transactionCount = transactionCount
+                    }
+                    
+                    if let questAmount = self.questAmount {
+                        player.tavernQuestAmount = questAmount
+                    }
+                    
+                    if let ethUsdPrice = self.ethUsdPrice {
+                        player.ethUsdPrice = ethUsdPrice
+                    }
+                    
+                    // Save updated player
+                    try player.save()
+                } catch {
+                    print("Error performing UpdatePlayerOperation")
+                }
             }
-            
-            if let transactionCount = self.transactionCount {
-                player.transactionCount = transactionCount
-            }
-            
-            if let questAmount = self.questAmount {
-                player.tavernQuestAmount = questAmount
-            }
-            
-            if let ethUsdPrice = self.ethUsdPrice {
-                player.ethUsdPrice = ethUsdPrice
-            }
-            
-            // Save updated player
-            try player.save()
         } catch {
             self.error = error
         }

@@ -9,6 +9,7 @@
 import UIKit
 import PocketEth
 import Pocket
+import BigInt
 
 class ProfileViewController: UIViewController, BananoQuestViewController {
     @IBOutlet weak var walletAddressLabel: UILabel!
@@ -47,8 +48,11 @@ class ProfileViewController: UIViewController, BananoQuestViewController {
         
         // Labels setup
         walletAddressLabel.text = currentPlayer?.address
-        ethValueLabel.text = "\(EthUtils.convertWeiToEth(wei: currentPlayer?.balanceWei ?? 0))"
-        usdValueLabel.text = "\(EthUtils.convertWeiToUSD(wei: currentPlayer?.balanceWei ?? 0))"
+        if let weiBalanceStr = currentPlayer?.balanceWei {
+            let weiBalance = BigInt.init(weiBalanceStr, radix: 16) ?? BigInt.init(0)
+            ethValueLabel.text = "\(EthUtils.convertWeiToEth(wei: weiBalance))"
+            usdValueLabel.text = "\(EthUtils.convertWeiToUSD(wei: weiBalance))"
+        }
     }
     
     // MARK: - IBActions

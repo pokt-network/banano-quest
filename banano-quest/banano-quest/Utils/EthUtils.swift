@@ -8,18 +8,23 @@
 
 import Foundation
 import CoreData
+import BigInt
 
 public struct EthUtils {
     
     public static let unitaryEthToWeiQuotient = 1000000000000000000
     
+    public static func convertEthAmountToUSD(ethAmount: Double) -> Double {
+        return ethAmount * unitaryEthPriceUSD()
+    }
+    
     // Converts wei amount to usd amount
-    public static func convertWeiToUSD(wei: Int64) -> Double {
+    public static func convertWeiToUSD(wei: BigInt) -> Double {
         return EthUtils.convertWeiToEth(wei: wei) * EthUtils.unitaryEthPriceUSD()
     }
     
     // Converts wei to eth amount
-    public static func convertWeiToEth(wei: Int64) -> Double {
+    public static func convertWeiToEth(wei: BigInt) -> Double {
         return Double.init(wei)/Double(EthUtils.unitaryEthToWeiQuotient)
     }
     

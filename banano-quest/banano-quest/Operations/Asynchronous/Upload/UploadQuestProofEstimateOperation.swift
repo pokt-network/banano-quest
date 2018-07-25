@@ -37,10 +37,16 @@ public class UploadQuestProofEstimateOperation: AsynchronousOperation {
     open override func main() {
         let functionABI = "{\"constant\":false,\"inputs\":[{\"name\":\"_tokenAddress\",\"type\":\"address\"},{\"name\":\"_questIndex\",\"type\":\"uint256\"},{\"name\":\"_proof\",\"type\":\"bytes32[]\"},{\"name\":\"_answer\",\"type\":\"bytes32\"}],\"name\":\"submitProof\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}"
         let functionParameters = [tokenAddress, questIndex, proof, answer] as [AnyObject]
+        guard let data = try? PocketEth.encodeFunction(functionABI: functionABI, parameters: functionParameters).toHexString() else {
+            self.error = PocketPluginError.queryCreationError("Query creation error")
+            self.finish()
+            return
+        }
+        
         let txParams = [
             "from": wallet.address,
             "to": tavernAddress,
-            "data": "0x" + PocketEth.encodeFunction(functionABI: functionABI, parameters: functionParameters).toHexString()
+            "data": "0x" + data
         ] as [AnyHashable: Any]
         let params = [
             "rpcMethod": "eth_estimateGas",
