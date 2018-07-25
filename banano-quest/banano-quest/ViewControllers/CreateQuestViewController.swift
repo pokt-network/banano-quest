@@ -11,6 +11,22 @@ import UIKit
 import FlexColorPicker
 import Pocket
 import MapKit
+import BigInt
+
+extension CGFloat {
+    static func random() -> CGFloat {
+        return CGFloat(arc4random()) / CGFloat(UInt32.max)
+    }
+}
+
+extension UIColor {
+    static func random() -> UIColor {
+        return UIColor(red:   .random(),
+                       green: .random(),
+                       blue:  .random(),
+                       alpha: 1.0)
+    }
+}
 
 class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFieldDelegate {
     // UI Elements
@@ -73,6 +89,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
         tapOutside.cancelsTouchesInView = false
         
         view.addGestureRecognizer(tapOutside)
+        refreshView()
     }
     
     func refreshView() {
@@ -81,9 +98,40 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
         
         // Prize is enabled by default
         isPrizeEnabled(bool: true)
+        
+        // Set current player balance
+        refreshPlayerBalance()
     }
     
     // MARK: - Tools
+    func refreshPlayerBalance() {
+        do {
+            let player = try Player.getPlayer(context: CoreDataUtil.mainPersistentContext(mergePolicy: nil))
+            let playerBalanceStr = player.balanceWei
+            guard let playerBalanceBigInt = BigInt.init(playerBalanceStr) else {
+                blankBalanceLabels()
+                return
+            }
+            setCurrentUSDBalanceLabel(amount: EthUtils.convertWeiToUSD(wei: playerBalanceBigInt))
+            setCurrentETHBalanceLabel(amount: EthUtils.convertWeiToEth(wei: playerBalanceBigInt))
+        } catch {
+            blankBalanceLabels()
+        }
+    }
+    
+    func blankBalanceLabels() {
+        self.currentUSDBalanceLabel.text = "0.0 USD"
+        self.currentETHBalanceLabel.text = "0.0 ETH"
+    }
+    
+    func setCurrentUSDBalanceLabel(amount: Double) {
+        self.currentUSDBalanceLabel.text = String.init(format: "%.2f USD", amount)
+    }
+    
+    func setCurrentETHBalanceLabel(amount: Double) {
+        self.currentETHBalanceLabel.text = String.init(format: "%.2f ETH", amount)
+    }
+    
     @objc func onNotification(notification:Notification)
     {
         if notification.userInfo != nil {
@@ -183,6 +231,12 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
             addLocationButton.layer.borderColor = UIColor.clear.cgColor
         }
         
+        if let _ = setupMetadata() {
+            isValid.append(true)
+        } else {
+            isValid.append(false)
+        }
+        
         if isValid.contains(false) {
             return false
         }else {
@@ -203,11 +257,46 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
     
     func createNewQuest() {
         // New Quest submission
+        // Pepare fields
+        let maxWinners = newQuest?.maxWinners ?? 0
+        let transactionCount = currentPlayer?.transactionCount ?? 0
+        let prizeWei = EthUtils.convertEthToWei(eth: newQuest?.prize ?? 0.0)
+        guard let wallet = currentWallet else {
+            return
+        }
+        guard let questName = newQuest?.name else {
+            return
+        }
+        guard let questHint = newQuest?.hint else {
+            return
+        }
+        guard let merkleRoot = newQuest?.merkleRoot else {
+            return
+        }
+        guard let merkleBody = newQuest?.merkleBody else {
+            return
+        }
+        guard let metadata = setupMetadata() else {
+            return
+        }
+        
         // Upload quest operation
-        let operation = UploadQuestOperation.init(wallet: currentWallet!, tavernAddress: AppConfiguration.tavernAddress, tokenAddress: AppConfiguration.bananoTokenAddress, questName: newQuest?.name ?? "", hint: newQuest?.hint ?? "", maxWinners: newQuest?.maxWinners ?? 0, merkleRoot: newQuest?.merkleRoot ?? "", merkleBody: newQuest?.merkleBody ?? "", metadata: newQuest?.metadata ?? "", transactionCount: currentPlayer?.transactionCount ?? 0, ethPrizeWei: EthUtils.convertEthToWei(eth: newQuest?.prize ?? 0.0))
+        let operation = UploadQuestOperation.init(wallet: wallet, tavernAddress: AppConfiguration.tavernAddress, tokenAddress: AppConfiguration.bananoTokenAddress, questName: questName, hint: questHint, maxWinners: maxWinners, merkleRoot: merkleRoot, merkleBody: merkleBody, metadata:  metadata, transactionCount: transactionCount, ethPrizeWei: prizeWei)
+        operation.completionBlock = {
+            let alertViewController: UIAlertController?
+            if let txHash = operation.txHash {
+                alertViewController = self.bananoAlertView(title: "Success!", message: "Your quest was created succesfully! with Transaction Hash: \(txHash)")
+            } else {
+                alertViewController = self.bananoAlertView(title: "Error", message: "An error ocurred, please try again.")
+            }
+            
+            if let alertViewController = alertViewController {
+                self.present(alertViewController, animated: true, completion: nil)
+            }
+        }
         // Operation Queue
         let operationQueue = OperationQueue.init()
-        operationQueue.addOperation(operation)
+        operationQueue.addOperations([operation], waitUntilFinished: false)
         
         // UI Elements disabled
         enableElements(bool: false)
@@ -220,6 +309,56 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
         
         present(alertView, animated: false, completion: nil)
         
+    }
+    
+    func setupMetadata() -> String? {
+        let hexColorStr: String?
+        let hintQuadrant: [CLLocation]?
+        var metadataStr: String?
+        
+        if newQuest?.hexColor == nil {
+            // Generate random hexColor
+            newQuest?.hexColor = UIColor.random().hexValue()
+        }
+        hexColorStr = newQuest?.hexColor
+        
+        if selectedLocation.count < 2 {
+            return nil
+        }
+        
+        if !(selectedLocation["lat"] as! String).isEmpty && !(selectedLocation["lon"] as! String).isEmpty {
+            let latitude = CLLocationDegrees.init(Double(selectedLocation["lat"] as! String) ?? 0.0)
+            let longitude = CLLocationDegrees.init(Double(selectedLocation["lon"] as! String) ?? 0.0)
+            
+            let location = CLLocation.init(latitude: latitude, longitude: longitude)
+            hintQuadrant = LocationUtils.generateHintQuadrant(center: location, sideDistance: 500.0)
+        }else {
+            let alertView = bananoAlertView(title: "Error", message: "Failed to process the selected location, please try again later")
+            self.present(alertView, animated: false, completion: nil)
+            return nil
+        }
+        
+        // Create metadata string
+        if let hexColorStr = hexColorStr, let hintQuadrant = hintQuadrant {
+            var metadataArr = [Any]()
+            metadataArr.append(hexColorStr)
+            metadataArr.append(contentsOf: hintQuadrant)
+            
+            metadataStr = metadataArr.reduce(into: String.init(""), { (result, currValue) in
+                if let strValue = currValue as? String {
+                    result.append(contentsOf: strValue + ",")
+                } else if let locValue = currValue as? CLLocation {
+                    let currLatStr = String.init(locValue.coordinate.latitude)
+                    let currLonStr = String.init(locValue.coordinate.longitude)
+                    result.append(contentsOf: currLatStr + ",")
+                    result.append(contentsOf: currLonStr + ",")
+                }
+            })
+            // Remove trailing comma
+            metadataStr?.removeLast()
+        }
+        
+        return metadataStr
     }
     
     func setupMerkleTree() {
@@ -345,15 +484,12 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == prizeAmountETHTextField {
             if prizeAmountETHTextField.text != "0.0" {
-                let ethValue = Double(prizeAmountETHTextField.text ?? "0.0")
-                let weiValue = EthUtils.convertEthToWei(eth: ethValue!)
-                let usdValue = EthUtils.convertWeiToUSD(wei: weiValue)
-                
-                prizeAmountUSDTextField.text = "\(usdValue)"
+                if let ethValue = Double(prizeAmountETHTextField.text ?? "0.0") {
+                    prizeAmountUSDTextField.text = "\(EthUtils.convertEthAmountToUSD(ethAmount: ethValue))"
+                }
             }else{
                 prizeAmountUSDTextField.text = "0.0"
             }
         }
     }
-    
 }

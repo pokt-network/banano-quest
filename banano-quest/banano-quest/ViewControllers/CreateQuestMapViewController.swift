@@ -112,7 +112,7 @@ class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate,
                 
                 manager.stopUpdatingLocation()
                 // span: is how much it should zoom into the user location
-                let span = MKCoordinateSpan(latitudeDelta: 0.014, longitudeDelta: 0.014)
+                let span = MKCoordinateSpan(latitudeDelta: 0.050, longitudeDelta: 0.050)
                 let region = MKCoordinateRegion(center: location.coordinate, span: span)
                 // updates map with current user location
                 mapView.region = region

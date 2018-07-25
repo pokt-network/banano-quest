@@ -27,6 +27,7 @@ public class AppInitQueueDispatcher: QueueDispatcherProtocol {
     }
     
     public func initDisplatchSequence(completionHandler: QueueDispatcherCompletionHandler?) {
+        print("Initializing AppInitQueueDispatcher sequence")
         self.completionHandler = completionHandler
         self.operationQueue.addOperations([self.downloadBalanceOperation, self.transactionCountOperation, self.questAmounOperation, self.ethUsdPriceOperation], waitUntilFinished: false)
     }
@@ -51,24 +52,28 @@ public class AppInitQueueDispatcher: QueueDispatcherProtocol {
             }
             
             // Update the player record
-            self.operationQueue.addOperation(UpdatePlayerOperation.init(balanceWei: self.downloadBalanceOperation.balance, transactionCount: self.transactionCountOperation.transactionCount, questAmount: self.questAmounOperation.questAmount, ethUsdPrice: self.ethUsdPriceOperation.usdPrice))
+            self.operationQueue.addOperations([UpdatePlayerOperation.init(balanceWei: self.downloadBalanceOperation.balance, transactionCount: self.transactionCountOperation.transactionCount, questAmount: self.questAmounOperation.questAmount, ethUsdPrice: self.ethUsdPriceOperation.usdPrice)], waitUntilFinished: false)
         }
     }
     
     private func setOperationsCompletionBlocks() {
         self.downloadBalanceOperation.completionBlock = {
+            print("Completed downloadBalanceOperation")
             self.attempToExecuteCompletionHandler()
         }
         
         self.transactionCountOperation.completionBlock = {
+            print("Completed transactionCountOperation")
             self.attempToExecuteCompletionHandler()
         }
         
         self.questAmounOperation.completionBlock = {
+            print("Completed questAmounOperation")
             self.attempToExecuteCompletionHandler()
         }
         
         self.ethUsdPriceOperation.completionBlock = {
+            print("Completed ethUsdPriceOperation")
             self.attempToExecuteCompletionHandler()
         }
     }

@@ -44,13 +44,18 @@ public class UploadQuestEstimateOperation: AsynchronousOperation {
     
     open override func main() {
         let functionABI = "{\"constant\":false,\"inputs\":[{\"name\":\"_tokenAddress\",\"type\":\"address\"},{\"name\":\"_name\",\"type\":\"string\"},{\"name\":\"_hint\",\"type\":\"string\"},{\"name\":\"_maxWinners\",\"type\":\"uint256\"},{\"name\":\"_merkleRoot\",\"type\":\"bytes32\"},{\"name\":\"_merkleBody\",\"type\":\"string\"},{\"name\":\"_metadata\",\"type\":\"string\"}],\"name\":\"createQuest\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"}"
-        let functionParameters = [tokenAddress, questName, hint, maxWinners, merkleRoot, merkleBody, metadata] as [Any]
+        let functionParameters = [tokenAddress, questName, hint, maxWinners, merkleRoot, merkleBody, metadata] as [AnyObject]
+        guard let data = try? PocketEth.encodeFunction(functionABI: functionABI, parameters: functionParameters).toHexString() else {
+            self.error = PocketPluginError.queryCreationError("Query creation error")
+            self.finish()
+            return
+        }
         
         let txParams = [
             "from": wallet.address,
             "to": tavernAddress,
             "value": ethPrizeWei,
-            "data": "0x" + PocketEth.encodeFunction(functionABI: functionABI, parameters: functionParameters as [AnyObject]).toHexString()
+            "data": "0x" + data
         ] as [AnyHashable: Any]
         
         let params = [

@@ -11,8 +11,8 @@ import Foundation
 public class AllQuestsQueueDispatcher: QueueDispatcherProtocol {
     
     private var completionHandler: QueueDispatcherCompletionHandler?
-    private var currentQuestIndex: Int64
-    private let tavernQuestAmount: Int64
+    private var currentQuestIndex: Int64?
+    private var tavernQuestAmount: Int64?
     private let tavernAddress: String
     private let bananoTokenAddress: String
     private let operationQueue = OperationQueue.init()
@@ -21,21 +21,26 @@ public class AllQuestsQueueDispatcher: QueueDispatcherProtocol {
         self.tavernQuestAmount = tavernQuestAmount
         self.tavernAddress = tavernAddress
         self.bananoTokenAddress = bananoTokenAddress
-        if self.tavernQuestAmount > 0 {
-            self.currentQuestIndex = (self.tavernQuestAmount - 1)
-        } else {
-            self.currentQuestIndex = 0
-        }
+//        if self.tavernQuestAmount > 0 {
+//            self.currentQuestIndex = (self.tavernQuestAmount - 1)
+//        } else {
+//            self.currentQuestIndex = 0
+//        }
         // We set this to 2 because of 1 download operation and 1 update operation
         self.operationQueue.maxConcurrentOperationCount = 2
     }
     
     public func initDisplatchSequence(completionHandler: QueueDispatcherCompletionHandler?) {
         self.completionHandler = completionHandler
-        if self.tavernQuestAmount == 0 {
-            return
+        let questAmountOperation = DownloadQuestAmountOperation.init(tavernAddress: self.tavernAddress, tokenAddress: self.bananoTokenAddress)
+        questAmountOperation.completionBlock = {
+            self.tavernQuestAmount = questAmountOperation.questAmount
+            if let tavernQuestAmount = self.tavernQuestAmount {
+                self.currentQuestIndex = tavernQuestAmount - 1
+                self.processNextQuest()
+            }
         }
-        processNextQuest()
+        self.operationQueue.addOperations([questAmountOperation], waitUntilFinished: false)
     }
     
     public func isQueueFinished() -> Bool {
@@ -58,7 +63,11 @@ public class AllQuestsQueueDispatcher: QueueDispatcherProtocol {
     }
     
     private func processNextQuest() {
-        if self.currentQuestIndex < 0 {
+        guard let currentQuestIndex = self.currentQuestIndex else {
+            self.attempToExecuteCompletionHandler()
+            return
+        }
+        if currentQuestIndex < 0 {
             self.attempToExecuteCompletionHandler()
             return
         }
@@ -66,11 +75,11 @@ public class AllQuestsQueueDispatcher: QueueDispatcherProtocol {
         let downloadQuestOperation = DownloadQuestOperation.init(tavernAddress: self.tavernAddress, tokenAddress: self.bananoTokenAddress, questIndex: currentQuestIndex)
         
         downloadQuestOperation.completionBlock = {
-            self.currentQuestIndex = self.currentQuestIndex - 1
+            self.currentQuestIndex = currentQuestIndex - 1
             
             if downloadQuestOperation.finishedSuccesfully {
                 if let questDict = downloadQuestOperation.questDict {
-                    let updateQuestOperation = UpdateQuestOperation.init(questDict: questDict, questIndex: self.currentQuestIndex)
+                    let updateQuestOperation = UpdateQuestOperation.init(questDict: questDict, questIndex: currentQuestIndex)
                     updateQuestOperation.completionBlock = {
                         self.attempToExecuteCompletionHandler()
                     }
@@ -80,6 +89,6 @@ public class AllQuestsQueueDispatcher: QueueDispatcherProtocol {
             self.processNextQuest()
         }
         
-        self.operationQueue.addOperation(downloadQuestOperation)
+        self.operationQueue.addOperations([downloadQuestOperation], waitUntilFinished: false)
     }
 }

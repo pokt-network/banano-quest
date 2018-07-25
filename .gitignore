@@ -67,4 +67,5 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 
-banano-quest/Pods/
+banano-quest/Pods/*
+banano-quest/Pods/Manifest.lock
