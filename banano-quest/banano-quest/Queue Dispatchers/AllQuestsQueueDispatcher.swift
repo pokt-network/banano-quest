@@ -17,11 +17,13 @@ public class AllQuestsQueueDispatcher: QueueDispatcherProtocol {
     private let tavernAddress: String
     private let bananoTokenAddress: String
     private let operationQueue = OperationQueue.init()
+    private let playerAddress: String
     
-    public init(tavernAddress: String, bananoTokenAddress: String) {
+    public init(tavernAddress: String, bananoTokenAddress: String, playerAddress: String) {
         self.tavernAddress = tavernAddress
         self.bananoTokenAddress = bananoTokenAddress
         self.operationQueue.maxConcurrentOperationCount = 1
+        self.playerAddress = playerAddress
     }
     
     public func initDisplatchSequence(completionHandler: QueueDispatcherCompletionHandler?) {
@@ -66,7 +68,7 @@ public class AllQuestsQueueDispatcher: QueueDispatcherProtocol {
             return
         }
         
-        let downloadQuestOperation = DownloadQuestOperation.init(tavernAddress: self.tavernAddress, tokenAddress: self.bananoTokenAddress, questIndex: currentQuestIndex)
+        let downloadQuestOperation = DownloadQuestOperation.init(tavernAddress: self.tavernAddress, tokenAddress: self.bananoTokenAddress, questIndex: currentQuestIndex, playerAddress: self.playerAddress)
         
         downloadQuestOperation.completionBlock = {
             self.currentQuestIndex = currentQuestIndex - 1
