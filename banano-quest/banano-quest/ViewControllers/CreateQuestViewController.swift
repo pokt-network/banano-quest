@@ -111,7 +111,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
     // MARK: - Tools
     func refreshPlayerBalance() {
         do {
-            let player = try Player.getPlayer(context: CoreDataUtil.mainPersistentContext(mergePolicy: nil))
+            let player = try Player.getPlayer(context: CoreDataUtil.mainPersistentContext)
             let playerBalanceStr = player.balanceWei
             guard let playerBalanceBigInt = BigInt.init(playerBalanceStr) else {
                 blankBalanceLabels()
@@ -185,14 +185,14 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
             isValid.append(false)
         }else {
             questNameTextField.layer.borderColor = UIColor.clear.cgColor
-            newQuest?.name = questNameTextField.text
+            newQuest?.name = questNameTextField.text ?? ""
         }
         if (howManyBananosTextField.text ?? "0.0").isEmpty {
             howManyBananosTextField.layer.borderColor = UIColor.red.cgColor
             isValid.append(false)
         }else {
             howManyBananosTextField.layer.borderColor = UIColor.clear.cgColor
-            newQuest?.maxWinners = Int64(howManyBananosTextField.text ?? "0") ?? 0
+            newQuest?.maxWinners = String.init(BigInt.init(howManyBananosTextField.text ?? "0") ?? BigInt.init(0))
             
         }
         // TODO: PRIZE value in USD api
@@ -202,7 +202,9 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
                 isValid.append(false)
             }else {
                 prizeAmountETHTextField.layer.borderColor = UIColor.clear.cgColor
-                newQuest?.prize = Double(prizeAmountETHTextField.text ?? "0.0") ?? 0.0
+                let ethAmount = Double(prizeAmountETHTextField.text ?? "0.0") ?? 0.0
+                let weiAmount = EthUtils.convertEthToWei(eth: ethAmount)
+                newQuest?.prize = String.init(weiAmount)
             }
         }
 
@@ -223,13 +225,13 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
         // Setup merkleTree
         setupMerkleTree()
         
-        if newQuest?.merkleRoot?.isEmpty ?? false || newQuest?.merkleRoot == nil {
+        if newQuest?.merkleRoot.isEmpty ?? false || newQuest?.merkleRoot == nil {
             addLocationButton.layer.borderColor = UIColor.red.cgColor
             isValid.append(false)
         }else{
             addLocationButton.layer.borderColor = UIColor.clear.cgColor
         }
-        if newQuest?.merkleBody?.isEmpty ?? false || newQuest?.merkleBody == nil{
+        if newQuest?.merkleBody.isEmpty ?? false || newQuest?.merkleBody == nil{
             addLocationButton.layer.borderColor = UIColor.red.cgColor
             isValid.append(false)
         }else{
@@ -263,9 +265,13 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
     func createNewQuest() {
         // New Quest submission
         // Pepare fields
-        let maxWinners = newQuest?.maxWinners ?? 0
-        let transactionCount = currentPlayer?.transactionCount ?? 0
-        let prizeWei = EthUtils.convertEthToWei(eth: newQuest?.prize ?? 0.0)
+        let transactionCount = BigInt.init(currentPlayer?.transactionCount ?? "0") ?? BigInt.init(0)
+        guard let prizeWei = BigInt.init(newQuest?.prize ?? "0") else {
+            return
+        }
+        guard let maxWinners = BigInt.init(newQuest?.maxWinners ?? "0") else {
+            return
+        }
         guard let wallet = currentWallet else {
             return
         }
@@ -313,7 +319,6 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
         }))
         
         present(alertView, animated: false, completion: nil)
-        
     }
     
     func setupMetadata() -> String? {

@@ -4,8 +4,8 @@
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="balanceWei" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ethUsdPrice" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="tavernQuestAmount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="transactionCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="tavernQuestAmount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="transactionCount" optional="YES" attributeType="String" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="address"/>
@@ -14,27 +14,27 @@
     </entity>
     <entity name="Quest" representedClassName="Quest" syncable="YES">
         <attribute name="claimer" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="claimersAmount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="creator" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="hexColor" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="hint" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="index" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="lat1" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="lat2" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="lat3" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="lat4" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="lon1" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="lon2" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="lon3" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="lon4" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="maxWinners" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="merkleBody" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="merkleRoot" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="metadata" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="prize" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="claimersAmount" attributeType="String" customClassName="BigIntTransformable" syncable="YES"/>
+        <attribute name="creator" attributeType="String" syncable="YES"/>
+        <attribute name="hexColor" attributeType="String" syncable="YES"/>
+        <attribute name="hint" attributeType="String" syncable="YES"/>
+        <attribute name="index" attributeType="String" valueTransformerName="BigIntTransformableToString" syncable="YES"/>
+        <attribute name="lat1" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lat2" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lat3" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lat4" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lon1" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lon2" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lon3" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lon4" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="maxWinners" attributeType="String" customClassName="BigIntTransformable" syncable="YES"/>
+        <attribute name="merkleBody" attributeType="String" syncable="YES"/>
+        <attribute name="merkleRoot" attributeType="String" syncable="YES"/>
+        <attribute name="metadata" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="prize" attributeType="String" customClassName="BigIntTransformable" syncable="YES"/>
         <attribute name="winner" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="winnersAmount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="winnersAmount" attributeType="String" customClassName="BigIntTransformable" syncable="YES"/>
         <relationship name="winners" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Winners" inverseName="quest" inverseEntity="Winners" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>

@@ -11,6 +11,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import SwiftHEXColors
+import BigInt
 
 class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
 
@@ -69,13 +70,17 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
     
     func refreshView() throws {
         // Details view
-        let maxWinnersDouble = Double(quest?.maxWinners ?? 1)
-        let prizeValue = quest?.prize ?? 0.0 / maxWinnersDouble
-        let bananoColor = UIColor(hexString: quest?.hexColor ?? "31AADE")
+        if let maxWinnersDouble = Double.init(quest?.maxWinners ?? "0.0") {
+            let weiAmount = BigInt.init(quest?.prize ?? "0") ?? BigInt.init(0)
+            let prizeValue = EthUtils.convertWeiToEth(wei: weiAmount) / maxWinnersDouble
+            prizeValueLabel.text = "\(prizeValue) ETH"
+        } else {
+            prizeValueLabel.text = "No ETH Prize"
+        }
         
+        let bananoColor = UIColor(hexString: quest?.hexColor ?? "31AADE")
         bananoBackground.backgroundColor = bananoColor
-        prizeValueLabel.text = "\(prizeValue) ETH"
-        bananoCountLabel.text = "0/\(quest?.maxWinners ?? 1)"
+        //bananoCountLabel.text = "0/\(quest?.maxWinners ?? 1)"
         // TODO: Get location from merkleRoot
         distanceValueLabel.text = "20M"
         questDetailTextView.text = quest?.hint

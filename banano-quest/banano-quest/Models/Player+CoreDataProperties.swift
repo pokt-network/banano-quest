@@ -18,8 +18,8 @@ extension Player {
 
     @NSManaged public var address: String?
     @NSManaged public var balanceWei: String
-    @NSManaged public var transactionCount: Int64
-    @NSManaged public var tavernQuestAmount: Int64
+    @NSManaged public var transactionCount: String
+    @NSManaged public var tavernQuestAmount: String
     @NSManaged public var ethUsdPrice: Double
 
 }

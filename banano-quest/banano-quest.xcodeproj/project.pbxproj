@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10232F7E210907760029D923 /* ValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10232F7D210907750029D923 /* ValueTransformer.swift */; };
 		102A035120FE3E3C00B47CEA /* QuestMerkleTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A035020FE3E3C00B47CEA /* QuestMerkleTree.swift */; };
 		102A035320FE4CDE00B47CEA /* MerkleTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A035220FE4CDE00B47CEA /* MerkleTree.swift */; };
 		10403109210629D40091B5FE /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10403108210629D40091B5FE /* Onboarding.storyboard */; };
@@ -111,6 +112,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10232F7D210907750029D923 /* ValueTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueTransformer.swift; sourceTree = "<group>"; };
 		102A035020FE3E3C00B47CEA /* QuestMerkleTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestMerkleTree.swift; sourceTree = "<group>"; };
 		102A035220FE4CDE00B47CEA /* MerkleTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerkleTree.swift; sourceTree = "<group>"; };
 		10403108210629D40091B5FE /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
@@ -302,6 +304,13 @@
 			path = Upload;
 			sourceTree = "<group>";
 		};
+		10F5E31B2108DADB00CF6F78 /* Transformables */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Transformables;
+			sourceTree = "<group>";
+		};
 		15E2013A40EA654723D98AEE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -372,6 +381,7 @@
 		6333170320D9990B0063D856 /* banano-quest */ = {
 			isa = PBXGroup;
 			children = (
+				10F5E31B2108DADB00CF6F78 /* Transformables */,
 				C5FA598321077D3E004FB3E0 /* HDAugmentedReality */,
 				108BDF4721052E1200405693 /* Queue Dispatchers */,
 				1098FD0F210268A100E76682 /* Operations */,
@@ -450,6 +460,7 @@
 				1040310C2106673D0091B5FE /* CoreDataUtil.swift */,
 				10403112210763240091B5FE /* LocationUtils.swift */,
 				C5D0384F2108F0DD00CB0BD2 /* BananoQuestViewController.swift */,
+				10232F7D210907750029D923 /* ValueTransformer.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -790,6 +801,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10232F7E210907760029D923 /* ValueTransformer.swift in Sources */,
 				C5FAB66E20E2B4FD00057041 /* Winners+CoreDataProperties.swift in Sources */,
 				C5FAB66D20E2B4FD00057041 /* Winners+CoreDataClass.swift in Sources */,
 				637C03EC20EFB8BD002D4652 /* ContainerViewController.swift in Sources */,

@@ -88,15 +88,21 @@ public struct LocationUtils {
     }
     
     // As long as the points are close enough and in a regular shape (square and rect) this should work
-    public static func getRegularCentroid(point1: CLLocation, point2: CLLocation, point3: CLLocation, point4: CLLocation) -> CLLocation {
-        let sumLat = [point1, point2, point3, point4].reduce(into: 0.0) { (result, currPoint) in
+    public static func getRegularCentroid(points: [CLLocation]) -> CLLocation {
+        let sumLat = points.reduce(into: 0.0) { (result, currPoint) in
             result += currPoint.coordinate.latitude.magnitude
         }
-        let sumLon = [point1, point2, point3, point4].reduce(into: 0.0) { (result, currPoint) in
+        let sumLon = points.reduce(into: 0.0) { (result, currPoint) in
             result += currPoint.coordinate.longitude.magnitude
         }
         let avgLat = sumLat/4
         let avgLon = sumLon/4
         return CLLocation.init(latitude: avgLat, longitude: avgLon)
+    }
+    
+    // Returns the distance in meters
+    public static func questDistanceToPlayerLocation(quest: Quest, playerLocation: CLLocation) -> CLLocationDistance {
+        let hintQuadrantCenterPoint = getRegularCentroid(points: quest.getQuadranHintCorners())
+        return playerLocation.distance(from: hintQuadrantCenterPoint)
     }
 }

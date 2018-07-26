@@ -33,7 +33,7 @@ public struct EthUtils {
         var result = 0.0
         var player: Player?
         do {
-            player = try Player.getPlayer(context: try CoreDataUtil.mainPersistentContext(mergePolicy: NSMergePolicy.mergeByPropertyObjectTrump))
+            player = try Player.getPlayer(context: CoreDataUtil.mainPersistentContext)
         } catch {
             return result
         }
@@ -54,8 +54,8 @@ public struct EthUtils {
         return result
     }
     
-    public static func convertEthToWei(eth: Double) -> Int64 {
-        return Int64(eth * Double(EthUtils.unitaryEthToWeiQuotient))
+    public static func convertEthToWei(eth: Double) -> BigInt {
+        return BigInt.init(eth * Double(EthUtils.unitaryEthToWeiQuotient))
     }
     
 }

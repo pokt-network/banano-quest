@@ -25,8 +25,8 @@ public class Player: NSManagedObject {
         if let playerObj = obj {
             self.address = playerObj["address"] as? String ?? ""
             self.balanceWei = playerObj["balanceWei"] as? String ?? "0"
-            self.transactionCount = playerObj["transactionCount"] as? Int64 ?? 0
-            self.tavernQuestAmount = playerObj["tavernQuestAmount"] as? Int64 ?? 0
+            self.transactionCount = playerObj["transactionCount"] as? String ?? "0"
+            self.tavernQuestAmount = playerObj["tavernQuestAmount"] as? String ?? "0"
             self.ethUsdPrice = playerObj["ethUsdPrice"] as? Double ?? 0.0
         }
     }
@@ -68,7 +68,7 @@ public class Player: NSManagedObject {
         }
         
         // Create the player
-        let context = try CoreDataUtil.mainPersistentContext(mergePolicy: NSMergePolicy.mergeByPropertyObjectTrump)
+        let context = CoreDataUtil.mainPersistentContext
         let player = try Player.init(obj: ["address":wallet.address], context: context)
         try player.save()
         return player
