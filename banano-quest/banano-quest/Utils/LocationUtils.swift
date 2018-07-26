@@ -105,4 +105,38 @@ public struct LocationUtils {
         let hintQuadrantCenterPoint = getRegularCentroid(points: quest.getQuadranHintCorners())
         return playerLocation.distance(from: hintQuadrantCenterPoint)
     }
+    
+    // Credit to: https://stackoverflow.com/questions/38326875/how-to-place-annotations-randomly-in-mapkit-swift
+    public static func generateRandomCoordinates(currentLoc: CLLocation, min: UInt32, max: UInt32) -> CLLocation {
+        //Get the Current Location's longitude and latitude
+        let currentLong = currentLoc.coordinate.longitude
+        let currentLat = currentLoc.coordinate.latitude
+        
+        //1 KiloMeter = 0.00900900900901° So, 1 Meter = 0.00900900900901 / 1000
+        let meterCord = 0.00900900900901 / 1000
+        
+        //Generate random Meters between the maximum and minimum Meters
+        let randomMeters = UInt(arc4random_uniform(max) + min)
+        
+        //then Generating Random numbers for different Methods
+        let randomPM = arc4random_uniform(6)
+        
+        //Then we convert the distance in meters to coordinates by Multiplying number of meters with 1 Meter Coordinate
+        let metersCordN = meterCord * Double(randomMeters)
+        
+        //here we generate the last Coordinates
+        if randomPM == 0 {
+            return CLLocation(latitude: currentLat + metersCordN, longitude: currentLong + metersCordN)
+        }else if randomPM == 1 {
+            return CLLocation(latitude: currentLat - metersCordN, longitude: currentLong - metersCordN)
+        }else if randomPM == 2 {
+            return CLLocation(latitude: currentLat + metersCordN, longitude: currentLong - metersCordN)
+        }else if randomPM == 3 {
+            return CLLocation(latitude: currentLat - metersCordN, longitude: currentLong + metersCordN)
+        }else if randomPM == 4 {
+            return CLLocation(latitude: currentLat, longitude: currentLong - metersCordN)
+        }else {
+            return CLLocation(latitude: currentLat - metersCordN, longitude: currentLong)
+        }
+    }
 }
