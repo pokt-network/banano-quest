@@ -16,6 +16,7 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
     var bananoLocation: CLLocation?
     var currentUserLocation: CLLocation?
     var currentQuest: Quest?
+    var questProof: QuestProofSubmission?
     
     override func viewDidLoad() {
         super.viewDidLoad()
