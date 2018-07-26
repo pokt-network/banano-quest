@@ -27,7 +27,7 @@ public class UpdatePlayerOperation: SynchronousOperation {
     
     open override func main() {
         do {
-            let context = try CoreDataUtil.backgroundPersistentContext(mergePolicy: NSMergePolicy.mergeByPropertyObjectTrump)
+            let context = CoreDataUtil.backgroundPersistentContext
             context.performAndWait {
                 do {
                     let player = try Player.getPlayer(context: context)

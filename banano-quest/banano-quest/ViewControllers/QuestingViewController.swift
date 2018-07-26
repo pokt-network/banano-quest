@@ -19,13 +19,14 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     
     var quests: [Quest]?
     var currentIndex = 0
+    var locationManager = CLLocationManager()
+    var currentPlayerLocation: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
         // Quest list
         loadQuestList()
+        setupLocationManager()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,10 +40,40 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         refreshView()
     }
     
+    func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        } else {
+            let alertView = self.bananoAlertView(title: "Error", message: "Location services are disabled, please enable for a better questing experience")
+            self.present(alertView, animated: false, completion: nil)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        // Location update
+        if locations.count > 0 {
+            guard let location = locations.last else {
+                return
+            }
+            self.currentPlayerLocation = location
+            self.refreshView()
+        } else {
+            let alertView = self.bananoAlertView(title: "Error", message: "Failed to get current location.")
+            self.present(alertView, animated: false, completion: nil)
+            
+            print("Failed to get current location")
+        }
+    }
+    
     func loadQuestList() {
         // Initial load for the local quest list
         do {
-            self.quests = try CoreDataUtil.mainPersistentContext(mergePolicy: nil).fetch(Quest.fetchRequest()) as [Quest]
+            self.quests = try Quest.sortedQuestsByIndex(context: CoreDataUtil.mainPersistentContext)
             if self.quests?.count == 0 {
                 DispatchQueue.main.async {
                     self.showElements(bool: true)
@@ -78,30 +109,28 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         }
     }
     
-    @IBAction func nextButtonPressed(_ sender: Any) {
-        if currentIndex + 1 < quests?.count ?? 0 {
-            currentIndex = currentIndex + 1
-            let indexPath = IndexPath(item: currentIndex, section: 0)
-            collectionView.scrollToItem(at: indexPath, at: .right, animated: true)
-            print("Moving to next")
-        }else{
-            print("Failed to move next")
+    func scrollToPositionedCell(positions: Int) {
+        if let currentVisibleCell = self.collectionView.visibleCells.first {
+            guard let cellIndexPath = self.collectionView.indexPath(for: currentVisibleCell) else {
+                return
+            }
+            guard let currentQuestCount = self.quests?.count else {
+                return
+            }
+            let newIndex = cellIndexPath.item + positions
+            if newIndex >= 0 && newIndex < currentQuestCount {
+                let newIndexPath = IndexPath(item: newIndex, section: 0)
+                collectionView.scrollToItem(at: newIndexPath, at: .right, animated: true)
+            }
         }
     }
     
+    @IBAction func nextButtonPressed(_ sender: Any) {
+        scrollToPositionedCell(positions: 1)
+    }
+    
     @IBAction func previousButtonPressed(_ sender: Any) {
-        if quests?.count ?? 0 > 0 {
-            if currentIndex - 1 > 0 {
-                currentIndex = currentIndex - 1
-                let indexPath = IndexPath(item: currentIndex, section: 0)
-                collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
-                print("Moving to previous")
-            } else{
-                print("Previous index > 0")
-            }
-        }else{
-            print("Failed to move previous")
-        }
+        scrollToPositionedCell(positions: -1)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -118,13 +147,14 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "questCollectionViewIdentifier", for: indexPath) as! QuestCollectionViewCell
         
-        guard let quest = quests?[indexPath.item] else {
+        
+        currentIndex = indexPath.item
+        guard let quest = quests?[currentIndex] else {
             cell.configureEmptyCell()
             return cell
         }
-        currentIndex = indexPath.item
         
-        cell.configureCell(quest: quest)
+        cell.configureCell(quest: quest, playerLocation: self.currentPlayerLocation)
         
         return cell
     }

@@ -26,7 +26,7 @@ public class UpdateQuestOperation: SynchronousOperation {
     
     open override func main() {
         do {
-            let context = try CoreDataUtil.backgroundPersistentContext(mergePolicy: NSMergePolicy.mergeByPropertyObjectTrump)
+            let context = CoreDataUtil.backgroundPersistentContext
             let quest = try Quest.init(obj: questDict, context: context)
             try quest.save()
         } catch {

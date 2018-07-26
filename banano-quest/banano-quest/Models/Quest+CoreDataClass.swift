@@ -10,6 +10,7 @@
 import Foundation
 import CoreData
 import BigInt
+import MapKit
 
 public extension BigInt {
     public static func anyToBigInt(anyValue: Any) -> BigInt?{
@@ -38,19 +39,19 @@ public class Quest: NSManagedObject {
             case "index":
                 self.index = String.init(BigInt.anyToBigInt(anyValue: value) ?? BigInt.init(0))
             case "creator":
-                self.creator = value as? String
+                self.creator = value as? String ?? ""
             case "name":
-                self.name = value as? String
+                self.name = value as? String ?? ""
             case "hint":
-                self.hint = value as? String
+                self.hint = value as? String ?? ""
             case "maxWinners":
                 self.maxWinners = String.init(BigInt.anyToBigInt(anyValue: value) ?? BigInt.init(0))
             case "prize":
                 self.prize = String.init(BigInt.anyToBigInt(anyValue: value) ?? BigInt.init(0))
             case "merkleRoot":
-                self.merkleRoot = value as? String
+                self.merkleRoot = value as? String ?? ""
             case "merkleBody":
-                self.merkleBody = value as? String
+                self.merkleBody = value as? String ?? ""
             case "winnersAmount":
                 self.winnersAmount = String.init(BigInt.anyToBigInt(anyValue: value) ?? BigInt.init(0))
             case "claimersAmount":
@@ -60,8 +61,8 @@ public class Quest: NSManagedObject {
             case "isClaimer":
                 self.isClaimer = value as? Bool ?? false
             case "metadata":
-                self.metadata = value as? String ?? ""
-                if let metadata = self.metadata {
+                if let metadata = value as? String {
+                    self.metadata = metadata
                     let metaElements = metadata.split(separator: ",").map { (substring) -> String in
                         return String.init(substring)
                     }
@@ -99,7 +100,14 @@ public class Quest: NSManagedObject {
         try self.save()
     }
     
-    public static func getQuestByIndex(questIndex: Int64, context: NSManagedObjectContext) -> Quest? {
+    public static func sortedQuestsByIndex(context: NSManagedObjectContext) throws -> [Quest] {
+        let fetchRequest: NSFetchRequest<Quest> = Quest.fetchRequest()
+        let sort = NSSortDescriptor(key: #keyPath(Quest.index), ascending: false)
+        fetchRequest.sortDescriptors = [sort]
+        return try context.fetch(fetchRequest) as [Quest]
+    }
+    
+    public static func getQuestByIndex(questIndex: String, context: NSManagedObjectContext) -> Quest? {
         var result: Quest?
         let fetchRequest: NSFetchRequest<Quest> = Quest.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "questID == %@", questIndex)
@@ -160,5 +168,13 @@ public class Quest: NSManagedObject {
         dict["isClaimer"] = isClaimer
         
         return dict
+    }
+    
+    func getQuadranHintCorners() -> [CLLocation] {
+        let point1 = CLLocation.init(latitude: Double.init(self.lat1), longitude: Double.init(self.lon1))
+        let point2 = CLLocation.init(latitude: Double.init(self.lat2), longitude: Double.init(self.lon2))
+        let point3 = CLLocation.init(latitude: Double.init(self.lat3), longitude: Double.init(self.lon3))
+        let point4 = CLLocation.init(latitude: Double.init(self.lat4), longitude: Double.init(self.lon4))
+        return [point1, point2, point3, point4]
     }
 }

@@ -33,7 +33,7 @@ public struct EthUtils {
         var result = 0.0
         var player: Player?
         do {
-            player = try Player.getPlayer(context: try CoreDataUtil.mainPersistentContext(mergePolicy: NSMergePolicy.mergeByPropertyObjectTrump))
+            player = try Player.getPlayer(context: CoreDataUtil.mainPersistentContext)
         } catch {
             return result
         }
