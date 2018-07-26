@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration {
             if let playerAddress = player.address {
                 let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
                 appInitQueueDispatcher.initDisplatchSequence {
-                    let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
+                    let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress, playerAddress: playerAddress)
                     questListQueueDispatcher.initDisplatchSequence(completionHandler: nil)
                 }
             }
