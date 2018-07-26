@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration {
         
         // Launch Queue Dispatchers
         do {
-            let player = try Player.getPlayer(context: CoreDataUtil.mainPersistentContext(mergePolicy: NSMergePolicy.mergeByPropertyObjectTrump))
+            let player = try Player.getPlayer(context: CoreDataUtil.mainPersistentContext)
             if let playerAddress = player.address {
                 let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
                 appInitQueueDispatcher.initDisplatchSequence {

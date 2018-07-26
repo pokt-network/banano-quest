@@ -106,7 +106,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
     // MARK: - Tools
     func refreshPlayerBalance() {
         do {
-            let player = try Player.getPlayer(context: CoreDataUtil.mainPersistentContext(mergePolicy: nil))
+            let player = try Player.getPlayer(context: CoreDataUtil.mainPersistentContext)
             let playerBalanceStr = player.balanceWei
             guard let playerBalanceBigInt = BigInt.init(playerBalanceStr) else {
                 blankBalanceLabels()
@@ -180,7 +180,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
             isValid.append(false)
         }else {
             questNameTextField.layer.borderColor = UIColor.clear.cgColor
-            newQuest?.name = questNameTextField.text
+            newQuest?.name = questNameTextField.text ?? ""
         }
         if (howManyBananosTextField.text ?? "0.0").isEmpty {
             howManyBananosTextField.layer.borderColor = UIColor.red.cgColor
@@ -220,13 +220,13 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
         // Setup merkleTree
         setupMerkleTree()
         
-        if newQuest?.merkleRoot?.isEmpty ?? false || newQuest?.merkleRoot == nil {
+        if newQuest?.merkleRoot.isEmpty ?? false || newQuest?.merkleRoot == nil {
             addLocationButton.layer.borderColor = UIColor.red.cgColor
             isValid.append(false)
         }else{
             addLocationButton.layer.borderColor = UIColor.clear.cgColor
         }
-        if newQuest?.merkleBody?.isEmpty ?? false || newQuest?.merkleBody == nil{
+        if newQuest?.merkleBody.isEmpty ?? false || newQuest?.merkleBody == nil{
             addLocationButton.layer.borderColor = UIColor.red.cgColor
             isValid.append(false)
         }else{

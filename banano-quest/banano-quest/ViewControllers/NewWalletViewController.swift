@@ -80,9 +80,8 @@ class NewWalletViewController: UIViewController {
                 appInitQueueDispatcher.initDisplatchSequence {
                     print("Finished app data download")
                     do {
-                        let updatedPlayer = try Player.getPlayer(context: CoreDataUtil.mainPersistentContext(mergePolicy: NSMergePolicy.mergeByPropertyObjectTrump))
-                        let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
-                        questListQueueDispatcher.initDisplatchSequence(completionHandler: nil)
+//                        let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
+//                        questListQueueDispatcher.initDisplatchSequence(completionHandler: nil)
                     } catch {
                         print("Error initializing AllQuestsQueueDispatcher")
                     }

@@ -68,7 +68,7 @@ public class Player: NSManagedObject {
         }
         
         // Create the player
-        let context = try CoreDataUtil.mainPersistentContext(mergePolicy: NSMergePolicy.mergeByPropertyObjectTrump)
+        let context = CoreDataUtil.mainPersistentContext
         let player = try Player.init(obj: ["address":wallet.address], context: context)
         try player.save()
         return player
