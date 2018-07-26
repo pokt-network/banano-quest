@@ -332,11 +332,9 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
         }
         
         if !(selectedLocation["lat"] as! String).isEmpty && !(selectedLocation["lon"] as! String).isEmpty {
-            let latitude = CLLocationDegrees.init(Double(selectedLocation["lat"] as! String) ?? 0.0)
-            let longitude = CLLocationDegrees.init(Double(selectedLocation["lon"] as! String) ?? 0.0)
-            
-            let location = CLLocation.init(latitude: latitude, longitude: longitude)
-            hintQuadrant = LocationUtils.generateHintQuadrant(center: location, sideDistance: 500.0)
+            let selectedLocation = CLLocation.init(latitude: Double(self.selectedLocation["lat"] as! String) ?? 0.0, longitude: Double(self.selectedLocation["lon"] as! String) ?? 0.0)
+            let randomQuadrantCenter = LocationUtils.generateRandomCoordinates(currentLoc: selectedLocation, min: 21, max: 179)
+            hintQuadrant = LocationUtils.generateHintQuadrant(center: randomQuadrantCenter, sideDistance: 0.2)
         }else {
             let alertView = bananoAlertView(title: "Error", message: "Failed to process the selected location, please try again later")
             self.present(alertView, animated: false, completion: nil)
