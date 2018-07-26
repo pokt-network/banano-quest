@@ -151,66 +151,48 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func backButtonPressed(_ sender: Any) {
         self.dismiss(animated: false, completion: nil)
     }
-    
+    // Present Find Banano VC
+    func presentFindBananoViewController(proof: QuestProofSubmission) {
+        do {
+            let vc = try instantiateViewController(identifier: "findBananoViewControllerID", storyboardName: "Questing") as? FindBananoViewController
+            vc?.questProof = proof
+            vc?.currentQuest = quest
+            vc?.currentUserLocation = currentUserLocation
+            
+            present(vc!, animated: false, completion: nil)
+        } catch let error as NSError {
+            print("Failed to instantiate FindBananoViewController with error: \(error)")
+        }
+    }
+    // Check if the user is near quest banano
     func checkIfNearBanano(passphrase: String) {
         guard let merkle = QuestMerkleTree.generateQuestProofSubmission(answer: currentUserLocation!, merkleBody: (quest?.merkleBody)!) else {
+            let alertView = bananoAlertView(title: "Not in range", message: "Sorry, the banano location isn't nearby")
+            present(alertView, animated: false, completion: nil)
+            
             return
         }
-        
-        let questProof = QuestProofSubmission.init(answer: merkle.answer, proof: merkle.proof)
-        do {
-            let player = try Player.getPlayer(context: BaseUtil.mainContext)
-            let wallet = try player.getWallet(passphrase: passphrase)
-            
-            let operation = UploadQuestProofOperation.init(wallet: wallet!, transactionCount: player.transactionCount, tavernAddress: AppConfiguration.tavernAddress, tokenAddress: AppConfiguration.bananoTokenAddress, questIndex: (quest?.index)!, proof: questProof.proof, answer: questProof.answer)
-            
-            operation.completionBlock = {
-                
-            }
-            // Operation Queue
-            let operationQueue = AsynchronousOperation.init()
-            
-            operationQueue.addDependency(operation)
-            
-            let alertView = bananoAlertView(title: "Submitted", message: "Proof submitted, your request is being processed in the background")
-            
-            self.present(alertView, animated: false, completion: nil)
-            
-        } catch let error as NSError {
-            print("Failed to get player with error: \(error)")
-        }
-        
+        // Show the Banano :D
+        presentFindBananoViewController(proof: merkle)
     }
     
-    // TODO: Submit merkle proof before proceeding
     @IBAction func completeButtonPressed(_ sender: Any) {
         if currentUserLocation == nil {
-            let alertController = bananoAlertView(title: "Wait", message: "Let the app get your current location :D")
+            let alertController = bananoAlertView(title: "Wait!", message: "Let the app get your current location :D")
             
             present(alertController, animated: false, completion: nil)
         }
+        
         let alertView = requestPassphraseAlertView { (passphrase, error) in
             if passphrase != nil {
                self.checkIfNearBanano(passphrase: passphrase ?? "")
             }
             if error != nil {
-                print("Failed to get passphrase with error: \(String(describing: error))")
+                let alertController = self.bananoAlertView(title: "ups!", message: "We failed to get that, please try again")
+                
+                self.present(alertController, animated: false, completion: nil)
             }
-            
         }
         present(alertView, animated: false, completion: nil)
-        
-        return
-        // TODO: Move findBananoViewController to a separate method
-//        do {
-//            let vc = try instantiateViewController(identifier: "findBananoViewControllerID", storyboardName: "Questing") as? FindBananoViewController
-//            vc?.currentQuest = quest
-//            vc?.currentUserLocation = currentUserLocation
-//
-//            present(vc!, animated: false, completion: nil)
-//        } catch let error as NSError {
-//            print("Failed to instantiate FindBananoViewController with error: \(error)")
-//        }
     }
-    
 }
