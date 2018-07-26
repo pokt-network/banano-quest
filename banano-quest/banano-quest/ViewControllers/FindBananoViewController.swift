@@ -39,11 +39,7 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
         }
     }
 
-<<<<<<< HEAD
     override func refreshView() throws {
-=======
-    func refreshView() throws {
->>>>>>> 79edc6f... Added proof logic, added submit proof operation, added BananoQuestViewController protocol
         // Banano Location is generated based in the user location after is confirmed the user is withing the quest
         // completion range.
         let coordinates = getBananoLocation()
