@@ -17,6 +17,11 @@ class LandingViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
+    override func refreshView() throws {
+        print("LandingViewController - refreshView()")
+        showNotificationOverlayWith(text: "This is just a test")
+    }
+    
     func launchQuesting() {
         do {
             try _ = Player.getPlayer(context: CoreDataUtil.mainPersistentContext)

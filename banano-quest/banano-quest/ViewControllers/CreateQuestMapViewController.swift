@@ -43,25 +43,31 @@ class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate,
         }
         
         // Gesture for map tap
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(self.handleTap))
-        gestureRecognizer.delegate = self
-        mapView.addGestureRecognizer(gestureRecognizer)
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action:#selector(self.handleLongPress))
+        longPressRecognizer.minimumPressDuration = CFTimeInterval(1.2)
+        longPressRecognizer.delegate = self
+        
+        mapView.addGestureRecognizer(longPressRecognizer)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Refresh view
-        refreshView()
+        do {
+            try refreshView()
+        } catch  {
+          print("CreateQuestMapViewController - viewWillApper(), failed to call refreshView()")
+        }
     }
     
     // MARK: - Tools
-    func refreshView() {
+    override func refreshView() throws {
         // UI Elements should be updated here
     }
     
     // MARK: - Gestures
-    @objc func handleTap(gestureReconizer: UILongPressGestureRecognizer) {
+    @objc func handleLongPress(gestureReconizer: UILongPressGestureRecognizer) {
         
         let location = gestureReconizer.location(in: mapView)
         let coordinate = mapView.convert(location,toCoordinateFrom: mapView)
@@ -75,7 +81,7 @@ class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate,
         }
         selectedLocation["lat"] = annotation.coordinate.latitude.description
         selectedLocation["lon"] = annotation.coordinate.longitude.description
-        
+
         mapView.addAnnotation(annotation)
     }
     

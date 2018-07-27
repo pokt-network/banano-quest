@@ -11,7 +11,7 @@ import UIKit
 import PocketEth
 import CoreData
 
-class NewWalletViewController: UIViewController, BananoQuestViewController {
+class NewWalletViewController: UIViewController {
     @IBOutlet weak var passphraseTextField: UITextField!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var addBalanceButton: UIButton!
@@ -47,7 +47,7 @@ class NewWalletViewController: UIViewController, BananoQuestViewController {
     }
     
     // MARK: - Tools
-    func refreshView() throws {
+    override func refreshView() throws {
         //
     }
     

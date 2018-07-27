@@ -62,4 +62,35 @@ extension UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    @objc func refreshView() throws {
+        // Override
+    }
+    
+    func showNotificationOverlayWith(text: String!) {
+        DispatchQueue.main.async {
+            // We get the presented View Controller
+            UIApplication.getPresentedViewController(handler: { (currentVC) in
+                if currentVC == nil {
+                    print("UIViewController - showNotificationOverlayWith(), Failed to get current VC, returning")
+                }else {
+                    // Current VC frame
+                    let frame = currentVC!.view.frame
+                    // We create the View
+                    let view = UIView.init(frame: CGRect(x: 0, y: frame.height - 100, width: frame.width, height: 100))
+                    view.backgroundColor = UIColor.red
+                    view.contentMode = UIViewContentMode.center
+                    
+                    // We create the label
+                    let label = UILabel.init(frame: CGRect(x: 0, y: 0, width: frame.width, height: 100))
+                    label.text = text
+                    
+                    // Label is added to the view
+                    view.addSubview(label)
+                    // View is added to the current view controller
+                    currentVC!.view.addSubview(view)
+                }
+            })
+        }
+    }
 }
