@@ -37,17 +37,11 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MENU LAYERx1" translatesAutoresizingMaskIntoConstraints="NO" id="CTf-LG-GkW">
                                 <rect key="frame" x="-20" y="0.0" width="395" height="667"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTy-kV-IjH">
-                                <rect key="frame" x="117" y="85" width="141" height="57"/>
-                                <state key="normal" title="     Explore" image="EXPLOREx1">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="exploreButtonTapped:" destination="Zkd-6T-kW6" eventType="touchUpInside" id="yNC-tM-qLB"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q0H-0s-oYK">
-                                <rect key="frame" x="87" y="166" width="202" height="57"/>
+                                <rect key="frame" x="16" y="105" width="202" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="Q5X-xu-Y93"/>
+                                </constraints>
                                 <state key="normal" title="     Create a Quest" image="CREATE-QX1">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -56,7 +50,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yze-E9-O7c">
-                                <rect key="frame" x="122" y="250" width="132" height="57"/>
+                                <rect key="frame" x="16" y="170" width="132" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="Ym5-Ct-aCe"/>
+                                </constraints>
                                 <state key="normal" title="     Profile" image="PROFILEx1">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -64,19 +61,31 @@
                                     <action selector="profileButtonTapped:" destination="Zkd-6T-kW6" eventType="touchUpInside" id="TYt-nW-jSg"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTy-kV-IjH">
+                                <rect key="frame" x="16" y="40" width="141" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="3NL-Ji-hQV"/>
+                                </constraints>
+                                <state key="normal" title="     Explore" image="EXPLOREx1">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="exploreButtonTapped:" destination="Zkd-6T-kW6" eventType="touchUpInside" id="yNC-tM-qLB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="CTf-LG-GkW" secondAttribute="trailing" id="0gw-Ia-n0i"/>
-                            <constraint firstItem="q0H-0s-oYK" firstAttribute="top" secondItem="cTy-kV-IjH" secondAttribute="bottom" constant="24" id="1xM-6Y-4bt"/>
-                            <constraint firstItem="q0H-0s-oYK" firstAttribute="centerX" secondItem="hk7-Uy-dIl" secondAttribute="centerX" id="COr-WQ-04X"/>
-                            <constraint firstItem="cTy-kV-IjH" firstAttribute="top" secondItem="H9B-NA-o9P" secondAttribute="top" constant="65" id="J8f-qS-ffc"/>
+                            <constraint firstItem="Yze-E9-O7c" firstAttribute="top" secondItem="q0H-0s-oYK" secondAttribute="bottom" constant="8" id="63E-2W-Sij"/>
+                            <constraint firstItem="q0H-0s-oYK" firstAttribute="top" secondItem="cTy-kV-IjH" secondAttribute="bottom" constant="8" id="HGz-Lw-hV0"/>
                             <constraint firstItem="CTf-LG-GkW" firstAttribute="leading" secondItem="H9B-NA-o9P" secondAttribute="leading" constant="-20" id="LPH-KQ-ThV"/>
+                            <constraint firstItem="Yze-E9-O7c" firstAttribute="leading" secondItem="H9B-NA-o9P" secondAttribute="leading" constant="16" id="Mqy-Gc-WCi"/>
                             <constraint firstItem="CTf-LG-GkW" firstAttribute="top" secondItem="hk7-Uy-dIl" secondAttribute="top" id="X1m-ls-ScE"/>
                             <constraint firstItem="CTf-LG-GkW" firstAttribute="bottom" secondItem="H9B-NA-o9P" secondAttribute="bottom" id="bC8-i3-V0b"/>
-                            <constraint firstItem="Yze-E9-O7c" firstAttribute="centerX" secondItem="q0H-0s-oYK" secondAttribute="centerX" id="bj7-rL-6Sa"/>
-                            <constraint firstItem="cTy-kV-IjH" firstAttribute="centerX" secondItem="hk7-Uy-dIl" secondAttribute="centerX" id="iNO-Ia-nJq"/>
-                            <constraint firstItem="Yze-E9-O7c" firstAttribute="top" secondItem="q0H-0s-oYK" secondAttribute="bottom" constant="27" id="tHR-Zx-Epx"/>
+                            <constraint firstItem="q0H-0s-oYK" firstAttribute="leading" secondItem="H9B-NA-o9P" secondAttribute="leading" constant="16" id="k1E-9K-eyv"/>
+                            <constraint firstItem="cTy-kV-IjH" firstAttribute="leading" secondItem="H9B-NA-o9P" secondAttribute="leading" constant="16" id="nkg-dS-qBN"/>
+                            <constraint firstItem="cTy-kV-IjH" firstAttribute="top" secondItem="H9B-NA-o9P" secondAttribute="top" constant="20" id="wmC-XY-3MR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="H9B-NA-o9P"/>
                     </view>
