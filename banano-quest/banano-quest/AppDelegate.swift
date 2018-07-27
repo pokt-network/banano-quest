@@ -20,28 +20,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration {
         }
     }
     var window: UIWindow?
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Pocket configuration
         Pocket.shared.setConfiguration(config: self)
-        
+
         // Set main persistent context merge policy
         self.persistentContainer.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
-        
+
         // Launch Queue Dispatchers
         do {
             let player = try Player.getPlayer(context: CoreDataUtil.mainPersistentContext)
             if let playerAddress = player.address {
                 let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
                 appInitQueueDispatcher.initDisplatchSequence {
-                    let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress, playerAddress: playerAddress)
-                    questListQueueDispatcher.initDisplatchSequence(completionHandler: nil)
+                    let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
+                    questListQueueDispatcher.initDisplatchSequence(completionHandler: {
+
+                        UIApplication.getPresentedViewController(handler: { (topVC) in
+                            if topVC == nil {
+                                print("Failed to get current view controller")
+                            }else {
+                                do {
+                                    try topVC!.refreshView()
+                                }catch let error as NSError {
+                                    print("Failed to refresh current view controller with error: \(error)")
+                                }
+                            }
+                        })
+                    })
                 }
             }
         } catch {
             print("\(error)")
         }
-        
+
         return true
     }
 
@@ -67,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         self.saveContext()
     }
-    
+
     // MARK: - Core Data stack
     lazy var persistentContainer: NSPersistentContainer = {
         /*
@@ -81,7 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration {
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                
+
                 /*
                  Typical reasons for an error here include:
                  * The parent directory does not exist, cannot be created, or disallows writing.
@@ -95,7 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration {
         })
         return container
     }()
-    
+
     // MARK: - Core Data Saving support
     func saveContext () {
         let context = persistentContainer.viewContext
@@ -112,4 +125,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration {
     }
 
 }
-

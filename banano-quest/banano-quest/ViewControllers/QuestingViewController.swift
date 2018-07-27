@@ -65,7 +65,11 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
                 return
             }
             self.currentPlayerLocation = location
-            self.refreshView()
+            do {
+                try self.refreshView()
+            }catch let error as NSError {
+                print("Failed to refreshView with error: \(error)")
+            }
         } else {
             let alertView = self.bananoAlertView(title: "Error", message: "Failed to get current location.")
             self.present(alertView, animated: false, completion: nil)
@@ -86,7 +90,11 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
                 }
             }else {
                 self.showElements(bool: false)
-                self.refreshView()
+                do {
+                    try self.refreshView()
+                }catch let error as NSError {
+                    print("Failed to refreshView with error: \(error)")
+                }
             }
             print("quests found")
         } catch {
@@ -97,7 +105,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         }
     }
 
-    func refreshView() throws {
+    override func refreshView() throws {
         // Every UI refresh should be done here
         if self.quests.isEmpty {
             loadQuestList()
@@ -189,7 +197,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
             let vc = try self.instantiateViewController(identifier: "completeQuestViewControllerID", storyboardName: "Questing") as? CompleteQuestViewController
             vc?.quest = quest
 
-            self.navigationController?.pushViewController(vc!, animated: false)
+            self.present(vc!, animated: false, completion: nil)
         }catch let error as NSError {
             let alert = self.bananoAlertView(title: "Error", message: "Ups, something happened, please try again later.")
             self.present(alert, animated: false, completion: nil)
