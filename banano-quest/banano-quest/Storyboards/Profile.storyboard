@@ -18,11 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="731"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LU1-YX-coY">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LU1-YX-coY">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="751"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SAMALL BANNERx1" translatesAutoresizingMaskIntoConstraints="NO" id="q7W-Db-tQ3" userLabel="Top Banner image">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+                                        <rect key="frame" x="0.0" y="-20" width="375" height="140"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="140" id="1X8-s5-I9a"/>
                                             <constraint firstAttribute="width" constant="375" id="tBY-rq-wYp"/>
@@ -34,6 +34,26 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tpa-Gf-auf" userLabel="Container">
+                                        <rect key="frame" x="131" y="53" width="113" height="113"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CIRCLE STAMP x1" translatesAutoresizingMaskIntoConstraints="NO" id="v2i-0T-ExP" userLabel="Banano Background image">
+                                                <rect key="frame" x="3" y="3" width="106" height="106"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="106" id="Cmk-iT-HnK"/>
+                                                    <constraint firstAttribute="height" constant="106" id="y3a-Vx-E4R"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="113" id="2yx-dZ-e8n"/>
+                                            <constraint firstAttribute="height" constant="113" id="9fx-GQ-ad5"/>
+                                            <constraint firstItem="v2i-0T-ExP" firstAttribute="centerX" secondItem="Tpa-Gf-auf" secondAttribute="centerX" id="NbD-lC-8p2"/>
+                                            <constraint firstItem="v2i-0T-ExP" firstAttribute="centerY" secondItem="Tpa-Gf-auf" secondAttribute="centerY" constant="-0.5" id="bWL-1L-t5v"/>
+                                        </constraints>
+                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x00000000000000000000000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbr-Pa-UBw" userLabel="Account Address label">
                                         <rect key="frame" x="8" y="192" width="321" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -199,6 +219,9 @@
                                             <constraint firstAttribute="height" constant="76" id="xCR-4N-xFj"/>
                                         </constraints>
                                         <state key="normal" image="EXPORT-BUTTON-x1"/>
+                                        <connections>
+                                            <action selector="exportPressed:" destination="yE3-Cn-O0A" eventType="touchUpInside" id="tZf-a0-fZ9"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eb5-Yz-9e9" userLabel="Next Banano Button">
                                         <rect key="frame" x="337" y="506" width="30" height="30"/>
@@ -226,26 +249,6 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tpa-Gf-auf" userLabel="Container">
-                                        <rect key="frame" x="131" y="53" width="113" height="113"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CIRCLE STAMP x1" translatesAutoresizingMaskIntoConstraints="NO" id="v2i-0T-ExP" userLabel="Banano Background image">
-                                                <rect key="frame" x="3" y="3" width="106" height="106"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="106" id="Cmk-iT-HnK"/>
-                                                    <constraint firstAttribute="height" constant="106" id="y3a-Vx-E4R"/>
-                                                </constraints>
-                                            </imageView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="113" id="2yx-dZ-e8n"/>
-                                            <constraint firstAttribute="height" constant="113" id="9fx-GQ-ad5"/>
-                                            <constraint firstItem="v2i-0T-ExP" firstAttribute="centerX" secondItem="Tpa-Gf-auf" secondAttribute="centerX" id="NbD-lC-8p2"/>
-                                            <constraint firstItem="v2i-0T-ExP" firstAttribute="centerY" secondItem="Tpa-Gf-auf" secondAttribute="centerY" constant="-0.5" id="bWL-1L-t5v"/>
-                                        </constraints>
-                                    </view>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACR-9V-14t" userLabel="Add Balance Button">
                                         <rect key="frame" x="204" y="635" width="163" height="76"/>
                                         <constraints>
@@ -286,7 +289,6 @@
                                     <constraint firstItem="LO3-Po-DFU" firstAttribute="centerX" secondItem="LU1-YX-coY" secondAttribute="centerX" id="T6A-yS-YDN"/>
                                     <constraint firstItem="nix-DU-gFN" firstAttribute="top" secondItem="LU1-YX-coY" secondAttribute="top" constant="186" id="TO5-er-6Im"/>
                                     <constraint firstItem="1rV-ye-UmU" firstAttribute="top" secondItem="LU1-YX-coY" secondAttribute="top" constant="416" id="Tgt-Jc-c6c"/>
-                                    <constraint firstItem="q7W-Db-tQ3" firstAttribute="top" secondItem="LU1-YX-coY" secondAttribute="top" id="VKw-JA-iP2"/>
                                     <constraint firstItem="avo-cs-2Hx" firstAttribute="leading" secondItem="LU1-YX-coY" secondAttribute="leading" constant="8" id="WEL-hx-oae"/>
                                     <constraint firstItem="avo-cs-2Hx" firstAttribute="centerY" secondItem="tch-8e-rSe" secondAttribute="centerY" id="bPe-2S-y12"/>
                                     <constraint firstItem="Tpa-Gf-auf" firstAttribute="top" secondItem="LU1-YX-coY" secondAttribute="top" constant="53" id="cD2-LU-3wu"/>
@@ -297,6 +299,7 @@
                                     <constraint firstItem="tUO-Zt-GgA" firstAttribute="leading" secondItem="LU1-YX-coY" secondAttribute="leading" constant="26" id="gys-cE-cgv"/>
                                     <constraint firstItem="6xe-Qz-0y0" firstAttribute="top" secondItem="3qr-V1-ibi" secondAttribute="bottom" constant="8" symbolic="YES" id="i12-OI-UGv"/>
                                     <constraint firstAttribute="trailing" secondItem="mNw-Hk-DFf" secondAttribute="trailing" constant="8" id="jIS-t9-Ajr"/>
+                                    <constraint firstItem="q7W-Db-tQ3" firstAttribute="top" secondItem="LU1-YX-coY" secondAttribute="top" constant="-20" id="jbS-YZ-cVo"/>
                                     <constraint firstItem="eb5-Yz-9e9" firstAttribute="leading" secondItem="nix-DU-gFN" secondAttribute="leading" id="kex-RH-Y0L"/>
                                     <constraint firstItem="cic-Ti-SQL" firstAttribute="top" secondItem="1rV-ye-UmU" secondAttribute="bottom" constant="8" id="npj-DE-j8q"/>
                                     <constraint firstItem="QXg-P7-nU3" firstAttribute="top" secondItem="LU1-YX-coY" secondAttribute="top" constant="355" id="oQ5-BW-VeV"/>

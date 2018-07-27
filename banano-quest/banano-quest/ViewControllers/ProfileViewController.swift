@@ -79,6 +79,34 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
     }
     
+    @IBAction func exportPressed(_ sender: Any) {
+        // Prompt passphrase input to unlock wallet
+        let alertView = requestPassphraseAlertView { (passphrase, error) in
+            if error != nil {
+                // Show alertView for error if passphrase is nil
+                let alertView = self.bananoAlertView(title: "Failed", message: "Failed to retrieve passphrase from textfield.")
+                self.present(alertView, animated: false, completion: nil)
+            }else {
+                // Retrieve wallet with passphrase
+                do {
+                    let wallet = try self.currentPlayer?.getWallet(passphrase: passphrase ?? "")
+                    if let privateKey = wallet?.privateKey {
+                        let alertView = self.bananoAlertView(title: "WARNING", message: "This is your private key, do not share it with anyone!: " + privateKey)
+                        self.present(alertView, animated: false, completion: nil)
+                    } else {
+                        let alertView = self.bananoAlertView(title: "Failed", message: "Failed to retrieve your wallet's private key, please try again.")
+                        self.present(alertView, animated: false, completion: nil)
+                    }
+                }catch let error as NSError {
+                    let alertView = self.bananoAlertView(title: "Failed", message: "Failed to retrieve account with passphrase, please try again later.")
+                    self.present(alertView, animated: false, completion: nil)
+                    print("Failed with error: \(error)")
+                }
+            }
+        }
+        self.present(alertView, animated: false, completion: nil)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.quests.count
     }
