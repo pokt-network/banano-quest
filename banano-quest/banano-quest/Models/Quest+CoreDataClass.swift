@@ -100,6 +100,14 @@ public class Quest: NSManagedObject {
         try self.save()
     }
     
+    public static func questsWonByPlayer(context: NSManagedObjectContext) throws -> [Quest] {
+        let fetchRequest: NSFetchRequest<Quest> = Quest.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "winner == YES")
+        let sort = NSSortDescriptor(key: #keyPath(Quest.index), ascending: false)
+        fetchRequest.sortDescriptors = [sort]
+        return try context.fetch(fetchRequest) as [Quest]
+    }
+    
     public static func sortedQuestsByIndex(context: NSManagedObjectContext) throws -> [Quest] {
         let fetchRequest: NSFetchRequest<Quest> = Quest.fetchRequest()
         let sort = NSSortDescriptor(key: #keyPath(Quest.index), ascending: false)
@@ -110,7 +118,7 @@ public class Quest: NSManagedObject {
     public static func getQuestByIndex(questIndex: String, context: NSManagedObjectContext) -> Quest? {
         var result: Quest?
         let fetchRequest: NSFetchRequest<Quest> = Quest.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "questID == %@", questIndex)
+        fetchRequest.predicate = NSPredicate(format: "index == %@", questIndex)
         
         do {
             let results = try context.fetch(fetchRequest) as [Quest]
