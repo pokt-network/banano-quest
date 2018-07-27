@@ -178,18 +178,6 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
         self.dismiss(animated: false, completion: nil)
     }
 
-    // Check if the user is near quest banano
-    func checkIfNearBanano(passphrase: String) {
-        guard let merkle = QuestMerkleTree.generateQuestProofSubmission(answer: currentUserLocation!, merkleBody: (quest?.merkleBody)!) else {
-            let alertView = bananoAlertView(title: "Not in range", message: "Sorry, the banano location isn't nearby")
-            present(alertView, animated: false, completion: nil)
-
-            return
-        }
-        // Show the Banano :D
-        presentFindBananoViewController(proof: merkle)
-    }
-
     @IBAction func completeButtonPressed(_ sender: Any) {
         if currentUserLocation == nil {
             let alertController = bananoAlertView(title: "Wait!", message: "Let the app get your current location :D")

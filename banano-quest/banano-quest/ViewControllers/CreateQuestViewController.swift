@@ -28,7 +28,7 @@ extension UIColor {
     }
 }
 
-class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFieldDelegate, BananoQuestViewController {
+class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFieldDelegate {
     // UI Elements
     @IBOutlet weak var addLocationButton: UIButton!
     @IBOutlet weak var bananoImageBackground: UIImageView!

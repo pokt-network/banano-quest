@@ -11,16 +11,16 @@ import Pocket
 import CoreData
 
 class LandingViewController: UIViewController {
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
-    
+
     override func refreshView() throws {
         print("LandingViewController - refreshView()")
     }
-    
+
     func launchQuesting() {
         do {
             try _ = Player.getPlayer(context: CoreDataUtil.mainPersistentContext)
@@ -34,7 +34,7 @@ class LandingViewController: UIViewController {
             print("\(error)")
             return
         }
-        
+
         do {
             let vc = try self.instantiateViewController(identifier: "ContainerVC", storyboardName: "Questing") as? ContainerViewController
             self.navigationController?.pushViewController(vc!, animated: false)
@@ -45,35 +45,35 @@ class LandingViewController: UIViewController {
             return
         }
     }
-    
+
     func launchWalletCreation() {
         do {
             let vc = try self.instantiateViewController(identifier: "AccountCreationViewController", storyboardName: "CreateAccount") as? NewWalletViewController
-            
+
             self.navigationController?.pushViewController(vc!, animated: false)
         }catch let error as NSError {
             print("Failed to instantiate NewWalletViewController with error: \(error)")
         }
     }
-    
+
     func launchOnboarding() {
         // Instantiate onboarding storyboard flow
         do {
             guard let onboardingVC = try self.instantiateViewController(identifier: "OnboardingViewController", storyboardName: "Onboarding") as? OnboardingViewController else {
                 return
             }
-            
+
             onboardingVC.completionHandler = {
                 onboardingVC.dismiss(animated: true, completion: nil)
                 self.processNavigation()
             }
-            
+
             self.navigationController?.present(onboardingVC, animated: true, completion: nil)
         } catch {
             print("Error displaying onboarding")
         }
     }
-    
+
     func processNavigation() {
         if AppConfiguration.displayedOnboarding() {
             launchQuesting()
@@ -81,7 +81,7 @@ class LandingViewController: UIViewController {
             launchOnboarding()
         }
     }
-    
+
     // MARK: - Actions
     @IBAction func playNowPressed(_ sender: Any) {
         processNavigation()

@@ -15,33 +15,33 @@ extension UIViewController {
     func instantiateViewController(identifier: String, storyboardName: String) throws -> UIViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: storyboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: identifier)
-        
+
         return vc
     }
-    
+
     func showLabelWith(message: String) ->  UILabel {
-        
+
         let screenBounds = UIScreen.main.bounds
         let frame = CGRect(x: 0, y: screenBounds.size.height / 2, width: screenBounds.size.width, height: 30)
         let label = UILabel(frame: frame)
-        
+
         label.text = message
         label.contentMode = .center
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         label.lineBreakMode = .byWordWrapping
-        
+
         return label
     }
-    
+
     func bananoAlertView(title: String, message: String) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
+
         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-        
+
         return alert
     }
-    
+
     func requestPassphraseAlertView(handler: @escaping passphraseRequestHandler) -> UIAlertController {
         let alert = UIAlertController(title: "Wallet Passphrase", message: "", preferredStyle: .alert)
         alert.addTextField { (textField) in
@@ -55,25 +55,25 @@ extension UIViewController {
                 handler(nil, "Failed to retrieve passphraseTextField" as? Error)
             }
         }))
-        
+
         return alert
     }
-    
+
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-    
+
     @objc func refreshView() throws {
         // Override
     }
-    
+
     @objc func dismissNotification() {
-        
+
         if let notificationView = self.view.viewWithTag(252525) {
             notificationView.removeFromSuperview()
         }
     }
-    
+
     func showNotificationOverlayWith(text: String!) {
         DispatchQueue.main.async {
             // We get the presented View Controller
@@ -96,7 +96,7 @@ extension UIViewController {
                     label.textColor = UIColor.white
                     label.text = text
                     label.textAlignment = .center
-                    
+
                     // Close button
                     let button = UIButton.init(frame: CGRect.init(x: view.frame.width - 27, y: 2, width: 25, height: 25))
                     button.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
@@ -104,7 +104,7 @@ extension UIViewController {
                     button.setTitle("X", for: UIControlState.normal)
                     button.titleLabel?.textColor = UIColor.black
                     button.titleLabel?.font = UIFont.init(name: "System", size: 12)
-                    
+
                     button.addTarget(self , action: #selector(self.dismissNotification), for: .touchUpInside)
                     // Label is added to the view
                     view.addSubview(label)
