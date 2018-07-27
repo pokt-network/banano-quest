@@ -11,7 +11,7 @@ import PocketEth
 import Pocket
 import BigInt
 
-class ProfileViewController: UIViewController, BananoQuestViewController {
+class ProfileViewController: UIViewController {
     @IBOutlet weak var walletAddressLabel: UILabel!
     @IBOutlet weak var usdValueLabel: UILabel!
     @IBOutlet weak var ethValueLabel: UILabel!
@@ -38,7 +38,7 @@ class ProfileViewController: UIViewController, BananoQuestViewController {
         }
     }
     
-    func refreshView() throws {
+    override func refreshView() throws {
         if currentPlayer == nil  {
             let alertView = bananoAlertView(title: "Error:", message: "Failed to retrieve current player, please try again later")
             present(alertView, animated: false, completion: nil)

@@ -28,7 +28,7 @@ extension UIColor {
     }
 }
 
-class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFieldDelegate, BananoQuestViewController {
+class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFieldDelegate {
     // UI Elements
     @IBOutlet weak var addLocationButton: UIButton!
     @IBOutlet weak var bananoImageBackground: UIImageView!
@@ -97,7 +97,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
         }
     }
     
-    func refreshView() throws {
+    override func refreshView() throws {
         // UI Settings
         defaultUIElementsStyle()
         
@@ -195,7 +195,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
             newQuest?.maxWinners = String.init(BigInt.init(howManyBananosTextField.text ?? "0") ?? BigInt.init(0))
             
         }
-        // TODO: PRIZE value in USD api
+        
         if isTherePrizeSwitch.isOn {
             if (prizeAmountETHTextField.text ?? "0.0").isEmpty {
                 prizeAmountETHTextField.layer.borderColor = UIColor.red.cgColor
