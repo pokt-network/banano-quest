@@ -11,9 +11,9 @@ import UIKit
 
 extension UIApplication{
     public typealias PresentVCCompletionHandler = (_: UIViewController?) -> Void
-    
+
     class func getPresentedViewController(handler: @escaping PresentVCCompletionHandler) {
-        
+
         DispatchQueue.main.async {
             if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
                 if let _ = rootVC as? UINavigationController {
