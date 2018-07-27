@@ -192,6 +192,28 @@
                                                     <outlet property="questNameLabel" destination="OoY-TO-Mb9" id="Kdx-32-egf"/>
                                                 </connections>
                                             </collectionViewCell>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="playerQuestEmptyCell" id="Rr2-eX-a1K">
+                                                <rect key="frame" x="149" y="17.5" width="329" height="176"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="329" height="176"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" text="You don't have any BANANOs, go out and quest!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N9e-WJ-jQe">
+                                                            <rect key="frame" x="20" y="0.0" width="289" height="176"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        </textView>
+                                                    </subviews>
+                                                </view>
+                                                <constraints>
+                                                    <constraint firstItem="N9e-WJ-jQe" firstAttribute="leading" secondItem="Rr2-eX-a1K" secondAttribute="leading" constant="20" id="9qZ-Lx-aHM"/>
+                                                    <constraint firstItem="N9e-WJ-jQe" firstAttribute="top" secondItem="Rr2-eX-a1K" secondAttribute="top" id="QnN-xw-XLJ"/>
+                                                    <constraint firstItem="N9e-WJ-jQe" firstAttribute="height" secondItem="Rr2-eX-a1K" secondAttribute="height" id="ZGw-AR-nah"/>
+                                                    <constraint firstAttribute="trailing" secondItem="N9e-WJ-jQe" secondAttribute="trailing" constant="20" id="fO9-xM-wBU"/>
+                                                </constraints>
+                                                <size key="customSize" width="329" height="176"/>
+                                            </collectionViewCell>
                                         </cells>
                                         <connections>
                                             <outlet property="dataSource" destination="yE3-Cn-O0A" id="pHg-GC-xDS"/>

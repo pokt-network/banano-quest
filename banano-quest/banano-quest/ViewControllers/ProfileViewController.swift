@@ -108,35 +108,42 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.quests.count
+        if self.quests.count == 0 {
+            return 1
+        } else {
+            return self.quests.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerQuestCell", for: indexPath) as! QuestCollectionViewCell
-        let quest = quests[indexPath.item]
-        cell.configureCell(quest: quest, playerLocation: nil)
-        return cell
+        if quests.count != 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerQuestCell", for: indexPath) as! QuestCollectionViewCell
+            let quest = quests[indexPath.item]
+            cell.configureCell(quest: quest, playerLocation: nil)
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerQuestEmptyCell", for: indexPath)
+//            let rect = CGRect(x: 0, y: 0, width: collectionView.frame.width, height: collectionView.frame.height)
+//            let noDataLabel: UILabel = UILabel(frame: rect)
+//            noDataLabel.text = "You don't have BANANOs, go out and quest!"
+//            noDataLabel.textAlignment = .center
+//            noDataLabel.textColor = UIColor.gray
+//            noDataLabel.sizeToFit()
+//            cell.contentView.addSubview(noDataLabel)
+            return cell
+        }
     }
     
     func loadPlayerCompletedQuests() {
         // Initial load for the local quest list
         do {
-            self.quests = try Quest.sortedQuestsByIndex(context: CoreDataUtil.mainPersistentContext)
-            if self.quests.count == 0 {
-                DispatchQueue.main.async {
-                    //self.showElements(bool: true)
-                    let label = self.showLabelWith(message: "No Quests available, please try again later...")
-                    self.view.addSubview(label)
-                }
-            }else {
-                //self.showElements(bool: false)
+            self.quests = try Quest.questsWonByPlayer(context: CoreDataUtil.mainPersistentContext)
+            if self.quests.count != 0 {
                 self.refreshView()
             }
-            print("quests found")
         } catch {
             let alert = self.bananoAlertView(title: "Error", message: "Failed to retrieve quest list with error:")
             self.present(alert, animated: false, completion: nil)
-            
             print("Failed to retrieve quest list with error: \(error)")
         }
     }
