@@ -68,7 +68,7 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    func refreshView() throws {
+    override func refreshView() throws {
         // Details view
         if let maxWinnersDouble = Double.init(quest?.maxWinners ?? "0.0") {
             let weiAmount = BigInt.init(quest?.prize ?? "0") ?? BigInt.init(0)
@@ -146,11 +146,7 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
             break
         }
     }
-    
-    // MARK: IBActions
-    @IBAction func backButtonPressed(_ sender: Any) {
-        self.dismiss(animated: false, completion: nil)
-    }
+    // MARK: Tools
     // Present Find Banano VC
     func presentFindBananoViewController(proof: QuestProofSubmission) {
         do {
@@ -164,8 +160,9 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
             print("Failed to instantiate FindBananoViewController with error: \(error)")
         }
     }
+    
     // Check if the user is near quest banano
-    func checkIfNearBanano(passphrase: String) {
+    func checkIfNearBanano() {
         guard let merkle = QuestMerkleTree.generateQuestProofSubmission(answer: currentUserLocation!, merkleBody: (quest?.merkleBody)!) else {
             let alertView = bananoAlertView(title: "Not in range", message: "Sorry, the banano location isn't nearby")
             present(alertView, animated: false, completion: nil)
@@ -176,23 +173,19 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
         presentFindBananoViewController(proof: merkle)
     }
     
+    // MARK: IBActions
+    @IBAction func backButtonPressed(_ sender: Any) {
+        self.dismiss(animated: false, completion: nil)
+    }
+    
     @IBAction func completeButtonPressed(_ sender: Any) {
         if currentUserLocation == nil {
             let alertController = bananoAlertView(title: "Wait!", message: "Let the app get your current location :D")
             
             present(alertController, animated: false, completion: nil)
+            return
         }
-        
-        let alertView = requestPassphraseAlertView { (passphrase, error) in
-            if passphrase != nil {
-               self.checkIfNearBanano(passphrase: passphrase ?? "")
-            }
-            if error != nil {
-                let alertController = self.bananoAlertView(title: "ups!", message: "We failed to get that, please try again")
-                
-                self.present(alertController, animated: false, completion: nil)
-            }
-        }
-        present(alertView, animated: false, completion: nil)
+        // Check if near banano location
+        checkIfNearBanano()
     }
 }

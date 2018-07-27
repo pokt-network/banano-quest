@@ -11,7 +11,9 @@ import UIKit
 import ARKit
 import MapKit
 
-class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDelegate, BananoQuestViewController {
+class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDelegate {
+    @IBOutlet weak var claimButton: UIButton!
+    
     fileprivate var arViewController: ARViewController!
     var bananoLocation: CLLocation?
     var currentUserLocation: CLLocation?
@@ -23,7 +25,7 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
         
         // AR Setup
         self.dataSource = self
-        self.maxVisibleAnnotations = 1
+        self.maxVisibleAnnotations = 5
         self.headingSmoothingFactor = 0.05
 
     }
@@ -37,14 +39,14 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
         }
     }
     
-    func refreshView() throws {
+    override func refreshView() throws {
         // Banano Location is generated based in the user location after is confirmed the user is withing the quest
         // completion range.
         let coordinates = getBananoLocation()
         bananoLocation = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
         
         let questLocation = CLLocation(latitude: bananoLocation?.coordinate.latitude ?? 0.0, longitude: bananoLocation?.coordinate.longitude ?? 0.0)
-        let bananoLocationC = CLLocation(coordinate: questLocation.coordinate, altitude: CLLocationDistance.init(40), horizontalAccuracy: CLLocationAccuracy.init(0), verticalAccuracy: CLLocationAccuracy.init(0), timestamp: Date.init())
+        let bananoLocationC = CLLocation(coordinate: questLocation.coordinate, altitude: CLLocationDistance.init(currentUserLocation?.altitude ?? 0), horizontalAccuracy: CLLocationAccuracy.init(0), verticalAccuracy: CLLocationAccuracy.init(0), timestamp: Date.init())
         
         let distance = bananoLocationC.distance(from: currentUserLocation!)
         
@@ -53,15 +55,14 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
             annotation.title = currentQuest?.name
             annotation.location = bananoLocationC
             
-            // AR options, debugging options should be used only for testing
-            //addDebugUi()
-            //uiOptions.debugEnabled = true
+            // AR options
+            // Max distance between the player and the Banano
             maxDistance = 50
             
             // We add the annotations that for Banano quest is 1 at a time
             setAnnotations([annotation])
             
-        }else{
+        }else {
             let alertController = bananoAlertView(title: "Not in range", message: "\(currentQuest?.name ?? "") banano is not within 50 meters of your current location")
             
             present(alertController, animated: false, completion: nil)
@@ -100,5 +101,72 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
         
         return annotationView
     }
+    // MARK: Tools
+    func claimFailedAlertView() {
+        let alertView = bananoAlertView(title: "Error", message: "Something happened while submitting your information, please try again later.")
+        
+        present(alertView, animated: false, completion: nil)
+    }
     
+    func claimBanano(passphrase: String) {
+        
+        do {
+            let player = try Player.getPlayer(context: BaseUtil.mainContext)
+            let wallet = try player.getWallet(passphrase: passphrase)
+            
+            guard let questIndex = Int64(currentQuest?.index ?? "0") else {
+                claimFailedAlertView()
+                return
+            }
+            
+            guard let transactionCount = Int64(player.transactionCount) else {
+                claimFailedAlertView()
+                return
+            }
+            
+            guard let proof = questProof?.proof else {
+                claimFailedAlertView()
+                return
+            }
+            
+            guard let answer = questProof?.answer else {
+                claimFailedAlertView()
+                return
+            }
+            
+            let operation = UploadQuestProofOperation.init(wallet: wallet!, transactionCount: transactionCount, tavernAddress: AppConfiguration.tavernAddress, tokenAddress: AppConfiguration.bananoTokenAddress, questIndex: questIndex, proof: proof, answer: answer)
+            
+            operation.completionBlock = {
+                self.showNotificationOverlayWith(text: "CLAIM COMPLETED, CHECK YOUR NEW BANANO!")
+            }
+            
+            // Operation Queue
+            let operationQueue = AsynchronousOperation.init()
+            
+            operationQueue.addDependency(operation)
+            
+            let alertView = bananoAlertView(title: "Submitted", message: "Proof submitted, your request is being processed in the background")
+            
+            self.present(alertView, animated: false, completion: nil)
+
+        } catch let error as NSError {
+            print("Failed with error: \(error)")
+        }
+    }
+    
+    @IBAction func claimButtonPressed(_ sender: Any) {
+        // Claim
+        let alertView = requestPassphraseAlertView { (passphrase, error) in
+            if passphrase != nil {
+                self.claimBanano(passphrase: passphrase! )
+            }
+            if error != nil {
+                let alertController = self.bananoAlertView(title: "ups!", message: "We failed to get that, please try again")
+                
+                self.present(alertController, animated: false, completion: nil)
+            }
+        }
+        present(alertView, animated: false, completion: nil)
+
+    }
 }
