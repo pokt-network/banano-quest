@@ -66,4 +66,8 @@ class OnboardingViewController: UIViewController, UICollectionViewDataSource, UI
         }
     }
     
+    override func refreshView() throws {
+        
+    }
+    
 }
