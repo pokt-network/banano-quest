@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+public enum UIViewControllerError: Error {
+    case refreshViewNotImplemented
+}
+
 extension UIViewController {
     public typealias passphraseRequestHandler = (_: String?, _: Error?) -> Void
 
@@ -65,6 +69,7 @@ extension UIViewController {
 
     @objc func refreshView() throws {
         // Override
+        throw UIViewControllerError.refreshViewNotImplemented
     }
 
     @objc func dismissNotification() {
