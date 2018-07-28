@@ -137,7 +137,7 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
             let operation = UploadQuestProofOperation.init(wallet: wallet!, transactionCount: transactionCount, tavernAddress: AppConfiguration.tavernAddress, tokenAddress: AppConfiguration.bananoTokenAddress, questIndex: questIndex, proof: proof, answer: answer)
             
             operation.completionBlock = {
-                self.showNotificationOverlayWith(text: "CLAIM COMPLETED, CHECK YOUR NEW BANANO!")
+                self.showNotificationOverlayWith(text: "CLAIM COMPLETED, check your new banano in your profile!")
             }
             
             // Operation Queue

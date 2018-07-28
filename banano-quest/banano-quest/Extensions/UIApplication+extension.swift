@@ -16,7 +16,6 @@ extension UIApplication{
         
         DispatchQueue.main.async {
             if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
-                
                 if let _ = rootVC as? UINavigationController {
                     if let vc = rootVC.childViewControllers.last {
                         handler(vc)
