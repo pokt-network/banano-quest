@@ -67,6 +67,13 @@ extension UIViewController {
         // Override
     }
     
+    @objc func dismissNotification() {
+        
+        if let notificationView = self.view.viewWithTag(252525) {
+            notificationView.removeFromSuperview()
+        }
+    }
+    
     func showNotificationOverlayWith(text: String!) {
         DispatchQueue.main.async {
             // We get the presented View Controller
@@ -77,16 +84,31 @@ extension UIViewController {
                     // Current VC frame
                     let frame = currentVC!.view.frame
                     // We create the View
-                    let view = UIView.init(frame: CGRect(x: 0, y: frame.height - 100, width: frame.width, height: 100))
-                    view.backgroundColor = UIColor.red
-                    view.contentMode = UIViewContentMode.center
-                    
+                    let view = UIView.init(frame: CGRect(x: 5, y: frame.height - 90, width: frame.width - 10, height: 80))
+                    view.tag = 252525
+                    view.layer.cornerRadius = 5
+                    view.layer.borderWidth = 1
+                    view.layer.borderColor = UIColor.darkGray.cgColor
+                    view.backgroundColor = UIColor(red: (49/255), green: (170/255), blue: (222/255), alpha: 1)
+
                     // We create the label
-                    let label = UILabel.init(frame: CGRect(x: 0, y: 0, width: frame.width, height: 100))
+                    let label = UILabel.init(frame: CGRect(x: 0, y: 0, width: frame.width, height: 80))
+                    label.textColor = UIColor.white
                     label.text = text
+                    label.textAlignment = .center
                     
+                    // Close button
+                    let button = UIButton.init(frame: CGRect.init(x: view.frame.width - 27, y: 2, width: 25, height: 25))
+                    button.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
+                    button.layer.cornerRadius = button.frame.width / 2
+                    button.setTitle("X", for: UIControlState.normal)
+                    button.titleLabel?.textColor = UIColor.black
+                    button.titleLabel?.font = UIFont.init(name: "System", size: 12)
+                    
+                    button.addTarget(self , action: #selector(self.dismissNotification), for: .touchUpInside)
                     // Label is added to the view
                     view.addSubview(label)
+                    view.addSubview(button)
                     // View is added to the current view controller
                     currentVC!.view.addSubview(view)
                 }

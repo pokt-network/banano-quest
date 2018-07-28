@@ -19,7 +19,6 @@ class LandingViewController: UIViewController {
     
     override func refreshView() throws {
         print("LandingViewController - refreshView()")
-        showNotificationOverlayWith(text: "This is just a test")
     }
     
     func launchQuesting() {
