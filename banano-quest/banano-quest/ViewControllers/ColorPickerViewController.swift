@@ -36,4 +36,7 @@ class ColorPickerViewController: CustomColorPickerViewController {
         self.dismiss(animated: false, completion: nil)
     }
     
+    override func refreshView() throws {
+        
+    }
 }
