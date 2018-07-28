@@ -57,9 +57,9 @@ public class Quest: NSManagedObject {
             case "claimersAmount":
                 self.claimersAmount = String.init(BigInt.anyToBigInt(anyValue: value) ?? BigInt.init(0))
             case "isWinner":
-                self.isWinner = value as? Bool ?? false
+                self.winner = value as? Bool ?? false
             case "isClaimer":
-                self.isClaimer = value as? Bool ?? false
+                self.claimer = value as? Bool ?? false
             case "metadata":
                 if let metadata = value as? String {
                     self.metadata = metadata
@@ -172,8 +172,8 @@ public class Quest: NSManagedObject {
         dict["winners"] = winners?.dictionary()
         dict["winnersAmount"] = winnersAmount
         dict["claimersAmount"] = claimersAmount
-        dict["isWinner"] = isWinner
-        dict["isClaimer"] = isClaimer
+        dict["winner"] = winner
+        dict["claimer"] = claimer
         
         return dict
     }

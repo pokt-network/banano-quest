@@ -18,6 +18,7 @@ public class AllQuestsQueueDispatcher: QueueDispatcherProtocol {
     private let bananoTokenAddress: String
     private let operationQueue = OperationQueue.init()
     private let playerAddress: String
+    private var isWinnerOperations: [DownloadAndUpdateQuestIsWinnerOperation] = [DownloadAndUpdateQuestIsWinnerOperation]()
     
     public init(tavernAddress: String, bananoTokenAddress: String, playerAddress: String) {
         self.tavernAddress = tavernAddress
@@ -53,8 +54,16 @@ public class AllQuestsQueueDispatcher: QueueDispatcherProtocol {
     
     // Private interfaces
     private func attempToExecuteCompletionHandler() {
-        if self.isQueueFinished(), let completionHandler = self.completionHandler {
-            completionHandler()
+        if self.isQueueFinished() {
+            if let completionHandler = self.completionHandler {
+                completionHandler()
+            }
+            
+            if !self.isWinnerOperations.isEmpty {
+                // Don't need to wait for these operations to complete
+                self.operationQueue.maxConcurrentOperationCount = 10
+                self.operationQueue.addOperations(self.isWinnerOperations, waitUntilFinished: false)
+            }
         }
     }
     
@@ -78,6 +87,13 @@ public class AllQuestsQueueDispatcher: QueueDispatcherProtocol {
                     let updateQuestOperation = UpdateQuestOperation.init(questDict: questDict, questIndex: String.init(currentQuestIndex))
                     updateQuestOperation.completionBlock = {
                         self.attempToExecuteCompletionHandler()
+                        
+                        if let questIndexStr = questDict["index"] as? String {
+                            if let questIndexBigInt = BigInt.init(questIndexStr) {
+                                let isWinnerOperation = DownloadAndUpdateQuestIsWinnerOperation.init(tavernAddress: AppConfiguration.tavernAddress, tokenAddress: AppConfiguration.bananoTokenAddress, questIndex: questIndexBigInt, alledgedWinner: self.playerAddress)
+                                self.isWinnerOperations.append(isWinnerOperation)
+                            }
+                        }
                     }
                     self.operationQueue.addOperation(updateQuestOperation)
                 }

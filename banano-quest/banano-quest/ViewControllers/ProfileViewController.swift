@@ -123,13 +123,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerQuestEmptyCell", for: indexPath)
-//            let rect = CGRect(x: 0, y: 0, width: collectionView.frame.width, height: collectionView.frame.height)
-//            let noDataLabel: UILabel = UILabel(frame: rect)
-//            noDataLabel.text = "You don't have BANANOs, go out and quest!"
-//            noDataLabel.textAlignment = .center
-//            noDataLabel.textColor = UIColor.gray
-//            noDataLabel.sizeToFit()
-//            cell.contentView.addSubview(noDataLabel)
             return cell
         }
     }

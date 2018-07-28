@@ -26,7 +26,7 @@ extension Quest {
     @NSManaged public var merkleBody: String
     @NSManaged public var maxWinners: String
     @NSManaged public var index: String
-    @NSManaged public var prize: String
+    @NSManaged public var prize: String?
     @NSManaged public var winners: Winners?
     @NSManaged public var winnersAmount: String
     @NSManaged public var claimersAmount: String
@@ -40,7 +40,7 @@ extension Quest {
     @NSManaged public var lon2: Float
     @NSManaged public var lon3: Float
     @NSManaged public var lon4: Float
-    @NSManaged public var isWinner: Bool
-    @NSManaged public var isClaimer: Bool
+    @NSManaged public var winner: Bool
+    @NSManaged public var claimer: Bool
 
 }
