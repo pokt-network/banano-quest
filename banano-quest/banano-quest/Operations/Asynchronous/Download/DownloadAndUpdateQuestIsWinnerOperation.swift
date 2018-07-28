@@ -9,20 +9,21 @@
 import Foundation
 import PocketEth
 import Pocket
+import BigInt
 
-public enum DownloadQuestIsWinnerOperationError: Error {
+public enum DownloadAndUpdateQuestIsWinnerOperationError: Error {
     case resultParsing
+    case updating
 }
 
-public class DownloadQuestIsWinnerOperation: AsynchronousOperation {
+public class DownloadAndUpdateQuestIsWinnerOperation: AsynchronousOperation {
     
-    public var tavernAddress: String
-    public var tokenAddress: String
-    public var questIndex: Int64
-    public var alledgedWinner: String
-    public var isWinner: Bool?
+    private var tavernAddress: String
+    private var tokenAddress: String
+    private var questIndex: BigInt
+    private var alledgedWinner: String
     
-    public init(tavernAddress: String, tokenAddress: String, questIndex: Int64, alledgedWinner: String) {
+    public init(tavernAddress: String, tokenAddress: String, questIndex: BigInt, alledgedWinner: String) {
         self.tavernAddress = tavernAddress
         self.tokenAddress = tokenAddress
         self.questIndex = questIndex
@@ -49,7 +50,11 @@ public class DownloadQuestIsWinnerOperation: AsynchronousOperation {
             "rpcParams": [tx, "latest"]
             ] as [AnyHashable: Any]
         
-        guard let query = try? PocketEth.createQuery(params: params, decoder: nil) else {
+        let decoder = [
+            "returnTypes": ["bool"]
+            ] as [AnyHashable : Any]
+        
+        guard let query = try? PocketEth.createQuery(params: params, decoder: decoder) else {
             self.error = PocketPluginError.queryCreationError("Query creation error")
             self.finish()
             return
@@ -62,13 +67,32 @@ public class DownloadQuestIsWinnerOperation: AsynchronousOperation {
                 return
             }
             
-            guard let isWinnerBool = queryResponse?.result?.value() as? Bool else {
-                self.error = DownloadQuestIsWinnerOperationError.resultParsing
+            guard let returnValues = queryResponse?.result?.value() as? [JSON] else {
+                self.error = DownloadAndUpdateQuestIsWinnerOperationError.resultParsing
                 self.finish()
                 return
             }
             
-            self.isWinner = isWinnerBool
+            guard let isWinnerBool = returnValues.first?.value() as? Bool else {
+                self.error = DownloadAndUpdateQuestIsWinnerOperationError.resultParsing
+                self.finish()
+                return
+            }
+            
+            do {
+                let context = CoreDataUtil.backgroundPersistentContext
+                guard let quest = Quest.getQuestByIndex(questIndex: String.init(self.questIndex), context: context) else {
+                    self.error = DownloadAndUpdateQuestIsWinnerOperationError.updating
+                    self.finish()
+                    return
+                }
+                quest.winner = isWinnerBool
+                try quest.save()
+            } catch {
+                self.error = DownloadAndUpdateQuestIsWinnerOperationError.updating
+                self.finish()
+                return
+            }
             self.finish()
         }
     }

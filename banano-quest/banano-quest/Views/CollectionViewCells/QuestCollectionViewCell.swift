@@ -9,6 +9,7 @@
 import UIKit
 import SwiftHEXColors
 import MapKit
+import BigInt
 
 class QuestCollectionViewCell: UICollectionViewCell {
     
@@ -49,10 +50,19 @@ class QuestCollectionViewCell: UICollectionViewCell {
         }
         
         var questPrizeText = "No ETH"
-        if quest.prize == "0" {
+        if quest.prize == "0" || quest.prize == nil {
             questPrizeText = "No ETH"
         } else {
-            questPrizeText = "\(quest.prize) ETH"
+            if let questPrize = quest.prize {
+                if let weiPrize = BigInt.init(questPrize) {
+                    let ethPrize = EthUtils.convertWeiToEth(wei: weiPrize)
+                    questPrizeText = "\(String.init(ethPrize)) ETH"
+                } else {
+                    questPrizeText = "No ETH"
+                }
+            } else {
+                questPrizeText = "No ETH"
+            }
         }
         
         if let prizeValueLabel = self.prizeValueLabel {

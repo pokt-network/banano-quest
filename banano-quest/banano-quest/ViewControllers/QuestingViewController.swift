@@ -17,7 +17,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var completeButton: UIButton!
     
-    var quests: [Quest]?
+    var quests: [Quest] = [Quest]()
     var currentIndex = 0
     var locationManager = CLLocationManager()
     var currentPlayerLocation: CLLocation?
@@ -74,7 +74,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         // Initial load for the local quest list
         do {
             self.quests = try Quest.sortedQuestsByIndex(context: CoreDataUtil.mainPersistentContext)
-            if self.quests?.count == 0 {
+            if self.quests.count == 0 {
                 DispatchQueue.main.async {
                     self.showElements(bool: true)
                     let label = self.showLabelWith(message: "No Quests available, please try again later...")
@@ -95,6 +95,9 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
 
     func refreshView() {
         // Every UI refresh should be done here
+        if self.quests.isEmpty {
+            loadQuestList()
+        }
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
@@ -114,9 +117,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
             guard let cellIndexPath = self.collectionView.indexPath(for: currentVisibleCell) else {
                 return
             }
-            guard let currentQuestCount = self.quests?.count else {
-                return
-            }
+            let currentQuestCount = self.quests.count
             let newIndex = cellIndexPath.item + positions
             if newIndex >= 0 && newIndex < currentQuestCount {
                 let newIndexPath = IndexPath(item: newIndex, section: 0)
@@ -134,7 +135,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return quests?.count ?? 1
+        return quests.count == 0 ? 1 : quests.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -147,13 +148,14 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "questCollectionViewIdentifier", for: indexPath) as! QuestCollectionViewCell
         
-        
         currentIndex = indexPath.item
-        guard let quest = quests?[currentIndex] else {
+        
+        if quests.isEmpty {
             cell.configureEmptyCell()
             return cell
         }
         
+        let quest = quests[currentIndex]
         cell.configureCell(quest: quest, playerLocation: self.currentPlayerLocation)
         
         return cell
@@ -169,13 +171,15 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     }
     
     @IBAction func completeButtonPressed(_ sender: Any) {
-        guard let quest = quests?[currentIndex] else {
+        if self.quests.isEmpty {
             let alert = self.bananoAlertView(title: "Error", message: "Failed to retrieve current quest, please try again later.")
             self.present(alert, animated: false, completion: nil)
-            
+
             print("Failed to retrieve current quest, returning")
             return
         }
+        
+        let quest = quests[currentIndex]
         
         do {
             let vc = try self.instantiateViewController(identifier: "completeQuestViewControllerID", storyboardName: "Questing") as? CompleteQuestViewController

@@ -32,7 +32,7 @@
         <attribute name="merkleRoot" attributeType="String" syncable="YES"/>
         <attribute name="metadata" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="prize" attributeType="String" customClassName="BigIntTransformable" syncable="YES"/>
+        <attribute name="prize" optional="YES" attributeType="String" customClassName="BigIntTransformable" syncable="YES"/>
         <attribute name="winner" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="winnersAmount" attributeType="String" customClassName="BigIntTransformable" syncable="YES"/>
         <relationship name="winners" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Winners" inverseName="quest" inverseEntity="Winners" syncable="YES"/>
