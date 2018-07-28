@@ -11,7 +11,7 @@ import PocketEth
 import Pocket
 import BigInt
 
-class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, BananoQuestViewController {
+class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var walletAddressLabel: UILabel!
     @IBOutlet weak var usdValueLabel: UILabel!
     @IBOutlet weak var ethValueLabel: UILabel!
@@ -136,7 +136,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         do {
             self.quests = try Quest.questsWonByPlayer(context: CoreDataUtil.mainPersistentContext)
             if self.quests.count != 0 {
-                self.refreshView()
+                try self.refreshView()
             }
         } catch {
             let alert = self.bananoAlertView(title: "Error", message: "Failed to retrieve quest list with error:")
