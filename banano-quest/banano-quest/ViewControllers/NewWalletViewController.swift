@@ -84,13 +84,21 @@ class NewWalletViewController: UIViewController {
             if let playerAddress = player.address {
                 let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
                 appInitQueueDispatcher.initDisplatchSequence {
-                    print("Finished app data download")
-                    do {
-//                        let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
-//                        questListQueueDispatcher.initDisplatchSequence(completionHandler: nil)
-                    } catch {
-                        print("Error initializing AllQuestsQueueDispatcher")
-                    }
+                    let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress, playerAddress: playerAddress)
+                    questListQueueDispatcher.initDisplatchSequence(completionHandler: {
+                        
+                        UIApplication.getPresentedViewController(handler: { (topVC) in
+                            if topVC == nil {
+                                print("Failed to get current view controller")
+                            }else {
+                                do {
+                                    try topVC!.refreshView()
+                                }catch let error as NSError {
+                                    print("Failed to refresh current view controller with error: \(error)")
+                                }
+                            }
+                        })
+                    })
                 }
             }
         } catch let error as NSError {
