@@ -24,6 +24,7 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var questDetailTextView: UITextView!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var prizeLabel: UILabel!
+    @IBOutlet weak var questNameLabel: UILabel!
 
     var locationManager = CLLocationManager()
     var currentUserLocation: CLLocation?
@@ -84,6 +85,7 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
         // TODO: Get location from merkleRoot
         distanceValueLabel.text = "20M"
         questDetailTextView.text = quest?.hint
+        questNameLabel.text = quest?.name
     }
 
     // MARK: LocationManager

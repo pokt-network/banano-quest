@@ -120,10 +120,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if quests.count != 0 {
+        if quests.count != 0  && indexPath.item < quests.count {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerQuestCell", for: indexPath) as! QuestCollectionViewCell
+            
             let quest = quests[indexPath.item]
-            cell.configureCell(quest: quest, playerLocation: nil)
+            cell.quest = quest
+            cell.configureCell(playerLocation: nil)
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerQuestEmptyCell", for: indexPath)
