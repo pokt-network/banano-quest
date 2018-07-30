@@ -460,7 +460,6 @@
 				1040310C2106673D0091B5FE /* CoreDataUtil.swift */,
 				10403112210763240091B5FE /* LocationUtils.swift */,
 				10232F7D210907750029D923 /* ValueTransformer.swift */,
-				C5D0384F2108F0DD00CB0BD2 /* BananoQuestViewController.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
