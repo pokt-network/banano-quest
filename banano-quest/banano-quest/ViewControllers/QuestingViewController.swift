@@ -162,13 +162,14 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
 
         currentIndex = indexPath.item
 
-        if quests.isEmpty {
+        if quests.isEmpty || currentIndex >= quests.count {
             cell.configureEmptyCell()
             return cell
         }
 
         let quest = quests[currentIndex]
-        cell.configureCell(quest: quest, playerLocation: self.currentPlayerLocation)
+        cell.quest = quest
+        cell.configureCell(playerLocation: self.currentPlayerLocation)
 
         return cell
     }
@@ -183,7 +184,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     }
 
     @IBAction func completeButtonPressed(_ sender: Any) {
-        if self.quests.isEmpty {
+        guard let currentCell = collectionView.visibleCells.last as? QuestCollectionViewCell else {
             let alert = self.bananoAlertView(title: "Error", message: "Failed to retrieve current quest, please try again later.")
             self.present(alert, animated: false, completion: nil)
 
@@ -191,16 +192,21 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
             return
         }
 
-        let quest = quests[currentIndex]
+        if let quest = currentCell.quest {
+            do {
+                let vc = try self.instantiateViewController(identifier: "completeQuestViewControllerID", storyboardName: "Questing") as? CompleteQuestViewController
+                vc?.quest = quest
 
-        do {
-            let vc = try self.instantiateViewController(identifier: "completeQuestViewControllerID", storyboardName: "Questing") as? CompleteQuestViewController
-            vc?.quest = quest
-            self.present(vc!, animated: false, completion: nil)
-        }catch let error as NSError {
-            let alert = self.bananoAlertView(title: "Error", message: "Ups, something happened, please try again later.")
+                self.present(vc!, animated: false, completion: nil)
+            }catch let error as NSError {
+                let alert = self.bananoAlertView(title: "Error", message: "Ups, something happened, please try again later.")
+                self.present(alert, animated: false, completion: nil)
+
+                print("Failed to instantiate NewWalletViewController with error: \(error)")
+            }
+        } else {
+            let alert = self.bananoAlertView(title: "Error", message: "Failed to retrieve current quest, please try again later.")
             self.present(alert, animated: false, completion: nil)
-            print("Failed to instantiate NewWalletViewController with error: \(error)")
         }
     }
 }
