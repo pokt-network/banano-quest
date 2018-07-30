@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration {
 
         // Set main persistent context merge policy
         self.persistentContainer.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+        // Delete all quests for testing purposes
 
         // Launch Queue Dispatchers
         do {
