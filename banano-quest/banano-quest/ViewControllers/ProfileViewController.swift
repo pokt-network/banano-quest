@@ -53,7 +53,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         // Labels setup
         walletAddressLabel.text = currentPlayer?.address
         if let weiBalanceStr = currentPlayer?.balanceWei {
-            let weiBalance = BigInt.init(weiBalanceStr, radix: 16) ?? BigInt.init(0)
+            let weiBalance = BigInt.init(weiBalanceStr) ?? BigInt.init(0)
             ethValueLabel.text = "\(EthUtils.convertWeiToEth(wei: weiBalance)) ETH"
             usdValueLabel.text = "\(EthUtils.convertWeiToUSD(wei: weiBalance)) USD"
         }

@@ -35,8 +35,8 @@ public struct LocationUtils {
         let distance = diameterMT
         let radius = LocationUtils.earthRadiusKM
         let quotient = (distance/radius).radiansToDegrees;
-        let lat = center.coordinate.latitude
-        let lon = center.coordinate.longitude
+        let lat = Double.init(String.init(format: "%.4f", center.coordinate.latitude))!
+        let lon = Double.init(String.init(format: "%.4f", center.coordinate.longitude))!
         let maxLat = lat + quotient;
         let minLat = lat - quotient;
         let maxLon = lon + quotient;
@@ -60,7 +60,9 @@ public struct LocationUtils {
         
         for latitude in latList {
             for longitude in lonList {
-                coordList.append(CLLocation.init(latitude: latitude, longitude: longitude))
+                let pointLat = Double.init(String.init(format: "%.4f", latitude))!
+                let pointLon = Double.init(String.init(format: "%.4f", longitude))!
+                coordList.append(CLLocation.init(latitude: pointLat, longitude: pointLon))
             }
         }
         
