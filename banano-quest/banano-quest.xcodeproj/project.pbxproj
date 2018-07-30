@@ -30,7 +30,7 @@
 		10A560002102882A00B85950 /* UploadQuestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A55FFF2102882A00B85950 /* UploadQuestOperation.swift */; };
 		10A560022102987D00B85950 /* UploadQuestProofOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A560012102987D00B85950 /* UploadQuestProofOperation.swift */; };
 		10A5600421037AB600B85950 /* DownloadQuestIsClaimerOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A5600321037AB600B85950 /* DownloadQuestIsClaimerOperation.swift */; };
-		10A5600621037DF800B85950 /* DownloadQuestIsWinnerOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A5600521037DF800B85950 /* DownloadQuestIsWinnerOperation.swift */; };
+		10A5600621037DF800B85950 /* DownloadAndUpdateQuestIsWinnerOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A5600521037DF800B85950 /* DownloadAndUpdateQuestIsWinnerOperation.swift */; };
 		10A5600821037FE800B85950 /* UploadQuestEstimateOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A5600721037FE800B85950 /* UploadQuestEstimateOperation.swift */; };
 		10A5600A21037FF700B85950 /* UploadQuestProofEstimateOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A5600921037FF700B85950 /* UploadQuestProofEstimateOperation.swift */; };
 		10A5600E21038B2600B85950 /* DownloadEthUsdPriceOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A5600D21038B2600B85950 /* DownloadEthUsdPriceOperation.swift */; };
@@ -135,7 +135,7 @@
 		10A55FFF2102882A00B85950 /* UploadQuestOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadQuestOperation.swift; sourceTree = "<group>"; };
 		10A560012102987D00B85950 /* UploadQuestProofOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadQuestProofOperation.swift; sourceTree = "<group>"; };
 		10A5600321037AB600B85950 /* DownloadQuestIsClaimerOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadQuestIsClaimerOperation.swift; sourceTree = "<group>"; };
-		10A5600521037DF800B85950 /* DownloadQuestIsWinnerOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadQuestIsWinnerOperation.swift; sourceTree = "<group>"; };
+		10A5600521037DF800B85950 /* DownloadAndUpdateQuestIsWinnerOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadAndUpdateQuestIsWinnerOperation.swift; sourceTree = "<group>"; };
 		10A5600721037FE800B85950 /* UploadQuestEstimateOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadQuestEstimateOperation.swift; sourceTree = "<group>"; };
 		10A5600921037FF700B85950 /* UploadQuestProofEstimateOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadQuestProofEstimateOperation.swift; sourceTree = "<group>"; };
 		10A5600D21038B2600B85950 /* DownloadEthUsdPriceOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadEthUsdPriceOperation.swift; sourceTree = "<group>"; };
@@ -287,7 +287,7 @@
 				1098FD1C2102764400E76682 /* DownloadQuestAmountOperation.swift */,
 				10A55FFD21027BF600B85950 /* DownloadQuestOperation.swift */,
 				10A5600321037AB600B85950 /* DownloadQuestIsClaimerOperation.swift */,
-				10A5600521037DF800B85950 /* DownloadQuestIsWinnerOperation.swift */,
+				10A5600521037DF800B85950 /* DownloadAndUpdateQuestIsWinnerOperation.swift */,
 				10A5600D21038B2600B85950 /* DownloadEthUsdPriceOperation.swift */,
 			);
 			path = Download;
@@ -460,6 +460,7 @@
 				1040310C2106673D0091B5FE /* CoreDataUtil.swift */,
 				10403112210763240091B5FE /* LocationUtils.swift */,
 				10232F7D210907750029D923 /* ValueTransformer.swift */,
+				C5D0384F2108F0DD00CB0BD2 /* BananoQuestViewController.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -854,7 +855,7 @@
 				10403113210763240091B5FE /* LocationUtils.swift in Sources */,
 				C51C07A02104E1C400E423D2 /* Player+CoreDataClass.swift in Sources */,
 				1098FD1B2102756900E76682 /* DownloadTransactionCountOperation.swift in Sources */,
-				10A5600621037DF800B85950 /* DownloadQuestIsWinnerOperation.swift in Sources */,
+				10A5600621037DF800B85950 /* DownloadAndUpdateQuestIsWinnerOperation.swift in Sources */,
 				C5FA59A721077F17004FB3E0 /* AnnotationView.swift in Sources */,
 				63091D7E20E13546002253E5 /* NewWalletViewController.swift in Sources */,
 				635F8A9C20DD590B008BA94E /* LandingViewController.swift in Sources */,

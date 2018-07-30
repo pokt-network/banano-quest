@@ -21,11 +21,13 @@ public class DownloadQuestOperation: AsynchronousOperation {
     public var tokenAddress: String
     public var questIndex: BigInt
     public var questDict: [AnyHashable: Any]?
+    public var playerAddress: String
     
-    public init(tavernAddress: String, tokenAddress: String, questIndex: BigInt) {
+    public init(tavernAddress: String, tokenAddress: String, questIndex: BigInt, playerAddress: String) {
         self.tavernAddress = tavernAddress
         self.tokenAddress = tokenAddress
         self.questIndex = questIndex
+        self.playerAddress = playerAddress
         super.init()
     }
     
@@ -42,6 +44,7 @@ public class DownloadQuestOperation: AsynchronousOperation {
         
         tx["to"] = tavernAddress
         tx["data"] = "0x" + data
+        tx["from"] = self.playerAddress
         
         let params = [
             "rpcMethod": "eth_call",
@@ -82,8 +85,6 @@ public class DownloadQuestOperation: AsynchronousOperation {
             let valid = questArr[8].value() as? Bool ?? false
             let winnersAmount = questArr[9].value() as? String ?? "0"
             let claimersAmount = questArr[10].value() as? String ?? "0"
-            //TODO: FIX THIS WHEN NEW CONTRACT IS DEPLOYED
-            let prize = "0"
             
             self.questDict = [
                 "creator": creator,
@@ -96,8 +97,7 @@ public class DownloadQuestOperation: AsynchronousOperation {
                 "metadata": metadata,
                 "valid": valid,
                 "winnersAmount": winnersAmount,
-                "claimersAmount": claimersAmount,
-                "prize": prize
+                "claimersAmount": claimersAmount
             ] as [AnyHashable: Any]
             self.finish()
         }

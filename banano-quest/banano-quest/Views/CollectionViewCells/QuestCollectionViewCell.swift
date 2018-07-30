@@ -9,40 +9,64 @@
 import UIKit
 import SwiftHEXColors
 import MapKit
+import BigInt
 
 class QuestCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var questNameLabel: UILabel!
-    @IBOutlet weak var bananosCountLabel: UILabel!
-    @IBOutlet weak var prizeValueLabel: UILabel!
-    @IBOutlet weak var questDistanceLabel: UILabel!
-    @IBOutlet weak var bananoBackgroundView: UIImageView!
-    @IBOutlet weak var bananoStampImage: UIImageView!
-    @IBOutlet weak var hintTextView: UITextView!
+    @IBOutlet weak var questNameLabel: UILabel?
+    @IBOutlet weak var bananosCountLabel: UILabel?
+    @IBOutlet weak var prizeValueLabel: UILabel?
+    @IBOutlet weak var questDistanceLabel: UILabel?
+    @IBOutlet weak var bananoBackgroundView: UIImageView?
+    @IBOutlet weak var bananoStampImage: UIImageView?
+    @IBOutlet weak var hintTextView: UITextView?
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        bananoBackgroundView.layer.cornerRadius = bananoBackgroundView.frame.size.width / 2
-        bananoBackgroundView.clipsToBounds = true
+        if let bananoBackgroundView = self.bananoBackgroundView {
+            bananoBackgroundView.layer.cornerRadius = bananoBackgroundView.frame.size.width / 2
+            bananoBackgroundView.clipsToBounds = true
+        }
     }
     
     func configureCell(quest: Quest, playerLocation: CLLocation?) {
         // TODO:
         // PRIZE VALUE
         // DISTANCE FROM QUEST
-        questNameLabel.text = quest.name
-        if quest.maxWinners == "0" {
-            bananosCountLabel.text = "INFINITE"
-            bananosCountLabel.font = bananosCountLabel.font.withSize(14)
-        } else {
-            bananosCountLabel.text = "\(quest.winnersAmount)/\(quest.maxWinners)"
-            bananosCountLabel.font = bananosCountLabel.font.withSize(17)
+        if let questNameLabel = self.questNameLabel {
+            questNameLabel.text = quest.name
         }
-        if quest.prize == "0" {
-            prizeValueLabel.text = "No ETH"
+        if quest.maxWinners == "0" {
+            if let bananosCountLabel = self.bananosCountLabel {
+                bananosCountLabel.text = "INFINITE"
+                bananosCountLabel.font = bananosCountLabel.font.withSize(14)
+            }
         } else {
-            prizeValueLabel.text = "\(quest.prize) ETH"
+            if let bananosCountLabel = self.bananosCountLabel {
+                bananosCountLabel.text = "\(quest.winnersAmount)/\(quest.maxWinners)"
+                bananosCountLabel.font = bananosCountLabel.font.withSize(17)
+            }
+        }
+        
+        var questPrizeText = "No ETH"
+        if quest.prize == "0" || quest.prize == nil {
+            questPrizeText = "No ETH"
+        } else {
+            if let questPrize = quest.prize {
+                if let weiPrize = BigInt.init(questPrize) {
+                    let ethPrize = EthUtils.convertWeiToEth(wei: weiPrize)
+                    questPrizeText = "\(String.init(ethPrize)) ETH"
+                } else {
+                    questPrizeText = "No ETH"
+                }
+            } else {
+                questPrizeText = "No ETH"
+            }
+        }
+        
+        if let prizeValueLabel = self.prizeValueLabel {
+            prizeValueLabel.text = questPrizeText
         }
         
         if let playerLocation = playerLocation {
@@ -60,23 +84,44 @@ class QuestCollectionViewCell: UICollectionViewCell {
             } else {
                 distanceText = String.init(format: "%.1f M", roundedDistanceMeters)
             }
-            
-            questDistanceLabel.text = distanceText
+            if let questDistanceLabel = self.questDistanceLabel {
+                questDistanceLabel.text = distanceText
+            }
         } else {
-            questDistanceLabel.text = "?"
+            if let questDistanceLabel = self.questDistanceLabel {
+                questDistanceLabel.text = "?"
+            }
         }
-        hintTextView.text = quest.hint
-        let bananoColor = UIColor(hexString: quest.hexColor ?? "31AADE")
-        bananoBackgroundView.backgroundColor = bananoColor
-
+        if let hintTextView = self.hintTextView {
+            hintTextView.text = quest.hint
+        }
+        
+        if let bananoBackgroundView = self.bananoBackgroundView {
+            let bananoColor = UIColor(hexString: quest.hexColor ?? "31AADE")
+            bananoBackgroundView.backgroundColor = bananoColor
+        }
     }
     
     func configureEmptyCell() {
-        questNameLabel.text = "NONE"
-        bananosCountLabel.text = "0/0"
-        prizeValueLabel.text = "0.00 USD"
-        questDistanceLabel.text = "0M"
-        hintTextView.text = "NONE"
+        if let questNameLabel = self.questNameLabel {
+            questNameLabel.text = "NONE"
+        }
+        
+        if let bananosCountLabel = self.bananosCountLabel {
+            bananosCountLabel.text = "0/0"
+        }
+        
+        if let prizeValueLabel = self.prizeValueLabel {
+            prizeValueLabel.text = "0.00 USD"
+        }
+        
+        if let questDistanceLabel = self.questDistanceLabel {
+            questDistanceLabel.text = "0M"
+        }
+        
+        if let hintTextView = self.hintTextView {
+            hintTextView.text = "NONE"
+        }
     }
     
     @IBAction func locationButtonPressed(_ sender: Any) {

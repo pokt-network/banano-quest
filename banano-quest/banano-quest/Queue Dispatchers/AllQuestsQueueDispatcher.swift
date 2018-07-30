@@ -17,11 +17,14 @@ public class AllQuestsQueueDispatcher: QueueDispatcherProtocol {
     private let tavernAddress: String
     private let bananoTokenAddress: String
     private let operationQueue = OperationQueue.init()
+    private let playerAddress: String
+    private var isWinnerOperations: [DownloadAndUpdateQuestIsWinnerOperation] = [DownloadAndUpdateQuestIsWinnerOperation]()
     
-    public init(tavernAddress: String, bananoTokenAddress: String) {
+    public init(tavernAddress: String, bananoTokenAddress: String, playerAddress: String) {
         self.tavernAddress = tavernAddress
         self.bananoTokenAddress = bananoTokenAddress
         self.operationQueue.maxConcurrentOperationCount = 1
+        self.playerAddress = playerAddress
     }
     
     public func initDisplatchSequence(completionHandler: QueueDispatcherCompletionHandler?) {
@@ -51,8 +54,16 @@ public class AllQuestsQueueDispatcher: QueueDispatcherProtocol {
     
     // Private interfaces
     private func attempToExecuteCompletionHandler() {
-        if self.isQueueFinished(), let completionHandler = self.completionHandler {
-            completionHandler()
+        if self.isQueueFinished() {
+            if let completionHandler = self.completionHandler {
+                completionHandler()
+            }
+            
+            if !self.isWinnerOperations.isEmpty {
+                // Don't need to wait for these operations to complete
+                self.operationQueue.maxConcurrentOperationCount = 10
+                self.operationQueue.addOperations(self.isWinnerOperations, waitUntilFinished: false)
+            }
         }
     }
     
@@ -66,7 +77,7 @@ public class AllQuestsQueueDispatcher: QueueDispatcherProtocol {
             return
         }
         
-        let downloadQuestOperation = DownloadQuestOperation.init(tavernAddress: self.tavernAddress, tokenAddress: self.bananoTokenAddress, questIndex: currentQuestIndex)
+        let downloadQuestOperation = DownloadQuestOperation.init(tavernAddress: self.tavernAddress, tokenAddress: self.bananoTokenAddress, questIndex: currentQuestIndex, playerAddress: self.playerAddress)
         
         downloadQuestOperation.completionBlock = {
             self.currentQuestIndex = currentQuestIndex - 1
@@ -76,6 +87,13 @@ public class AllQuestsQueueDispatcher: QueueDispatcherProtocol {
                     let updateQuestOperation = UpdateQuestOperation.init(questDict: questDict, questIndex: String.init(currentQuestIndex))
                     updateQuestOperation.completionBlock = {
                         self.attempToExecuteCompletionHandler()
+                        
+                        if let questIndexStr = questDict["index"] as? String {
+                            if let questIndexBigInt = BigInt.init(questIndexStr) {
+                                let isWinnerOperation = DownloadAndUpdateQuestIsWinnerOperation.init(tavernAddress: AppConfiguration.tavernAddress, tokenAddress: AppConfiguration.bananoTokenAddress, questIndex: questIndexBigInt, alledgedWinner: self.playerAddress)
+                                self.isWinnerOperations.append(isWinnerOperation)
+                            }
+                        }
                     }
                     self.operationQueue.addOperation(updateQuestOperation)
                 }

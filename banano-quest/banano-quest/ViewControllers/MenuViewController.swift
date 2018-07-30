@@ -62,5 +62,9 @@ class MenuViewController: UIViewController {
         
     }
     
-    
+    override func refreshView() throws {
+        
     }
+    
+    
+}
