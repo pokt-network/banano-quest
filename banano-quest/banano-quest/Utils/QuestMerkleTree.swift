@@ -102,7 +102,7 @@ public class QuestMerkleTree: MerkleTree {
         let nodeMatches = filteredPointHashes.reduce(into: [MatchingMerkleHash]()) { (matchingNodes, pointHash) in
             for siblingPointHash in filteredPointHashes {
                 if var hash = pointHash?.data(using: .utf8), let siblingHash = siblingPointHash?.data(using: .utf8) {
-                    if (!hash.elementsEqual(siblingHash)) {
+                    if (hash.elementsEqual(siblingHash) == false) {
                         hash.append(siblingHash)
                         var combinedHash = hash.sha3(.keccak256).toHexString()
                         combinedHash = combinedHash.hasPrefix("0x") ? combinedHash : "0x" + combinedHash

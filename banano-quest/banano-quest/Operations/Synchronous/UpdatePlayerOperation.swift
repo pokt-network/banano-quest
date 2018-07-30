@@ -26,35 +26,32 @@ public class UpdatePlayerOperation: SynchronousOperation {
     }
     
     open override func main() {
-        do {
-            let context = CoreDataUtil.backgroundPersistentContext
-            context.performAndWait {
-                do {
-                    let player = try Player.getPlayer(context: context)
-                    if let balanceWei = self.balanceWei {
-                        player.balanceWei = String.init(balanceWei)
-                    }
-                    
-                    if let transactionCount = self.transactionCount {
-                        player.transactionCount = String.init(transactionCount)
-                    }
-                    
-                    if let questAmount = self.questAmount {
-                        player.tavernQuestAmount = String.init(questAmount)
-                    }
-                    
-                    if let ethUsdPrice = self.ethUsdPrice {
-                        player.ethUsdPrice = ethUsdPrice
-                    }
-                    
-                    // Save updated player
-                    try player.save()
-                } catch {
-                    print("Error performing UpdatePlayerOperation")
+        let context = CoreDataUtil.backgroundPersistentContext
+        context.performAndWait {
+            do {
+                let player = try Player.getPlayer(context: context)
+                if let balanceWei = self.balanceWei {
+                    player.balanceWei = String.init(balanceWei)
                 }
+                
+                if let transactionCount = self.transactionCount {
+                    player.transactionCount = String.init(transactionCount)
+                }
+                
+                if let questAmount = self.questAmount {
+                    player.tavernQuestAmount = String.init(questAmount)
+                }
+                
+                if let ethUsdPrice = self.ethUsdPrice {
+                    player.ethUsdPrice = ethUsdPrice
+                }
+                
+                // Save updated player
+                try player.save()
+            } catch {
+                self.error = error
+                print("Error performing UpdatePlayerOperation")
             }
-        } catch {
-            self.error = error
         }
     }
 }

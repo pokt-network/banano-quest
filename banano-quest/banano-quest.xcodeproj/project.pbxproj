@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		10232F7E210907760029D923 /* ValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10232F7D210907750029D923 /* ValueTransformer.swift */; };
 		102A035120FE3E3C00B47CEA /* QuestMerkleTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A035020FE3E3C00B47CEA /* QuestMerkleTree.swift */; };
 		102A035320FE4CDE00B47CEA /* MerkleTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A035220FE4CDE00B47CEA /* MerkleTree.swift */; };
 		10403109210629D40091B5FE /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10403108210629D40091B5FE /* Onboarding.storyboard */; };
@@ -112,7 +111,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		10232F7D210907750029D923 /* ValueTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueTransformer.swift; sourceTree = "<group>"; };
 		102A035020FE3E3C00B47CEA /* QuestMerkleTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestMerkleTree.swift; sourceTree = "<group>"; };
 		102A035220FE4CDE00B47CEA /* MerkleTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerkleTree.swift; sourceTree = "<group>"; };
 		10403108210629D40091B5FE /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
@@ -459,7 +457,6 @@
 				108BDF5221061BF400405693 /* AppConfiguration.swift */,
 				1040310C2106673D0091B5FE /* CoreDataUtil.swift */,
 				10403112210763240091B5FE /* LocationUtils.swift */,
-				10232F7D210907750029D923 /* ValueTransformer.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -801,7 +798,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10232F7E210907760029D923 /* ValueTransformer.swift in Sources */,
 				C5FAB66E20E2B4FD00057041 /* Winners+CoreDataProperties.swift in Sources */,
 				C5FAB66D20E2B4FD00057041 /* Winners+CoreDataClass.swift in Sources */,
 				637C03EC20EFB8BD002D4652 /* ContainerViewController.swift in Sources */,

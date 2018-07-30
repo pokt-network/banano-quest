@@ -294,16 +294,17 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
         // Upload quest operation
         let operation = UploadQuestOperation.init(wallet: wallet, tavernAddress: AppConfiguration.tavernAddress, tokenAddress: AppConfiguration.bananoTokenAddress, questName: questName, hint: questHint, maxWinners: maxWinners, merkleRoot: merkleRoot, merkleBody: merkleBody, metadata:  metadata, transactionCount: transactionCount, ethPrizeWei: prizeWei)
         operation.completionBlock = {
-            let alertViewController: UIAlertController?
-            if let txHash = operation.txHash {
-                alertViewController = self.bananoAlertView(title: "Success!", message: "Your quest was created succesfully! with Transaction Hash: \(txHash)")
-            } else {
-                alertViewController = self.bananoAlertView(title: "Error", message: "An error ocurred, please try again.")
-            }
-
-            if let alertViewController = alertViewController {
-                self.present(alertViewController, animated: true, completion: nil)
-            }
+            UIApplication.getPresentedViewController(handler: { (topVC) in
+                if topVC == nil {
+                    print("Failed to get current view controller")
+                }else {
+                    do {
+                        try topVC!.refreshView()
+                    }catch let error as NSError {
+                        print("Failed to refresh current view controller with error: \(error)")
+                    }
+                }
+            })
         }
         // Operation Queue
         let operationQueue = OperationQueue.init()
