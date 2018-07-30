@@ -559,6 +559,12 @@
                                     <action selector="completeButtonPressed:" destination="FEo-B9-WlX" eventType="touchUpInside" id="EWy-Ay-z6P"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="2Pp-HB-D4v" userLabel="Quest Name label">
+                                <rect key="frame" x="148" y="410" width="207" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -579,12 +585,15 @@
                             <constraint firstItem="iKa-zR-itJ" firstAttribute="leading" secondItem="jmS-0Y-ygF" secondAttribute="leading" id="gTh-eA-FDy"/>
                             <constraint firstItem="jmS-0Y-ygF" firstAttribute="trailing" secondItem="jZv-aY-Jf5" secondAttribute="trailing" constant="16" id="hTc-sx-766"/>
                             <constraint firstItem="rSe-gL-vVu" firstAttribute="centerX" secondItem="JPL-kQ-AAL" secondAttribute="centerX" id="kOr-1z-EoH"/>
+                            <constraint firstItem="2Pp-HB-D4v" firstAttribute="bottom" secondItem="2de-es-ROb" secondAttribute="bottom" id="kg7-nL-6A4"/>
                             <constraint firstItem="qfJ-tM-jpQ" firstAttribute="trailing" secondItem="jmS-0Y-ygF" secondAttribute="trailing" id="ki6-HR-acb"/>
                             <constraint firstItem="LdR-tA-TAk" firstAttribute="leading" secondItem="jmS-0Y-ygF" secondAttribute="leading" constant="15" id="npT-qR-ZZQ"/>
+                            <constraint firstItem="jmS-0Y-ygF" firstAttribute="trailing" secondItem="2Pp-HB-D4v" secondAttribute="trailing" constant="20" id="pbz-gg-yfU"/>
                             <constraint firstItem="jZv-aY-Jf5" firstAttribute="centerY" secondItem="qfJ-tM-jpQ" secondAttribute="centerY" id="qhI-b2-5Nl"/>
                             <constraint firstItem="jZv-aY-Jf5" firstAttribute="leading" secondItem="2de-es-ROb" secondAttribute="trailing" constant="10" id="r9x-Dv-LJ9"/>
                             <constraint firstItem="qfJ-tM-jpQ" firstAttribute="centerY" secondItem="2de-es-ROb" secondAttribute="centerY" constant="10" id="s8y-n8-9vE"/>
                             <constraint firstItem="vZo-CX-oCc" firstAttribute="leading" secondItem="jmS-0Y-ygF" secondAttribute="leading" constant="15" id="uXz-cI-LPO"/>
+                            <constraint firstItem="2Pp-HB-D4v" firstAttribute="leading" secondItem="2de-es-ROb" secondAttribute="trailing" constant="20" id="w0t-nU-Oen"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jmS-0Y-ygF"/>
                     </view>
@@ -598,6 +607,7 @@
                         <outlet property="prizeLabel" destination="WCe-v4-3ia" id="P2n-Gq-CBB"/>
                         <outlet property="prizeValueLabel" destination="WCe-v4-3ia" id="RBl-Kq-AqT"/>
                         <outlet property="questDetailTextView" destination="1gL-Zj-qNt" id="aHI-Cc-YQf"/>
+                        <outlet property="questNameLabel" destination="2Pp-HB-D4v" id="hBo-pi-veK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pFM-nu-ngG" userLabel="First Responder" sceneMemberID="firstResponder"/>

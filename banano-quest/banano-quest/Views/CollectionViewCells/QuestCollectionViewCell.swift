@@ -13,6 +13,8 @@ import BigInt
 
 class QuestCollectionViewCell: UICollectionViewCell {
     
+    var quest: Quest?
+    
     @IBOutlet weak var questNameLabel: UILabel?
     @IBOutlet weak var bananosCountLabel: UILabel?
     @IBOutlet weak var prizeValueLabel: UILabel?
@@ -30,10 +32,14 @@ class QuestCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func configureCell(quest: Quest, playerLocation: CLLocation?) {
+    func configureCell(playerLocation: CLLocation?) {
         // TODO:
-        // PRIZE VALUE
         // DISTANCE FROM QUEST
+        guard let quest = self.quest else {
+            self.configureEmptyCell()
+            return
+        }
+        
         if let questNameLabel = self.questNameLabel {
             questNameLabel.text = quest.name
         }
