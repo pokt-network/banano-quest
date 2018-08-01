@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import ARKit
 import MapKit
+import BigInt
 
 class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDelegate {
     @IBOutlet weak var claimButton: UIButton!
@@ -61,10 +62,8 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
 
             // We add the annotations that for Banano quest is 1 at a time
             setAnnotations([annotation])
-
-        }else {
+        } else {
             let alertController = bananoAlertView(title: "Not in range", message: "\(currentQuest?.name ?? "") banano is not within 50 meters of your current location")
-
             present(alertController, animated: false, completion: nil)
         }
     }
@@ -114,12 +113,7 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
             let player = try Player.getPlayer(context: BaseUtil.mainContext)
             let wallet = try player.getWallet(passphrase: passphrase)
 
-            guard let questIndex = Int64(currentQuest?.index ?? "0") else {
-                claimFailedAlertView()
-                return
-            }
-
-            guard let transactionCount = Int64(player.transactionCount) else {
+            guard let questIndex = BigInt.init(currentQuest?.index ?? "0") else {
                 claimFailedAlertView()
                 return
             }
@@ -133,17 +127,37 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
                 claimFailedAlertView()
                 return
             }
+            guard let playerAddress = player.address else {
+                claimFailedAlertView()
+                return
+            }
+            guard let questName = currentQuest?.name else {
+                claimFailedAlertView()
+                return
+            }
 
-            let operation = UploadQuestProofOperation.init(wallet: wallet!, transactionCount: transactionCount, tavernAddress: AppConfiguration.tavernAddress, tokenAddress: AppConfiguration.bananoTokenAddress, questIndex: questIndex, proof: proof, answer: answer)
+            let operationQueue = OperationQueue()
+            let nonceOperation = DownloadTransactionCountOperation.init(address: playerAddress)
+            nonceOperation.completionBlock = {
+                if let transactionCount = nonceOperation.transactionCount {
+                    let claimOperation = UploadQuestProofOperation.init(wallet: wallet!, transactionCount: transactionCount, tavernAddress: AppConfiguration.tavernAddress, tokenAddress: AppConfiguration.bananoTokenAddress, questIndex: questIndex, proof: proof, answer: answer)
 
-            operation.completionBlock = {
-                self.showNotificationOverlayWith(text: "CLAIM COMPLETED, check your new banano in your profile!")
+                    claimOperation.completionBlock = {
+                        if claimOperation.txHash != nil {
+                            self.showNotificationOverlayWith(text: "CLAIM COMPLETED, check your \(questName) BANANO in your profile!")
+                        } else {
+                            self.showNotificationOverlayWith(text: "There was an error claiming your BANANO: \(questName)")
+                        }
+                    }
+
+                    operationQueue.addOperations([claimOperation], waitUntilFinished: false)
+                } else {
+                    self.showNotificationOverlayWith(text: "There was an error claiming your BANANO: \(questName)")
+                }
             }
 
             // Operation Queue
-            let operationQueue = AsynchronousOperation.init()
-
-            operationQueue.addDependency(operation)
+            operationQueue.addOperations([nonceOperation], waitUntilFinished: false)
 
             let alertView = bananoAlertView(title: "Submitted", message: "Proof submitted, your request is being processed in the background")
 
