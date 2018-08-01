@@ -33,6 +33,7 @@
         <attribute name="metadata" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="prize" optional="YES" attributeType="String" customClassName="BigIntTransformable" syncable="YES"/>
+        <attribute name="valid" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="winner" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="winnersAmount" attributeType="String" customClassName="BigIntTransformable" syncable="YES"/>
         <relationship name="winners" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Winners" inverseName="quest" inverseEntity="Winners" syncable="YES"/>
@@ -48,7 +49,7 @@
     </entity>
     <elements>
         <element name="Player" positionX="-56" positionY="213" width="128" height="120"/>
-        <element name="Quest" positionX="-441" positionY="-18" width="128" height="390"/>
+        <element name="Quest" positionX="-441" positionY="-18" width="128" height="405"/>
         <element name="Winners" positionX="-54" positionY="27" width="128" height="75"/>
     </elements>
 </model>

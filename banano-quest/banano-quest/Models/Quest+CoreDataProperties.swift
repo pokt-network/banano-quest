@@ -42,5 +42,6 @@ extension Quest {
     @NSManaged public var lon4: Float
     @NSManaged public var winner: Bool
     @NSManaged public var claimer: Bool
+    @NSManaged public var valid: Bool
 
 }
