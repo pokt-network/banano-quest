@@ -60,6 +60,8 @@ public class Quest: NSManagedObject {
                 self.winner = value as? Bool ?? false
             case "isClaimer":
                 self.claimer = value as? Bool ?? false
+            case "valid":
+                self.valid = value as? Bool ?? false
             case "metadata":
                 if let metadata = value as? String {
                     self.metadata = metadata
@@ -110,7 +112,7 @@ public class Quest: NSManagedObject {
     
     public static func sortedQuestsByIndex(context: NSManagedObjectContext) throws -> [Quest] {
         let fetchRequest: NSFetchRequest<Quest> = Quest.fetchRequest()
-        let sort = NSSortDescriptor(key: #keyPath(Quest.index), ascending: false)
+        let sort = NSSortDescriptor.init(key: "index", ascending: false, selector: #selector(NSString.localizedStandardCompare))
         fetchRequest.sortDescriptors = [sort]
         return try context.fetch(fetchRequest) as [Quest]
     }
