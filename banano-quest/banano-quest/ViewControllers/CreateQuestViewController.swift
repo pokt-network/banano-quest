@@ -81,6 +81,18 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
     }
 
     // MARK: - Tools
+    func retrieveGasEstimate(handler: @escaping (BigInt?) -> Void) {
+        let prizeStr = newQuest?.prize! ?? "0.0"
+        let questPrize = BigInt.init(prizeStr) ?? BigInt.init(0)
+        let operationQueue = OperationQueue.init()
+        let gasEstimateOperation = UploadQuestEstimateOperation.init(playerAddress: (currentPlayer?.address)!, tavernAddress: AppConfiguration.tavernAddress, tokenAddress: AppConfiguration.bananoTokenAddress, questName: (newQuest?.name)!, hint: (newQuest?.hint)!, maxWinners: BigInt.init((newQuest?.maxWinners)!)!, merkleRoot: (newQuest?.merkleRoot)!, merkleBody: (newQuest?.merkleBody)!, metadata: setupMetadata()!, ethPrizeWei: questPrize)
+        
+        gasEstimateOperation.completionBlock = {
+            handler(gasEstimateOperation.estimatedGasWei)
+        }
+        operationQueue.addOperations([gasEstimateOperation], waitUntilFinished: false)
+    }
+    
     func refreshPlayerBalance() {
         do {
             let player = try Player.getPlayer(context: CoreDataUtil.mainPersistentContext)
@@ -177,12 +189,20 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
         }
         
         // Validate eth prize
-        let ethAmount = Double(prizeAmountETHTextField.text ?? "0.0") ?? 0.0
-        let weiAmount = EthUtils.convertEthToWei(eth: ethAmount)
-        if (prizeAmountETHTextField.text ?? "0.0").isEmpty {
-            prizeAmountETHTextField.layer.borderColor = UIColor.red.cgColor
-            isValid.append(false)
+        let usdAmount = Double(prizeAmountUSDTextField.text ?? "0.0") ?? 0.0
+        let weiAmount = EthUtils.convertEthToWei(eth: EthUtils.convertUSDAmountToEth(usdAmount: usdAmount))
+        if usdAmount > 0 {
+            if infiniteBananosSwitch.isOn {
+                prizeAmountUSDTextField.layer.borderColor = UIColor.red.cgColor
+                prizeAmountETHTextField.layer.borderColor = UIColor.red.cgColor
+                isValid.append(false)
+            } else {
+                prizeAmountUSDTextField.layer.borderColor = UIColor.clear.cgColor
+                prizeAmountETHTextField.layer.borderColor = UIColor.clear.cgColor
+                newQuest?.prize = String.init(weiAmount)
+            }
         } else {
+            prizeAmountUSDTextField.layer.borderColor = UIColor.clear.cgColor
             prizeAmountETHTextField.layer.borderColor = UIColor.clear.cgColor
             newQuest?.prize = String.init(weiAmount)
         }
@@ -392,6 +412,11 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
         if textField.text != "0.0" {
             if let usdValue = Double(textField.text ?? "0.0") {
                 prizeAmountETHTextField.text = String.init(format: "%.2f", EthUtils.convertUSDAmountToEth(usdAmount: usdValue))
+                if self.infiniteBananosSwitch.isOn {
+                    howManyBananosTextField.isEnabled = true
+                    self.howManyBananosTextField.text = "1"
+                    self.infiniteBananosSwitch.isOn = false
+                }
             } else {
                 prizeAmountETHTextField.text = "0.0"
             }
@@ -403,6 +428,13 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
     @objc func switchChanged(switchButton: UISwitch) {
         // Checks if the button is On or Off to disable/enable banano amount textField
         toggleBananoAmountTextField()
+        if switchButton.isOn {
+            self.howManyBananosTextField.text = ""
+            self.prizeAmountUSDTextField.text = "0.0"
+            self.prizeAmountDidChange(textField: self.prizeAmountUSDTextField)
+        } else {
+            self.howManyBananosTextField.text = "1"
+        }
     }
 
     // MARK: - colorPicker
@@ -411,7 +443,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
 
         if newQuest != nil {
             newQuest?.hexColor = selectedColor.hexValue()
-        }else {
+        } else {
             // If newQuest is nil, create a new one and assign the new hexColor
             do {
                 var metadata = [AnyHashable : Any]()
@@ -423,6 +455,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
                 print("Failed to create quest with error: \(error)")
             }
         }
+        self.bananoImageBackground.backgroundColor = selectedColor
     }
 
     func colorPicker(_ colorPicker: ColorPickerController, confirmedColor: UIColor, usingControl: ColorControl) {
@@ -463,26 +496,39 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
     @IBAction func createQuestButtonPressed(_ sender: Any) {
         // Check if the quest inputs are correct.
         if isNewQuestValid(){
-            // Prompt passphrase input to unlock wallet
-            let alertView = requestPassphraseAlertView { (passphrase, error) in
-                if error != nil {
-                    // Show alertView for error if passphrase is nil
-                    let alertView = self.bananoAlertView(title: "Failed", message: "Failed to retrieve passphrase from textfield.")
-                    self.present(alertView, animated: false, completion: nil)
-                }else {
-                    // Retrieve wallet with passphrase
-                    do {
-                        self.currentWallet = try self.currentPlayer?.getWallet(passphrase: passphrase ?? "")
-                        self.createNewQuest()
-                    }catch let error as NSError {
-                        let alertView = self.bananoAlertView(title: "Failed", message: "Failed to retrieve account with passphrase, please try again later.")
-                        self.present(alertView, animated: false, completion: nil)
-                        print("Failed with error: \(error)")
+            self.retrieveGasEstimate { (gasEstimateWei) in
+                if let gasEstimate = gasEstimateWei {
+                    let questPrizeWei = BigInt.init(self.newQuest?.prize ?? "0.0") ?? BigInt.init(0)
+                    let gasEstimateEth = EthUtils.convertWeiToEth(wei: gasEstimate + questPrizeWei)
+                    let gasEstimateUSD = EthUtils.convertEthAmountToUSD(ethAmount: gasEstimateEth)
+                    let message = String.init(format: "Note that the value you have determined as a prize, if any, will be divided by the number of BANANOS allocated for the Quest, giving each Winner a fraction of the total prize. Banano Quest retains %@ of the total prize as comission. Total transaction cost: %@ USD - %@ ETH. Press OK to create your Quest", "10%", String.init(format: "%.4f", gasEstimateUSD), String.init(format: "%.4f", gasEstimateEth))
+                    let txDetailsAlertView = self.bananoAlertView(title: "Transaction Details", message: message) { (uiAlertAction) in
+                        //Prompt passphrase input to unlock wallet
+                        let passphraseAlertView = self.requestPassphraseAlertView { (passphrase, error) in
+                            if error != nil {
+                                // Show alertView for error if passphrase is nil
+                                let alertView = self.bananoAlertView(title: "Failed", message: "Invalid passphrase.")
+                                self.present(alertView, animated: false, completion: nil)
+                            } else {
+                                // Retrieve wallet with passphrase
+                                do {
+                                    self.currentWallet = try self.currentPlayer?.getWallet(passphrase: passphrase ?? "")
+                                    self.createNewQuest()
+                                } catch let error as NSError {
+                                    let alertView = self.bananoAlertView(title: "Failed", message: "Failed to retrieve account with passphrase, please try again later.")
+                                    self.present(alertView, animated: false, completion: nil)
+                                    print("Failed with error: \(error)")
+                                }
+                            }
+                        }
+                        self.present(passphraseAlertView, animated: false, completion: nil)
                     }
+                    self.present(txDetailsAlertView, animated: false, completion: nil)
+                } else {
+                    let alertView = self.bananoAlertView(title: "Error", message: "Error retrieving the transaction costs, please try again.")
+                    self.present(alertView, animated: false, completion: nil)
                 }
             }
-            self.present(alertView, animated: false, completion: nil)
-
         }else {
             let alertView = self.bananoAlertView(title: "Invalid", message: "Invalid quest, please complete the fields properly.")
             self.present(alertView, animated: false, completion: nil)

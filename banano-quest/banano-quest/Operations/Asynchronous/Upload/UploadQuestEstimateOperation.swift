@@ -9,6 +9,7 @@
 import Foundation
 import PocketEth
 import Pocket
+import BigInt
 
 public enum UploadQuestEstimateOperationError: Error {
     case resultParsing
@@ -16,19 +17,19 @@ public enum UploadQuestEstimateOperationError: Error {
 
 public class UploadQuestEstimateOperation: AsynchronousOperation {
     
-    public var estimatedGasWei: Int64?
+    public var estimatedGasWei: BigInt?
     public var tavernAddress: String
     public var tokenAddress: String
     public var questName: String
     public var hint: String
-    public var maxWinners: Int64
+    public var maxWinners: BigInt
     public var merkleRoot: String
     public var merkleBody: String
     public var metadata: String
-    public var wallet: Wallet
-    public var ethPrizeWei: Int64
+    public var ethPrizeWei: BigInt
+    public var playerAddress: String
     
-    public init(wallet: Wallet, tavernAddress: String, tokenAddress: String, questName: String, hint: String, maxWinners: Int64, merkleRoot: String, merkleBody: String, metadata: String, ethPrizeWei: Int64) {
+    public init(playerAddress: String, tavernAddress: String, tokenAddress: String, questName: String, hint: String, maxWinners: BigInt, merkleRoot: String, merkleBody: String, metadata: String, ethPrizeWei: BigInt) {
         self.tavernAddress = tavernAddress
         self.tokenAddress = tokenAddress
         self.questName = questName
@@ -38,7 +39,7 @@ public class UploadQuestEstimateOperation: AsynchronousOperation {
         self.merkleBody = merkleBody
         self.metadata = metadata
         self.ethPrizeWei = ethPrizeWei
-        self.wallet = wallet
+        self.playerAddress = playerAddress
         super.init()
     }
     
@@ -52,15 +53,14 @@ public class UploadQuestEstimateOperation: AsynchronousOperation {
         }
         
         let txParams = [
-            "from": wallet.address,
+            "from": playerAddress,
             "to": tavernAddress,
-            "value": ethPrizeWei,
             "data": "0x" + data
         ] as [AnyHashable: Any]
         
         let params = [
             "rpcMethod": "eth_estimateGas",
-            "rpcParams": [txParams, "latest"]
+            "rpcParams": [txParams]
         ] as [AnyHashable: Any]
         
         guard let query = try? PocketEth.createQuery(params: params, decoder: nil) else {
@@ -82,13 +82,13 @@ public class UploadQuestEstimateOperation: AsynchronousOperation {
                 return
             }
             
-            guard let estimatedGas = Int64(estimatedGasHex, radix: 16) else {
+            guard let estimatedGas = BigInt.init(estimatedGasHex, radix: 16) else {
                 self.error = UploadQuestEstimateOperationError.resultParsing
                 self.finish()
                 return
             }
             
-            self.estimatedGasWei = estimatedGas
+            self.estimatedGasWei = estimatedGas * BigInt.init(1000000000)
             self.finish()
         }
     }

@@ -38,11 +38,19 @@ extension UIViewController {
         return label
     }
 
-    func bananoAlertView(title: String, message: String) -> UIAlertController {
+    func bananoAlertView(title: String, message: String, handler: ((UIAlertAction) -> Void)?) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
-        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction.init(title: "Ok", style: .cancel, handler: handler))
 
+        return alert
+    }
+    
+    func bananoAlertView(title: String, message: String) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        
         return alert
     }
 
