@@ -30,6 +30,15 @@ public class MerkleTree {
         return self.layers
     }
     
+    public func getLayersHex() -> [[String]] {
+        return self.layers.reduce(into: [[String]](), { (result, currLayer) in
+            let currLayerStr = currLayer.map({ (currData) -> String in
+                return currData.toHexString()
+            })
+            result.append(currLayerStr)
+        })
+    }
+    
     public func getProof(leaf: Data) -> [Data] {
         guard var index = getLeaves().index(of: leaf) else {
             return [Data]()
@@ -117,7 +126,8 @@ public class MerkleTree {
         })
     }
     
-    func dataComparison(x: Data, y: Data) -> Bool {
-        return x.constantTimeComparisonTo(y)
+    // Should return true if x < y
+    public func dataComparison(x: Data, y: Data) -> Bool {
+        return x.toHexString() < y.toHexString()
     }
 }

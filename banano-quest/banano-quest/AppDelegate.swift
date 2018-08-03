@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration {
         do {
             let player = try Player.getPlayer(context: CoreDataUtil.mainPersistentContext)
             if let playerAddress = player.address {
+                print("Player Address: \(playerAddress)")
                 let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
                 appInitQueueDispatcher.initDisplatchSequence {
                     let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress, playerAddress: playerAddress)

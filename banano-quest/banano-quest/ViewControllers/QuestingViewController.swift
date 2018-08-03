@@ -69,7 +69,27 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
             self.present(alertView, animated: false, completion: nil)
         }
     }
-    
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        // Location update
+        if locations.count > 0 {
+            guard let location = locations.last else {
+                return
+            }
+            self.currentPlayerLocation = location
+            do {
+                try self.refreshView()
+            }catch let error as NSError {
+                print("Failed to refreshView with error: \(error)")
+            }
+        } else {
+            let alertView = self.bananoAlertView(title: "Error", message: "Failed to get current location.")
+            self.present(alertView, animated: false, completion: nil)
+
+            print("Failed to get current location")
+        }
+    }
+
     func loadQuestList() {
         // Initial load for the local quest list
         do {
@@ -96,7 +116,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
             print("Failed to retrieve quest list with error: \(error)")
         }
     }
-    
+
     func showElements(bool: Bool) {
         DispatchQueue.main.async {
             self.collectionView.isHidden = bool
@@ -105,7 +125,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
             self.completeButton.isHidden = bool
         }
     }
-    
+
     func scrollToPositionedCell(positions: Int) {
         if let currentVisibleCell = self.collectionView.visibleCells.first {
             guard let cellIndexPath = self.collectionView.indexPath(for: currentVisibleCell) else {
@@ -145,7 +165,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         completeButtonPressed(self)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return quests.count == 0 ? 1 : quests.count
     }
@@ -201,17 +221,17 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
             print("Failed to retrieve current quest, returning")
             return
         }
-        
+
         if let quest = currentCell.quest {
             do {
                 let vc = try self.instantiateViewController(identifier: "completeQuestViewControllerID", storyboardName: "Questing") as? CompleteQuestViewController
                 vc?.quest = quest
-                
+
                 self.present(vc!, animated: false, completion: nil)
             }catch let error as NSError {
                 let alert = self.bananoAlertView(title: "Error", message: "Ups, something happened, please try again later.")
                 self.present(alert, animated: false, completion: nil)
-                
+
                 print("Failed to instantiate NewWalletViewController with error: \(error)")
             }
         } else {

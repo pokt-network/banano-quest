@@ -10,23 +10,10 @@ import Foundation
 import MapKit
 import CryptoSwift
 
-extension Data {
-    struct HexEncodingOptions: OptionSet {
-        let rawValue: Int
-        static let upperCase = HexEncodingOptions(rawValue: 1 << 0)
-    }
-    
-    func hexEncodedString(options: HexEncodingOptions = []) -> String {
-        let format = options.contains(.upperCase) ? "%02hhX" : "%02hhx"
-        return map { String(format: format, $0) }.joined()
-    }
-}
-
 struct MatchingMerkleHash {
     var left:String
     var right:String
-    var leftIndex:Int
-    var rightIndex:Int
+    var hashIndex:Int
 }
 
 public struct QuestProofSubmission {
@@ -77,76 +64,86 @@ public class QuestMerkleTree: MerkleTree {
     }
     
     public static func generateQuestProofSubmission(answer: CLLocation, merkleBody: String) -> QuestProofSubmission? {
-        // Setup
+        // Setup answer points
         var result:QuestProofSubmission?
-        let pointHashes = LocationUtils.allPossiblePoints(center: answer, diameterMT: 0.02, gpsCoordIncrements: 0.0001).map { (currPoint) -> String? in
-            if let hexResult = currPoint.concatenatedMagnitudes().data(using: .utf8)?.sha3(.keccak256).toHexString() {
-                return hexResult
+        let optionalConcatenatedPoints = LocationUtils.allPossiblePoints(center: answer, diameterMT: 0.02, gpsCoordIncrements: 0.0001).map { (currPoint) -> Data? in
+            if let concatenated = currPoint.concatenatedMagnitudes().data(using: .utf8)?.sha3(.keccak256) {
+                return concatenated
             } else {
                 return nil
             }
         }
-        let filteredPointHashes = pointHashes.filter { (currPointHash) -> Bool in
-            return currPointHash != nil
+        var concatenatedPoints = optionalConcatenatedPoints.reduce(into: [Data]()) { (result, optionalData) in
+            guard let data = optionalData else {
+                return
+            }
+            result.append(data)
         }
+        concatenatedPoints = concatenatedPoints.sorted(by: { (x, y) -> Bool in
+            return x.toHexString() < y.toHexString()
+        })
+        
         let merkleLayers = merkleBody.split(separator: "-").map { (currLayer) -> [String] in
             return currLayer.components(separatedBy: ",").map({ (currHash) -> String in
-                return currHash.hasPrefix("0x") ? currHash : "0x" + currHash
+                return currHash
             })
         }
-        let reversedMerkleLayers = merkleLayers.reversed()
+        var reversedMerkleLayers = [[String]]()
+        for arrayIndex in 0..<merkleLayers.count {
+            reversedMerkleLayers.append(merkleLayers[(merkleLayers.count - 1) - arrayIndex])
+        }
         let deepestLevel = merkleLayers[merkleLayers.count - 1]
-        var proof = [String]()
         
-        // Get matching leaves
-        let nodeMatches = filteredPointHashes.reduce(into: [MatchingMerkleHash]()) { (matchingNodes, pointHash) in
-            for siblingPointHash in filteredPointHashes {
-                if var hash = pointHash?.data(using: .utf8), let siblingHash = siblingPointHash?.data(using: .utf8) {
-                    if (hash.elementsEqual(siblingHash) == false) {
-                        hash.append(siblingHash)
-                        var combinedHash = hash.sha3(.keccak256).toHexString()
-                        combinedHash = combinedHash.hasPrefix("0x") ? combinedHash : "0x" + combinedHash
-                        if deepestLevel.contains(combinedHash) {
-                            matchingNodes.append(
-                                MatchingMerkleHash.init(
-                                    left: pointHash!,
-                                    right: siblingPointHash!,
-                                    leftIndex: filteredPointHashes.index(of: pointHash)!,
-                                    rightIndex: filteredPointHashes.index(of: siblingPointHash)!
-                                )
+        // Find the matching nodes
+        var nodeMatches = [MatchingMerkleHash]()
+        for hash in concatenatedPoints {
+            for siblingHash in concatenatedPoints {
+                var elemToCompare: Data = Data()
+                elemToCompare.append(hash)
+                elemToCompare.append(siblingHash)
+                elemToCompare = elemToCompare.sha3(.keccak256)
+                let elemToCompareStr = elemToCompare.toHexString()
+                
+                if let deepestLevelIndex = deepestLevel.index(of: elemToCompareStr) {
+                    if deepestLevelIndex >= 0 {
+                        nodeMatches.append(
+                            MatchingMerkleHash.init(
+                                left: hash.toHexString(),
+                                right: siblingHash.toHexString(),
+                                hashIndex: deepestLevelIndex
                             )
-                        }
+                        )
                     }
                 }
             }
         }
         
         // Build submission
+        var submissions = [QuestProofSubmission]()
         if nodeMatches.count > 0 {
-            let match = nodeMatches[0]
-            // Create answer
-            let answer = match.left
-            // Append right as first sibling in the proof
-            proof.append(match.right)
-            
-            // Start going up the tree via this index
-            var index = match.leftIndex
-            
-            for layer in reversedMerkleLayers {
-                let isRightNode = index % 2
-                let pairIndex = isRightNode != 0 ? index - 1 : index + 1
+            for match in nodeMatches {
+                 var proof = [String]()
+                // Create answer
+                let answer = "0x" + match.left
+                // Append right as first sibling in the proof
+                proof.append("0x" + match.right)
                 
-                if pairIndex < layer.count {
-                    proof.append(layer[pairIndex])
+                // Start going up the tree via this index
+                var index = match.hashIndex
+                
+                for layer in reversedMerkleLayers {
+                    let pairIndex = index % 2 == 0 ? index + 1 : index - 1
+                    
+                    if pairIndex < layer.count {
+                        proof.append("0x" + layer[pairIndex])
+                    }
+                    index = (index / 2) | 0
                 }
-                
-                index = (index / 2) | 0
+                submissions.append(QuestProofSubmission.init(answer: answer, proof: proof))
             }
-            
-            result = QuestProofSubmission.init(answer: answer, proof: proof)
         }
         
         
-        return result
+        return submissions.last
     }
 }
