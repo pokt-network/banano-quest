@@ -14,6 +14,10 @@ public struct EthUtils {
     
     public static let unitaryEthToWeiQuotient = 1000000000000000000
     
+    public static func convertUSDAmountToEth(usdAmount: Double) -> Double {
+        return usdAmount / unitaryEthPriceUSD()
+    }
+    
     public static func convertEthAmountToUSD(ethAmount: Double) -> Double {
         return ethAmount * unitaryEthPriceUSD()
     }
