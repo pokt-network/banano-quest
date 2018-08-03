@@ -13,7 +13,6 @@
         <!--Onboarding View Controller-->
         <scene sceneID="EGz-FA-Wyb">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jj2-o9-fkS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="OnboardingViewController" id="q4P-ue-rVC" customClass="OnboardingViewController" customModule="banano_quest" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" bouncesZoom="NO" dataMode="prototypes" id="Oy2-G2-y4B">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -129,6 +128,7 @@
                         <outlet property="collectionView" destination="Oy2-G2-y4B" id="v1H-na-p4M"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jj2-o9-fkS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1964" y="133.5832083958021"/>
         </scene>

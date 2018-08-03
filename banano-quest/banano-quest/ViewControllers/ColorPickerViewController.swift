@@ -22,6 +22,7 @@ class ColorPickerViewController: CustomColorPickerViewController {
         }
     }
     
+    // MARK: View
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -31,12 +32,17 @@ class ColorPickerViewController: CustomColorPickerViewController {
         super.viewWillAppear(animated)
         
     }
-
+    
+    override func refreshView() throws {
+        //
+    }
+    
+    // MARK: IBActions
     @IBAction func backButtonPressed(_ sender: Any) {
         self.dismiss(animated: false, completion: nil)
     }
     
-    override func refreshView() throws {
-        
+    @IBAction func doneButtonPressed(_ sender: Any) {
+        backButtonPressed(sender)
     }
 }

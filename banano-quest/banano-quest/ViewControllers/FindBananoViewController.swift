@@ -62,7 +62,8 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
 
             // We add the annotations that for Banano quest is 1 at a time
             setAnnotations([annotation])
-        } else {
+            
+        }else {
             let alertController = bananoAlertView(title: "Not in range", message: "\(currentQuest?.name ?? "") banano is not within 50 meters of your current location")
             present(alertController, animated: false, completion: nil)
         }
