@@ -494,7 +494,7 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NDT-nL-za0" userLabel="Color Picker View" customClass="RadialPaletteControl" customModule="FlexColorPicker">
-                                <rect key="frame" x="4" y="197" width="367" height="252"/>
+                                <rect key="frame" x="20" y="213" width="335" height="220"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="220" id="nn1-gK-iI6"/>
@@ -519,8 +519,8 @@
                                     <action selector="backButtonPressed:" destination="SBb-hC-hlX" eventType="touchUpInside" id="mXF-hH-hE8"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="COLOR SELECTION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l2a-Z2-1ux" userLabel="Color selection label">
-                                <rect key="frame" x="57" y="51" width="261" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COLOR SELECTION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l2a-Z2-1ux" userLabel="Color selection label">
+                                <rect key="frame" x="112" y="50" width="151.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -554,8 +554,8 @@
                             <constraint firstItem="k43-fr-8QT" firstAttribute="centerX" secondItem="lKA-01-Q6J" secondAttribute="centerX" id="jh2-NX-Oqq"/>
                             <constraint firstItem="l2a-Z2-1ux" firstAttribute="centerX" secondItem="lKA-01-Q6J" secondAttribute="centerX" id="nWl-7Y-vuE"/>
                             <constraint firstAttribute="bottom" secondItem="pNm-lC-8G0" secondAttribute="bottom" constant="-70" id="t6M-fW-u9L"/>
+                            <constraint firstItem="l2a-Z2-1ux" firstAttribute="top" secondItem="lKA-01-Q6J" secondAttribute="top" constant="30" id="u6j-Li-z3F"/>
                             <constraint firstItem="lKA-01-Q6J" firstAttribute="trailing" secondItem="pNm-lC-8G0" secondAttribute="trailing" id="uV1-Op-ksY"/>
-                            <constraint firstItem="l2a-Z2-1ux" firstAttribute="top" secondItem="lKA-01-Q6J" secondAttribute="top" constant="31" id="wtD-7T-34I"/>
                             <constraint firstItem="ik8-l6-hVQ" firstAttribute="leading" secondItem="J7L-5J-PrC" secondAttribute="leading" id="yfe-AD-QqN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lKA-01-Q6J"/>
