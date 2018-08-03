@@ -13,7 +13,7 @@ import Pocket
 import MapKit
 import BigInt
 
-class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFieldDelegate {
+class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextViewDelegate {
     // UI Elements
     @IBOutlet weak var addLocationButton: UIButton!
     @IBOutlet weak var bananoImageBackground: UIImageView!
@@ -24,7 +24,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
     @IBOutlet weak var prizeAmountETHTextField: UITextField!
     @IBOutlet weak var howManyBananosTextField: UITextField!
     @IBOutlet weak var hintTextView: UITextView!
-    @IBOutlet weak var isTherePrizeSwitch: UISwitch!
+    @IBOutlet weak var infiniteBananosSwitch: UISwitch!
     @IBOutlet weak var hintTextCountLabel: UILabel!
     @IBOutlet weak var currentUSDBalanceLabel: UILabel!
     @IBOutlet weak var currentETHBalanceLabel: UILabel!
@@ -36,6 +36,9 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
     var currentPlayer: Player?
     var currentWallet: Wallet?
     var selectedLocation = [AnyHashable: Any]()
+    
+    // Constants
+    let maxHintSize = 280
 
     // Notifications
     static let notificationName = Notification.Name("getLocation")
@@ -62,19 +65,6 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        // UI Setup
-        bananoImageBackground.layer.cornerRadius = bananoImageBackground.frame.size.width / 2
-        prizeAmountETHTextField.delegate = self
-
-        // Prize switch toggle action
-        isTherePrizeSwitch.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
-
-        // Gesture recognizer that dismiss the keyboard when tapped outside
-        let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        tapOutside.cancelsTouchesInView = false
-
-        view.addGestureRecognizer(tapOutside)
-
         do {
             try refreshView()
         } catch let error as NSError {
@@ -85,9 +75,6 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
     override func refreshView() throws {
         // UI Settings
         defaultUIElementsStyle()
-
-        // Prize is enabled by default
-        isPrizeEnabled(bool: true)
 
         // Set current player balance
         refreshPlayerBalance()
@@ -130,6 +117,15 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
     }
 
     func defaultUIElementsStyle() {
+        // Gesture recognizer that dismiss the keyboard when tapped outside
+        let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        tapOutside.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapOutside)
+        
+        bananoImageBackground.layer.cornerRadius = bananoImageBackground.frame.size.width / 2
+        
+        infiniteBananosSwitch.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
+        
         addColorButton.layer.cornerRadius = addColorButton.frame.size.width / 2
         addColorButton.layer.borderWidth = 1
         addColorButton.layer.borderColor = UIColor.clear.cgColor
@@ -141,16 +137,22 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
         questNameTextField.layer.borderWidth = 1
         questNameTextField.layer.borderColor = UIColor.clear.cgColor
 
+        prizeAmountUSDTextField.addTarget(self, action: #selector(prizeAmountDidChange), for: UIControlEvents.editingChanged)
+        
         prizeAmountETHTextField.layer.borderWidth = 1
         prizeAmountETHTextField.layer.borderColor = UIColor.clear.cgColor
 
         howManyBananosTextField.layer.borderWidth = 1
         howManyBananosTextField.layer.borderColor = UIColor.clear.cgColor
 
+        hintTextView.delegate = self
+        if (hintTextView.text.isEmpty) {
+            hintTextView.text = "Insert a clue about where the BANANO will be hidden"
+            hintTextView.textColor = UIColor.lightGray
+        }
         hintTextView.layer.borderWidth = 2.0
         hintTextView.layer.cornerRadius = 5
         hintTextView.layer.borderColor = UIColor(red: (253/255), green: (204/255), blue: (48/255), alpha: 1.0).cgColor
-
     }
 
     func enableElements(bool: Bool) {
@@ -158,13 +160,14 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
         addColorButton.isEnabled = bool
         questNameTextField.isEnabled = bool
         prizeAmountETHTextField.isEnabled = bool
-        isTherePrizeSwitch.isEnabled = bool
+        infiniteBananosSwitch.isEnabled = bool
         hintTextView.isEditable = bool
     }
 
     func isNewQuestValid() -> Bool {
         var isValid = [Bool]()
-
+        
+        // Validate quest name
         if (questNameTextField.text ?? "").isEmpty {
             questNameTextField.layer.borderColor = UIColor.red.cgColor
             isValid.append(false)
@@ -172,34 +175,41 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
             questNameTextField.layer.borderColor = UIColor.clear.cgColor
             newQuest?.name = questNameTextField.text ?? ""
         }
-        if (howManyBananosTextField.text ?? "0.0").isEmpty {
-            howManyBananosTextField.layer.borderColor = UIColor.red.cgColor
+        
+        // Validate eth prize
+        let ethAmount = Double(prizeAmountETHTextField.text ?? "0.0") ?? 0.0
+        let weiAmount = EthUtils.convertEthToWei(eth: ethAmount)
+        if (prizeAmountETHTextField.text ?? "0.0").isEmpty {
+            prizeAmountETHTextField.layer.borderColor = UIColor.red.cgColor
             isValid.append(false)
-        }else {
-            howManyBananosTextField.layer.borderColor = UIColor.clear.cgColor
-            newQuest?.maxWinners = String.init(BigInt.init(howManyBananosTextField.text ?? "0") ?? BigInt.init(0))
-
+        } else {
+            prizeAmountETHTextField.layer.borderColor = UIColor.clear.cgColor
+            newQuest?.prize = String.init(weiAmount)
         }
 
-        if isTherePrizeSwitch.isOn {
-            if (prizeAmountETHTextField.text ?? "0.0").isEmpty {
-                prizeAmountETHTextField.layer.borderColor = UIColor.red.cgColor
+        // Validate banano amount
+        if infiniteBananosSwitch.isOn {
+            newQuest?.maxWinners = String.init(BigInt.init(0))
+        } else {
+            if (howManyBananosTextField.text ?? "0.0").isEmpty {
+                howManyBananosTextField.layer.borderColor = UIColor.red.cgColor
                 isValid.append(false)
             }else {
-                prizeAmountETHTextField.layer.borderColor = UIColor.clear.cgColor
-                let ethAmount = Double(prizeAmountETHTextField.text ?? "0.0") ?? 0.0
-                let weiAmount = EthUtils.convertEthToWei(eth: ethAmount)
-                newQuest?.prize = String.init(weiAmount)
+                howManyBananosTextField.layer.borderColor = UIColor.clear.cgColor
+                newQuest?.maxWinners = String.init(BigInt.init(howManyBananosTextField.text ?? "0") ?? BigInt.init(0))
             }
         }
 
-        if (hintTextView.text ?? "").isEmpty || hintTextView.text == "HINT GOES HERE" {
+        // Validate quest hint
+        if (hintTextView.text ?? "").isEmpty || hintTextView.text.count > maxHintSize {
             hintTextView.layer.borderColor = UIColor.red.cgColor
             isValid.append(false)
-        }else {
+        } else {
             hintTextView.layer.borderColor = UIColor(red: (253/255), green: (204/255), blue: (48/255), alpha: 1.0).cgColor
             newQuest?.hint = hintTextView.text
         }
+        
+        // Validate hex color
         if newQuest?.hexColor == nil {
             addColorButton.layer.borderColor = UIColor.red.cgColor
             isValid.append(false)
@@ -210,6 +220,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
         // Setup merkleTree
         setupMerkleTree()
 
+        // Validate merkle tree
         if newQuest?.merkleRoot.isEmpty ?? false || newQuest?.merkleRoot == nil {
             addLocationButton.layer.borderColor = UIColor.red.cgColor
             isValid.append(false)
@@ -219,21 +230,17 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
         if newQuest?.merkleBody.isEmpty ?? false || newQuest?.merkleBody == nil{
             addLocationButton.layer.borderColor = UIColor.red.cgColor
             isValid.append(false)
-        }else{
+        } else {
             addLocationButton.layer.borderColor = UIColor.clear.cgColor
         }
 
-        if let _ = setupMetadata() {
-            isValid.append(true)
-        } else {
+        // Validate quest metadata
+        if setupMetadata() == nil {
             isValid.append(false)
         }
-
-        if isValid.contains(false) {
-            return false
-        }else {
-            return true
-        }
+        
+        // Return valid response
+        return !isValid.contains(false)
     }
 
     func presentQuestListView() {
@@ -375,19 +382,27 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
             self.present(alertView, animated: false, completion: nil)
         }
     }
-
-    func isPrizeEnabled(bool: Bool) {
-        // Enables/Disables prize text field
-        prizeAmountETHTextField.isEnabled = bool
+    
+    func toggleBananoAmountTextField() {
+        howManyBananosTextField.isEnabled = !howManyBananosTextField.isEnabled
+    }
+    
+    // MARK: - Selectors
+    @objc func prizeAmountDidChange(textField: UITextField) {
+        if textField.text != "0.0" {
+            if let usdValue = Double(textField.text ?? "0.0") {
+                prizeAmountETHTextField.text = String.init(format: "%.2f", EthUtils.convertUSDAmountToEth(usdAmount: usdValue))
+            } else {
+                prizeAmountETHTextField.text = "0.0"
+            }
+        } else {
+            prizeAmountETHTextField.text = "0.0"
+        }
     }
 
     @objc func switchChanged(switchButton: UISwitch) {
-        // Checks if the button is On or Off to disable/enable prize textFields
-        if switchButton.isOn {
-            isPrizeEnabled(bool: true)
-        }else {
-            isPrizeEnabled(bool: false)
-        }
+        // Checks if the button is On or Off to disable/enable banano amount textField
+        toggleBananoAmountTextField()
     }
 
     // MARK: - colorPicker
@@ -473,17 +488,60 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextFi
             self.present(alertView, animated: false, completion: nil)
         }
     }
-
-    // MARK: - IBActions
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == prizeAmountETHTextField {
-            if prizeAmountETHTextField.text != "0.0" {
-                if let ethValue = Double(prizeAmountETHTextField.text ?? "0.0") {
-                    prizeAmountUSDTextField.text = "\(EthUtils.convertEthAmountToUSD(ethAmount: ethValue))"
-                }
-            }else{
-                prizeAmountUSDTextField.text = "0.0"
+    
+    // MARK: - TextViewDelegate
+    // Credit: https://stackoverflow.com/questions/27652227/text-view-placeholder-swift
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        // Combine the textView text and the replacement text to
+        // create the updated text string
+        let currentText:String = textView.text
+        let updatedText = (currentText as NSString).replacingCharacters(in: range, with: text)
+        
+        // If updated text view will be empty, add the placeholder
+        // and set the cursor to the beginning of the text view
+        if updatedText.isEmpty {
+            textView.text = "Insert a clue about where the BANANO will be hidden"
+            textView.textColor = UIColor.lightGray
+            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
+        }
+            
+            // Else if the text view's placeholder is showing and the
+            // length of the replacement string is greater than 0, set
+            // the text color to black then set its text to the
+            // replacement string
+        else if textView.textColor == UIColor.lightGray && !text.isEmpty {
+            textView.textColor = UIColor.black
+            textView.text = text
+        }
+            
+            // For every other case, the text should change with the usual
+            // behavior...
+        else {
+            return true
+        }
+        
+        // ...otherwise return false since the updates have already
+        // been made
+        return false
+    }
+    
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        if self.view.window != nil {
+            if textView.textColor == UIColor.lightGray {
+                textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
             }
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        // Update text length indicator
+        let textLength = textView.text.count
+        hintTextCountLabel.text = String.init(format: "%i/%i", textLength, maxHintSize)
+        if textLength > maxHintSize {
+            hintTextCountLabel.textColor = UIColor.red
+        } else {
+            hintTextCountLabel.textColor = UIColor.black
         }
     }
 }
