@@ -25,6 +25,7 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var prizeLabel: UILabel!
     @IBOutlet weak var questNameLabel: UILabel!
+    @IBOutlet weak var completeButton: UIButton!
     
     var locationManager = CLLocationManager()
     var currentUserLocation: CLLocation?
@@ -71,12 +72,20 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
     
     override func refreshView() throws {
         // Details view
-        if let maxWinnersDouble = Double.init(quest?.maxWinners ?? "0.0") {
+        let maxWinnersDouble = Double.init(quest?.maxWinners ?? "0.0")
+        
+        if maxWinnersDouble != 0.0 {
             let weiAmount = BigInt.init(quest?.prize ?? "0") ?? BigInt.init(0)
-            let prizeValue = EthUtils.convertWeiToEth(wei: weiAmount) / maxWinnersDouble
+            let prizeValue = EthUtils.convertWeiToEth(wei: weiAmount) / maxWinnersDouble!
             prizeValueLabel.text = "\(prizeValue) ETH"
         } else {
-            prizeValueLabel.text = "No ETH Prize"
+            prizeValueLabel.text = "NA"
+        }
+        
+        if isQuestCreator() {
+            completeButton.isEnabled = false
+        } else {
+            completeButton.isEnabled = true
         }
         
         let bananoColor = UIColor(hexString: quest?.hexColor ?? "31AADE")
@@ -86,6 +95,46 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
         distanceValueLabel.text = "20M"
         questDetailTextView.text = quest?.hint
         questNameLabel.text = quest?.name
+    }
+    
+    // MARK: Tools
+    // Is player the quest creator?
+    func isQuestCreator() -> Bool {
+        do {
+            let player = try Player.getPlayer(context: BaseUtil.mainContext)
+            if quest?.creator == player.address {
+                return true
+            }
+        } catch let error as NSError {
+            print("CompleteQuestViewController - isQuestCreator() - Failed to retrieve player information with error: \(error)")
+        }
+        return false
+    }
+    
+    // Present Find Banano VC
+    func presentFindBananoViewController(proof: QuestProofSubmission) {
+        do {
+            let vc = try instantiateViewController(identifier: "findBananoViewControllerID", storyboardName: "Questing") as? FindBananoViewController
+            vc?.questProof = proof
+            vc?.currentQuest = quest
+            vc?.currentUserLocation = currentUserLocation
+            
+            present(vc!, animated: false, completion: nil)
+        } catch let error as NSError {
+            print("Failed to instantiate FindBananoViewController with error: \(error)")
+        }
+    }
+    
+    // Check if the user is near quest banano
+    func checkIfNearBanano() {
+        guard let merkle = QuestMerkleTree.generateQuestProofSubmission(answer: currentUserLocation!, merkleBody: (quest?.merkleBody)!) else {
+            let alertView = bananoAlertView(title: "Not in range", message: "Sorry, the banano location isn't nearby")
+            present(alertView, animated: false, completion: nil)
+            
+            return
+        }
+        // Show the Banano :D
+        presentFindBananoViewController(proof: merkle)
     }
     
     // MARK: LocationManager
@@ -147,32 +196,6 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
             print("user denied your app access to Location Services, but can grant access from Settings.app")
             break
         }
-    }
-    // MARK: Tools
-    // Present Find Banano VC
-    func presentFindBananoViewController(proof: QuestProofSubmission) {
-        do {
-            let vc = try instantiateViewController(identifier: "findBananoViewControllerID", storyboardName: "Questing") as? FindBananoViewController
-            vc?.questProof = proof
-            vc?.currentQuest = quest
-            vc?.currentUserLocation = currentUserLocation
-            
-            present(vc!, animated: false, completion: nil)
-        } catch let error as NSError {
-            print("Failed to instantiate FindBananoViewController with error: \(error)")
-        }
-    }
-    
-    // Check if the user is near quest banano
-    func checkIfNearBanano() {
-        guard let merkle = QuestMerkleTree.generateQuestProofSubmission(answer: currentUserLocation!, merkleBody: (quest?.merkleBody)!) else {
-            let alertView = bananoAlertView(title: "Not in range", message: "Sorry, the banano location isn't nearby")
-            present(alertView, animated: false, completion: nil)
-            
-            return
-        }
-        // Show the Banano :D
-        presentFindBananoViewController(proof: merkle)
     }
     
     // MARK: IBActions

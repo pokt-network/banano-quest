@@ -21,7 +21,8 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     var currentIndex = 0
     var locationManager = CLLocationManager()
     var currentPlayerLocation: CLLocation?
-
+    
+    // MARK: View
     override func viewDidLoad() {
         super.viewDidLoad()
         // Quest list
@@ -43,7 +44,18 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
             print("Failed to refresh view with error: \(error)")
         }
     }
-
+    
+    override func refreshView() throws {
+        // Every UI refresh should be done here
+        if self.quests.isEmpty {
+            loadQuestList()
+        }
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    // MARK: Tools
     func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
@@ -57,27 +69,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
             self.present(alertView, animated: false, completion: nil)
         }
     }
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // Location update
-        if locations.count > 0 {
-            guard let location = locations.last else {
-                return
-            }
-            self.currentPlayerLocation = location
-            do {
-                try self.refreshView()
-            }catch let error as NSError {
-                print("Failed to refreshView with error: \(error)")
-            }
-        } else {
-            let alertView = self.bananoAlertView(title: "Error", message: "Failed to get current location.")
-            self.present(alertView, animated: false, completion: nil)
-
-            print("Failed to get current location")
-        }
-    }
-
+    
     func loadQuestList() {
         // Initial load for the local quest list
         do {
@@ -100,21 +92,11 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         } catch {
             let alert = self.bananoAlertView(title: "Error", message: "Failed to retrieve quest list with error:")
             self.present(alert, animated: false, completion: nil)
-
+            
             print("Failed to retrieve quest list with error: \(error)")
         }
     }
-
-    override func refreshView() throws {
-        // Every UI refresh should be done here
-        if self.quests.isEmpty {
-            loadQuestList()
-        }
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-        }
-    }
-
+    
     func showElements(bool: Bool) {
         DispatchQueue.main.async {
             self.collectionView.isHidden = bool
@@ -123,7 +105,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
             self.completeButton.isHidden = bool
         }
     }
-
+    
     func scrollToPositionedCell(positions: Int) {
         if let currentVisibleCell = self.collectionView.visibleCells.first {
             guard let cellIndexPath = self.collectionView.indexPath(for: currentVisibleCell) else {
@@ -137,15 +119,33 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
             }
         }
     }
+    
+    // MARK: Location
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        // Location update
+        if locations.count > 0 {
+            guard let location = locations.last else {
+                return
+            }
+            self.currentPlayerLocation = location
+            do {
+                try self.refreshView()
+            }catch let error as NSError {
+                print("Failed to refreshView with error: \(error)")
+            }
+        } else {
+            let alertView = self.bananoAlertView(title: "Error", message: "Failed to get current location.")
+            self.present(alertView, animated: false, completion: nil)
 
-    @IBAction func nextButtonPressed(_ sender: Any) {
-        scrollToPositionedCell(positions: 1)
+            print("Failed to get current location")
+        }
     }
-
-    @IBAction func previousButtonPressed(_ sender: Any) {
-        scrollToPositionedCell(positions: -1)
+    
+    // MARK: CollectionView
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        completeButtonPressed(self)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return quests.count == 0 ? 1 : quests.count
     }
@@ -173,6 +173,16 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
 
         return cell
     }
+    
+    // MARK: IBActions
+    @IBAction func nextButtonPressed(_ sender: Any) {
+        scrollToPositionedCell(positions: 1)
+    }
+    
+    @IBAction func previousButtonPressed(_ sender: Any) {
+        scrollToPositionedCell(positions: -1)
+    }
+    
     @IBAction func menuButtonPressed(_ sender: Any) {
         if let container = self.so_containerViewController {
             container.isSideViewControllerPresented = true

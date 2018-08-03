@@ -494,7 +494,7 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NDT-nL-za0" userLabel="Color Picker View" customClass="RadialPaletteControl" customModule="FlexColorPicker">
-                                <rect key="frame" x="20" y="213" width="335" height="220"/>
+                                <rect key="frame" x="4" y="197" width="367" height="252"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="220" id="nn1-gK-iI6"/>
@@ -519,6 +519,23 @@
                                     <action selector="backButtonPressed:" destination="SBb-hC-hlX" eventType="touchUpInside" id="mXF-hH-hE8"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="COLOR SELECTION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l2a-Z2-1ux" userLabel="Color selection label">
+                                <rect key="frame" x="57" y="51" width="261" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k9b-Lz-kdV" userLabel="Done button">
+                                <rect key="frame" x="137" y="559" width="100" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="5TJ-cg-63I"/>
+                                    <constraint firstAttribute="width" constant="100" id="sMg-gX-W12"/>
+                                </constraints>
+                                <state key="normal" image="DONE BUTTON"/>
+                                <connections>
+                                    <action selector="doneButtonPressed:" destination="SBb-hC-hlX" eventType="touchUpInside" id="7LN-Kx-dWp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -532,9 +549,13 @@
                             <constraint firstItem="NDT-nL-za0" firstAttribute="centerX" secondItem="lKA-01-Q6J" secondAttribute="centerX" id="L39-QJ-wbG"/>
                             <constraint firstItem="ik8-l6-hVQ" firstAttribute="top" secondItem="J7L-5J-PrC" secondAttribute="top" id="SRy-5C-2aG"/>
                             <constraint firstItem="zhq-h4-D6N" firstAttribute="top" secondItem="lKA-01-Q6J" secondAttribute="top" id="VMX-kb-E2T"/>
+                            <constraint firstItem="k9b-Lz-kdV" firstAttribute="top" secondItem="pNm-lC-8G0" secondAttribute="top" constant="15" id="WnC-8i-dRP"/>
+                            <constraint firstItem="k9b-Lz-kdV" firstAttribute="centerX" secondItem="pNm-lC-8G0" secondAttribute="centerX" id="j3T-me-drB"/>
                             <constraint firstItem="k43-fr-8QT" firstAttribute="centerX" secondItem="lKA-01-Q6J" secondAttribute="centerX" id="jh2-NX-Oqq"/>
+                            <constraint firstItem="l2a-Z2-1ux" firstAttribute="centerX" secondItem="lKA-01-Q6J" secondAttribute="centerX" id="nWl-7Y-vuE"/>
                             <constraint firstAttribute="bottom" secondItem="pNm-lC-8G0" secondAttribute="bottom" constant="-70" id="t6M-fW-u9L"/>
                             <constraint firstItem="lKA-01-Q6J" firstAttribute="trailing" secondItem="pNm-lC-8G0" secondAttribute="trailing" id="uV1-Op-ksY"/>
+                            <constraint firstItem="l2a-Z2-1ux" firstAttribute="top" secondItem="lKA-01-Q6J" secondAttribute="top" constant="31" id="wtD-7T-34I"/>
                             <constraint firstItem="ik8-l6-hVQ" firstAttribute="leading" secondItem="J7L-5J-PrC" secondAttribute="leading" id="yfe-AD-QqN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lKA-01-Q6J"/>
@@ -596,6 +617,7 @@
         <image name="ARROWx1" width="28" height="28"/>
         <image name="CIRCLE STAMP x1" width="280" height="280"/>
         <image name="CREATE-QUEST-BUTTON-x1" width="318" height="139"/>
+        <image name="DONE BUTTON" width="166" height="139"/>
         <image name="MAP-BLUEx1" width="57" height="57"/>
         <image name="MENUX1" width="57" height="57"/>
         <image name="SAMALL BANNERx1" width="750" height="330"/>

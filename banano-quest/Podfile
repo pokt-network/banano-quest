@@ -14,7 +14,7 @@ target 'banano-quest' do
   pod 'SidebarOverlay'
   pod 'FlexColorPicker', :git => 'https://github.com/RastislavMirek/FlexColorPicker', :branch => 'master'
   pod 'SwiftHEXColors'
-  
+    
   target 'banano-questTests' do
     inherit! :search_paths
     # Pods for testing
@@ -26,3 +26,12 @@ target 'banano-quest' do
   end
 
 end
+
+post_install do |installer|
+    installer.pods_project.build_configurations.each do |config|
+        config.build_settings.delete('CODE_SIGNING_ALLOWED')
+        config.build_settings.delete('CODE_SIGNING_REQUIRED')
+    end
+end
+
+
