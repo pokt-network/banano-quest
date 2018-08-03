@@ -92,10 +92,10 @@ public struct LocationUtils {
     // As long as the points are close enough and in a regular shape (square and rect) this should work
     public static func getRegularCentroid(points: [CLLocation]) -> CLLocation {
         let sumLat = points.reduce(into: 0.0) { (result, currPoint) in
-            result += currPoint.coordinate.latitude.magnitude
+            result += currPoint.coordinate.latitude
         }
         let sumLon = points.reduce(into: 0.0) { (result, currPoint) in
-            result += currPoint.coordinate.longitude.magnitude
+            result += currPoint.coordinate.longitude
         }
         let avgLat = sumLat/4
         let avgLon = sumLon/4

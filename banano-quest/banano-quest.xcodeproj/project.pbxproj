@@ -69,6 +69,7 @@
 		C572CFBD20EF920B009428C2 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572CFBC20EF920B009428C2 /* UIViewController+extension.swift */; };
 		C5DF9B0520E3E89C00B8D170 /* QuestDownloadParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF9B0420E3E89C00B8D170 /* QuestDownloadParsing.swift */; };
 		C5F50A9120ED4FB0005BAF9F /* BaseUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F50A9020ED4FB0005BAF9F /* BaseUtil.swift */; };
+		C5F9368D2114FE7200083C2E /* QuestAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F9368C2114FE7200083C2E /* QuestAnnotation.swift */; };
 		C5FA598221077C3A004FB3E0 /* FindBananoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FA598121077C3A004FB3E0 /* FindBananoViewController.swift */; };
 		C5FA599321077D3F004FB3E0 /* ARAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FA598521077D3E004FB3E0 /* ARAnnotation.swift */; };
 		C5FA599421077D3F004FB3E0 /* ARTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FA598621077D3E004FB3E0 /* ARTrackingManager.swift */; };
@@ -186,6 +187,7 @@
 		C572CFBC20EF920B009428C2 /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
 		C5DF9B0420E3E89C00B8D170 /* QuestDownloadParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestDownloadParsing.swift; sourceTree = "<group>"; };
 		C5F50A9020ED4FB0005BAF9F /* BaseUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUtil.swift; sourceTree = "<group>"; };
+		C5F9368C2114FE7200083C2E /* QuestAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestAnnotation.swift; sourceTree = "<group>"; };
 		C5FA598121077C3A004FB3E0 /* FindBananoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindBananoViewController.swift; sourceTree = "<group>"; };
 		C5FA598521077D3E004FB3E0 /* ARAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAnnotation.swift; sourceTree = "<group>"; };
 		C5FA598621077D3E004FB3E0 /* ARTrackingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARTrackingManager.swift; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 				C5FAB66620E2B4FD00057041 /* Quest+CoreDataProperties.swift */,
 				C5FAB66720E2B4FD00057041 /* Winners+CoreDataClass.swift */,
 				C5FAB66820E2B4FD00057041 /* Winners+CoreDataProperties.swift */,
+				C5F9368C2114FE7200083C2E /* QuestAnnotation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -839,6 +842,7 @@
 				63091D8220E3FB7B002253E5 /* CompleteQuestViewController.swift in Sources */,
 				10A5600A21037FF700B85950 /* UploadQuestProofEstimateOperation.swift in Sources */,
 				C5FA599721077D3F004FB3E0 /* ARViewController.swift in Sources */,
+				C5F9368D2114FE7200083C2E /* QuestAnnotation.swift in Sources */,
 				1098FD1D2102764400E76682 /* DownloadQuestAmountOperation.swift in Sources */,
 				63091D8020E3D48C002253E5 /* QuestCollectionViewCell.swift in Sources */,
 				10A5600E21038B2600B85950 /* DownloadEthUsdPriceOperation.swift in Sources */,
