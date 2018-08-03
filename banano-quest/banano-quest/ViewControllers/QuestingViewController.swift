@@ -70,26 +70,6 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         }
     }
 
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // Location update
-        if locations.count > 0 {
-            guard let location = locations.last else {
-                return
-            }
-            self.currentPlayerLocation = location
-            do {
-                try self.refreshView()
-            }catch let error as NSError {
-                print("Failed to refreshView with error: \(error)")
-            }
-        } else {
-            let alertView = self.bananoAlertView(title: "Error", message: "Failed to get current location.")
-            self.present(alertView, animated: false, completion: nil)
-
-            print("Failed to get current location")
-        }
-    }
-
     func loadQuestList() {
         // Initial load for the local quest list
         do {

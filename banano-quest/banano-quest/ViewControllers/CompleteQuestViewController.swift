@@ -197,32 +197,6 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate {
             break
         }
     }
-    // MARK: Tools
-    // Present Find Banano VC
-    func presentFindBananoViewController(proof: QuestProofSubmission) {
-        do {
-            let vc = try instantiateViewController(identifier: "findBananoViewControllerID", storyboardName: "Questing") as? FindBananoViewController
-            vc?.questProof = proof
-            vc?.currentQuest = quest
-            vc?.currentUserLocation = currentUserLocation
-
-            present(vc!, animated: false, completion: nil)
-        } catch let error as NSError {
-            print("Failed to instantiate FindBananoViewController with error: \(error)")
-        }
-    }
-
-    // Check if the user is near quest banano
-    func checkIfNearBanano() {
-        guard let merkle = QuestMerkleTree.generateQuestProofSubmission(answer: currentUserLocation!, merkleBody: (quest?.merkleBody)!) else {
-            let alertView = bananoAlertView(title: "Not in range", message: "Sorry, the banano location isn't nearby")
-            present(alertView, animated: false, completion: nil)
-
-            return
-        }
-        // Show the Banano :D
-        presentFindBananoViewController(proof: merkle)
-    }
 
     // MARK: IBActions
     @IBAction func backButtonPressed(_ sender: Any) {
