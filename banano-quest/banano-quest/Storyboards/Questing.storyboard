@@ -417,6 +417,9 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="390" id="J4B-Fu-a9R"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="FEo-B9-WlX" id="tcJ-X6-Mxt"/>
+                                </connections>
                             </mapView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BOTTOM BANNERx1" translatesAutoresizingMaskIntoConstraints="NO" id="qfJ-tM-jpQ" userLabel="Bottom banner">
                                 <rect key="frame" x="0.0" y="263.5" width="375" height="200"/>

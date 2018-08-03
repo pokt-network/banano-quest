@@ -494,7 +494,7 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NDT-nL-za0" userLabel="Color Picker View" customClass="RadialPaletteControl" customModule="FlexColorPicker">
-                                <rect key="frame" x="20" y="213" width="335" height="220"/>
+                                <rect key="frame" x="4" y="197" width="367" height="252"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="220" id="nn1-gK-iI6"/>
