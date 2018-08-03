@@ -171,7 +171,6 @@ public class Quest: NSManagedObject {
         dict["merkleRoot"] = merkleRoot
         dict["merkleBody"] = merkleBody
         dict["metadata"] = metadata
-        dict["winners"] = winners?.dictionary()
         dict["winnersAmount"] = winnersAmount
         dict["claimersAmount"] = claimersAmount
         dict["winner"] = winner

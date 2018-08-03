@@ -27,7 +27,6 @@ extension Quest {
     @NSManaged public var maxWinners: String
     @NSManaged public var index: String
     @NSManaged public var prize: String?
-    @NSManaged public var winners: Winners?
     @NSManaged public var winnersAmount: String
     @NSManaged public var claimersAmount: String
     @NSManaged public var metadata: String

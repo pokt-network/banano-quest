@@ -36,20 +36,14 @@
         <attribute name="valid" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="winner" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="winnersAmount" attributeType="String" customClassName="BigIntTransformable" syncable="YES"/>
-        <relationship name="winners" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Winners" inverseName="quest" inverseEntity="Winners" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="index"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="Winners" representedClassName="Winners" syncable="YES">
-        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="quest" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Quest" inverseName="winners" inverseEntity="Quest" syncable="YES"/>
-    </entity>
     <elements>
         <element name="Player" positionX="-56" positionY="213" width="128" height="120"/>
-        <element name="Quest" positionX="-441" positionY="-18" width="128" height="405"/>
-        <element name="Winners" positionX="-54" positionY="27" width="128" height="75"/>
+        <element name="Quest" positionX="-441" positionY="-18" width="128" height="390"/>
     </elements>
 </model>
