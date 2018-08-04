@@ -9,6 +9,7 @@
 import Foundation
 import PocketEth
 import Pocket
+import BigInt
 
 public enum UploadQuestProofEstimateOperationError: Error {
     case resultParsing
@@ -16,18 +17,18 @@ public enum UploadQuestProofEstimateOperationError: Error {
 
 public class UploadQuestProofEstimateOperation: AsynchronousOperation {
     
-    public var estimatedGasWei: Int64?
+    public var estimatedGasWei: BigInt?
     public var tavernAddress: String
     public var tokenAddress: String
-    public var questIndex: Int64
+    public var questIndex: BigInt
     public var proof: [String]
     public var answer: String
-    public var wallet: Wallet
+    public var playerAddress: String
     
-    public init(wallet: Wallet, tavernAddress: String, tokenAddress: String, questIndex: Int64, proof: [String], answer: String) {
+    public init(playerAddress: String, tavernAddress: String, tokenAddress: String, questIndex: BigInt, proof: [String], answer: String) {
         self.tavernAddress = tavernAddress
         self.tokenAddress = tokenAddress
-        self.wallet = wallet
+        self.playerAddress = playerAddress
         self.questIndex = questIndex
         self.proof = proof
         self.answer = answer
@@ -36,7 +37,11 @@ public class UploadQuestProofEstimateOperation: AsynchronousOperation {
     
     open override func main() {
         let functionABI = "{\"constant\":false,\"inputs\":[{\"name\":\"_tokenAddress\",\"type\":\"address\"},{\"name\":\"_questIndex\",\"type\":\"uint256\"},{\"name\":\"_proof\",\"type\":\"bytes32[]\"},{\"name\":\"_answer\",\"type\":\"bytes32\"}],\"name\":\"submitProof\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}"
-        let functionParameters = [tokenAddress, questIndex, proof, answer] as [AnyObject]
+        var functionParameters = [AnyObject]()
+        functionParameters.append(tokenAddress as AnyObject)
+        functionParameters.append(questIndex as AnyObject)
+        functionParameters.append(proof as AnyObject)
+        functionParameters.append(answer as AnyObject)
         guard let data = try? PocketEth.encodeFunction(functionABI: functionABI, parameters: functionParameters).toHexString() else {
             self.error = PocketPluginError.queryCreationError("Query creation error")
             self.finish()
@@ -44,13 +49,13 @@ public class UploadQuestProofEstimateOperation: AsynchronousOperation {
         }
         
         let txParams = [
-            "from": wallet.address,
+            "from": playerAddress,
             "to": tavernAddress,
             "data": "0x" + data
         ] as [AnyHashable: Any]
         let params = [
             "rpcMethod": "eth_estimateGas",
-            "rpcParams": [txParams, "latest"]
+            "rpcParams": [txParams]
         ] as [AnyHashable: Any]
         
         guard let query = try? PocketEth.createQuery(params: params, decoder: nil) else {
@@ -72,13 +77,13 @@ public class UploadQuestProofEstimateOperation: AsynchronousOperation {
                 return
             }
             
-            guard let estimatedGas = Int64(estimatedGasHex, radix: 16) else {
+            guard let estimatedGas = BigInt.init(estimatedGasHex, radix: 16) else {
                 self.error = UploadQuestProofEstimateOperationError.resultParsing
                 self.finish()
                 return
             }
             
-            self.estimatedGasWei = estimatedGas
+            self.estimatedGasWei = estimatedGas * BigInt.init(1000000000)
             self.finish()
         }
     }
