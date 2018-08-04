@@ -11,8 +11,8 @@ import Foundation
 public struct AppConfiguration {
     
     // TODO pull this from "environment"
-    public static let tavernAddress = "0xcd4b7ed0c227fa259e8851fafed9bc88430eebab"
-    public static let bananoTokenAddress = "0x822b22c36b07a116affaf294484697cff8a505e7"
+    public static let tavernAddress = "0xd480083db34e8c87987652ee90f41ddb311f37ff"
+    public static let bananoTokenAddress = "0x75ff16d15dfe4c3a92c97f11ff41644d790035a2"
     public static let chainID = 4
     private static let displayedOnboardingKey = "displayedOnboarding"
     
