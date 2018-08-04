@@ -170,18 +170,61 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
     }
 
     @IBAction func claimButtonPressed(_ sender: Any) {
-        // Claim
-        let alertView = requestPassphraseAlertView { (passphrase, error) in
-            if passphrase != nil {
-                self.claimBanano(passphrase: passphrase! )
-            }
-            if error != nil {
-                let alertController = self.bananoAlertView(title: "ups!", message: "We failed to get that, please try again")
-
+        self.retrieveGasEstimate { (gasEstimateWei) in
+            if let gasEstimate = gasEstimateWei {
+                let gasEstimateEth = EthUtils.convertWeiToEth(wei: gasEstimate)
+                let gasEstimateUSD = EthUtils.convertEthAmountToUSD(ethAmount: gasEstimateEth)
+                let message = String.init(format: "Total transaction cost: %@ USD - %@ ETH. Press OK to create your Quest", String.init(format: "%.4f", gasEstimateUSD), String.init(format: "%.4f", gasEstimateEth))
+                
+                let txDetailsAlertView = self.bananoAlertView(title: "Transaction Details", message: message) { (uiAlertAction) in
+                    let alertView = self.requestPassphraseAlertView { (passphrase, error) in
+                        if passphrase != nil {
+                            self.claimBanano(passphrase: passphrase! )
+                        }
+                        if error != nil {
+                            let alertController = self.bananoAlertView(title: "ups!", message: "We failed to get that, please try again")
+                            self.present(alertController, animated: false, completion: nil)
+                        }
+                    }
+                    self.present(alertView, animated: false, completion: nil)
+                }
+                self.present(txDetailsAlertView, animated: false, completion: nil)
+            } else {
+                let alertController = self.bananoAlertView(title: "Error", message: "Failed to calculate your transaction details and costs, please try again")
                 self.present(alertController, animated: false, completion: nil)
+                return
             }
         }
-        present(alertView, animated: false, completion: nil)
-
+    }
+    
+    func retrieveGasEstimate(handler: @escaping (BigInt?) -> Void) {
+        do {
+            let player = try Player.getPlayer(context: CoreDataUtil.mainPersistentContext)
+            guard let questIndexStr = currentQuest?.index else {
+                let alertController = self.bananoAlertView(title: "Error", message: "Failed to retrieve your account data, please try again")
+                self.present(alertController, animated: false, completion: nil)
+                return
+            }
+            guard let proof = questProof?.proof else {
+                let alertController = self.bananoAlertView(title: "Error", message: "Failed to retrieve your account data, please try again")
+                self.present(alertController, animated: false, completion: nil)
+                return
+            }
+            guard let answer = questProof?.answer else {
+                let alertController = self.bananoAlertView(title: "Error", message: "Failed to retrieve your account data, please try again")
+                self.present(alertController, animated: false, completion: nil)
+                return
+            }
+            let operationQueue = OperationQueue.init()
+            let gasEstimateOperation = UploadQuestProofEstimateOperation.init(playerAddress: player.address!, tavernAddress: AppConfiguration.tavernAddress, tokenAddress: AppConfiguration.bananoTokenAddress, questIndex: BigInt.init(questIndexStr)!, proof: proof, answer: answer)
+            gasEstimateOperation.completionBlock = {
+                handler(gasEstimateOperation.estimatedGasWei)
+            }
+            operationQueue.addOperations([gasEstimateOperation], waitUntilFinished: false)
+        } catch {
+            let alertController = self.bananoAlertView(title: "Error", message: "Failed to retrieve your account data, please try again")
+            self.present(alertController, animated: false, completion: nil)
+            return
+        }
     }
 }
