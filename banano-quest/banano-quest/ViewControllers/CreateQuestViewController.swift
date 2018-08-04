@@ -161,6 +161,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
         if (hintTextView.text.isEmpty) {
             hintTextView.text = "Insert a clue about where the BANANO will be hidden"
             hintTextView.textColor = UIColor.lightGray
+            hintTextView.selectedTextRange = hintTextView.textRange(from: hintTextView.beginningOfDocument, to: hintTextView.beginningOfDocument)
         }
         hintTextView.layer.borderWidth = 2.0
         hintTextView.layer.cornerRadius = 5
@@ -221,7 +222,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
         }
 
         // Validate quest hint
-        if (hintTextView.text ?? "").isEmpty || hintTextView.text.count > maxHintSize {
+        if (hintTextView.text ?? "").isEmpty || hintTextView.text.count > maxHintSize || hintTextView.textColor == UIColor.lightGray {
             hintTextView.layer.borderColor = UIColor.red.cgColor
             isValid.append(false)
         } else {
