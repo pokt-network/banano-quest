@@ -38,7 +38,8 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
         // Map settings
         mapView.showsUserLocation = true
         mapView.showsCompass = true
-
+        mapView.isZoomEnabled = false
+        
         // Location Manager settings
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
@@ -52,15 +53,6 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
         // Background settings
         bananoBackground.layer.cornerRadius = bananoBackground.frame.size.width / 2
         bananoBackground.clipsToBounds = true
-
-        // Checks is location services are enabled to start updating location
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.startUpdatingLocation()
-        }else{
-            let alertView = self.bananoAlertView(title: "Error", message: "Location services are disabled, please enable before trying again.")
-            self.present(alertView, animated: false, completion: nil)
-            print("Location services are disabled, please enable before trying again.")
-        }
 
         // Refresh view
         do {
@@ -95,40 +87,62 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
         distanceValueLabel.text = "20M"
         questDetailTextView.text = quest?.hint
         questNameLabel.text = quest?.name
-
-        // Quest Quadrant
-        if let corners = quest?.getQuadranHintCorners() {
-            let location = LocationUtils.getRegularCentroid(points: corners)
-
-            let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-
-            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-
-            self.mapView.setRegion(region, animated: true)
-
-            // show artwork on map
-            let questArea = QuestAnnotation(title: "\(quest?.name ?? "NONE")",
-                locationName: "Quest area",
-                coordinate: location.coordinate, image: #imageLiteral(resourceName: "QUEST-AREA"))
-
-            mapView.addAnnotation(questArea)
-
-            // User location
-            if currentUserLocation != nil {
-                let annotation = MKPointAnnotation()
-                annotation.coordinate = currentUserLocation?.coordinate ?? CLLocationCoordinate2D.init()
-                annotation.title = "You"
-
-                mapView.addAnnotation(annotation)
-            }
-
-        } else {
-            print("Failed to get quest quadrant")
-        }
-
+        
+        // Quest quadrant setup
+        setQuestQuadrant()
     }
 
     // MARK: Tools
+    // Present Find Banano VC
+    func presentFindBananoViewController(proof: QuestProofSubmission) {
+        do {
+            let vc = try instantiateViewController(identifier: "findBananoViewControllerID", storyboardName: "Questing") as? FindBananoViewController
+            vc?.questProof = proof
+            vc?.currentQuest = quest
+            vc?.currentUserLocation = currentUserLocation
+            
+            present(vc!, animated: false, completion: nil)
+        } catch let error as NSError {
+            print("Failed to instantiate FindBananoViewController with error: \(error)")
+        }
+    }
+    
+    // Check if the user is near quest banano
+    func checkIfNearBanano() {
+        guard let merkle = QuestMerkleTree.generateQuestProofSubmission(answer: currentUserLocation!, merkleBody: (quest?.merkleBody)!) else {
+            let alertView = bananoAlertView(title: "Not in range", message: "Sorry, the banano location isn't nearby")
+            present(alertView, animated: false, completion: nil)
+            
+            return
+        }
+        // Show the Banano :D
+        presentFindBananoViewController(proof: merkle)
+    }
+    
+    // Quest quadrant
+    func setQuestQuadrant() {
+        // Quest Quadrant
+        if let corners = quest?.getQuadranHintCorners() {
+            let location = LocationUtils.getRegularCentroid(points: corners)
+            
+            let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            
+            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            
+            self.mapView.setRegion(region, animated: true)
+            
+            // show quadrant on map
+            let questArea = QuestAnnotation(title: "\(quest?.name ?? "NONE")",
+                locationName: "Quest area",
+                coordinate: location.coordinate, image: #imageLiteral(resourceName: "QUEST-AREA"))
+            
+            mapView.addAnnotation(questArea)
+            
+        } else {
+            print("Failed to get quest quadrant")
+        }
+    }
+    
     // Is player the quest creator?
     func isQuestCreator() -> Bool {
         do {
@@ -149,30 +163,6 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // Location update
-        if locations.count > 0 {
-            let location = locations.last!
-
-            currentUserLocation = location
-
-            print("Accuracy: \(location.horizontalAccuracy)")
-            if location.horizontalAccuracy < 100 {
-
-                manager.stopUpdatingLocation()
-                // span: is how much it should zoom into the user location
-                let span = MKCoordinateSpan(latitudeDelta: 0.014, longitudeDelta: 0.014)
-                let region = MKCoordinateRegion(center: location.coordinate, span: span)
-                // updates map with current user location
-                mapView.region = region
-
-            }else{
-                print("Location accuracy is not under 100 meters, skipping...")
-            }
-        }else{
-            let alertView = self.bananoAlertView(title: "Error", message: "Failed to get current location.")
-            self.present(alertView, animated: false, completion: nil)
-
-            print("Failed to get current location")
-        }
     }
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -205,13 +195,13 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
 
     // MARK: MKMapView
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKPointAnnotation {
-            return MKAnnotationView()
+        if annotation is MKUserLocation {
+            return nil
         }
 
         let annotationIdentifier = "AnnotationIdentifier"
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier)
-
+        
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
             annotationView!.canShowCallout = false
@@ -221,35 +211,9 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
             annotationView!.annotation = annotation
             annotationView!.image = #imageLiteral(resourceName: "QUEST-AREA")
         }
-
+        annotationView?.canShowCallout = false
+        
         return annotationView
-    }
-
-    // MARK: Tools
-    // Present Find Banano VC
-    func presentFindBananoViewController(proof: QuestProofSubmission) {
-        do {
-            let vc = try instantiateViewController(identifier: "findBananoViewControllerID", storyboardName: "Questing") as? FindBananoViewController
-            vc?.questProof = proof
-            vc?.currentQuest = quest
-            vc?.currentUserLocation = currentUserLocation
-
-            present(vc!, animated: false, completion: nil)
-        } catch let error as NSError {
-            print("Failed to instantiate FindBananoViewController with error: \(error)")
-        }
-    }
-
-    // Check if the user is near quest banano
-    func checkIfNearBanano() {
-        guard let merkle = QuestMerkleTree.generateQuestProofSubmission(answer: currentUserLocation!, merkleBody: (quest?.merkleBody)!) else {
-            let alertView = bananoAlertView(title: "Not in range", message: "Sorry, the banano location isn't nearby")
-            present(alertView, animated: false, completion: nil)
-
-            return
-        }
-        // Show the Banano :D
-        presentFindBananoViewController(proof: merkle)
     }
 
     // MARK: IBActions
