@@ -111,7 +111,7 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
     func claimBanano(passphrase: String) {
 
         do {
-            let player = try Player.getPlayer(context: BaseUtil.mainContext)
+            let player = try Player.getPlayer(context: CoreDataUtils.mainPersistentContext)
             let wallet = try player.getWallet(passphrase: passphrase)
 
             guard let questIndex = BigInt.init(currentQuest?.index ?? "0") else {
@@ -199,7 +199,7 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
     
     func retrieveGasEstimate(handler: @escaping (BigInt?) -> Void) {
         do {
-            let player = try Player.getPlayer(context: CoreDataUtil.mainPersistentContext)
+            let player = try Player.getPlayer(context: CoreDataUtils.mainPersistentContext)
             guard let questIndexStr = currentQuest?.index else {
                 let alertController = self.bananoAlertView(title: "Error", message: "Failed to retrieve your account data, please try again")
                 self.present(alertController, animated: false, completion: nil)

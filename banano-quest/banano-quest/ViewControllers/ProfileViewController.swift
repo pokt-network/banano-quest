@@ -25,7 +25,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
         do {
-            currentPlayer = try Player.getPlayer(context: BaseUtil.mainContext)
+            currentPlayer = try Player.getPlayer(context: CoreDataUtils.mainPersistentContext)
         } catch let error as NSError {
             print("Failed to retrieve current player with error: \(error)")
         }
@@ -136,7 +136,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     func loadPlayerCompletedQuests() {
         // Initial load for the local quest list
         do {
-            self.quests = try Quest.questsWonByPlayer(context: CoreDataUtil.mainPersistentContext)
+            self.quests = try Quest.questsWonByPlayer(context: CoreDataUtils.mainPersistentContext)
             if self.quests.count != 0 {
                 try self.refreshView()
             }

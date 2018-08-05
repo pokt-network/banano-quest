@@ -151,7 +151,7 @@ public class Quest: NSManagedObject {
         let fetchRequest = NSFetchRequest<Quest>(entityName: "Quest")
         
         do {
-            quests = try BaseUtil.mainContext.fetch(fetchRequest) as [Quest]
+            quests = try CoreDataUtils.mainPersistentContext.fetch(fetchRequest) as [Quest]
             handler(quests,nil)
         }
         catch let error as NSError {

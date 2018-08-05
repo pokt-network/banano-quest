@@ -80,7 +80,7 @@ public class DownloadAndUpdateQuestIsWinnerOperation: AsynchronousOperation {
             }
             
             do {
-                let context = CoreDataUtil.backgroundPersistentContext
+                let context = CoreDataUtils.backgroundPersistentContext
                 guard let quest = Quest.getQuestByIndex(questIndex: String.init(self.questIndex), context: context) else {
                     self.error = DownloadAndUpdateQuestIsWinnerOperationError.updating
                     self.finish()

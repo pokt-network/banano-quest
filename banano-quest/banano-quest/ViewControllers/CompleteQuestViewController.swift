@@ -146,7 +146,7 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
     // Is player the quest creator?
     func isQuestCreator() -> Bool {
         do {
-            let player = try Player.getPlayer(context: BaseUtil.mainContext)
+            let player = try Player.getPlayer(context: CoreDataUtils.mainPersistentContext)
             if quest?.creator == player.address {
                 return true
             }

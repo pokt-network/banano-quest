@@ -26,7 +26,7 @@ public class UpdatePlayerOperation: SynchronousOperation {
     }
     
     open override func main() {
-        let context = CoreDataUtil.backgroundPersistentContext
+        let context = CoreDataUtils.backgroundPersistentContext
         context.performAndWait {
             do {
                 let player = try Player.getPlayer(context: context)

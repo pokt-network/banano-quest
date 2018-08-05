@@ -65,7 +65,6 @@ public class QuestMerkleTree: MerkleTree {
     
     public static func generateQuestProofSubmission(answer: CLLocation, merkleBody: String) -> QuestProofSubmission? {
         // Setup answer points
-        var result:QuestProofSubmission?
         let optionalConcatenatedPoints = LocationUtils.allPossiblePoints(center: answer, diameterMT: 0.02, gpsCoordIncrements: 0.0001).map { (currPoint) -> Data? in
             if let concatenated = currPoint.concatenatedMagnitudes().data(using: .utf8)?.sha3(.keccak256) {
                 return concatenated

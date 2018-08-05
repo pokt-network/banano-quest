@@ -1,5 +1,5 @@
 //
-//  CoreDataUtil.swift
+//  CoreDataUtils.swift
 //  banano-quest
 //
 //  Created by Luis De Leon on 7/23/18.
@@ -9,11 +9,11 @@
 import Foundation
 import CoreData
 
-public enum CoreDataUtilError: Error {
+public enum CoreDataUtilsError: Error {
     case appDelegateError
 }
 
-public struct CoreDataUtil {
+public struct CoreDataUtils {
     
     private static var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "BananoQuest")
@@ -26,7 +26,7 @@ public struct CoreDataUtil {
     }()
     
     private static func createManagedObjectContext(mergePolicy: NSMergePolicy, concurrencyType: NSManagedObjectContextConcurrencyType) -> NSManagedObjectContext {
-        let persistentContainer = CoreDataUtil.persistentContainer
+        let persistentContainer = CoreDataUtils.persistentContainer
         let managedObjectContext = NSManagedObjectContext(concurrencyType: concurrencyType)
         managedObjectContext.persistentStoreCoordinator = persistentContainer.persistentStoreCoordinator
         managedObjectContext.mergePolicy = mergePolicy
@@ -34,15 +34,15 @@ public struct CoreDataUtil {
     }
     
     public static var mainPersistentContext: NSManagedObjectContext = {
-        return CoreDataUtil.createManagedObjectContext(mergePolicy: .mergeByPropertyObjectTrump, concurrencyType: .mainQueueConcurrencyType)
+        return CoreDataUtils.createManagedObjectContext(mergePolicy: .mergeByPropertyObjectTrump, concurrencyType: .mainQueueConcurrencyType)
     }()
     
     public static var backgroundPersistentContext: NSManagedObjectContext = {
-        return CoreDataUtil.createManagedObjectContext(mergePolicy: .mergeByPropertyObjectTrump, concurrencyType: .privateQueueConcurrencyType)
+        return CoreDataUtils.createManagedObjectContext(mergePolicy: .mergeByPropertyObjectTrump, concurrencyType: .privateQueueConcurrencyType)
     }()
     
     public static func createBackgroundPersistentContext() -> NSManagedObjectContext {
-        return CoreDataUtil.createManagedObjectContext(mergePolicy: .mergeByPropertyObjectTrump, concurrencyType: .privateQueueConcurrencyType)
+        return CoreDataUtils.createManagedObjectContext(mergePolicy: .mergeByPropertyObjectTrump, concurrencyType: .privateQueueConcurrencyType)
     }
     
 }
