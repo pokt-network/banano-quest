@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '11.4'
+platform :ios, '11.4'
 
 target 'banano-quest' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -14,6 +14,7 @@ target 'banano-quest' do
   pod 'SidebarOverlay'
   pod 'FlexColorPicker', :git => 'https://github.com/RastislavMirek/FlexColorPicker', :branch => 'master'
   pod 'SwiftHEXColors'
+  pod 'BiometricAuthentication'
     
   target 'banano-questTests' do
     inherit! :search_paths

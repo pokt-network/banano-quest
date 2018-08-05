@@ -1,6 +1,7 @@
 PODS:
   - BigInt (3.1.0):
     - SipHash (~> 1.2)
+  - BiometricAuthentication (2.0.2)
   - CryptoSwift (0.10.0)
   - FlexColorPicker (1.1)
   - libsodium (1.0.12)
@@ -37,6 +38,7 @@ PODS:
     - secp256k1_ios (~> 0.1.3)
 
 DEPENDENCIES:
+  - BiometricAuthentication
   - CryptoSwift
   - FlexColorPicker (from `https://github.com/RastislavMirek/FlexColorPicker`, branch `master`)
   - Pocket (from `https://github.com/pokt-network/pocket-ios-sdk.git`, branch `master`)
@@ -49,6 +51,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - BigInt
+    - BiometricAuthentication
     - CryptoSwift
     - libsodium
     - PromiseKit
@@ -91,6 +94,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
+  BiometricAuthentication: ce2f923d4df7a4b340e154137e7b47e544abc1ae
   CryptoSwift: 6c778d69282bed3b4e975ff97a79d074f20bb011
   FlexColorPicker: 795d037b14af62c0fb353a505662846e92296abe
   libsodium: 9a8faa5ef2fa0d2d57bd7f7d79bf8fb7c1a9f0ea
@@ -106,6 +110,6 @@ SPEC CHECKSUMS:
   SwiftKeychainWrapper: fe63ac0e19acd227aa031043de5a8f88a3ff23da
   web3swift: a1db39ac09f6538adb248e2011911348cc88c2c3
 
-PODFILE CHECKSUM: 5894dd8e00808c0ed7a8651e08ee54b40a1b0128
+PODFILE CHECKSUM: 502326932f01dead91ca8afbb9cbbb56d4786b60
 
 COCOAPODS: 1.5.3
