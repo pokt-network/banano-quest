@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration {
 
         // Launch Queue Dispatchers
         do {
-            let player = try Player.getPlayer(context: CoreDataUtil.mainPersistentContext)
+            let player = try Player.getPlayer(context: CoreDataUtils.mainPersistentContext)
             if let playerAddress = player.address {
                 print("Player Address: \(playerAddress)")
                 let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)

@@ -73,7 +73,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     func loadQuestList() {
         // Initial load for the local quest list
         do {
-            self.quests = try Quest.sortedQuestsByIndex(context: CoreDataUtil.mainPersistentContext)
+            self.quests = try Quest.sortedQuestsByIndex(context: CoreDataUtils.mainPersistentContext)
             if self.quests.count == 0 {
                 DispatchQueue.main.async {
                     self.showElements(bool: true)

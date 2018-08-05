@@ -23,7 +23,7 @@ class LandingViewController: UIViewController {
 
     func launchQuesting() {
         do {
-            try _ = Player.getPlayer(context: CoreDataUtil.mainPersistentContext)
+            try _ = Player.getPlayer(context: CoreDataUtils.mainPersistentContext)
         } catch PlayerPersistenceError.retrievalError {
             // Player doesn't exist, redirect to wallet creation flow
             launchWalletCreation()

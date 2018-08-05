@@ -49,13 +49,13 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
 
         // Initial Quest setup
         do {
-            newQuest = try Quest.init(obj: [:], context: BaseUtil.mainContext)
+            newQuest = try Quest.init(obj: [:], context: CoreDataUtils.mainPersistentContext)
         } catch let error as NSError {
             print("Failed to create quest with error: \(error)")
         }
         // Get current player
         do {
-            currentPlayer = try Player.getPlayer(context: BaseUtil.mainContext)
+            currentPlayer = try Player.getPlayer(context: CoreDataUtils.mainPersistentContext)
         } catch {
             print("Failed to retrieve current player")
         }
@@ -95,7 +95,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
     
     func refreshPlayerBalance() {
         do {
-            let player = try Player.getPlayer(context: CoreDataUtil.mainPersistentContext)
+            let player = try Player.getPlayer(context: CoreDataUtils.mainPersistentContext)
             let playerBalanceStr = player.balanceWei
             guard let playerBalanceBigInt = BigInt.init(playerBalanceStr) else {
                 blankBalanceLabels()
@@ -450,8 +450,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
                 var metadata = [AnyHashable : Any]()
                 metadata["hexColor"] = selectedColor.hexValue()
 
-                //try newQuest = Quest(obj: [AnyHashable : Any](), metadata: metadata, context: BaseUtil.mainContext)
-                try newQuest = Quest.init(obj: [:], context: BaseUtil.mainContext)
+                try newQuest = Quest.init(obj: [:], context: CoreDataUtils.mainPersistentContext)
             } catch let error as NSError {
                 print("Failed to create quest with error: \(error)")
             }

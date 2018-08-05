@@ -37,7 +37,7 @@ public struct EthUtils {
         var result = 0.0
         var player: Player?
         do {
-            player = try Player.getPlayer(context: CoreDataUtil.mainPersistentContext)
+            player = try Player.getPlayer(context: CoreDataUtils.mainPersistentContext)
         } catch {
             return result
         }
