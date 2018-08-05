@@ -17,6 +17,8 @@ class NewWalletViewController: UIViewController {
     @IBOutlet weak var addBalanceButton: UIButton!
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var createButton: UIButton!
+    
+    var createdPlayer: Player?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,11 +79,13 @@ class NewWalletViewController: UIViewController {
         // Create the player
         do {
             let player = try Player.createPlayer(walletPassphrase: passphrase)
-            self.addressLabel.text = player.address
-            self.present(self.bananoAlertView(title: "Success", message: "Account created succesfully"), animated: true, completion: nil)
-            continueButton.isEnabled = true
-            addBalanceButton.isEnabled = true
             if let playerAddress = player.address {
+                createdPlayer = player
+                self.addressLabel.text = playerAddress
+                self.present(self.bananoAlertView(title: "Success", message: "Account created succesfully"), animated: true, completion: nil)
+                continueButton.isEnabled = true
+                addBalanceButton.isEnabled = true
+                
                 let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
                 appInitQueueDispatcher.initDisplatchSequence {
                     let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress, playerAddress: playerAddress)
@@ -100,6 +104,8 @@ class NewWalletViewController: UIViewController {
                         })
                     })
                 }
+            } else {
+                self.present(self.bananoAlertView(title: "Error", message: "Error creating your account, please try again"), animated: true, completion: nil)
             }
         } catch let error as NSError {
             print("Failed to create wallet with error: \(error)")
@@ -109,6 +115,10 @@ class NewWalletViewController: UIViewController {
     }
 
     @IBAction func continuePressed(_ sender: Any) {
+        guard let _ = createdPlayer else {
+            self.present(self.bananoAlertView(title: "Error", message: "Please enter your passphrase and press Create"), animated: true, completion: nil)
+            return
+        }
         do {
             let vc = try self.instantiateViewController(identifier: "ContainerVC", storyboardName: "Questing") as? ContainerViewController
             self.navigationController?.pushViewController(vc!, animated: false)
