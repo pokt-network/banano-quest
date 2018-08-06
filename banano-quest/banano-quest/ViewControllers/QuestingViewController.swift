@@ -80,7 +80,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
                     let label = self.showLabelWith(message: "No Quests available, please try again later...")
                     self.view.addSubview(label)
                 }
-            }else {
+            } else {
                 self.showElements(bool: false)
                 do {
                     try self.refreshView()
@@ -88,7 +88,6 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
                     print("Failed to refreshView with error: \(error)")
                 }
             }
-            print("quests found")
         } catch {
             let alert = self.bananoAlertView(title: "Error", message: "Failed to retrieve quest list with error:")
             self.present(alert, animated: false, completion: nil)

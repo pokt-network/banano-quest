@@ -65,16 +65,22 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
 
     // MARK: - IBActions
     @IBAction func copyAddressButtonPressed(_ sender: Any) {
-        if walletAddressLabel.text?.isEmpty ?? true {
-            let alertView = bananoAlertView(title: "Error:", message: "Address field is empty, please try again later")
-            present(alertView, animated: false, completion: nil)
-
+        let showError = {
+            let alertView = self.bananoAlertView(title: "Error:", message: "Address field is empty, please try again later")
+            self.present(alertView, animated: false, completion: nil)
+        }
+        guard let isAddressEmpty = walletAddressLabel.text?.isEmpty else {
+            showError()
             return
         }
-
-        let alertView = bananoAlertView(title: "Success:", message: "Your Address has been copied to the clipboard.")
-        present(alertView, animated: false, completion: nil)
-        UIPasteboard.general.string = walletAddressLabel.text
+        if isAddressEmpty {
+            showError()
+            return
+        } else {
+            let alertView = bananoAlertView(title: "Success:", message: "Your Address has been copied to the clipboard.")
+            present(alertView, animated: false, completion: nil)
+            UIPasteboard.general.string = walletAddressLabel.text
+        }
     }
 
     @IBAction func menuPressed(_ sender: Any) {
