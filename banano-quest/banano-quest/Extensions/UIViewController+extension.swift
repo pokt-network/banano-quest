@@ -8,6 +8,16 @@
 
 import Foundation
 import UIKit
+import Pocket
+
+public typealias PlayerWalletAuthSuccessHandler = (Wallet) -> Void
+public typealias PlayerWalletAuthErrorHandler = (Error) -> Void
+
+public enum PlayerWalletAuthError: Error {
+    case invalidPassPhrase
+    case invalidWallet
+    case invalidPlayerAddress
+}
 
 public enum UIViewControllerError: Error {
     case refreshViewNotImplemented
@@ -51,23 +61,6 @@ extension UIViewController {
         
         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
         
-        return alert
-    }
-
-    func requestPassphraseAlertView(handler: @escaping passphraseRequestHandler) -> UIAlertController {
-        let alert = UIAlertController(title: "Wallet Passphrase", message: "", preferredStyle: .alert)
-        alert.addTextField { (textField) in
-            textField.placeholder = "Passphrase"
-        }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in
-            if let passphraseTextField = alert.textFields?.first {
-                handler(passphraseTextField.text, nil)
-            }else {
-                handler(nil, "Failed to retrieve passphraseTextField" as? Error)
-            }
-        }))
-
         return alert
     }
 
@@ -127,5 +120,60 @@ extension UIViewController {
                 }
             })
         }
+    }
+    
+    // MARK: - Wallet auth
+    func resolvePlayerWalletAuth(player: Player, successHandler: @escaping PlayerWalletAuthSuccessHandler, errorHandler: @escaping PlayerWalletAuthErrorHandler) {
+        guard let playerAddress = player.address else {
+            errorHandler(PlayerWalletAuthError.invalidPlayerAddress)
+            return
+        }
+        
+        // Check wheter or not biometrics is available
+        if BiometricsUtils.biometricsAvailable && BiometricsUtils.biometricRecordExists(playerAddress: playerAddress) {
+            BiometricsUtils.retrieveWalletWithBiometricAuth(successHandler: successHandler, errorHandler: errorHandler)
+        } else {
+            let alertView = self.requestPassphraseAlertView { (passPhrase, error) in
+                if let error = error {
+                    errorHandler(error)
+                    return
+                }
+                
+                guard let passPhrase = passPhrase else {
+                    errorHandler(PlayerWalletAuthError.invalidPassPhrase)
+                    return
+                }
+                
+                do {
+                    guard let wallet = try player.getWallet(passphrase: passPhrase) else {
+                        errorHandler(PlayerWalletAuthError.invalidWallet)
+                        return
+                    }
+                    successHandler(wallet)
+                } catch {
+                    errorHandler(error)
+                    print("\(error)")
+                }
+                
+            }
+            self.present(alertView, animated: true, completion: nil)
+        }
+    }
+    
+    func requestPassphraseAlertView(handler: @escaping passphraseRequestHandler) -> UIAlertController {
+        let alert = UIAlertController(title: "Wallet Passphrase", message: "Please input your Wallet's passphrase", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.placeholder = "Passphrase"
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in
+            if let passphraseTextField = alert.textFields?.first {
+                handler(passphraseTextField.text, nil)
+            }else {
+                handler(nil, "Failed to retrieve passphraseTextField" as? Error)
+            }
+        }))
+        
+        return alert
     }
 }
