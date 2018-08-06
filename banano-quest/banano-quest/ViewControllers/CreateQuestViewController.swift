@@ -327,7 +327,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
         enableElements(bool: false)
 
         // Let the user knows and present Quest list
-        let alertView = UIAlertController(title: "Success", message: "Quest creation submitted successfully, we will let you know when it's done :D .", preferredStyle: .alert)
+        let alertView = UIAlertController(title: "Success", message: "Quest creation submitted successfully, we will let you know when it's done", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in
             self.presentQuestListView()
         }))
@@ -503,25 +503,17 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
                     let gasEstimateUSD = EthUtils.convertEthAmountToUSD(ethAmount: gasEstimateEth)
                     let message = String.init(format: "Note that the value you have determined as a prize, if any, will be divided by the number of BANANOS allocated for the Quest, giving each Winner a fraction of the total prize. Banano Quest retains %@ of the total prize as comission. Total transaction cost: %@ USD - %@ ETH. Press OK to create your Quest", "10%", String.init(format: "%.4f", gasEstimateUSD), String.init(format: "%.4f", gasEstimateEth))
                     let txDetailsAlertView = self.bananoAlertView(title: "Transaction Details", message: message) { (uiAlertAction) in
-                        //Prompt passphrase input to unlock wallet
-                        let passphraseAlertView = self.requestPassphraseAlertView { (passphrase, error) in
-                            if error != nil {
-                                // Show alertView for error if passphrase is nil
-                                let alertView = self.bananoAlertView(title: "Failed", message: "Invalid passphrase.")
-                                self.present(alertView, animated: false, completion: nil)
-                            } else {
-                                // Retrieve wallet with passphrase
-                                do {
-                                    self.currentWallet = try self.currentPlayer?.getWallet(passphrase: passphrase ?? "")
-                                    self.createNewQuest()
-                                } catch let error as NSError {
-                                    let alertView = self.bananoAlertView(title: "Failed", message: "Failed to retrieve account with passphrase, please try again later.")
-                                    self.present(alertView, animated: false, completion: nil)
-                                    print("Failed with error: \(error)")
-                                }
-                            }
+                        guard let player = self.currentPlayer else {
+                            self.present(self.bananoAlertView(title: "Error", message: "Player account not found, please try again"), animated: true, completion: nil)
+                            return
                         }
-                        self.present(passphraseAlertView, animated: false, completion: nil)
+                        
+                        self.resolvePlayerWalletAuth(player: player, successHandler: { (wallet) in
+                            self.currentWallet = wallet
+                            self.createNewQuest()
+                        }, errorHandler: { (error) in
+                             self.present(self.bananoAlertView(title: "Error", message: "An error ocurred accessing your account, please try again"), animated: true, completion: nil)
+                        })
                     }
                     self.present(txDetailsAlertView, animated: false, completion: nil)
                 } else {
