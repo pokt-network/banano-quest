@@ -11,6 +11,7 @@ import UIKit
 import ARKit
 import MapKit
 import BigInt
+import Pocket
 
 class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDelegate {
     @IBOutlet weak var claimButton: UIButton!
@@ -108,11 +109,10 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
         present(alertView, animated: false, completion: nil)
     }
 
-    func claimBanano(passphrase: String) {
+    func claimBanano(wallet: Wallet) {
 
         do {
             let player = try Player.getPlayer(context: CoreDataUtils.mainPersistentContext)
-            let wallet = try player.getWallet(passphrase: passphrase)
 
             guard let questIndex = BigInt.init(currentQuest?.index ?? "0") else {
                 claimFailedAlertView()
@@ -141,7 +141,7 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
             let nonceOperation = DownloadTransactionCountOperation.init(address: playerAddress)
             nonceOperation.completionBlock = {
                 if let transactionCount = nonceOperation.transactionCount {
-                    let claimOperation = UploadQuestProofOperation.init(wallet: wallet!, transactionCount: transactionCount, tavernAddress: AppConfiguration.tavernAddress, tokenAddress: AppConfiguration.bananoTokenAddress, questIndex: questIndex, proof: proof, answer: answer)
+                    let claimOperation = UploadQuestProofOperation.init(wallet: wallet, transactionCount: transactionCount, tavernAddress: AppConfiguration.tavernAddress, tokenAddress: AppConfiguration.bananoTokenAddress, questIndex: questIndex, proof: proof, answer: answer)
 
                     claimOperation.completionBlock = {
                         if claimOperation.txHash != nil {
@@ -177,16 +177,18 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
                 let message = String.init(format: "Total transaction cost: %@ USD - %@ ETH. Press OK to create your Quest", String.init(format: "%.4f", gasEstimateUSD), String.init(format: "%.4f", gasEstimateEth))
                 
                 let txDetailsAlertView = self.bananoAlertView(title: "Transaction Details", message: message) { (uiAlertAction) in
-                    let alertView = self.requestPassphraseAlertView { (passphrase, error) in
-                        if passphrase != nil {
-                            self.claimBanano(passphrase: passphrase! )
-                        }
-                        if error != nil {
-                            let alertController = self.bananoAlertView(title: "ups!", message: "We failed to get that, please try again")
-                            self.present(alertController, animated: false, completion: nil)
-                        }
+                    do {
+                        let player = try Player.getPlayer(context: CoreDataUtils.mainPersistentContext)
+                        self.resolvePlayerWalletAuth(player: player, successHandler: { (wallet) in
+                            self.claimBanano(wallet: wallet)
+                        }, errorHandler: { (error) in
+                            print("\(error)")
+                            self.present(self.bananoAlertView(title: "Error", message: "An error ocurred retrieving your account information, please try again"), animated: true)
+                        })
+                    } catch {
+                        self.present(self.bananoAlertView(title: "Error", message: "An error ocurred retrieving your account information, please try again"), animated: true)
+                        return
                     }
-                    self.present(alertView, animated: false, completion: nil)
                 }
                 self.present(txDetailsAlertView, animated: false, completion: nil)
             } else {
