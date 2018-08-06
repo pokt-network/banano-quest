@@ -30,15 +30,10 @@ public struct BiometricsUtils {
     public static let biometricsAvailable = BioMetricAuthenticator.canAuthenticate()
     private static let keychainKey = "BananoBiometricAuthPassphrase"
     
-    private static func savePassphraseToKeychain(passphrase: String, player: Player) throws {
-        guard let playerAddress = player.address else {
-            throw BiometricsUtilsError.setupError
-        }
-        //whenUnlockedThisDeviceOnly
-        let success = KeychainWrapper.standard.set(passphrase, forKey: keychainKey + playerAddress, withAccessibility: .whenUnlockedThisDeviceOnly)
-        if !success {
-            throw BiometricsUtilsError.setupError
-        }
+    // Returns wheter or not a biometric record exists for the current player
+    public static func biometricRecordExists(playerAddress: String) -> Bool {
+        let keychainKey = self.keychainKey + playerAddress
+        return KeychainWrapper.standard.allKeys().contains(keychainKey)
     }
     
     // Retrieves existing passphrase from keychain upon succesful biometric auth
@@ -185,5 +180,16 @@ public struct BiometricsUtils {
                 print("\(error)")
             }
         })
+    }
+    
+    private static func savePassphraseToKeychain(passphrase: String, player: Player) throws {
+        guard let playerAddress = player.address else {
+            throw BiometricsUtilsError.setupError
+        }
+        //whenUnlockedThisDeviceOnly
+        let success = KeychainWrapper.standard.set(passphrase, forKey: keychainKey + playerAddress, withAccessibility: .whenUnlockedThisDeviceOnly)
+        if !success {
+            throw BiometricsUtilsError.setupError
+        }
     }
 }
