@@ -129,10 +129,7 @@ extension UIViewController {
             return
         }
         
-        // Check wheter or not biometrics is available
-        if BiometricsUtils.biometricsAvailable && BiometricsUtils.biometricRecordExists(playerAddress: playerAddress) {
-            BiometricsUtils.retrieveWalletWithBiometricAuth(successHandler: successHandler, errorHandler: errorHandler)
-        } else {
+        let requestPassphrase = {
             let alertView = self.requestPassphraseAlertView { (passPhrase, error) in
                 if let error = error {
                     errorHandler(error)
@@ -157,6 +154,15 @@ extension UIViewController {
                 
             }
             self.present(alertView, animated: true, completion: nil)
+        }
+        
+        // Check wheter or not biometrics is available
+        if BiometricsUtils.biometricsAvailable && BiometricsUtils.biometricRecordExists(playerAddress: playerAddress) {
+            BiometricsUtils.retrieveWalletWithBiometricAuth(successHandler: successHandler) { (error) in
+                requestPassphrase()
+            }
+        } else {
+            requestPassphrase()
         }
     }
     
