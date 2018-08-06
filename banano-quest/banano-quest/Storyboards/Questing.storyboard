@@ -637,9 +637,8 @@
                                     <constraint firstAttribute="height" constant="200" id="wL8-1Q-02r"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="opM-ve-W4Y" userLabel="Claim button">
-                                <rect key="frame" x="134" y="591" width="107" height="57"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="opM-ve-W4Y" userLabel="Claim button">
+                                <rect key="frame" x="164.5" y="617" width="46" height="30"/>
                                 <state key="normal" title="CLAIM">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -653,6 +652,8 @@
                             <constraint firstItem="Bw9-Gl-pUF" firstAttribute="bottom" secondItem="EGh-vX-iGa" secondAttribute="bottom" constant="-50" id="2Lh-KF-czZ"/>
                             <constraint firstItem="EGh-vX-iGa" firstAttribute="leading" secondItem="Bw9-Gl-pUF" secondAttribute="leading" id="AWi-zf-u2b"/>
                             <constraint firstItem="EGh-vX-iGa" firstAttribute="trailing" secondItem="Bw9-Gl-pUF" secondAttribute="trailing" id="Mnt-fS-DjZ"/>
+                            <constraint firstItem="opM-ve-W4Y" firstAttribute="centerX" secondItem="Bw9-Gl-pUF" secondAttribute="centerX" id="ZJw-D4-C3D"/>
+                            <constraint firstItem="Bw9-Gl-pUF" firstAttribute="bottom" secondItem="opM-ve-W4Y" secondAttribute="bottom" constant="20" id="zvi-Yp-bax"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Bw9-Gl-pUF"/>
                     </view>

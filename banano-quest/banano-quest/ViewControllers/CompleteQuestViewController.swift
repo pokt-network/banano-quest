@@ -222,6 +222,10 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
     }
 
     @IBAction func completeButtonPressed(_ sender: Any) {
+        if let userLocation = mapView.userLocation.location {
+            currentUserLocation = userLocation
+        }
+        
         if currentUserLocation == nil {
             let alertController = bananoAlertView(title: "Wait!", message: "Let the app get your current location :D")
 
