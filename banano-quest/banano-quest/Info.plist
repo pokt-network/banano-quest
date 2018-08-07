@@ -21,7 +21,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>3</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -31,6 +31,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Banano Quest needs your permission to access your camera</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>This app requires Face ID permission to authenticate using Face recognition.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Banano Quest needs your permission to access your location information</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -54,7 +56,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>NSFaceIDUsageDescription</key>
-    <string>This app requires Face ID permission to authenticate using Face recognition.</string>
 </dict>
 </plist>
