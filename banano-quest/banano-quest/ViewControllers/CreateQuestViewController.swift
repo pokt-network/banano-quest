@@ -47,17 +47,11 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Initial Quest setup
         do {
-            newQuest = try Quest.init(obj: [:], context: CoreDataUtils.mainPersistentContext)
-        } catch let error as NSError {
-            print("Failed to create quest with error: \(error)")
-        }
-        // Get current player
-        do {
+            newQuest = try Quest.init(obj: [:], context: CoreDataUtils.createBackgroundPersistentContext())
             currentPlayer = try Player.getPlayer(context: CoreDataUtils.mainPersistentContext)
         } catch {
-            print("Failed to retrieve current player")
+            print("\(error)")
         }
 
         // Notification Center
@@ -71,6 +65,11 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
             print("Failed to refresh view with error: \(error)")
         }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.newQuest = nil
+        super.viewWillDisappear(animated)
+    }
 
     override func refreshView() throws {
         // UI Settings
@@ -78,6 +77,15 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
 
         // Set current player balance
         refreshPlayerBalance()
+        
+        // Initialize unloaded quest if necessary
+        if self.newQuest == nil {
+            do {
+                newQuest = try Quest.init(obj: [:], context: CoreDataUtils.mainPersistentContext)
+            } catch {
+                print("\(error)")
+            }
+        }
     }
 
     // MARK: - Tools
