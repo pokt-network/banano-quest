@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="731"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LU1-YX-coY">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LU1-YX-coY">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="751"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SAMALL BANNERx1" translatesAutoresizingMaskIntoConstraints="NO" id="q7W-Db-tQ3" userLabel="Top Banner image">
@@ -193,26 +193,37 @@
                                                 </connections>
                                             </collectionViewCell>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="playerQuestEmptyCell" id="Rr2-eX-a1K">
-                                                <rect key="frame" x="149" y="17.5" width="329" height="176"/>
+                                                <rect key="frame" x="149" y="17.5" width="149" height="176"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="329" height="176"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="149" height="176"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" text="You don't have any BANANOs, go out and quest!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N9e-WJ-jQe">
-                                                            <rect key="frame" x="20" y="0.0" width="289" height="176"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                        </textView>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eYd-rw-y7L">
+                                                            <rect key="frame" x="0.0" y="0.0" width="149" height="176"/>
+                                                            <subviews>
+                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" text="You don't have any BANANOs, go out and quest!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N9e-WJ-jQe">
+                                                                    <rect key="frame" x="0.0" y="30" width="149" height="146"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                </textView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="bottom" secondItem="N9e-WJ-jQe" secondAttribute="bottom" id="976-mg-Fcq"/>
+                                                                <constraint firstItem="N9e-WJ-jQe" firstAttribute="leading" secondItem="eYd-rw-y7L" secondAttribute="leading" id="cmp-g9-C1b"/>
+                                                                <constraint firstAttribute="trailing" secondItem="N9e-WJ-jQe" secondAttribute="trailing" id="eEq-DA-K3h"/>
+                                                                <constraint firstItem="N9e-WJ-jQe" firstAttribute="top" secondItem="eYd-rw-y7L" secondAttribute="top" constant="30" id="uGS-tN-LwC"/>
+                                                            </constraints>
+                                                        </view>
                                                     </subviews>
                                                 </view>
                                                 <constraints>
-                                                    <constraint firstItem="N9e-WJ-jQe" firstAttribute="leading" secondItem="Rr2-eX-a1K" secondAttribute="leading" constant="20" id="9qZ-Lx-aHM"/>
-                                                    <constraint firstItem="N9e-WJ-jQe" firstAttribute="top" secondItem="Rr2-eX-a1K" secondAttribute="top" id="QnN-xw-XLJ"/>
-                                                    <constraint firstItem="N9e-WJ-jQe" firstAttribute="height" secondItem="Rr2-eX-a1K" secondAttribute="height" id="ZGw-AR-nah"/>
-                                                    <constraint firstAttribute="trailing" secondItem="N9e-WJ-jQe" secondAttribute="trailing" constant="20" id="fO9-xM-wBU"/>
+                                                    <constraint firstItem="eYd-rw-y7L" firstAttribute="top" secondItem="Rr2-eX-a1K" secondAttribute="top" id="57w-mm-laX"/>
+                                                    <constraint firstAttribute="trailing" secondItem="eYd-rw-y7L" secondAttribute="trailing" id="Kw4-Rc-aPs"/>
+                                                    <constraint firstItem="eYd-rw-y7L" firstAttribute="centerY" secondItem="Rr2-eX-a1K" secondAttribute="centerY" id="dlf-ks-0yW"/>
+                                                    <constraint firstAttribute="bottom" secondItem="eYd-rw-y7L" secondAttribute="bottom" id="msL-eQ-f7v"/>
+                                                    <constraint firstItem="eYd-rw-y7L" firstAttribute="leading" secondItem="Rr2-eX-a1K" secondAttribute="leading" id="xxw-bL-8ai"/>
                                                 </constraints>
-                                                <size key="customSize" width="329" height="176"/>
                                             </collectionViewCell>
                                         </cells>
                                         <connections>

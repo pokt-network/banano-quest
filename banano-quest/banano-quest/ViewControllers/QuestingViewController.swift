@@ -11,20 +11,65 @@ import Pocket
 import MapKit
 
 class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate {
-
+    // IBOutlets
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var completeButton: UIButton!
-
+    
+    // Variables
     var quests: [Quest] = [Quest]()
     var currentIndex = 0
     var locationManager = CLLocationManager()
     var currentPlayerLocation: CLLocation?
     
+    // Refresh Control
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+            #selector(QuestingViewController.handleRefresh(_:)),
+                                 for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.yellow
+        refreshControl.transform = CGAffineTransform(scaleX: 1.75, y: 1.75)
+        return refreshControl
+    }()
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.collectionView.isUserInteractionEnabled = false
+        
+        // Launch Queue Dispatchers
+        do {
+            let player = try Player.getPlayer(context: CoreDataUtils.mainPersistentContext)
+            if let playerAddress = player.address {
+                
+                let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
+                appInitQueueDispatcher.initDisplatchSequence {
+                    let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress, playerAddress: playerAddress)
+                    questListQueueDispatcher.initDisplatchSequence(completionHandler: {
+                        
+                        do {
+                            try self.refreshView()
+                        } catch let error as NSError {
+                            print("Failed to refreshView() with error: \(error)")
+                        }
+                    })
+                }
+            }else {
+                refreshControl.endRefreshing()
+                self.collectionView.isUserInteractionEnabled = true
+            }
+        } catch {
+            refreshControl.endRefreshing()
+            self.collectionView.isUserInteractionEnabled = true
+            print("\(error)")
+        }
+
+    }
+    
     // MARK: View
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Quest list
         loadQuestList()
         setupLocationManager()
@@ -32,12 +77,14 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         // Gesture recognizer that dismiss the keyboard when tapped outside
         let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         tapOutside.cancelsTouchesInView = false
         view.addGestureRecognizer(tapOutside)
-
+        
+        self.collectionView.addSubview(refreshControl)
+        
         do {
             try refreshView()
         } catch let error as NSError {
@@ -51,6 +98,9 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
             loadQuestList()
         }
         DispatchQueue.main.async {
+            self.refreshControl.endRefreshing()
+            self.collectionView.isUserInteractionEnabled = true
+        
             self.collectionView.reloadData()
         }
     }
