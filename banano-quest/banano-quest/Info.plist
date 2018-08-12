@@ -37,6 +37,10 @@
 	<string>Banano Quest needs your permission to access your location information</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Banano Quest needs your permission to access your location information</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

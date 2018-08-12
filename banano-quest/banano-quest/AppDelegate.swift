@@ -11,9 +11,10 @@ import CoreData
 import PocketEth
 import Pocket
 import BigInt
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, Configuration {
+class AppDelegate: UIResponder, UIApplicationDelegate, Configuration, UNUserNotificationCenterDelegate {
     var nodeURL: URL {
         get {
             return URL.init(string: "http://red.pokt.network")!
@@ -22,40 +23,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        // Setup background fetch interval: Fetch data once an hour.
+        UIApplication.shared.setMinimumBackgroundFetchInterval(3600)
+        
+        // Setup notifications
+        UNUserNotificationCenter.current().delegate = self
+        PushNotificationUtils.requestPermissions(successHandler: nil, errorHandler: nil)
+        
         // Pocket configuration
         Pocket.shared.setConfiguration(config: self)
-
-        // Set main persistent context merge policy
-        self.persistentContainer.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
-        // Delete all quests for testing purposes
-
-        // Launch Queue Dispatchers
-        do {
-            let player = try Player.getPlayer(context: CoreDataUtils.mainPersistentContext)
-            if let playerAddress = player.address {
-                print("Player Address: \(playerAddress)")
-                let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
-                appInitQueueDispatcher.initDisplatchSequence {
-                    let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress, playerAddress: playerAddress)
-                    questListQueueDispatcher.initDisplatchSequence(completionHandler: {
-
-                        UIApplication.getPresentedViewController(handler: { (topVC) in
-                            if topVC == nil {
-                                print("Failed to get current view controller")
-                            }else {
-                                do {
-                                    try topVC!.refreshView()
-                                }catch let error as NSError {
-                                    print("Failed to refresh current view controller with error: \(error)")
-                                }
-                            }
-                        })
-                    })
-                }
-            }
-        } catch {
-            print("\(error)")
-        }
+        
+        // Refresh app data
+        self.updatePlayerAndQuestData(completionHandler: refreshCurrentViewController)
 
         return true
     }
@@ -126,4 +105,61 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration {
         }
     }
     
+    // MARK: - User notifications
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound, .badge])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
+    
+    // MARK: - Background refresh
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        self.updatePlayerAndQuestData {
+            completionHandler(.newData)
+        }
+    }
+    
+    // MARK: - Local data updates
+    func updatePlayer(completionHandler: @escaping (_ playerAddress: String) -> Void) {
+        do {
+            let player = try Player.getPlayer(context: CoreDataUtils.mainPersistentContext)
+            if let playerAddress = player.address {
+                print("Player Address: \(playerAddress)")
+                let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
+                appInitQueueDispatcher.initDisplatchSequence {
+                    completionHandler(playerAddress)
+                }
+            }
+        } catch {
+            print("\(error)")
+        }
+    }
+    
+    func updateQuestList(playerAddress: String, completionHandler: @escaping () -> Void) {
+        let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress, playerAddress: playerAddress)
+        questListQueueDispatcher.initDisplatchSequence(completionHandler: completionHandler)
+    }
+    
+    func updatePlayerAndQuestData(completionHandler: @escaping () -> Void) {
+        updatePlayer { (playerAddress) in
+            self.updateQuestList(playerAddress: playerAddress, completionHandler: completionHandler)
+        }
+    }
+    
+    // MARK: - Utils
+    public func refreshCurrentViewController() {
+        UIApplication.getPresentedViewController(handler: { (topVC) in
+            if topVC == nil {
+                print("Failed to get current view controller")
+            } else {
+                do {
+                    try topVC!.refreshView()
+                }catch let error as NSError {
+                    print("Failed to refresh current view controller with error: \(error)")
+                }
+            }
+        })
+    }
 }
