@@ -255,7 +255,8 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
             do {
                 let vc = try self.instantiateViewController(identifier: "completeQuestViewControllerID", storyboardName: "Questing") as? CompleteQuestViewController
                 vc?.quest = quest
-
+                vc?.currentUserLocation = currentPlayerLocation
+                
                 self.present(vc!, animated: false, completion: nil)
             }catch let error as NSError {
                 let alert = self.bananoAlertView(title: "Error", message: "Ups, something happened, please try again later.")

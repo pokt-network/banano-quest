@@ -17,10 +17,9 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var bananoBackground: UIView!
-    @IBOutlet weak var numberOfBananosLabel: UILabel!
     @IBOutlet weak var distanceValueLabel: UILabel!
     @IBOutlet weak var prizeValueLabel: UILabel!
-    @IBOutlet weak var bananoCountLabel: UILabel!
+    @IBOutlet weak var bananosCountLabel: UILabel!
     @IBOutlet weak var questDetailTextView: UITextView!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var prizeLabel: UILabel!
@@ -29,6 +28,7 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
 
     var locationManager = CLLocationManager()
     var currentUserLocation: CLLocation?
+    var questAreaLocation: CLLocation?
     var quest: Quest?
 
     // MARK: View
@@ -64,32 +64,73 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
 
     override func refreshView() throws {
         // Details view
+        
+        // Number of Bananos
         let maxWinnersDouble = Double.init(quest?.maxWinners ?? "0.0")
-
-        if maxWinnersDouble != 0.0 {
+        let maxWinnersCount = Int(quest?.maxWinners ?? "0")
+        
+        if maxWinnersCount == 0 {
+            bananosCountLabel.text = "INFINITE"
+            bananosCountLabel.font = bananosCountLabel.font.withSize(14)
+        }else {
+            bananosCountLabel.text = "\(quest?.winnersAmount ?? "0")/\(quest?.maxWinners ?? "0")"
+            bananosCountLabel.font = bananosCountLabel.font.withSize(17)
+        }
+        
+        // Prize
+        if maxWinnersDouble != 0.0 && quest?.prize != nil {
             let weiAmount = BigInt.init(quest?.prize ?? "0") ?? BigInt.init(0)
             let prizeValue = EthUtils.convertWeiToEth(wei: weiAmount) / maxWinnersDouble!
             prizeValueLabel.text = "\(prizeValue) ETH"
         } else {
-            prizeValueLabel.text = "NA"
+            prizeValueLabel.text = "No ETH"
         }
-
+        
+        // Check if is the creator playing
         if isQuestCreator() {
             completeButton.isEnabled = false
         } else {
             completeButton.isEnabled = true
         }
-
+        
+        // Add color to the banano
         let bananoColor = UIColor(hexString: quest?.hexColor ?? "31AADE")
         bananoBackground.backgroundColor = bananoColor
-        //bananoCountLabel.text = "0/\(quest?.maxWinners ?? 1)"
-        // TODO: Get location from merkleRoot
-        distanceValueLabel.text = "20M"
+        
+        // Hint
         questDetailTextView.text = quest?.hint
+        
+        // Quest Name
         questNameLabel.text = quest?.name
         
         // Quest quadrant setup
         setQuestQuadrant()
+        
+        // Distance from quest
+        if let playerLocation = currentUserLocation {
+            let distanceMeters = LocationUtils.questDistanceToPlayerLocation(quest: quest!, playerLocation: playerLocation).magnitude
+            let roundedDistanceMeters = Double(round(10*distanceMeters)/10)
+            var distanceText = "?"
+            
+            if roundedDistanceMeters > 999 {
+                let roundedDistanceKM = roundedDistanceMeters/1000
+                if roundedDistanceKM > 999 {
+                    distanceText = String.init(format: "%.1fK KM", (roundedDistanceKM/1000))
+                } else {
+                    distanceText = String.init(format: "%.1f KM", (roundedDistanceKM/1000))
+                }
+            } else {
+                distanceText = String.init(format: "%.1f M", roundedDistanceMeters)
+            }
+            if let questDistanceLabel = self.distanceValueLabel {
+                questDistanceLabel.text = distanceText
+            }
+        } else {
+            if let questDistanceLabel = self.distanceValueLabel {
+                questDistanceLabel.text = "?"
+            }
+        }
+        
     }
 
     // MARK: Tools
@@ -136,6 +177,7 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
                 locationName: "Quest area",
                 coordinate: location.coordinate, image: #imageLiteral(resourceName: "QUEST-AREA"))
             
+            questAreaLocation = location
             mapView.addAnnotation(questArea)
             
         } else {
