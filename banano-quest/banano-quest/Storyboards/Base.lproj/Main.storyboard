@@ -29,14 +29,14 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MWL-X1" translatesAutoresizingMaskIntoConstraints="NO" id="DLx-yn-0lQ" userLabel="Footer image">
-                                <rect key="frame" x="68" y="570" width="240" height="128"/>
+                                <rect key="frame" x="68" y="587" width="240" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="0kt-u4-Lx2"/>
-                                    <constraint firstAttribute="height" constant="128" id="brn-dA-wkb"/>
+                                    <constraint firstAttribute="height" constant="80" id="brn-dA-wkb"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EuV-6k-xtO" userLabel="Play Now Button">
-                                <rect key="frame" x="214" y="465" width="145" height="69"/>
+                                <rect key="frame" x="214" y="448" width="145" height="69"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="145" id="7CM-gw-qUI"/>
                                     <constraint firstAttribute="height" constant="69" id="b0k-1i-QGZ"/>
@@ -49,8 +49,8 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="DLx-yn-0lQ" secondAttribute="bottom" constant="-31" id="6zj-Co-d3T"/>
-                            <constraint firstItem="EuV-6k-xtO" firstAttribute="top" secondItem="T2W-uQ-82M" secondAttribute="bottom" constant="67" id="9qw-go-Mje"/>
+                            <constraint firstAttribute="bottom" secondItem="DLx-yn-0lQ" secondAttribute="bottom" id="6zj-Co-d3T"/>
+                            <constraint firstItem="EuV-6k-xtO" firstAttribute="top" secondItem="T2W-uQ-82M" secondAttribute="bottom" constant="50" id="9qw-go-Mje"/>
                             <constraint firstItem="lze-6C-J7F" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="KDl-Nt-ka9"/>
                             <constraint firstItem="T2W-uQ-82M" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="XF0-EF-SiG"/>
                             <constraint firstItem="lze-6C-J7F" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bik-EM-wDk"/>
@@ -59,7 +59,6 @@
                             <constraint firstItem="DLx-yn-0lQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="r9E-7f-Z4Z"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lze-6C-J7F" secondAttribute="trailing" id="riV-p8-Fie"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="lze-6C-J7F" secondAttribute="bottom" constant="-50" id="xd4-9l-DnS"/>
-                            <constraint firstItem="DLx-yn-0lQ" firstAttribute="top" secondItem="EuV-6k-xtO" secondAttribute="bottom" constant="36" id="xv6-gW-mj3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

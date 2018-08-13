@@ -34,38 +34,6 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         return refreshControl
     }()
     
-    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        self.collectionView.isUserInteractionEnabled = false
-        
-        // Launch Queue Dispatchers
-        do {
-            let player = try Player.getPlayer(context: CoreDataUtils.mainPersistentContext)
-            if let playerAddress = player.address {
-                
-                let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
-                appInitQueueDispatcher.initDisplatchSequence {
-                    let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress, playerAddress: playerAddress)
-                    questListQueueDispatcher.initDisplatchSequence(completionHandler: {
-                        
-                        do {
-                            try self.refreshView()
-                        } catch let error as NSError {
-                            print("Failed to refreshView() with error: \(error)")
-                        }
-                    })
-                }
-            }else {
-                refreshControl.endRefreshing()
-                self.collectionView.isUserInteractionEnabled = true
-            }
-        } catch {
-            refreshControl.endRefreshing()
-            self.collectionView.isUserInteractionEnabled = true
-            print("\(error)")
-        }
-
-    }
-    
     // MARK: View
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,6 +74,38 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     }
     
     // MARK: Tools
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.collectionView.isUserInteractionEnabled = false
+        
+        // Launch Queue Dispatchers
+        do {
+            let player = try Player.getPlayer(context: CoreDataUtils.mainPersistentContext)
+            if let playerAddress = player.address {
+                
+                let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
+                appInitQueueDispatcher.initDisplatchSequence {
+                    let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress, playerAddress: playerAddress)
+                    questListQueueDispatcher.initDisplatchSequence(completionHandler: {
+                        
+                        do {
+                            try self.refreshView()
+                        } catch let error as NSError {
+                            print("Failed to refreshView() with error: \(error)")
+                        }
+                    })
+                }
+            }else {
+                refreshControl.endRefreshing()
+                self.collectionView.isUserInteractionEnabled = true
+            }
+        } catch {
+            refreshControl.endRefreshing()
+            self.collectionView.isUserInteractionEnabled = true
+            print("\(error)")
+        }
+        
+    }
+    
     func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters

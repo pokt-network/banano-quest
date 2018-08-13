@@ -16,7 +16,7 @@
                 <viewController storyboardIdentifier="OnboardingViewController" id="q4P-ue-rVC" customClass="OnboardingViewController" customModule="banano_quest" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" bouncesZoom="NO" dataMode="prototypes" id="Oy2-G2-y4B">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="kps-p5-ZEf">
                             <size key="itemSize" width="375" height="667"/>
@@ -32,19 +32,30 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NUXONBOARDING 1-x1" translatesAutoresizingMaskIntoConstraints="NO" id="0sf-C0-s9f">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NUXONBOARDING 1-x1" translatesAutoresizingMaskIntoConstraints="NO" id="0sf-C0-s9f">
+                                            <rect key="frame" x="0.0" y="-40" width="375" height="717"/>
                                         </imageView>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Search for Quests around your area, pay attention to: Quest Distance, # Bananos Available and ETH Prizes" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOR-R3-Vd8">
-                                            <rect key="frame" x="20" y="485" width="335" height="162"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        </textView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for Quests around your area, pay attention to: Quest Distance, # Bananos Available and ETH Prizes" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="13" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1xS-Jn-ajs" userLabel="Search label">
+                                            <rect key="frame" x="10" y="492" width="355" height="162"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="162" id="HF7-oU-Pdg"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </view>
                                 <color key="backgroundColor" red="0.5244060386509517" green="1" blue="0.28656560477085835" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="1xS-Jn-ajs" firstAttribute="leading" secondItem="4yX-x3-L4m" secondAttribute="leading" constant="10" id="2Cu-Oj-8ct"/>
+                                    <constraint firstAttribute="trailing" secondItem="0sf-C0-s9f" secondAttribute="trailing" id="2a6-zP-dyL"/>
+                                    <constraint firstAttribute="trailing" secondItem="1xS-Jn-ajs" secondAttribute="trailing" constant="10" id="NaW-zb-mxP"/>
+                                    <constraint firstAttribute="bottom" secondItem="0sf-C0-s9f" secondAttribute="bottom" constant="-10" id="hnc-CS-cc5"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="1xS-Jn-ajs" secondAttribute="bottom" constant="5" id="kAD-BF-gFl"/>
+                                    <constraint firstItem="0sf-C0-s9f" firstAttribute="leading" secondItem="4yX-x3-L4m" secondAttribute="leading" id="ls0-8b-Ow4"/>
+                                    <constraint firstItem="0sf-C0-s9f" firstAttribute="top" secondItem="4yX-x3-L4m" secondAttribute="top" constant="-40" id="qfd-Nm-OEw"/>
+                                </constraints>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Find" id="Dri-Wr-ADq" userLabel="Find">
                                 <rect key="frame" x="375" y="0.0" width="375" height="667"/>
@@ -60,7 +71,7 @@
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Find where the BANANO is hiding by using the hint provided by the Quest!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQr-cB-bS2">
                                             <rect key="frame" x="20" y="496" width="335" height="151"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
                                     </subviews>
@@ -75,22 +86,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NUXONBOARDING-3x1" translatesAutoresizingMaskIntoConstraints="NO" id="Do0-xA-1EJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                            <rect key="frame" x="0.0" y="-15" width="375" height="682"/>
                                         </imageView>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Collect them all in your account!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ea9-XS-yR6">
-                                            <rect key="frame" x="20" y="487" width="335" height="97"/>
+                                            <rect key="frame" x="28" y="522" width="319" height="100"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="97" id="BUI-OZ-7zU"/>
+                                                <constraint firstAttribute="height" constant="100" id="d3Y-aL-UEI"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQ1-LK-8Ue">
-                                            <rect key="frame" x="125" y="592" width="124" height="55"/>
+                                            <rect key="frame" x="125" y="627" width="124" height="30"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="124" id="0eH-24-e1r"/>
-                                                <constraint firstAttribute="height" constant="55" id="T4i-DR-7bs"/>
+                                                <constraint firstAttribute="width" constant="124" id="bcr-ux-bZS"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <state key="normal" title="Start!">
@@ -104,18 +114,15 @@
                                 </view>
                                 <color key="backgroundColor" red="0.26657537999243486" green="0.29055825590415607" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="ea9-XS-yR6" firstAttribute="leading" secondItem="UXo-fd-LEb" secondAttribute="leadingMargin" constant="4" id="39R-wv-ysW"/>
-                                    <constraint firstItem="fQ1-LK-8Ue" firstAttribute="centerX" secondItem="ea9-XS-yR6" secondAttribute="centerX" id="G0O-ow-C0J"/>
-                                    <constraint firstItem="fQ1-LK-8Ue" firstAttribute="centerX" secondItem="Do0-xA-1EJ" secondAttribute="centerX" id="OfL-YS-BY3"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="fQ1-LK-8Ue" secondAttribute="bottom" constant="20" id="Q2A-Q6-Aaf"/>
-                                    <constraint firstItem="Do0-xA-1EJ" firstAttribute="centerX" secondItem="ea9-XS-yR6" secondAttribute="centerX" id="WT0-6M-kSV"/>
-                                    <constraint firstItem="Do0-xA-1EJ" firstAttribute="top" secondItem="UXo-fd-LEb" secondAttribute="top" id="akU-WI-De0"/>
-                                    <constraint firstItem="fQ1-LK-8Ue" firstAttribute="top" secondItem="ea9-XS-yR6" secondAttribute="bottom" constant="8" symbolic="YES" id="bVF-QN-57b"/>
-                                    <constraint firstItem="fQ1-LK-8Ue" firstAttribute="top" secondItem="ea9-XS-yR6" secondAttribute="bottom" constant="8" id="ePD-61-Z1D"/>
-                                    <constraint firstItem="Do0-xA-1EJ" firstAttribute="leading" secondItem="UXo-fd-LEb" secondAttribute="leading" id="iWS-Pf-xyg"/>
-                                    <constraint firstItem="fQ1-LK-8Ue" firstAttribute="centerX" secondItem="UXo-fd-LEb" secondAttribute="centerX" id="tTn-od-Z4n"/>
-                                    <constraint firstAttribute="bottom" secondItem="Do0-xA-1EJ" secondAttribute="bottom" id="vat-Ft-gNg"/>
-                                    <constraint firstItem="fQ1-LK-8Ue" firstAttribute="top" secondItem="ea9-XS-yR6" secondAttribute="bottom" constant="8" id="vbJ-PL-LdD"/>
+                                    <constraint firstItem="fQ1-LK-8Ue" firstAttribute="top" secondItem="ea9-XS-yR6" secondAttribute="bottom" constant="5" id="1uT-9z-VFU"/>
+                                    <constraint firstItem="ea9-XS-yR6" firstAttribute="leading" secondItem="UXo-fd-LEb" secondAttribute="leadingMargin" constant="12" id="Kx0-Re-rR6"/>
+                                    <constraint firstItem="Do0-xA-1EJ" firstAttribute="leading" secondItem="UXo-fd-LEb" secondAttribute="leading" id="YKi-rC-xS9"/>
+                                    <constraint firstItem="Do0-xA-1EJ" firstAttribute="top" secondItem="UXo-fd-LEb" secondAttribute="top" constant="-15" id="ZnU-Ij-t9J"/>
+                                    <constraint firstAttribute="trailing" secondItem="Do0-xA-1EJ" secondAttribute="trailing" id="gRI-kx-8ul"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="ea9-XS-yR6" secondAttribute="trailing" constant="12" id="gdy-wX-txj"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="fQ1-LK-8Ue" secondAttribute="bottom" constant="10" id="ix6-dy-iFP"/>
+                                    <constraint firstAttribute="bottom" secondItem="Do0-xA-1EJ" secondAttribute="bottom" id="srm-gw-OTg"/>
+                                    <constraint firstItem="fQ1-LK-8Ue" firstAttribute="centerX" secondItem="UXo-fd-LEb" secondAttribute="centerX" id="yof-s3-tqL"/>
                                 </constraints>
                             </collectionViewCell>
                         </cells>

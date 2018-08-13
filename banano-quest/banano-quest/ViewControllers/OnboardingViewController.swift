@@ -57,6 +57,7 @@ class OnboardingViewController: UIViewController, UICollectionViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.collectionView?.contentInsetAdjustmentBehavior = .never
     }
     
     @IBAction func onboardingCompleted(_ sender: Any) {

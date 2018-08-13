@@ -36,7 +36,7 @@ extension UIViewController {
     func showLabelWith(message: String) ->  UILabel {
 
         let screenBounds = UIScreen.main.bounds
-        let frame = CGRect(x: 0, y: screenBounds.size.height / 2, width: screenBounds.size.width, height: 30)
+        let frame = CGRect(x: 10, y: screenBounds.size.height / 2, width: screenBounds.size.width - 20, height: 30)
         let label = UILabel(frame: frame)
 
         label.text = message
