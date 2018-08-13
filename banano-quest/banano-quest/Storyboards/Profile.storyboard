@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -14,18 +14,17 @@
         <scene sceneID="sJT-OZ-jcg">
             <objects>
                 <viewController storyboardIdentifier="ProfileVC" id="yE3-Cn-O0A" customClass="ProfileViewController" customModule="banano_quest" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="pQd-S7-mu3">
+                    <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="pQd-S7-mu3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="731"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LU1-YX-coY">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" bounces="NO" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LU1-YX-coY">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="751"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SAMALL BANNERx1" translatesAutoresizingMaskIntoConstraints="NO" id="q7W-Db-tQ3" userLabel="Top Banner image">
                                         <rect key="frame" x="0.0" y="-20" width="375" height="140"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="140" id="1X8-s5-I9a"/>
-                                            <constraint firstAttribute="width" constant="375" id="tBY-rq-wYp"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PROFILE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEz-dX-8z9" userLabel="Profile Title">
@@ -54,8 +53,9 @@
                                             <constraint firstItem="v2i-0T-ExP" firstAttribute="centerY" secondItem="Tpa-Gf-auf" secondAttribute="centerY" constant="-0.5" id="bWL-1L-t5v"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x00000000000000000000000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbr-Pa-UBw" userLabel="Account Address label">
-                                        <rect key="frame" x="8" y="192" width="321" height="18"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0x00000000000000000000000" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tbr-Pa-UBw" userLabel="Account Address label">
+                                        <rect key="frame" x="8" y="192" width="229" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -69,17 +69,6 @@
                                         <state key="normal" image="MENUX1"/>
                                         <connections>
                                             <action selector="menuPressed:" destination="yE3-Cn-O0A" eventType="touchUpInside" id="i6x-4i-w9F"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nix-DU-gFN" userLabel="Copy Button">
-                                        <rect key="frame" x="337" y="186" width="30" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="2IV-yh-dUW"/>
-                                            <constraint firstAttribute="height" constant="30" id="9Pr-Tv-max"/>
-                                        </constraints>
-                                        <state key="normal" image="COPY-x1"/>
-                                        <connections>
-                                            <action selector="copyAddressButtonPressed:" destination="yE3-Cn-O0A" eventType="touchUpInside" id="i29-Ta-59h"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SUMMARY BACKGROUND" translatesAutoresizingMaskIntoConstraints="NO" id="miY-vP-YRt" userLabel="Summary Background image">
@@ -238,7 +227,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r69-FS-1aV" userLabel="Previous Banano Button">
-                                        <rect key="frame" x="8" y="506" width="30" height="30"/>
+                                        <rect key="frame" x="10" y="506" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Y1G-n1-91g"/>
                                             <constraint firstAttribute="width" constant="30" id="v3k-Wv-8gg"/>
@@ -246,10 +235,10 @@
                                         <state key="normal" image="BACKx1"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cic-Ti-SQL" userLabel="Export Button">
-                                        <rect key="frame" x="8" y="635" width="163" height="76"/>
+                                        <rect key="frame" x="10" y="637" width="140" height="70"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="163" id="x4J-vd-HUG"/>
-                                            <constraint firstAttribute="height" constant="76" id="xCR-4N-xFj"/>
+                                            <constraint firstAttribute="width" constant="140" id="x4J-vd-HUG"/>
+                                            <constraint firstAttribute="height" constant="70" id="xCR-4N-xFj"/>
                                         </constraints>
                                         <state key="normal" image="EXPORT-BUTTON-x1"/>
                                         <connections>
@@ -257,7 +246,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eb5-Yz-9e9" userLabel="Next Banano Button">
-                                        <rect key="frame" x="337" y="506" width="30" height="30"/>
+                                        <rect key="frame" x="335" y="506" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="QpU-Te-ODY"/>
                                             <constraint firstAttribute="width" constant="30" id="nvp-xG-KF7"/>
@@ -283,35 +272,38 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACR-9V-14t" userLabel="Add Balance Button">
-                                        <rect key="frame" x="204" y="635" width="163" height="76"/>
+                                        <rect key="frame" x="225" y="637" width="140" height="70"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="76" id="gSH-Bj-ap6"/>
-                                            <constraint firstAttribute="width" constant="163" id="qit-am-wuH"/>
+                                            <constraint firstAttribute="height" constant="70" id="gSH-Bj-ap6"/>
+                                            <constraint firstAttribute="width" constant="140" id="qit-am-wuH"/>
                                         </constraints>
                                         <state key="normal" image="ADD-BANLANCE-BUTTON-X1"/>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nix-DU-gFN" userLabel="Copy Button">
+                                        <rect key="frame" x="285" y="186" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="COPY-x1"/>
+                                        <connections>
+                                            <action selector="copyAddressButtonPressed:" destination="yE3-Cn-O0A" eventType="touchUpInside" id="i29-Ta-59h"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="ACR-9V-14t" secondAttribute="bottom" constant="40" id="2rD-oY-f51"/>
+                                    <constraint firstAttribute="bottom" secondItem="ACR-9V-14t" secondAttribute="bottom" constant="10" id="2cb-sC-cv9"/>
+                                    <constraint firstItem="cic-Ti-SQL" firstAttribute="centerY" secondItem="ACR-9V-14t" secondAttribute="centerY" id="38I-mb-Zn4"/>
                                     <constraint firstItem="avo-cs-2Hx" firstAttribute="baseline" secondItem="mNw-Hk-DFf" secondAttribute="baseline" id="3m9-Vs-icY"/>
-                                    <constraint firstItem="tbr-Pa-UBw" firstAttribute="top" secondItem="LU1-YX-coY" secondAttribute="top" constant="192" id="5vE-nL-egr"/>
                                     <constraint firstItem="Xig-sg-DEU" firstAttribute="leading" secondItem="LU1-YX-coY" secondAttribute="leading" constant="8" id="6e7-i1-ZXw"/>
                                     <constraint firstItem="QXg-P7-nU3" firstAttribute="width" secondItem="LU1-YX-coY" secondAttribute="width" id="97o-aQ-Xne"/>
                                     <constraint firstAttribute="trailing" secondItem="avo-cs-2Hx" secondAttribute="trailing" constant="204" id="9Uk-hp-Dp0"/>
                                     <constraint firstItem="LO3-Po-DFU" firstAttribute="top" secondItem="LU1-YX-coY" secondAttribute="top" constant="381" id="9aF-Re-k6Z"/>
-                                    <constraint firstItem="ACR-9V-14t" firstAttribute="centerX" secondItem="LU1-YX-coY" secondAttribute="centerX" constant="98" id="AJM-oi-5sL"/>
                                     <constraint firstItem="eb5-Yz-9e9" firstAttribute="centerY" secondItem="1rV-ye-UmU" secondAttribute="centerY" id="Auf-Ic-d9w"/>
                                     <constraint firstItem="miY-vP-YRt" firstAttribute="width" secondItem="LU1-YX-coY" secondAttribute="width" id="BIF-f2-pJn"/>
                                     <constraint firstItem="q7W-Db-tQ3" firstAttribute="centerX" secondItem="1rV-ye-UmU" secondAttribute="centerX" id="C8h-cg-lcU"/>
-                                    <constraint firstItem="avo-cs-2Hx" firstAttribute="leading" secondItem="r69-FS-1aV" secondAttribute="leading" id="Cvj-V4-OR0"/>
                                     <constraint firstItem="q7W-Db-tQ3" firstAttribute="leading" secondItem="miY-vP-YRt" secondAttribute="leading" id="CyK-aR-pMS"/>
                                     <constraint firstItem="tch-8e-rSe" firstAttribute="centerX" secondItem="LU1-YX-coY" secondAttribute="centerX" id="DBg-B5-Iag"/>
                                     <constraint firstItem="6xe-Qz-0y0" firstAttribute="centerX" secondItem="LU1-YX-coY" secondAttribute="centerX" id="HKN-7b-M0O"/>
-                                    <constraint firstItem="ACR-9V-14t" firstAttribute="top" secondItem="LU1-YX-coY" secondAttribute="top" constant="635" id="HRh-HB-7UI"/>
                                     <constraint firstItem="QXg-P7-nU3" firstAttribute="centerX" secondItem="LU1-YX-coY" secondAttribute="centerX" id="IV0-FI-TpB"/>
                                     <constraint firstItem="q7W-Db-tQ3" firstAttribute="width" secondItem="LU1-YX-coY" secondAttribute="width" id="Icx-pz-mqR"/>
-                                    <constraint firstItem="tbr-Pa-UBw" firstAttribute="leading" secondItem="LU1-YX-coY" secondAttribute="leading" constant="8" id="JMM-VT-F19"/>
-                                    <constraint firstItem="nix-DU-gFN" firstAttribute="leading" secondItem="tbr-Pa-UBw" secondAttribute="trailing" constant="8" id="KGL-fM-T8F"/>
                                     <constraint firstItem="tUO-Zt-GgA" firstAttribute="top" secondItem="LU1-YX-coY" secondAttribute="top" constant="16" id="Msp-Ds-lSS"/>
                                     <constraint firstItem="miY-vP-YRt" firstAttribute="centerX" secondItem="LU1-YX-coY" secondAttribute="centerX" id="OKG-Y0-S2o"/>
                                     <constraint firstItem="tch-8e-rSe" firstAttribute="leading" secondItem="avo-cs-2Hx" secondAttribute="trailing" constant="15" id="PIU-oM-kGF"/>
@@ -320,27 +312,26 @@
                                     <constraint firstItem="3qr-V1-ibi" firstAttribute="width" secondItem="LU1-YX-coY" secondAttribute="width" id="RZU-CO-V5Z"/>
                                     <constraint firstItem="aEz-dX-8z9" firstAttribute="top" secondItem="LU1-YX-coY" secondAttribute="top" constant="24" id="RcN-fO-s4z"/>
                                     <constraint firstItem="LO3-Po-DFU" firstAttribute="centerX" secondItem="LU1-YX-coY" secondAttribute="centerX" id="T6A-yS-YDN"/>
-                                    <constraint firstItem="nix-DU-gFN" firstAttribute="top" secondItem="LU1-YX-coY" secondAttribute="top" constant="186" id="TO5-er-6Im"/>
                                     <constraint firstItem="1rV-ye-UmU" firstAttribute="top" secondItem="LU1-YX-coY" secondAttribute="top" constant="416" id="Tgt-Jc-c6c"/>
+                                    <constraint firstItem="ACR-9V-14t" firstAttribute="top" secondItem="1rV-ye-UmU" secondAttribute="bottom" constant="10" id="UBg-8u-5tv"/>
                                     <constraint firstItem="avo-cs-2Hx" firstAttribute="leading" secondItem="LU1-YX-coY" secondAttribute="leading" constant="8" id="WEL-hx-oae"/>
                                     <constraint firstItem="avo-cs-2Hx" firstAttribute="centerY" secondItem="tch-8e-rSe" secondAttribute="centerY" id="bPe-2S-y12"/>
                                     <constraint firstItem="Tpa-Gf-auf" firstAttribute="top" secondItem="LU1-YX-coY" secondAttribute="top" constant="53" id="cD2-LU-3wu"/>
                                     <constraint firstItem="Tpa-Gf-auf" firstAttribute="centerX" secondItem="LU1-YX-coY" secondAttribute="centerX" id="dri-CH-yBn"/>
                                     <constraint firstItem="1rV-ye-UmU" firstAttribute="leading" secondItem="LU1-YX-coY" secondAttribute="leading" constant="51" id="e4U-Ce-yKY"/>
-                                    <constraint firstItem="cic-Ti-SQL" firstAttribute="centerX" secondItem="LU1-YX-coY" secondAttribute="centerX" constant="-98" id="fIh-Ms-O1H"/>
-                                    <constraint firstItem="eb5-Yz-9e9" firstAttribute="trailing" secondItem="mNw-Hk-DFf" secondAttribute="trailing" id="faF-MW-46A"/>
+                                    <constraint firstItem="r69-FS-1aV" firstAttribute="leading" secondItem="LU1-YX-coY" secondAttribute="leading" constant="10" id="exI-ex-5Ok"/>
                                     <constraint firstItem="tUO-Zt-GgA" firstAttribute="leading" secondItem="LU1-YX-coY" secondAttribute="leading" constant="26" id="gys-cE-cgv"/>
                                     <constraint firstItem="6xe-Qz-0y0" firstAttribute="top" secondItem="3qr-V1-ibi" secondAttribute="bottom" constant="8" symbolic="YES" id="i12-OI-UGv"/>
                                     <constraint firstAttribute="trailing" secondItem="mNw-Hk-DFf" secondAttribute="trailing" constant="8" id="jIS-t9-Ajr"/>
                                     <constraint firstItem="q7W-Db-tQ3" firstAttribute="top" secondItem="LU1-YX-coY" secondAttribute="top" constant="-20" id="jbS-YZ-cVo"/>
-                                    <constraint firstItem="eb5-Yz-9e9" firstAttribute="leading" secondItem="nix-DU-gFN" secondAttribute="leading" id="kex-RH-Y0L"/>
-                                    <constraint firstItem="cic-Ti-SQL" firstAttribute="top" secondItem="1rV-ye-UmU" secondAttribute="bottom" constant="8" id="npj-DE-j8q"/>
                                     <constraint firstItem="QXg-P7-nU3" firstAttribute="top" secondItem="LU1-YX-coY" secondAttribute="top" constant="355" id="oQ5-BW-VeV"/>
                                     <constraint firstItem="eb5-Yz-9e9" firstAttribute="top" secondItem="r69-FS-1aV" secondAttribute="top" id="ofA-76-mG2"/>
                                     <constraint firstItem="miY-vP-YRt" firstAttribute="top" secondItem="LU1-YX-coY" secondAttribute="top" constant="246" id="qAk-Ee-bms"/>
                                     <constraint firstItem="Xig-sg-DEU" firstAttribute="top" secondItem="LU1-YX-coY" secondAttribute="top" constant="218" id="qnP-WW-lEQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="eb5-Yz-9e9" secondAttribute="trailing" constant="10" id="s43-A7-sBP"/>
+                                    <constraint firstItem="cic-Ti-SQL" firstAttribute="leading" secondItem="LU1-YX-coY" secondAttribute="leading" constant="10" id="saz-di-avT"/>
                                     <constraint firstItem="6xe-Qz-0y0" firstAttribute="top" secondItem="LU1-YX-coY" secondAttribute="top" constant="306" id="sdZ-Mx-WAL"/>
-                                    <constraint firstAttribute="bottom" secondItem="cic-Ti-SQL" secondAttribute="bottom" constant="40" id="un1-gp-bUK"/>
+                                    <constraint firstAttribute="trailing" secondItem="ACR-9V-14t" secondAttribute="trailing" constant="10" id="t3K-HQ-Zw1"/>
                                     <constraint firstItem="mNw-Hk-DFf" firstAttribute="leading" secondItem="tch-8e-rSe" secondAttribute="trailing" constant="8" id="v6b-t8-xRe"/>
                                     <constraint firstItem="aEz-dX-8z9" firstAttribute="centerX" secondItem="LU1-YX-coY" secondAttribute="centerX" id="xqW-tL-yvH"/>
                                 </constraints>
@@ -352,7 +343,6 @@
                             <constraint firstItem="5ed-7E-s8g" firstAttribute="trailing" secondItem="LU1-YX-coY" secondAttribute="trailing" id="Gbb-tg-afL"/>
                             <constraint firstItem="5ed-7E-s8g" firstAttribute="bottom" secondItem="LU1-YX-coY" secondAttribute="bottom" constant="-20" id="V4S-4N-4pA"/>
                             <constraint firstItem="LU1-YX-coY" firstAttribute="leading" secondItem="5ed-7E-s8g" secondAttribute="leading" id="YR6-Wx-mJa"/>
-                            <constraint firstItem="LU1-YX-coY" firstAttribute="width" secondItem="pQd-S7-mu3" secondAttribute="width" priority="750" id="pd2-n0-fNQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5ed-7E-s8g"/>
                     </view>
