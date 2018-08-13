@@ -603,12 +603,11 @@
                     </view>
                     <connections>
                         <outlet property="bananoBackground" destination="2de-es-ROb" id="F7u-0g-iA4"/>
-                        <outlet property="bananoCountLabel" destination="WFP-wE-Q4p" id="Jw3-ez-y4b"/>
+                        <outlet property="bananosCountLabel" destination="WFP-wE-Q4p" id="lO6-Ao-0t1"/>
                         <outlet property="completeButton" destination="rSe-gL-vVu" id="9lp-Yz-S5l"/>
                         <outlet property="distanceLabel" destination="eTI-Pk-mkY" id="xbl-hD-lj0"/>
                         <outlet property="distanceValueLabel" destination="eTI-Pk-mkY" id="EJO-rM-c8U"/>
                         <outlet property="mapView" destination="iKa-zR-itJ" id="ZJr-Xh-0Kh"/>
-                        <outlet property="numberOfBananosLabel" destination="WFP-wE-Q4p" id="2Vq-6V-E0M"/>
                         <outlet property="prizeLabel" destination="WCe-v4-3ia" id="P2n-Gq-CBB"/>
                         <outlet property="prizeValueLabel" destination="WCe-v4-3ia" id="RBl-Kq-AqT"/>
                         <outlet property="questDetailTextView" destination="1gL-Zj-qNt" id="aHI-Cc-YQf"/>
