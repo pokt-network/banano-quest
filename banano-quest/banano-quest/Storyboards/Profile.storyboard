@@ -36,12 +36,19 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tpa-Gf-auf" userLabel="Container">
                                         <rect key="frame" x="131" y="65" width="113" height="113"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CIRCLE STAMP x1" translatesAutoresizingMaskIntoConstraints="NO" id="v2i-0T-ExP" userLabel="Banano Background image">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CIRCLE STAMP x1" translatesAutoresizingMaskIntoConstraints="NO" id="ppy-kx-Mam" userLabel="Banano Image">
                                                 <rect key="frame" x="3" y="3" width="106" height="106"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="106" id="9bU-8V-7f9"/>
+                                                    <constraint firstAttribute="width" constant="106" id="u4V-Ta-thd"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CIRCLE STAMP x1" translatesAutoresizingMaskIntoConstraints="NO" id="v2i-0T-ExP" userLabel="QR Code image">
+                                                <rect key="frame" x="21" y="21" width="70" height="70"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="106" id="Cmk-iT-HnK"/>
-                                                    <constraint firstAttribute="height" constant="106" id="y3a-Vx-E4R"/>
+                                                    <constraint firstAttribute="width" constant="70" id="Cmk-iT-HnK"/>
+                                                    <constraint firstAttribute="height" constant="70" id="y3a-Vx-E4R"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
@@ -49,8 +56,10 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="113" id="2yx-dZ-e8n"/>
                                             <constraint firstAttribute="height" constant="113" id="9fx-GQ-ad5"/>
+                                            <constraint firstItem="ppy-kx-Mam" firstAttribute="centerX" secondItem="v2i-0T-ExP" secondAttribute="centerX" id="C3x-wC-qMw"/>
                                             <constraint firstItem="v2i-0T-ExP" firstAttribute="centerX" secondItem="Tpa-Gf-auf" secondAttribute="centerX" id="NbD-lC-8p2"/>
                                             <constraint firstItem="v2i-0T-ExP" firstAttribute="centerY" secondItem="Tpa-Gf-auf" secondAttribute="centerY" constant="-0.5" id="bWL-1L-t5v"/>
+                                            <constraint firstItem="ppy-kx-Mam" firstAttribute="centerY" secondItem="v2i-0T-ExP" secondAttribute="centerY" id="ceZ-0i-n8S"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x00000000000000000000000" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tbr-Pa-UBw" userLabel="Account Address label">
@@ -299,7 +308,7 @@
                                     <constraint firstItem="cic-Ti-SQL" firstAttribute="centerX" secondItem="LU1-YX-coY" secondAttribute="centerX" id="C9d-p9-ZH3"/>
                                     <constraint firstItem="q7W-Db-tQ3" firstAttribute="leading" secondItem="miY-vP-YRt" secondAttribute="leading" id="CyK-aR-pMS"/>
                                     <constraint firstItem="tch-8e-rSe" firstAttribute="centerX" secondItem="LU1-YX-coY" secondAttribute="centerX" id="DBg-B5-Iag"/>
-                                    <constraint firstAttribute="bottom" secondItem="cic-Ti-SQL" secondAttribute="bottom" id="E1g-EF-ybS"/>
+                                    <constraint firstAttribute="bottom" secondItem="cic-Ti-SQL" secondAttribute="bottom" constant="20" id="E1g-EF-ybS"/>
                                     <constraint firstAttribute="trailing" secondItem="QXg-P7-nU3" secondAttribute="trailing" id="ELe-gu-5w7"/>
                                     <constraint firstItem="miY-vP-YRt" firstAttribute="top" secondItem="Xig-sg-DEU" secondAttribute="bottom" constant="20" id="H9X-tI-zqR"/>
                                     <constraint firstItem="QXg-P7-nU3" firstAttribute="centerX" secondItem="LU1-YX-coY" secondAttribute="centerX" id="IV0-FI-TpB"/>
@@ -358,6 +367,7 @@
                     <connections>
                         <outlet property="collectionView" destination="1rV-ye-UmU" id="a3F-8r-OQo"/>
                         <outlet property="ethValueLabel" destination="mNw-Hk-DFf" id="GEW-IZ-WpH"/>
+                        <outlet property="qrCodeImage" destination="v2i-0T-ExP" id="939-N8-wX6"/>
                         <outlet property="scrollView" destination="LU1-YX-coY" id="H4I-ht-cu8"/>
                         <outlet property="usdValueLabel" destination="avo-cs-2Hx" id="T5e-5W-wUW"/>
                         <outlet property="view" destination="pQd-S7-mu3" id="2kw-nb-JPS"/>
