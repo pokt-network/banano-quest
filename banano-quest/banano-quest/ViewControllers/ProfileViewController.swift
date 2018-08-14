@@ -17,7 +17,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var ethValueLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var scrollView: UIScrollView!
-
+    @IBOutlet weak var qrCodeImage: UIImageView!
+    
     var currentPlayer: Player?
     var quests: [Quest] = [Quest]()
 
@@ -45,6 +46,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         super.viewWillLayoutSubviews()
 //        self.scrollView?.frame = UIScreen.main.bounds
     }
+    
     override func refreshView() throws {
         if currentPlayer == nil  {
             let alertView = bananoAlertView(title: "Error:", message: "Failed to retrieve current player, please try again later")
@@ -55,6 +57,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
 
         // Labels setup
         walletAddressLabel.text = currentPlayer?.address
+        qrCodeImage.image = generateQRCode(from: currentPlayer?.address ?? "")
         if let weiBalanceStr = currentPlayer?.balanceWei {
             let weiBalance = BigInt.init(weiBalanceStr) ?? BigInt.init(0)
             ethValueLabel.text = "\(EthUtils.convertWeiToEth(wei: weiBalance)) ETH"
@@ -124,13 +127,30 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             let quest = quests[indexPath.item]
             cell.quest = quest
             cell.configureCell(playerLocation: nil)
+            
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerQuestEmptyCell", for: indexPath)
             return cell
         }
     }
-
+    
+    // MARK: Tools
+    func generateQRCode(from string: String) -> UIImage? {
+        let data = string.data(using: String.Encoding.ascii)
+        
+        if let filter = CIFilter(name: "CIQRCodeGenerator") {
+            filter.setValue(data, forKey: "inputMessage")
+            let transform = CGAffineTransform(scaleX: 3, y: 3)
+            
+            if let output = filter.outputImage?.transformed(by: transform) {
+                return UIImage(ciImage: output)
+            }
+        }
+        
+        return nil
+    }
+    
     func loadPlayerCompletedQuests() {
         // Initial load for the local quest list
         do {
