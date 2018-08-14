@@ -43,7 +43,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        self.scrollView?.frame = UIScreen.main.bounds
+//        self.scrollView?.frame = UIScreen.main.bounds
     }
     override func refreshView() throws {
         if currentPlayer == nil  {
