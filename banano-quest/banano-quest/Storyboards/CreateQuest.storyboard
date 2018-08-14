@@ -570,12 +570,47 @@
                                     <action selector="backButtonPressed:" destination="S3U-Dw-yc0" eventType="touchUpInside" id="XSh-pX-fso"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SAMALL BANNERx1" translatesAutoresizingMaskIntoConstraints="NO" id="rZe-ua-Mns" userLabel="Bottom Banner image">
+                                <rect key="frame" x="0.0" y="532" width="375" height="193"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="193" id="qne-oy-P8q"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFf-h5-m34" userLabel="Done button">
+                                <rect key="frame" x="137" y="557" width="100" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="D7D-V1-wUM"/>
+                                    <constraint firstAttribute="width" constant="100" id="S4U-54-KH2"/>
+                                </constraints>
+                                <state key="normal" image="DONE BUTTON"/>
+                                <connections>
+                                    <action selector="doneButtonPressed:" destination="S3U-Dw-yc0" eventType="touchUpInside" id="9dg-uX-zkM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aq2-Ox-ZIh" userLabel="Current user location">
+                                <rect key="frame" x="305" y="447" width="55" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="55" id="UyM-dI-lUG"/>
+                                    <constraint firstAttribute="height" constant="55" id="nm7-S4-r9Q"/>
+                                </constraints>
+                                <state key="normal" image="CURRENT-LOCATION"/>
+                                <connections>
+                                    <action selector="currentLocationPressed:" destination="S3U-Dw-yc0" eventType="touchUpInside" id="hLH-rN-XUk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="rZe-ua-Mns" secondAttribute="bottom" constant="-58" id="1Yq-05-pgp"/>
+                            <constraint firstItem="rZe-ua-Mns" firstAttribute="trailing" secondItem="k4a-lz-Zxj" secondAttribute="trailing" id="9j0-uF-FWd"/>
                             <constraint firstItem="hf0-st-ts0" firstAttribute="leading" secondItem="k4a-lz-Zxj" secondAttribute="leading" constant="15" id="EBB-Bv-eoV"/>
                             <constraint firstItem="hf0-st-ts0" firstAttribute="top" secondItem="k4a-lz-Zxj" secondAttribute="top" constant="20" id="FnC-yz-B82"/>
+                            <constraint firstItem="k4a-lz-Zxj" firstAttribute="bottom" secondItem="RFf-h5-m34" secondAttribute="bottom" constant="20" id="NKz-is-zBa"/>
+                            <constraint firstItem="RFf-h5-m34" firstAttribute="centerX" secondItem="rZe-ua-Mns" secondAttribute="centerX" id="hwQ-lh-sZV"/>
                             <constraint firstItem="k4a-lz-Zxj" firstAttribute="bottom" secondItem="uZ8-Yb-pRh" secondAttribute="bottom" id="iAE-5H-tDQ"/>
+                            <constraint firstItem="rZe-ua-Mns" firstAttribute="leading" secondItem="k4a-lz-Zxj" secondAttribute="leading" id="ip8-u9-MBg"/>
+                            <constraint firstItem="rZe-ua-Mns" firstAttribute="top" secondItem="aq2-Ox-ZIh" secondAttribute="bottom" constant="30" id="kxr-EP-Ncz"/>
+                            <constraint firstItem="k4a-lz-Zxj" firstAttribute="trailing" secondItem="aq2-Ox-ZIh" secondAttribute="trailing" constant="15" id="nCe-9T-Dyi"/>
                             <constraint firstItem="uZ8-Yb-pRh" firstAttribute="leading" secondItem="k4a-lz-Zxj" secondAttribute="leading" id="qWF-dV-l6v"/>
                             <constraint firstItem="uZ8-Yb-pRh" firstAttribute="top" secondItem="k4a-lz-Zxj" secondAttribute="top" id="tdX-NP-d0F"/>
                             <constraint firstItem="k4a-lz-Zxj" firstAttribute="trailing" secondItem="uZ8-Yb-pRh" secondAttribute="trailing" id="w91-zS-SlL"/>
@@ -595,6 +630,7 @@
         <image name="ARROWx1" width="28" height="28"/>
         <image name="CIRCLE STAMP x1" width="280" height="280"/>
         <image name="CREATE-QUEST-BUTTON-x1" width="318" height="139"/>
+        <image name="CURRENT-LOCATION" width="57" height="57"/>
         <image name="DONE BUTTON" width="166" height="139"/>
         <image name="MAP-BLUEx1" width="57" height="57"/>
         <image name="MENUX1" width="57" height="57"/>
