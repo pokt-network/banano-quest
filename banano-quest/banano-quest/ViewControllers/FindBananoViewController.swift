@@ -169,6 +169,10 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
         }
     }
 
+    @IBAction func backButtonPressed(_ sender: Any) {
+        self.dismiss(animated: false, completion: nil)
+    }
+    
     @IBAction func claimButtonPressed(_ sender: Any) {
         self.retrieveGasEstimate { (gasEstimateWei) in
             if let gasEstimate = gasEstimateWei {
