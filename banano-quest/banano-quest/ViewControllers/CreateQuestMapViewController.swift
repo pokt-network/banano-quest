@@ -43,11 +43,10 @@ class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate,
         }
         
         // Gesture for map tap
-        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action:#selector(self.handleLongPress))
-        longPressRecognizer.minimumPressDuration = CFTimeInterval(1.2)
-        longPressRecognizer.delegate = self
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(self.handleTap))
+        gestureRecognizer.delegate = self
         
-        mapView.addGestureRecognizer(longPressRecognizer)
+        mapView.addGestureRecognizer(gestureRecognizer)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +66,7 @@ class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate,
     }
     
     // MARK: - Gestures
-    @objc func handleLongPress(gestureReconizer: UILongPressGestureRecognizer) {
+    @objc func handleTap(gestureReconizer: UIGestureRecognizer) {
         
         let location = gestureReconizer.location(in: mapView)
         let coordinate = mapView.convert(location,toCoordinateFrom: mapView)
@@ -86,6 +85,20 @@ class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate,
     }
     
     // MARK: - MKMapView
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
+        switch newState {
+        case .starting:
+            view.dragState = .dragging
+        case .ending, .canceling:
+            view.dragState = .none
+            if let annotationCoordinate = view.annotation?.coordinate {
+                selectedLocation["lat"] = annotationCoordinate.latitude.description
+                selectedLocation["lon"] = annotationCoordinate.longitude.description
+            }
+        default: break
+        }
+    }
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         // Don't want to show a custom image if the annotation is the user's location.
         guard !(annotation is MKUserLocation) else {
@@ -99,6 +112,7 @@ class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate,
         annotationView.addSubview(imageView)
         annotationView.annotation = annotation
         annotationView.canShowCallout = false
+        annotationView.isDraggable = true
         
         return annotationView
     }
@@ -118,10 +132,10 @@ class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate,
                 
                 manager.stopUpdatingLocation()
                 // span: is how much it should zoom into the user location
-                let span = MKCoordinateSpan(latitudeDelta: 0.050, longitudeDelta: 0.050)
+                let span = MKCoordinateSpan(latitudeDelta: 0.010, longitudeDelta: 0.010)
                 let region = MKCoordinateRegion(center: location.coordinate, span: span)
                 // updates map with current user location
-                mapView.region = region
+                mapView.setRegion(region, animated: true)
                 
             }else{
                 print("Location accuracy is not under 100 meters, skipping...")
@@ -161,7 +175,29 @@ class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate,
             break
         }
     }
+    
     // MARK: - IBActions
+    @IBAction func currentLocationPressed(_ sender: Any) {
+        mapView.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
+        
+        // Add annotation:
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = mapView.userLocation.coordinate
+        
+        if mapView.annotations.count > 0 {
+            mapView.removeAnnotations(mapView.annotations)
+        }
+        
+        selectedLocation["lat"] = annotation.coordinate.latitude.description
+        selectedLocation["lon"] = annotation.coordinate.longitude.description
+        
+        mapView.addAnnotation(annotation)
+    }
+    
+    @IBAction func doneButtonPressed(_ sender: Any) {
+        backButtonPressed(sender)
+    }
+    
     @IBAction func backButtonPressed(_ sender: Any) {
         if self.selectedLocation.count > 0 {
             NotificationCenter.default.post(name: CreateQuestViewController.notificationName, object: nil, userInfo:self.selectedLocation)
