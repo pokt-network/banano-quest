@@ -101,7 +101,7 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
         questDetailTextView.text = quest?.hint
         
         // Quest Name
-        questNameLabel.text = quest?.name
+        questNameLabel.text = quest?.name.capitalized
         
         // Quest quadrant setup
         setQuestQuadrant()
