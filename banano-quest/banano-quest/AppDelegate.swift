@@ -28,41 +28,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration, UNUserNoti
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Setup background fetch interval: Fetch data once an hour.
         UIApplication.shared.setMinimumBackgroundFetchInterval(3600)
-        
+
         // Setup notifications
         UNUserNotificationCenter.current().delegate = self
         PushNotificationUtils.requestPermissions(successHandler: nil, errorHandler: nil)
-        
+
         // Pocket configuration
         Pocket.shared.setConfiguration(config: self)
-        
+
         // Refresh app data
         self.updatePlayerAndQuestData(completionHandler: refreshCurrentViewController)
-        
+
         // Setup repeating tasks
         self.setupRepeatingTasks()
 
         return true
     }
-    
+
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
     }
-    
+
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
-    
+
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     }
-    
+
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
-    
+
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         self.saveContext()
@@ -110,23 +110,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration, UNUserNoti
             }
         }
     }
-    
+
     // MARK: - User notifications
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .sound, .badge])
     }
-    
+
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         completionHandler()
     }
-    
+
     // MARK: - Background refresh
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         self.updatePlayerAndQuestData {
             completionHandler(.newData)
         }
     }
-    
+
     // MARK: - Local data updates
     func updatePlayer(completionHandler: @escaping (_ playerAddress: String) -> Void) {
         do {
@@ -142,18 +142,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration, UNUserNoti
             print("\(error)")
         }
     }
-    
+
     func updateQuestList(playerAddress: String, completionHandler: @escaping () -> Void) {
         let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress, playerAddress: playerAddress)
         questListQueueDispatcher.initDisplatchSequence(completionHandler: completionHandler)
     }
-    
+
     func updatePlayerAndQuestData(completionHandler: @escaping () -> Void) {
         updatePlayer { (playerAddress) in
             self.updateQuestList(playerAddress: playerAddress, completionHandler: completionHandler)
         }
     }
-    
+
     // MARK: - Utils
     public func refreshCurrentViewController() {
         UIApplication.getPresentedViewController(handler: { (topVC) in
@@ -168,13 +168,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration, UNUserNoti
             }
         })
     }
-    
+
     func setupRepeatingTasks() {
         let notificationTitle = "BANANO Quest"
-        
-        let questCreationTimer = QuestNotificationTimer.init(timeInterval: 10, title: notificationTitle, successMsg: "Your Quest has been created successfully", errorMsg: "An error ocurred creating your Quest, please try again", successIdentifier: "QuestCreationSuccess", errorIdentifier: "QuestCreationError", txType: TransactionType.creation)
+
+        let questCreationTimer = QuestNotificationTimer.init(timeInterval: 60, title: notificationTitle, successMsg: "Your Quest has been created successfully", errorMsg: "An error ocurred creating your Quest, please try again", successIdentifier: "QuestCreationSuccess", errorIdentifier: "QuestCreationError", txType: TransactionType.creation)
         questCreationTimer.resume()
-        let questClaimTimer = QuestNotificationTimer.init(timeInterval: 10, title: notificationTitle, successMsg: "Your BANANO has been claimed succesfully", errorMsg: "An error ocurred claiming your BANANO, please try again", successIdentifier: "QuestClaimSuccess", errorIdentifier: "QuestClaimError", txType: TransactionType.claim)
+        let questClaimTimer = QuestNotificationTimer.init(timeInterval: 60, title: notificationTitle, successMsg: "Your BANANO has been claimed succesfully", errorMsg: "An error ocurred claiming your BANANO, please try again", successIdentifier: "QuestClaimSuccess", errorIdentifier: "QuestClaimError", txType: TransactionType.claim)
         questClaimTimer.resume()
     }
 }
