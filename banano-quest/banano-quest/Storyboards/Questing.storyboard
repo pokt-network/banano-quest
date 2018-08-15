@@ -126,8 +126,8 @@
                                     <action selector="menuButtonPressed:" destination="kQ9-IP-T6f" eventType="touchUpInside" id="Fad-7C-nmL"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SAMALL BANNERx1" translatesAutoresizingMaskIntoConstraints="NO" id="s9R-2F-4Nz" userLabel="Summary background image">
-                                <rect key="frame" x="0.0" y="342" width="375" height="193"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SUMMARY BACKGROUND" translatesAutoresizingMaskIntoConstraints="NO" id="s9R-2F-4Nz" userLabel="Summary background image">
+                                <rect key="frame" x="0.0" y="343" width="375" height="193"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="193" id="dir-3c-Wow"/>
                                 </constraints>
@@ -242,8 +242,8 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQC-8D-T5W" userLabel="Summary text view">
-                                                            <rect key="frame" x="0.0" y="55" width="343" height="100"/>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GQC-8D-T5W" userLabel="Summary text view">
+                                                            <rect key="frame" x="0.0" y="60" width="343" height="95"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -277,7 +277,7 @@
                                                         <constraint firstItem="fM2-6d-fBZ" firstAttribute="top" secondItem="dsq-PD-xjU" secondAttribute="top" constant="5" id="UWx-QT-Roe"/>
                                                         <constraint firstAttribute="trailing" secondItem="fM2-6d-fBZ" secondAttribute="trailing" constant="89" id="cbt-uG-4E9"/>
                                                         <constraint firstItem="OxF-Kk-9jR" firstAttribute="top" secondItem="dsq-PD-xjU" secondAttribute="top" constant="4" id="gSR-cz-AW8"/>
-                                                        <constraint firstItem="GQC-8D-T5W" firstAttribute="top" secondItem="dsq-PD-xjU" secondAttribute="top" constant="55" id="jMN-yg-V03"/>
+                                                        <constraint firstItem="GQC-8D-T5W" firstAttribute="top" secondItem="dsq-PD-xjU" secondAttribute="top" constant="60" id="jMN-yg-V03"/>
                                                         <constraint firstItem="Ncs-RR-X1Q" firstAttribute="top" secondItem="dsq-PD-xjU" secondAttribute="top" constant="25" id="ldy-GI-7gH"/>
                                                         <constraint firstItem="GQC-8D-T5W" firstAttribute="leading" secondItem="dsq-PD-xjU" secondAttribute="leading" id="ne7-fn-rnu"/>
                                                         <constraint firstItem="MSf-D1-Dgp" firstAttribute="top" secondItem="dsq-PD-xjU" secondAttribute="top" constant="5" id="rIz-S1-dJW"/>
@@ -287,6 +287,7 @@
                                                         <constraint firstAttribute="trailing" secondItem="uxL-Dx-2SD" secondAttribute="trailing" constant="8" id="t3t-Q0-yZg"/>
                                                         <constraint firstItem="MSf-D1-Dgp" firstAttribute="leading" secondItem="dsq-PD-xjU" secondAttribute="leading" constant="8" id="uPh-CA-JpC"/>
                                                         <constraint firstAttribute="trailing" secondItem="GQC-8D-T5W" secondAttribute="trailing" id="uwQ-gj-m4u"/>
+                                                        <constraint firstAttribute="height" constant="155" id="xkL-be-yO1"/>
                                                         <constraint firstItem="ETl-AQ-FeZ" firstAttribute="leading" secondItem="dsq-PD-xjU" secondAttribute="leading" constant="89" id="y61-C4-T7D"/>
                                                     </constraints>
                                                 </view>
@@ -369,9 +370,7 @@
                             <constraint firstItem="Ghi-o2-IKg" firstAttribute="bottom" secondItem="Iih-gE-cTX" secondAttribute="bottom" constant="24" id="5Ae-iT-Mdo"/>
                             <constraint firstItem="ZLK-pd-2jk" firstAttribute="top" secondItem="W7x-Qh-Vrk" secondAttribute="top" id="7Vn-Qe-tUt"/>
                             <constraint firstItem="ahE-P1-w7Y" firstAttribute="width" secondItem="W7x-Qh-Vrk" secondAttribute="width" id="7bD-FA-2iw"/>
-                            <constraint firstItem="Iih-gE-cTX" firstAttribute="top" secondItem="tZS-HR-pd0" secondAttribute="bottom" constant="89" id="Aje-IY-MoL"/>
                             <constraint firstItem="qZ7-jz-e8J" firstAttribute="leading" secondItem="Ghi-o2-IKg" secondAttribute="leading" constant="16" id="BI7-Nd-ztH"/>
-                            <constraint firstItem="Iih-gE-cTX" firstAttribute="top" secondItem="s9R-2F-4Nz" secondAttribute="bottom" constant="28" id="BQi-Ze-uyC"/>
                             <constraint firstItem="ahE-P1-w7Y" firstAttribute="top" secondItem="Ghi-o2-IKg" secondAttribute="top" constant="82" id="EmT-RQ-v2E"/>
                             <constraint firstItem="tZS-HR-pd0" firstAttribute="top" secondItem="ahE-P1-w7Y" secondAttribute="bottom" constant="10" id="J93-u4-8XG"/>
                             <constraint firstItem="ZLK-pd-2jk" firstAttribute="trailing" secondItem="Ghi-o2-IKg" secondAttribute="trailing" id="Kwe-j8-ys8"/>
@@ -385,7 +384,7 @@
                             <constraint firstItem="Ask-fZ-Xl9" firstAttribute="centerX" secondItem="W7x-Qh-Vrk" secondAttribute="centerX" id="cAO-Nh-Aql"/>
                             <constraint firstItem="Br9-O7-yS5" firstAttribute="centerY" secondItem="DOZ-XF-u8O" secondAttribute="centerY" id="fzL-1q-ImQ"/>
                             <constraint firstItem="Ask-fZ-Xl9" firstAttribute="top" secondItem="Ghi-o2-IKg" secondAttribute="top" constant="20" id="le5-II-Xmj"/>
-                            <constraint firstItem="s9R-2F-4Nz" firstAttribute="top" secondItem="Ghi-o2-IKg" secondAttribute="top" constant="322" id="s23-gm-JcN"/>
+                            <constraint firstItem="s9R-2F-4Nz" firstAttribute="top" secondItem="Ghi-o2-IKg" secondAttribute="top" constant="323" id="s23-gm-JcN"/>
                             <constraint firstItem="Ghi-o2-IKg" firstAttribute="trailing" secondItem="Br9-O7-yS5" secondAttribute="trailing" constant="16" id="vLe-Zh-J2L"/>
                             <constraint firstItem="DOZ-XF-u8O" firstAttribute="leading" secondItem="Ghi-o2-IKg" secondAttribute="leading" constant="16" id="yPB-6J-FtP"/>
                             <constraint firstItem="s9R-2F-4Nz" firstAttribute="leading" secondItem="Ghi-o2-IKg" secondAttribute="leading" id="yvj-Zr-Cgh"/>
@@ -693,5 +692,6 @@
         <image name="MENUX1" width="57" height="57"/>
         <image name="PROFILEx1" width="57" height="57"/>
         <image name="SAMALL BANNERx1" width="750" height="330"/>
+        <image name="SUMMARY BACKGROUND" width="640" height="214"/>
     </resources>
 </document>
