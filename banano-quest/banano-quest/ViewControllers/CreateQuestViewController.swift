@@ -315,17 +315,17 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
         // Upload quest operation
         let operation = UploadQuestOperation.init(wallet: wallet, tavernAddress: AppConfiguration.tavernAddress, tokenAddress: AppConfiguration.bananoTokenAddress, questName: questName, hint: questHint, maxWinners: maxWinners, merkleRoot: merkleRoot, merkleBody: merkleBody, metadata:  metadata, transactionCount: transactionCount, ethPrizeWei: prizeWei)
         operation.completionBlock = {
-            UIApplication.getPresentedViewController(handler: { (topVC) in
-                if topVC == nil {
-                    print("Failed to get current view controller")
-                }else {
-                    do {
-                        try topVC!.refreshView()
-                    }catch let error as NSError {
-                        print("Failed to refresh current view controller with error: \(error)")
-                    }
+            AppDelegate.shared.refreshCurrentViewController()
+            if let txHash = operation.txHash {
+                let transaction = Transaction.init(txHash: txHash, type: TransactionType.creation, context: CoreDataUtils.backgroundPersistentContext)
+                do {
+                    try transaction.save()
+                } catch {
+                    print("\(error)")
                 }
-            })
+            } else {
+                PushNotificationUtils.sendNotification(title: "Quest Creation", body: "An error occurred creating your Quest \(questName), please try again.", identifier: "QuestCreationError")
+            }
         }
         // Operation Queue
         let operationQueue = OperationQueue.init()

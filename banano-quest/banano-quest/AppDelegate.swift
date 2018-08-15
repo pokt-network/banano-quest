@@ -21,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration, UNUserNoti
         }
     }
     var window: UIWindow?
+    static var shared = {
+        return UIApplication.shared.delegate as! AppDelegate
+    }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Setup background fetch interval: Fetch data once an hour.
@@ -35,6 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration, UNUserNoti
         
         // Refresh app data
         self.updatePlayerAndQuestData(completionHandler: refreshCurrentViewController)
+        
+        // Setup repeating tasks
+        self.setupRepeatingTasks()
 
         return true
     }
@@ -161,5 +167,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration, UNUserNoti
                 }
             }
         })
+    }
+    
+    func setupRepeatingTasks() {
+        let notificationTitle = "BANANO Quest"
+        
+        let questCreationTimer = QuestNotificationTimer.init(timeInterval: 10, title: notificationTitle, successMsg: "Your Quest has been created successfully", errorMsg: "An error ocurred creating your Quest, please try again", successIdentifier: "QuestCreationSuccess", errorIdentifier: "QuestCreationError", txType: TransactionType.creation)
+        questCreationTimer.resume()
+        let questClaimTimer = QuestNotificationTimer.init(timeInterval: 10, title: notificationTitle, successMsg: "Your BANANO has been claimed succesfully", errorMsg: "An error ocurred claiming your BANANO, please try again", successIdentifier: "QuestClaimSuccess", errorIdentifier: "QuestClaimError", txType: TransactionType.claim)
+        questClaimTimer.resume()
     }
 }

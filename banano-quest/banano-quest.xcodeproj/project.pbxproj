@@ -15,6 +15,11 @@
 		1040310D2106673D0091B5FE /* CoreDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1040310C2106673D0091B5FE /* CoreDataUtils.swift */; };
 		1040310F21066D960091B5FE /* CreateAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1040310E21066D960091B5FE /* CreateAccount.storyboard */; };
 		10403113210763240091B5FE /* LocationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10403112210763240091B5FE /* LocationUtils.swift */; };
+		106F3CCF212092890088BE6C /* Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106F3CCD212092890088BE6C /* Transaction+CoreDataProperties.swift */; };
+		106F3CD0212092890088BE6C /* Transaction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106F3CCE212092890088BE6C /* Transaction+CoreDataClass.swift */; };
+		106F3CD52120F0BD0088BE6C /* QuestNotificationTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106F3CD42120F0BD0088BE6C /* QuestNotificationTimer.swift */; };
+		106F3CD72120F0FF0088BE6C /* DownloadTransactionReceiptOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106F3CD62120F0FF0088BE6C /* DownloadTransactionReceiptOperation.swift */; };
+		106F3CDB21220DAD0088BE6C /* TransactionReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106F3CDA21220DAD0088BE6C /* TransactionReceipt.swift */; };
 		108BDF4921052E3000405693 /* AppInitQueueDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108BDF4821052E3000405693 /* AppInitQueueDispatcher.swift */; };
 		108BDF4B2105382A00405693 /* QueueDispatcherProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108BDF4A2105382A00405693 /* QueueDispatcherProtocol.swift */; };
 		108BDF4D21053B7100405693 /* AllQuestsQueueDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108BDF4C21053B7100405693 /* AllQuestsQueueDispatcher.swift */; };
@@ -116,6 +121,12 @@
 		1040310C2106673D0091B5FE /* CoreDataUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtils.swift; sourceTree = "<group>"; };
 		1040310E21066D960091B5FE /* CreateAccount.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateAccount.storyboard; sourceTree = "<group>"; };
 		10403112210763240091B5FE /* LocationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUtils.swift; sourceTree = "<group>"; };
+		106F3CCD212092890088BE6C /* Transaction+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		106F3CCE212092890088BE6C /* Transaction+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataClass.swift"; sourceTree = "<group>"; };
+		106F3CD42120F0BD0088BE6C /* QuestNotificationTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestNotificationTimer.swift; sourceTree = "<group>"; };
+		106F3CD62120F0FF0088BE6C /* DownloadTransactionReceiptOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTransactionReceiptOperation.swift; sourceTree = "<group>"; };
+		106F3CD92120F8D40088BE6C /* SantoDomingo.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SantoDomingo.gpx; sourceTree = "<group>"; };
+		106F3CDA21220DAD0088BE6C /* TransactionReceipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionReceipt.swift; sourceTree = "<group>"; };
 		108BDF4821052E3000405693 /* AppInitQueueDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInitQueueDispatcher.swift; sourceTree = "<group>"; };
 		108BDF4A2105382A00405693 /* QueueDispatcherProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueDispatcherProtocol.swift; sourceTree = "<group>"; };
 		108BDF4C21053B7100405693 /* AllQuestsQueueDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllQuestsQueueDispatcher.swift; sourceTree = "<group>"; };
@@ -231,6 +242,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		106F3CD12120F0980088BE6C /* Repeating Background Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				106F3CD42120F0BD0088BE6C /* QuestNotificationTimer.swift */,
+			);
+			path = "Repeating Background Tasks";
+			sourceTree = "<group>";
+		};
+		106F3CD82120F8AE0088BE6C /* Simulated Locations */ = {
+			isa = PBXGroup;
+			children = (
+				106F3CD92120F8D40088BE6C /* SantoDomingo.gpx */,
+			);
+			path = "Simulated Locations";
+			sourceTree = "<group>";
+		};
 		108BDF4721052E1200405693 /* Queue Dispatchers */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +308,7 @@
 				10A5600321037AB600B85950 /* DownloadQuestIsClaimerOperation.swift */,
 				10A5600521037DF800B85950 /* DownloadAndUpdateQuestIsWinnerOperation.swift */,
 				10A5600D21038B2600B85950 /* DownloadEthUsdPriceOperation.swift */,
+				106F3CD62120F0FF0088BE6C /* DownloadTransactionReceiptOperation.swift */,
 			);
 			path = Download;
 			sourceTree = "<group>";
@@ -370,6 +398,8 @@
 		6333170320D9990B0063D856 /* banano-quest */ = {
 			isa = PBXGroup;
 			children = (
+				106F3CD82120F8AE0088BE6C /* Simulated Locations */,
+				106F3CD12120F0980088BE6C /* Repeating Background Tasks */,
 				10F5E31B2108DADB00CF6F78 /* Transformables */,
 				C5FA598321077D3E004FB3E0 /* HDAugmentedReality */,
 				108BDF4721052E1200405693 /* Queue Dispatchers */,
@@ -425,11 +455,14 @@
 		C535221520E13AF7009745AC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				106F3CCE212092890088BE6C /* Transaction+CoreDataClass.swift */,
+				106F3CCD212092890088BE6C /* Transaction+CoreDataProperties.swift */,
 				C51C079E2104E1C400E423D2 /* Player+CoreDataClass.swift */,
 				C51C079D2104E1C300E423D2 /* Player+CoreDataProperties.swift */,
 				C5FAB66520E2B4FD00057041 /* Quest+CoreDataClass.swift */,
 				C5FAB66620E2B4FD00057041 /* Quest+CoreDataProperties.swift */,
 				C5F9368C2114FE7200083C2E /* QuestAnnotation.swift */,
+				106F3CDA21220DAD0088BE6C /* TransactionReceipt.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -825,11 +858,13 @@
 				108BDF5321061BF400405693 /* AppConfiguration.swift in Sources */,
 				100E7E1C211753340096B765 /* BiometricsUtils.swift in Sources */,
 				10A5600821037FE800B85950 /* UploadQuestEstimateOperation.swift in Sources */,
+				106F3CD52120F0BD0088BE6C /* QuestNotificationTimer.swift in Sources */,
 				102A035320FE4CDE00B47CEA /* MerkleTree.swift in Sources */,
 				C5FA599621077D3F004FB3E0 /* ARConfiguration.swift in Sources */,
 				108BDF5121061A7B00405693 /* EthUtils.swift in Sources */,
 				1098FD1321026E0000E76682 /* AsynchronousOperation.swift in Sources */,
 				C51C079F2104E1C400E423D2 /* Player+CoreDataProperties.swift in Sources */,
+				106F3CD0212092890088BE6C /* Transaction+CoreDataClass.swift in Sources */,
 				C5FAB66C20E2B4FD00057041 /* Quest+CoreDataProperties.swift in Sources */,
 				63091D8220E3FB7B002253E5 /* CompleteQuestViewController.swift in Sources */,
 				10A5600A21037FF700B85950 /* UploadQuestProofEstimateOperation.swift in Sources */,
@@ -841,10 +876,13 @@
 				1040310D2106673D0091B5FE /* CoreDataUtils.swift in Sources */,
 				C5FA598221077C3A004FB3E0 /* FindBananoViewController.swift in Sources */,
 				1040310B21062BBB0091B5FE /* OnboardingViewController.swift in Sources */,
+				106F3CDB21220DAD0088BE6C /* TransactionReceipt.swift in Sources */,
 				C53B586020FFDC390062BD64 /* CreateQuestMapViewController.swift in Sources */,
 				10C32ADA2114A7D500F68ACC /* UIColor+extension.swift in Sources */,
 				C5FA599321077D3F004FB3E0 /* ARAnnotation.swift in Sources */,
+				106F3CCF212092890088BE6C /* Transaction+CoreDataProperties.swift in Sources */,
 				10403113210763240091B5FE /* LocationUtils.swift in Sources */,
+				106F3CD72120F0FF0088BE6C /* DownloadTransactionReceiptOperation.swift in Sources */,
 				C51C07A02104E1C400E423D2 /* Player+CoreDataClass.swift in Sources */,
 				1098FD1B2102756900E76682 /* DownloadTransactionCountOperation.swift in Sources */,
 				10A5600621037DF800B85950 /* DownloadAndUpdateQuestIsWinnerOperation.swift in Sources */,
