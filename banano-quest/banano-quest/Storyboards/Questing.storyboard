@@ -35,14 +35,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MENU LAYERx1" translatesAutoresizingMaskIntoConstraints="NO" id="CTf-LG-GkW">
-                                <rect key="frame" x="-20" y="0.0" width="395" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="248" height="667"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="248" id="ncp-Qx-GN5"/>
+                                </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q0H-0s-oYK">
-                                <rect key="frame" x="16" y="117" width="202" height="57"/>
+                                <rect key="frame" x="16" y="227" width="226" height="57"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="57" id="Q5X-xu-Y93"/>
                                 </constraints>
-                                <state key="normal" title="     Create a Quest" image="CREATE-QX1">
+                                <state key="normal" title="     CREATE A QUEST" image="CREATE-QX1">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -50,11 +53,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yze-E9-O7c">
-                                <rect key="frame" x="16" y="194" width="132" height="57"/>
+                                <rect key="frame" x="16" y="359" width="151" height="57"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="57" id="Ym5-Ct-aCe"/>
                                 </constraints>
-                                <state key="normal" title="     Profile" image="PROFILEx1">
+                                <state key="normal" title="     PROFILE" image="PROFILEx1">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -62,11 +65,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTy-kV-IjH">
-                                <rect key="frame" x="16" y="40" width="141" height="57"/>
+                                <rect key="frame" x="16" y="95" width="158" height="57"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="57" id="3NL-Ji-hQV"/>
                                 </constraints>
-                                <state key="normal" title="     Explore" image="EXPLOREx1">
+                                <state key="normal" title="     EXPLORE" image="EXPLOREx1">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -74,18 +77,16 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="CTf-LG-GkW" secondAttribute="trailing" id="0gw-Ia-n0i"/>
-                            <constraint firstItem="Yze-E9-O7c" firstAttribute="top" secondItem="q0H-0s-oYK" secondAttribute="bottom" constant="20" id="63E-2W-Sij"/>
-                            <constraint firstItem="q0H-0s-oYK" firstAttribute="top" secondItem="cTy-kV-IjH" secondAttribute="bottom" constant="20" id="HGz-Lw-hV0"/>
-                            <constraint firstItem="CTf-LG-GkW" firstAttribute="leading" secondItem="H9B-NA-o9P" secondAttribute="leading" constant="-20" id="LPH-KQ-ThV"/>
+                            <constraint firstItem="Yze-E9-O7c" firstAttribute="top" secondItem="q0H-0s-oYK" secondAttribute="bottom" constant="75" id="63E-2W-Sij"/>
+                            <constraint firstItem="q0H-0s-oYK" firstAttribute="top" secondItem="cTy-kV-IjH" secondAttribute="bottom" constant="75" id="HGz-Lw-hV0"/>
+                            <constraint firstItem="H9B-NA-o9P" firstAttribute="bottom" secondItem="CTf-LG-GkW" secondAttribute="bottom" id="KSf-Ix-aJc"/>
                             <constraint firstItem="Yze-E9-O7c" firstAttribute="leading" secondItem="H9B-NA-o9P" secondAttribute="leading" constant="16" id="Mqy-Gc-WCi"/>
-                            <constraint firstItem="CTf-LG-GkW" firstAttribute="top" secondItem="hk7-Uy-dIl" secondAttribute="top" id="X1m-ls-ScE"/>
-                            <constraint firstItem="CTf-LG-GkW" firstAttribute="bottom" secondItem="H9B-NA-o9P" secondAttribute="bottom" id="bC8-i3-V0b"/>
+                            <constraint firstItem="CTf-LG-GkW" firstAttribute="top" secondItem="hk7-Uy-dIl" secondAttribute="top" id="grw-Za-lJO"/>
                             <constraint firstItem="q0H-0s-oYK" firstAttribute="leading" secondItem="H9B-NA-o9P" secondAttribute="leading" constant="16" id="k1E-9K-eyv"/>
                             <constraint firstItem="cTy-kV-IjH" firstAttribute="leading" secondItem="H9B-NA-o9P" secondAttribute="leading" constant="16" id="nkg-dS-qBN"/>
-                            <constraint firstItem="cTy-kV-IjH" firstAttribute="top" secondItem="H9B-NA-o9P" secondAttribute="top" constant="20" id="wmC-XY-3MR"/>
+                            <constraint firstItem="CTf-LG-GkW" firstAttribute="leading" secondItem="hk7-Uy-dIl" secondAttribute="leading" id="qOT-nV-61p"/>
+                            <constraint firstItem="cTy-kV-IjH" firstAttribute="top" secondItem="H9B-NA-o9P" secondAttribute="top" constant="75" id="wmC-XY-3MR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="H9B-NA-o9P"/>
                     </view>
