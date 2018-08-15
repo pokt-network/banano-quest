@@ -42,8 +42,15 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+    <entity name="Transaction" representedClassName="Transaction" syncable="YES">
+        <attribute name="notified" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="receipt" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="txHash" attributeType="String" syncable="YES"/>
+        <attribute name="type" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Player" positionX="-56" positionY="213" width="128" height="120"/>
         <element name="Quest" positionX="-441" positionY="-18" width="128" height="390"/>
+        <element name="Transaction" positionX="-252" positionY="135" width="128" height="105"/>
     </elements>
 </model>

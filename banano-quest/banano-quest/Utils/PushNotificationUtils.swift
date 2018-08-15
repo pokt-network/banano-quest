@@ -43,9 +43,7 @@ public struct PushNotificationUtils {
         content.body = body
         content.sound = UNNotificationSound.default()
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)
-        
-        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: nil)
         
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
