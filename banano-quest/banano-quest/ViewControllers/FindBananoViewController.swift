@@ -53,17 +53,17 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
         let distance = bananoLocationC.distance(from: currentUserLocation!)
 
         if distance <= 50 {
-            let annotation = ARAnnotation()
-            annotation.title = currentQuest?.name
-            annotation.location = bananoLocationC
-
-            // AR options
-            // Max distance between the player and the Banano
-            maxDistance = 50
-
-            // We add the annotations that for Banano quest is 1 at a time
-            setAnnotations([annotation])
-            
+//            let annotation = ARAnnotation()
+//            annotation.title = currentQuest?.name
+//            annotation.location = bananoLocationC
+//
+//            // AR options
+//            // Max distance between the player and the Banano
+//            maxDistance = 50
+//
+//            // We add the annotations that for Banano quest is 1 at a time
+//            setAnnotations([annotation])
+//            
         }else {
             let alertController = bananoAlertView(title: "Not in range", message: "\(currentQuest?.name ?? "") banano is not within 50 meters of your current location")
             present(alertController, animated: false, completion: nil)
@@ -144,10 +144,15 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
                     let claimOperation = UploadQuestProofOperation.init(wallet: wallet, transactionCount: transactionCount, tavernAddress: AppConfiguration.tavernAddress, tokenAddress: AppConfiguration.bananoTokenAddress, questIndex: questIndex, proof: proof, answer: answer)
 
                     claimOperation.completionBlock = {
-                        if claimOperation.txHash != nil {
-                            self.showNotificationOverlayWith(text: "CLAIM COMPLETED, check your \(questName) BANANO in your profile!")
+                        if let txHash = claimOperation.txHash {
+                            let transaction = Transaction.init(txHash: txHash, type: TransactionType.claim, context: CoreDataUtils.backgroundPersistentContext)
+                            do {
+                                try transaction.save()
+                            } catch {
+                                print("\(error)")
+                            }
                         } else {
-                            self.showNotificationOverlayWith(text: "There was an error claiming your BANANO: \(questName)")
+                            PushNotificationUtils.sendNotification(title: "BANANO Claim", body: "An error occurred claiming your BANANO for Quest \(questName), please try again.", identifier: "QuestClaimError")
                         }
                     }
 
