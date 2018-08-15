@@ -38,7 +38,7 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
         // Map settings
         mapView.showsUserLocation = true
         mapView.showsCompass = true
-        mapView.isZoomEnabled = false
+        mapView.isZoomEnabled = true
         
         // Location Manager settings
         locationManager.delegate = self
@@ -170,15 +170,13 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
             
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
             
-            self.mapView.setRegion(region, animated: true)
-            
             // show quadrant on map
-            let questArea = QuestAnnotation(title: "\(quest?.name ?? "NONE")",
-                locationName: "Quest area",
-                coordinate: location.coordinate, image: #imageLiteral(resourceName: "QUEST-AREA"))
+            let circle = MKCircle(center: center, radius: 200)
+            
+            self.mapView.setRegion(region, animated: true)
+            self.mapView.add(circle)
             
             questAreaLocation = location
-            mapView.addAnnotation(questArea)
             
         } else {
             print("Failed to get quest quadrant")
@@ -236,26 +234,20 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
     }
 
     // MARK: MKMapView
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let circleRenderer = MKCircleRenderer(overlay: overlay)
+        circleRenderer.fillColor = UIColor.yellow.withAlphaComponent(0.70)
+        circleRenderer.strokeColor = UIColor.yellow
+        circleRenderer.lineWidth = 1
+        return circleRenderer
+    }
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
             return nil
         }
 
-        let annotationIdentifier = "AnnotationIdentifier"
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier)
-        
-        if annotationView == nil {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
-            annotationView!.canShowCallout = false
-            annotationView!.image = #imageLiteral(resourceName: "QUEST-AREA")
-        }
-        else {
-            annotationView!.annotation = annotation
-            annotationView!.image = #imageLiteral(resourceName: "QUEST-AREA")
-        }
-        annotationView?.canShowCallout = false
-        
-        return annotationView
+        return nil
     }
 
     // MARK: IBActions
