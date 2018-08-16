@@ -83,10 +83,10 @@ CHECKOUT OPTIONS:
     :commit: 87ee44e9838660694a7cb3c84ee0e9151e76087f
     :git: https://github.com/RastislavMirek/FlexColorPicker
   Pocket:
-    :commit: 7fbe23b42962e9a4726d928ce941189685b51a4d
+    :commit: 9ac623b99ce552665b6d596be5db9ec46e43e013
     :git: https://github.com/pokt-network/pocket-ios-sdk.git
   PocketEth:
-    :commit: 2ec1244af9273f4460074a39797fbd176b040bdc
+    :commit: e508dd63a4d0b58bbda4e374c0cc162e5bdd7da0
     :git: https://github.com/pokt-network/pocket-ios-eth.git
   SwiftKeychainWrapper:
     :commit: 77f73c354d695d976bcf1437fc9fbcea981aa2b4
