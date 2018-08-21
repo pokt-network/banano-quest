@@ -36,6 +36,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
     var currentPlayer: Player?
     var currentWallet: Wallet?
     var selectedLocation = [AnyHashable: Any]()
+    var selectedColorHex: String?
     
     // Constants
     let maxHintSize = 280
@@ -174,6 +175,23 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
         hintTextView.layer.borderWidth = 2.0
         hintTextView.layer.cornerRadius = 5
         hintTextView.layer.borderColor = UIColor(red: (253/255), green: (204/255), blue: (48/255), alpha: 1.0).cgColor
+        
+        if selectedColorHex != nil {
+            addColorView.backgroundColor = UIColor(hexString: selectedColorHex!)
+            
+            if newQuest != nil {
+                newQuest?.hexColor = selectedColorHex
+            } else {
+                // If newQuest is nil, create a new one and assign the new hexColor
+                do {
+                    newQuest = try Quest.init(obj: [:], context: CoreDataUtils.mainPersistentContext)
+                    newQuest?.hexColor = selectedColorHex
+                } catch let error as NSError {
+                    print("Failed to create quest with error: \(error)")
+                }
+            }
+            self.bananoImageBackground.backgroundColor = UIColor(hexString: selectedColorHex!)
+        }
     }
 
     func enableElements(bool: Bool) {
@@ -452,13 +470,12 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
 
         if newQuest != nil {
             newQuest?.hexColor = selectedColor.hexValue()
+            selectedColorHex = selectedColor.hexValue()
         } else {
             // If newQuest is nil, create a new one and assign the new hexColor
             do {
-                var metadata = [AnyHashable : Any]()
-                metadata["hexColor"] = selectedColor.hexValue()
-
-                try newQuest = Quest.init(obj: [:], context: CoreDataUtils.mainPersistentContext)
+                newQuest = try Quest.init(obj: [:], context: CoreDataUtils.mainPersistentContext)
+                newQuest?.hexColor = selectedColor.hexValue()
             } catch let error as NSError {
                 print("Failed to create quest with error: \(error)")
             }
