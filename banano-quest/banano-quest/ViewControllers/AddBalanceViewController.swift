@@ -63,6 +63,7 @@ class AddBalanceViewController: UIViewController, WKUIDelegate {
     }
     
     @IBAction func copyButtonPressed(_ sender: Any) {
+        // TODO: Create error system
         let showError = {
             let alertView = self.bananoAlertView(title: "Error:", message: "Address field is empty, please try again later")
             self.present(alertView, animated: false, completion: nil)
@@ -81,22 +82,21 @@ class AddBalanceViewController: UIViewController, WKUIDelegate {
         }
     }
     
-    @IBAction func exchange1ButtonPressed(_ sender: Any) {
+    func showWebFor(exchange: URL) {
         webView.isHidden = false
         backButton.layer.borderWidth = 1
         backButton.layer.borderColor = UIColor.white.cgColor
         
-        let request = URLRequest(url: exchange1URL!)
+        let request = URLRequest(url: exchange)
         webView.load(request)
     }
     
+    @IBAction func exchange1ButtonPressed(_ sender: Any) {
+        showWebFor(exchange: exchange1URL!)
+    }
+    
     @IBAction func exchange2ButtonPressed(_ sender: Any) {
-        webView.isHidden = false
-        backButton.layer.borderWidth = 1
-        backButton.layer.borderColor = UIColor.white.cgColor
-        
-        let request = URLRequest(url: exchange2URL!)
-        webView.load(request)
+        showWebFor(exchange: exchange2URL!)
     }
     
 }

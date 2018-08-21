@@ -635,6 +635,6 @@
         <image name="MAP-BLUEx1" width="57" height="57"/>
         <image name="MENUX1" width="57" height="57"/>
         <image name="SAMALL BANNERx1" width="750" height="330"/>
-        <image name="SUMMARY BACKGROUND" width="640" height="214"/>
+        <image name="SUMMARY BACKGROUND" width="626" height="198"/>
     </resources>
 </document>
