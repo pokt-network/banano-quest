@@ -44,7 +44,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-//        self.scrollView?.frame = UIScreen.main.bounds
     }
     
     override func refreshView() throws {
@@ -75,6 +74,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             let vc = try instantiateViewController(identifier: "addBalanceViewControllerID", storyboardName: "Profile") as? AddBalanceViewController
             if currentPlayer != nil {
                 vc?.player = currentPlayer
+                vc?.qrImage = qrCodeImage.image
             }
             present(vc!, animated: false, completion: nil)
         } catch let error as NSError {
