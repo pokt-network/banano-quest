@@ -183,7 +183,7 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
             if let gasEstimate = gasEstimateWei {
                 let gasEstimateEth = EthUtils.convertWeiToEth(wei: gasEstimate)
                 let gasEstimateUSD = EthUtils.convertEthAmountToUSD(ethAmount: gasEstimateEth)
-                let message = String.init(format: "Total transaction cost: %@ USD - %@ ETH. Press OK to create your Quest", String.init(format: "%.4f", gasEstimateUSD), String.init(format: "%.4f", gasEstimateEth))
+                let message = String.init(format: "Total transaction cost: %@ USD - %@ ETH. Press OK to claim your Banano", String.init(format: "%.4f", gasEstimateUSD), String.init(format: "%.4f", gasEstimateEth))
                 
                 let txDetailsAlertView = self.bananoAlertView(title: "Transaction Details", message: message) { (uiAlertAction) in
                     do {

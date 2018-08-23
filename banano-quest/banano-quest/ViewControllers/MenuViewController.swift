@@ -8,15 +8,14 @@
 
 import UIKit
 
-
 class MenuViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -40,14 +39,13 @@ class MenuViewController: UIViewController {
             container.isSideViewControllerPresented = false
         }
         do {
-        let vc = try self.instantiateViewController(identifier: "CreateQuestVC", storyboardName: "CreateQuest") as? CreateQuestViewController
+            let vc = try self.instantiateViewController(identifier: "CreateQuestVC", storyboardName: "CreateQuest") as? CreateQuestViewController
             self.so_containerViewController?.topViewController = vc
         } catch let error as NSError {
             print("Failed to instantiate QuestingViewController with error: \(error)")
         }
         
-        }
-    
+    }
     
     @IBAction func profileButtonTapped(_ sender: Any) {
         if let container = self.so_containerViewController {
@@ -65,6 +63,5 @@ class MenuViewController: UIViewController {
     override func refreshView() throws {
         
     }
-    
     
 }

@@ -178,7 +178,19 @@ class NewWalletViewController: UIViewController {
             self.createButton.isEnabled = true
         }
     }
-
+    @IBAction func addBalanceButtonPressed(_ sender: Any) {
+        do {
+            let vc = try instantiateViewController(identifier: "addBalanceViewControllerID", storyboardName: "Profile") as? AddBalanceViewController
+            if currentPlayer != nil {
+                vc?.player = currentPlayer
+                vc?.qrImage = ProfileViewController.generateQRCode(from: currentPlayer?.address ?? "error: no address")
+            }
+            present(vc!, animated: false, completion: nil)
+        } catch let error as NSError {
+            print("Failed to instantiate Add Balance view with error: \(error)")
+        }
+    }
+    
     @IBAction func continuePressed(_ sender: Any) {
         guard let _ = currentPlayer else {
             self.present(self.bananoAlertView(title: "Error", message: "Please enter your passphrase and press Create"), animated: true, completion: nil)

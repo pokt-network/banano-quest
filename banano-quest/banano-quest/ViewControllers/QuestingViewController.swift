@@ -38,6 +38,11 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Gesture recognizer that dismiss the keyboard when tapped outside
+        let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        tapOutside.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapOutside)
+        
         // Quest list
         loadQuestList()
         setupLocationManager()
@@ -45,12 +50,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // Gesture recognizer that dismiss the keyboard when tapped outside
-        let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        tapOutside.cancelsTouchesInView = false
-        view.addGestureRecognizer(tapOutside)
-        
+
         self.collectionView.addSubview(refreshControl)
         
         do {
@@ -58,6 +58,10 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         } catch let error as NSError {
             print("Failed to refresh view with error: \(error)")
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
     }
     
     override func refreshView() throws {
@@ -68,7 +72,6 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         DispatchQueue.main.async {
             self.refreshControl.endRefreshing()
             self.collectionView.isUserInteractionEnabled = true
-        
             self.collectionView.reloadData()
         }
     }
@@ -236,10 +239,6 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         if let container = self.so_containerViewController {
             container.isSideViewControllerPresented = true
         }
-    }
-
-    @IBAction func unwindToThisViewController(segue: UIStoryboardSegue) {
-        print("Back to QuestingViewController")
     }
 
     @IBAction func completeButtonPressed(_ sender: Any) {

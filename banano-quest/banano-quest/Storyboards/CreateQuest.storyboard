@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="feM-Fj-GF4">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="feM-Fj-GF4">
+                                <rect key="frame" x="0.0" y="-10" width="375" height="677"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SAMALL BANNERx1" translatesAutoresizingMaskIntoConstraints="NO" id="WNC-eS-fBw" userLabel="Top Banner image">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
@@ -373,7 +373,7 @@
                                             <action selector="menuPressed:" destination="kIW-Lt-zHE" eventType="touchUpInside" id="Iq5-yf-Ofo"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SUMMARY BACKGROUND" translatesAutoresizingMaskIntoConstraints="NO" id="O3G-6L-yVR" userLabel="Bottom image">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SUMMARY-BACKGROUND-NO-SHADOW" translatesAutoresizingMaskIntoConstraints="NO" id="O3G-6L-yVR" userLabel="Bottom image">
                                         <rect key="frame" x="0.0" y="574" width="375" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="R5K-fK-8Ym"/>
@@ -424,7 +424,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="feM-Fj-GF4" firstAttribute="top" secondItem="okA-uD-Ryw" secondAttribute="top" constant="-20" id="WLN-bg-T68"/>
+                            <constraint firstItem="feM-Fj-GF4" firstAttribute="top" secondItem="okA-uD-Ryw" secondAttribute="top" constant="-30" id="WLN-bg-T68"/>
                             <constraint firstItem="feM-Fj-GF4" firstAttribute="leading" secondItem="Mdk-Yn-wXo" secondAttribute="leading" id="XYb-V1-3nh"/>
                             <constraint firstItem="feM-Fj-GF4" firstAttribute="bottom" secondItem="okA-uD-Ryw" secondAttribute="bottom" id="Y2q-pN-odu"/>
                             <constraint firstAttribute="trailing" secondItem="feM-Fj-GF4" secondAttribute="trailing" id="zBw-dG-QTh"/>
@@ -556,7 +556,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uZ8-Yb-pRh">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hf0-st-ts0" userLabel="Back Button">
                                 <rect key="frame" x="15" y="40" width="28" height="28"/>
@@ -612,7 +612,7 @@
                             <constraint firstItem="rZe-ua-Mns" firstAttribute="top" secondItem="aq2-Ox-ZIh" secondAttribute="bottom" constant="30" id="kxr-EP-Ncz"/>
                             <constraint firstItem="k4a-lz-Zxj" firstAttribute="trailing" secondItem="aq2-Ox-ZIh" secondAttribute="trailing" constant="15" id="nCe-9T-Dyi"/>
                             <constraint firstItem="uZ8-Yb-pRh" firstAttribute="leading" secondItem="k4a-lz-Zxj" secondAttribute="leading" id="qWF-dV-l6v"/>
-                            <constraint firstItem="uZ8-Yb-pRh" firstAttribute="top" secondItem="k4a-lz-Zxj" secondAttribute="top" id="tdX-NP-d0F"/>
+                            <constraint firstItem="uZ8-Yb-pRh" firstAttribute="top" secondItem="k4a-lz-Zxj" secondAttribute="top" constant="-20" id="tdX-NP-d0F"/>
                             <constraint firstItem="k4a-lz-Zxj" firstAttribute="trailing" secondItem="uZ8-Yb-pRh" secondAttribute="trailing" id="w91-zS-SlL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="k4a-lz-Zxj"/>
@@ -635,6 +635,6 @@
         <image name="MAP-BLUEx1" width="57" height="57"/>
         <image name="MENUX1" width="57" height="57"/>
         <image name="SAMALL BANNERx1" width="750" height="330"/>
-        <image name="SUMMARY BACKGROUND" width="626" height="198"/>
+        <image name="SUMMARY-BACKGROUND-NO-SHADOW" width="1123" height="272"/>
     </resources>
 </document>

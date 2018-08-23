@@ -293,8 +293,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
     func presentQuestListView() {
         do {
             let vc = try self.instantiateViewController(identifier: "QuestingVC", storyboardName: "Questing") as! QuestingViewController
-
-            self.present(vc, animated: false, completion: nil)
+            self.so_containerViewController?.topViewController = vc
         }catch {
             let failedAlertView = self.bananoAlertView(title: "Error:", message: "Oops something didn't happen, please try again")
             self.present(failedAlertView, animated: false, completion: nil)
@@ -540,6 +539,8 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
                              self.present(self.bananoAlertView(title: "Error", message: "An error ocurred accessing your account, please try again"), animated: true, completion: nil)
                         })
                     }
+                    txDetailsAlertView.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+
                     self.present(txDetailsAlertView, animated: false, completion: nil)
                 } else {
                     let alertView = self.bananoAlertView(title: "Error", message: "Error retrieving the transaction costs, please try again.")

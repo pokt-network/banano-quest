@@ -49,6 +49,9 @@
                                     <constraint firstAttribute="height" constant="69" id="jl4-1X-SaK"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="ADD-BANLANCE-BUTTON-X1"/>
+                                <connections>
+                                    <action selector="addBalanceButtonPressed:" destination="G5h-c0-bFX" eventType="touchUpInside" id="rH1-kK-HRv"/>
+                                </connections>
                             </button>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FORTHx1" translatesAutoresizingMaskIntoConstraints="NO" id="CW6-he-VgH" userLabel="Forward icon">
                                 <rect key="frame" x="329" y="546" width="30" height="30"/>
