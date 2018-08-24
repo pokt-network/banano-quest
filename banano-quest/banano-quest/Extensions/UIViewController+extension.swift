@@ -51,8 +51,8 @@ extension UIViewController {
     func bananoAlertView(title: String, message: String, handler: ((UIAlertAction) -> Void)?) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
-        alert.addAction(UIAlertAction.init(title: "Ok", style: .cancel, handler: handler))
-
+        alert.addAction(UIAlertAction.init(title: "Ok", style: .default, handler: handler))
+        
         return alert
     }
     

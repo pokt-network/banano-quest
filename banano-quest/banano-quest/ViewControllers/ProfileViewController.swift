@@ -56,7 +56,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
 
         // Labels setup
         walletAddressLabel.text = currentPlayer?.address
-        qrCodeImage.image = generateQRCode(from: currentPlayer?.address ?? "")
+        qrCodeImage.image = ProfileViewController.generateQRCode(from: currentPlayer?.address ?? "")
         if let weiBalanceStr = currentPlayer?.balanceWei {
             let weiBalance = BigInt.init(weiBalanceStr) ?? BigInt.init(0)
             ethValueLabel.text = "\(EthUtils.convertWeiToEth(wei: weiBalance)) ETH"
@@ -149,7 +149,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     // MARK: Tools
-    func generateQRCode(from string: String) -> UIImage? {
+    public static func generateQRCode(from string: String) -> UIImage? {
         let data = string.data(using: String.Encoding.ascii)
         
         if let filter = CIFilter(name: "CIQRCodeGenerator") {

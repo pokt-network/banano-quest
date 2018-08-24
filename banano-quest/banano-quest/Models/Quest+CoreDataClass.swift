@@ -186,4 +186,8 @@ public class Quest: NSManagedObject {
         let point4 = CLLocation.init(latitude: Double.init(self.lat4), longitude: Double.init(self.lon4))
         return [point1, point2, point3, point4]
     }
+    
+    func getCreatorHexAddress() -> String {
+        return "0x\(creator)"
+    }
 }

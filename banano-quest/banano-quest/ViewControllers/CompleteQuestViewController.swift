@@ -86,13 +86,6 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
             prizeValueLabel.text = "No ETH"
         }
         
-        // Check if is the creator playing
-        if isQuestCreator() {
-            completeButton.isEnabled = false
-        } else {
-            completeButton.isEnabled = true
-        }
-        
         // Add color to the banano
         let bananoColor = UIColor(hexString: quest?.hexColor ?? "31AADE")
         bananoBackground.backgroundColor = bananoColor
@@ -187,9 +180,12 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
     func isQuestCreator() -> Bool {
         do {
             let player = try Player.getPlayer(context: CoreDataUtils.mainPersistentContext)
-            if quest?.creator == player.address {
+            let questCreator = quest?.getCreatorHexAddress()
+            
+            if questCreator == player.address {
                 return true
             }
+            
         } catch let error as NSError {
             print("CompleteQuestViewController - isQuestCreator() - Failed to retrieve player information with error: \(error)")
         }
@@ -256,6 +252,13 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
     }
 
     @IBAction func completeButtonPressed(_ sender: Any) {
+        // Check if is the creator playing
+        if isQuestCreator() {
+            let alert = bananoAlertView(title: "Denied", message: "Quest creator can't complete his/her own quest")
+            present(alert, animated: false, completion: nil)
+            return
+        }
+        
         if let userLocation = mapView.userLocation.location {
             currentUserLocation = userLocation
         }

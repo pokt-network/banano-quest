@@ -17,7 +17,7 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate, Configuration, UNUserNotificationCenterDelegate {
     var nodeURL: URL {
         get {
-            return URL.init(string: "http://red.pokt.network")!
+            return URL.init(string: "https://red.pokt.network")!
         }
     }
     var window: UIWindow?

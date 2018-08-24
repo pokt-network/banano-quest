@@ -53,16 +53,16 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
         let distance = bananoLocationC.distance(from: currentUserLocation!)
 
         if distance <= 50 {
-//            let annotation = ARAnnotation()
-//            annotation.title = currentQuest?.name
-//            annotation.location = bananoLocationC
-//
-//            // AR options
-//            // Max distance between the player and the Banano
-//            maxDistance = 50
-//
-//            // We add the annotations that for Banano quest is 1 at a time
-//            setAnnotations([annotation])
+            let annotation = ARAnnotation()
+            annotation.title = currentQuest?.name
+            annotation.location = bananoLocationC
+
+            // AR options
+            // Max distance between the player and the Banano
+            maxDistance = 50
+
+            // We add the annotations that for Banano quest is 1 at a time
+            setAnnotations([annotation])
 //            
         }else {
             let alertController = bananoAlertView(title: "Not in range", message: "\(currentQuest?.name ?? "") banano is not within 50 meters of your current location")
@@ -183,7 +183,7 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
             if let gasEstimate = gasEstimateWei {
                 let gasEstimateEth = EthUtils.convertWeiToEth(wei: gasEstimate)
                 let gasEstimateUSD = EthUtils.convertEthAmountToUSD(ethAmount: gasEstimateEth)
-                let message = String.init(format: "Total transaction cost: %@ USD - %@ ETH. Press OK to create your Quest", String.init(format: "%.4f", gasEstimateUSD), String.init(format: "%.4f", gasEstimateEth))
+                let message = String.init(format: "Total transaction cost: %@ USD - %@ ETH. Press OK to claim your Banano", String.init(format: "%.4f", gasEstimateUSD), String.init(format: "%.4f", gasEstimateEth))
                 
                 let txDetailsAlertView = self.bananoAlertView(title: "Transaction Details", message: message) { (uiAlertAction) in
                     do {
