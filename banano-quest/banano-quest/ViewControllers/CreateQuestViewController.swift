@@ -485,6 +485,20 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
     func colorPicker(_ colorPicker: ColorPickerController, confirmedColor: UIColor, usingControl: ColorControl) {
         print("Confirmed a color")
     }
+    
+    func noBalanceHandler(message: String) {
+        let alertView = bananoAlertView(title: "Failed", message: message)
+        let addBalance = UIAlertAction.init(title: "Add Balance", style: .default) { (UIAlertAction) in
+            do {
+                let vc = try self.instantiateViewController(identifier: "addBalanceViewControllerID", storyboardName: "Profile")
+                self.present(vc, animated: false, completion: nil)
+            }catch let error as NSError {
+                print("Failed to instantiate addBalanceViewControllerID with error: \(error)")
+            }
+        }
+        alertView.addAction(addBalance)
+        present(alertView, animated: false, completion: nil)
+    }
 
     // MARK: - IBActions
     @IBAction func menuPressed(_ sender: Any) {
@@ -525,6 +539,18 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
                     let questPrizeWei = BigInt.init(self.newQuest?.prize ?? "0.0") ?? BigInt.init(0)
                     let gasEstimateEth = EthUtils.convertWeiToEth(wei: gasEstimate + questPrizeWei)
                     let gasEstimateUSD = EthUtils.convertEthAmountToUSD(ethAmount: gasEstimateEth)
+                    
+                    // Player balance
+                    let playerEthBalance = EthUtils.convertWeiToEth(wei: BigInt(self.currentPlayer?.balanceWei ?? "0")!)
+                    let playerUSDBalance = EthUtils.convertEthAmountToUSD(ethAmount: playerEthBalance)
+                    
+                    if gasEstimateUSD > playerUSDBalance {
+                        let message = String.init(format: "Insufficient funds, Total transaction cost: %@ USD - %@ ETH. Current player balance: %@ USD - %@ ETH", String.init(format: "%.4f", gasEstimateUSD), String.init(format: "%.4f", gasEstimateEth), String.init(format: "%.4f", playerUSDBalance), String.init(format: "%.4f", playerEthBalance))
+                        self.noBalanceHandler(message: message)
+                        
+                        return
+                    }
+                    
                     let message = String.init(format: "Note that the value you have determined as a prize, if any, will be divided by the number of BANANOS allocated for the Quest, giving each Winner a fraction of the total prize. Banano Quest retains %@ of the total prize as comission. Total transaction cost: %@ USD - %@ ETH. Press OK to create your Quest", "10%", String.init(format: "%.4f", gasEstimateUSD), String.init(format: "%.4f", gasEstimateEth))
                     let txDetailsAlertView = self.bananoAlertView(title: "Transaction Details", message: message) { (uiAlertAction) in
                         guard let player = self.currentPlayer else {
