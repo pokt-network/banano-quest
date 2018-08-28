@@ -104,10 +104,7 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
                 requestCameraAccess()
             }
         } else {
-            let alertView = bananoAlertView(title: "Error", message: "Device has not cameras available") { (UIAlertView) in
-                // TODO:
-                print("device not available")
-            }
+            let alertView = bananoAlertView(title: "Error", message: "Device has not cameras available")
             
             present(alertView, animated: false, completion: nil)
         }
@@ -137,6 +134,8 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
                     }
                 }
             }else{
+                let noCameraAlertView = self.bananoAlertView(title: "Failed", message: "Back Camera not available, please try again later.")
+                self.present(noCameraAlertView, animated: false, completion: nil)
                 print("Back Camera not available")
             }
         })
