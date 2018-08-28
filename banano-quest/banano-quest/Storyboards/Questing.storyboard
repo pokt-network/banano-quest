@@ -364,6 +364,12 @@
                                     <action selector="completeButtonPressed:" destination="kQ9-IP-T6f" eventType="touchUpInside" id="N2T-ny-6Rl"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRb-VL-clM" userLabel="Error message label">
+                                <rect key="frame" x="166" y="363" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -381,10 +387,12 @@
                             <constraint firstItem="qZ7-jz-e8J" firstAttribute="top" secondItem="Ghi-o2-IKg" secondAttribute="top" constant="20" id="Sfd-gh-Ovs"/>
                             <constraint firstItem="ZLK-pd-2jk" firstAttribute="leading" secondItem="Ghi-o2-IKg" secondAttribute="leading" id="SyG-Rq-nPJ"/>
                             <constraint firstItem="Iih-gE-cTX" firstAttribute="centerX" secondItem="W7x-Qh-Vrk" secondAttribute="centerX" id="U2L-Jl-sB6"/>
+                            <constraint firstItem="cRb-VL-clM" firstAttribute="centerX" secondItem="Ghi-o2-IKg" secondAttribute="centerX" id="WhU-gg-Khw"/>
                             <constraint firstItem="tZS-HR-pd0" firstAttribute="leading" secondItem="Ghi-o2-IKg" secondAttribute="leading" constant="16" id="Xfh-CE-1Ho"/>
                             <constraint firstItem="Ask-fZ-Xl9" firstAttribute="centerX" secondItem="W7x-Qh-Vrk" secondAttribute="centerX" id="cAO-Nh-Aql"/>
                             <constraint firstItem="Br9-O7-yS5" firstAttribute="centerY" secondItem="DOZ-XF-u8O" secondAttribute="centerY" id="fzL-1q-ImQ"/>
                             <constraint firstItem="Ask-fZ-Xl9" firstAttribute="top" secondItem="Ghi-o2-IKg" secondAttribute="top" constant="20" id="le5-II-Xmj"/>
+                            <constraint firstItem="cRb-VL-clM" firstAttribute="centerY" secondItem="Ghi-o2-IKg" secondAttribute="centerY" constant="30" id="mld-j9-Fdc"/>
                             <constraint firstItem="s9R-2F-4Nz" firstAttribute="top" secondItem="Ghi-o2-IKg" secondAttribute="top" constant="323" id="s23-gm-JcN"/>
                             <constraint firstItem="Ghi-o2-IKg" firstAttribute="trailing" secondItem="Br9-O7-yS5" secondAttribute="trailing" constant="16" id="vLe-Zh-J2L"/>
                             <constraint firstItem="DOZ-XF-u8O" firstAttribute="leading" secondItem="Ghi-o2-IKg" secondAttribute="leading" constant="16" id="yPB-6J-FtP"/>
@@ -395,6 +403,7 @@
                     <connections>
                         <outlet property="collectionView" destination="ahE-P1-w7Y" id="nhv-kG-5Cu"/>
                         <outlet property="completeButton" destination="Iih-gE-cTX" id="kkP-Rp-lYC"/>
+                        <outlet property="errorMessageLabel" destination="cRb-VL-clM" id="Es7-QW-sCK"/>
                         <outlet property="nextButton" destination="Br9-O7-yS5" id="TfE-7v-yF4"/>
                         <outlet property="previousButton" destination="DOZ-XF-u8O" id="Lpw-YO-Srd"/>
                     </connections>
@@ -684,13 +693,44 @@
                                     <action selector="backButtonPressed:" destination="LJR-Yr-7zi" eventType="touchUpInside" id="nF0-OP-UVV"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m7t-yZ-yR6" userLabel="Access permission view">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GIM-IH-JB1" userLabel="Grant Camera access button">
+                                        <rect key="frame" x="113.5" y="364" width="148" height="30"/>
+                                        <state key="normal" title="Grant Camera access"/>
+                                        <connections>
+                                            <action selector="grantCameraAccess:" destination="LJR-Yr-7zi" eventType="touchUpInside" id="7d7-rS-vVV"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Banano Quest needs access to your camera to continue" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHZ-Yc-MRI">
+                                        <rect key="frame" x="20" y="313" width="335" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="yHZ-Yc-MRI" secondAttribute="trailing" constant="20" id="8Z1-RF-FAb"/>
+                                    <constraint firstItem="GIM-IH-JB1" firstAttribute="centerX" secondItem="m7t-yZ-yR6" secondAttribute="centerX" id="8fM-v1-J6f"/>
+                                    <constraint firstItem="yHZ-Yc-MRI" firstAttribute="centerX" secondItem="m7t-yZ-yR6" secondAttribute="centerX" id="D81-8z-a5i"/>
+                                    <constraint firstItem="yHZ-Yc-MRI" firstAttribute="leading" secondItem="m7t-yZ-yR6" secondAttribute="leading" constant="20" id="HRf-Ta-38G"/>
+                                    <constraint firstItem="GIM-IH-JB1" firstAttribute="top" secondItem="yHZ-Yc-MRI" secondAttribute="bottom" constant="10" id="SfY-oj-B3B"/>
+                                    <constraint firstItem="yHZ-Yc-MRI" firstAttribute="centerY" secondItem="m7t-yZ-yR6" secondAttribute="centerY" id="YmY-IJ-se5"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="m7t-yZ-yR6" firstAttribute="bottom" secondItem="Bw9-Gl-pUF" secondAttribute="bottom" id="2C9-jO-EOe"/>
                             <constraint firstItem="Bw9-Gl-pUF" firstAttribute="bottom" secondItem="EGh-vX-iGa" secondAttribute="bottom" constant="-55" id="2Lh-KF-czZ"/>
                             <constraint firstItem="EGh-vX-iGa" firstAttribute="leading" secondItem="Bw9-Gl-pUF" secondAttribute="leading" id="AWi-zf-u2b"/>
+                            <constraint firstItem="m7t-yZ-yR6" firstAttribute="trailing" secondItem="Bw9-Gl-pUF" secondAttribute="trailing" id="HkL-H9-oFE"/>
                             <constraint firstItem="EGh-vX-iGa" firstAttribute="trailing" secondItem="Bw9-Gl-pUF" secondAttribute="trailing" id="Mnt-fS-DjZ"/>
+                            <constraint firstItem="m7t-yZ-yR6" firstAttribute="top" secondItem="KPX-V6-87l" secondAttribute="top" id="XaL-6N-Br3"/>
                             <constraint firstItem="opM-ve-W4Y" firstAttribute="centerX" secondItem="Bw9-Gl-pUF" secondAttribute="centerX" id="ZJw-D4-C3D"/>
+                            <constraint firstItem="m7t-yZ-yR6" firstAttribute="leading" secondItem="Bw9-Gl-pUF" secondAttribute="leading" id="fx2-wM-icq"/>
                             <constraint firstItem="4tk-Qc-Kvg" firstAttribute="leading" secondItem="Bw9-Gl-pUF" secondAttribute="leading" constant="15" id="g4F-Kh-piD"/>
                             <constraint firstItem="4tk-Qc-Kvg" firstAttribute="top" secondItem="Bw9-Gl-pUF" secondAttribute="top" constant="20" id="kBY-sn-K5n"/>
                             <constraint firstItem="Bw9-Gl-pUF" firstAttribute="bottom" secondItem="opM-ve-W4Y" secondAttribute="bottom" constant="15" id="zvi-Yp-bax"/>
@@ -699,6 +739,7 @@
                     </view>
                     <connections>
                         <outlet property="claimButton" destination="opM-ve-W4Y" id="dGI-MT-n4H"/>
+                        <outlet property="permissionsView" destination="m7t-yZ-yR6" id="6Bv-Xh-ZHW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gmv-2g-GkE" userLabel="First Responder" sceneMemberID="firstResponder"/>

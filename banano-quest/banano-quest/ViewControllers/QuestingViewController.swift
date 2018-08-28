@@ -16,6 +16,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var completeButton: UIButton!
+    @IBOutlet weak var errorMessageLabel: UILabel!
     
     // Variables
     var quests: [Quest] = [Quest]()
@@ -43,8 +44,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         tapOutside.cancelsTouchesInView = false
         view.addGestureRecognizer(tapOutside)
         
-        // Quest list
-        loadQuestList()
+        // Location Manager
         setupLocationManager()
     }
 
@@ -69,6 +69,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         if self.quests.isEmpty {
             loadQuestList()
         }
+        
         DispatchQueue.main.async {
             self.refreshControl.endRefreshing()
             self.collectionView.isUserInteractionEnabled = true
@@ -129,12 +130,11 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
             self.quests = try Quest.sortedQuestsByIndex(context: CoreDataUtils.mainPersistentContext)
             if self.quests.count == 0 {
                 DispatchQueue.main.async {
-                    self.showElements(bool: true)
-                    let label = self.showLabelWith(message: "No Quests available, please try again later...")
-                    self.view.addSubview(label)
+                    self.errorMessageLabel.text = "No Quests available, please try again later..."
+                    self.showElements(bool: false)
                 }
             } else {
-                self.showElements(bool: false)
+                self.showElements(bool: true)
                 do {
                     try self.refreshView()
                 }catch let error as NSError {
@@ -151,10 +151,11 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
 
     func showElements(bool: Bool) {
         DispatchQueue.main.async {
-            self.collectionView.isHidden = bool
-            self.previousButton.isHidden = bool
-            self.nextButton.isHidden = bool
-            self.completeButton.isHidden = bool
+            self.errorMessageLabel.isHidden = bool
+            self.collectionView.isHidden = !bool
+            self.previousButton.isHidden = !bool
+            self.nextButton.isHidden = !bool
+            self.completeButton.isHidden = !bool
         }
     }
 
