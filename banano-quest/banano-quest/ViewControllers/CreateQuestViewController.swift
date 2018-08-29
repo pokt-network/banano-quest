@@ -43,7 +43,11 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
 
     // Notifications
     static let notificationName = Notification.Name("getLocation")
-
+    
+    // Activity Indicator
+    var indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+    var grayView: UIView?
+    
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +64,19 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        // Gray view setup
+        grayView = UIView.init(frame: view.frame)
+        grayView?.backgroundColor = UIColor.init(white: 1.0, alpha: 0.75)
+        view.addSubview(grayView!)
+        
+        // Activity indicator setup
+        indicator.center = view.center
+        
+        view.addSubview(indicator)
+        indicator.startAnimating()
+        
+        self.view.isUserInteractionEnabled = false
+        
         // Refresh player info
         refreshPlayerInfo()
         
@@ -96,6 +113,12 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
     func refreshPlayerInfo() {
         let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: currentPlayer?.address ?? "0", tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
         appInitQueueDispatcher.initDisplatchSequence {
+            DispatchQueue.main.async {
+                self.view.isUserInteractionEnabled = true
+                self.indicator.stopAnimating()
+                self.grayView?.isHidden = true
+            }
+            
             print("Player information updated")
         }
     }

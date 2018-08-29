@@ -23,6 +23,10 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
     var currentQuest: Quest?
     var currentPlayer: Player?
     var questProof: QuestProofSubmission?
+    
+    // Activity Indicator
+    var indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+    var grayView: UIView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +48,23 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        do {
-            try refreshView()
-        } catch let error as NSError {
-            print("Failed to refresh view with error: \(error)")
-        }
+        
+        // Gray view setup
+        grayView = UIView.init(frame: view.frame)
+        grayView?.backgroundColor = UIColor.init(white: 1.0, alpha: 0.75)
+        view.addSubview(grayView!)
+        
+        // Activity indicator setup
+        indicator.center = view.center
+        
+        view.addSubview(indicator)
+        indicator.startAnimating()
+        
+        self.view.isUserInteractionEnabled = false
+        
+        // Refresh player info
+        refreshPlayerInfo()
+    
     }
 
     override func refreshView() throws {
@@ -189,6 +205,25 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
         return annotationView
     }
     // MARK: Tools
+    func refreshPlayerInfo() {
+        let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: currentPlayer?.address ?? "0", tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
+        appInitQueueDispatcher.initDisplatchSequence {
+            DispatchQueue.main.async {
+                self.view.isUserInteractionEnabled = true
+                self.indicator.stopAnimating()
+                self.grayView?.isHidden = true
+                
+                do {
+                    try self.refreshView()
+                } catch let error as NSError {
+                    print("Failed to refresh view with error: \(error)")
+                }
+            }
+            
+            print("Player information updated")
+        }
+    }
+    
     func claimFailedAlertView() {
         let alertView = bananoAlertView(title: "Error", message: "Something happened while submitting your information, please try again later.")
 
