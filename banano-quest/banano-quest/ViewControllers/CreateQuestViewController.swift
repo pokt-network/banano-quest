@@ -60,6 +60,9 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        // Refresh player info
+        refreshPlayerInfo()
+        
         do {
             try refreshView()
         } catch let error as NSError {
@@ -71,7 +74,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
         self.newQuest = nil
         super.viewWillDisappear(animated)
     }
-
+    
     override func refreshView() throws {
         // UI Settings
         defaultUIElementsStyle()
@@ -90,6 +93,13 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
     }
 
     // MARK: - Tools
+    func refreshPlayerInfo() {
+        let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: currentPlayer?.address ?? "0", tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
+        appInitQueueDispatcher.initDisplatchSequence {
+            print("Player information updated")
+        }
+    }
+    
     func retrieveGasEstimate(handler: @escaping (BigInt?) -> Void) {
         let prizeStr = newQuest?.prize! ?? "0.0"
         let questPrize = BigInt.init(prizeStr) ?? BigInt.init(0)
