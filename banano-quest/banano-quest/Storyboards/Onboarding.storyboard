@@ -33,14 +33,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NUXONBOARDING 1-x1" translatesAutoresizingMaskIntoConstraints="NO" id="0sf-C0-s9f">
-                                            <rect key="frame" x="0.0" y="-40" width="375" height="717"/>
+                                            <rect key="frame" x="0.0" y="-50" width="375" height="727"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PAGE-SLIDER-1" translatesAutoresizingMaskIntoConstraints="NO" id="oTc-48-0gY">
+                                            <rect key="frame" x="97.5" y="619" width="180" height="25"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="180" id="10l-JU-bB0"/>
+                                                <constraint firstAttribute="height" constant="25" id="xif-pv-M9Z"/>
+                                            </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for Quests around your area, pay attention to: Quest Distance, # Bananos Available and ETH Prizes" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="13" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1xS-Jn-ajs" userLabel="Search label">
-                                            <rect key="frame" x="10" y="492" width="355" height="162"/>
+                                            <rect key="frame" x="10" y="485" width="355" height="162"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="162" id="HF7-oU-Pdg"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -48,38 +55,60 @@
                                 </view>
                                 <color key="backgroundColor" red="0.5244060386509517" green="1" blue="0.28656560477085835" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="oTc-48-0gY" firstAttribute="centerX" secondItem="4yX-x3-L4m" secondAttribute="centerX" id="1QP-AD-v2z"/>
                                     <constraint firstItem="1xS-Jn-ajs" firstAttribute="leading" secondItem="4yX-x3-L4m" secondAttribute="leading" constant="10" id="2Cu-Oj-8ct"/>
                                     <constraint firstAttribute="trailing" secondItem="0sf-C0-s9f" secondAttribute="trailing" id="2a6-zP-dyL"/>
+                                    <constraint firstAttribute="bottom" secondItem="1xS-Jn-ajs" secondAttribute="bottom" constant="20" id="3I4-Op-A7p"/>
                                     <constraint firstAttribute="trailing" secondItem="1xS-Jn-ajs" secondAttribute="trailing" constant="10" id="NaW-zb-mxP"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="oTc-48-0gY" secondAttribute="bottom" constant="15" id="f1n-zI-hsn"/>
                                     <constraint firstAttribute="bottom" secondItem="0sf-C0-s9f" secondAttribute="bottom" constant="-10" id="hnc-CS-cc5"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="1xS-Jn-ajs" secondAttribute="bottom" constant="5" id="kAD-BF-gFl"/>
                                     <constraint firstItem="0sf-C0-s9f" firstAttribute="leading" secondItem="4yX-x3-L4m" secondAttribute="leading" id="ls0-8b-Ow4"/>
-                                    <constraint firstItem="0sf-C0-s9f" firstAttribute="top" secondItem="4yX-x3-L4m" secondAttribute="top" constant="-40" id="qfd-Nm-OEw"/>
+                                    <constraint firstItem="0sf-C0-s9f" firstAttribute="top" secondItem="4yX-x3-L4m" secondAttribute="top" constant="-50" id="qfd-Nm-OEw"/>
                                 </constraints>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Find" id="Dri-Wr-ADq" userLabel="Find">
-                                <rect key="frame" x="375" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NUXONBOARDING-2x1" translatesAutoresizingMaskIntoConstraints="NO" id="aP8-dd-sow">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="667"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NUXONBOARDING-2x1" translatesAutoresizingMaskIntoConstraints="NO" id="aP8-dd-sow">
+                                            <rect key="frame" x="0.0" y="-10" width="375" height="677"/>
                                         </imageView>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Find where the BANANO is hiding by using the hint provided by the Quest!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQr-cB-bS2">
-                                            <rect key="frame" x="20" y="496" width="335" height="151"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PAGE-SLIDER-2" translatesAutoresizingMaskIntoConstraints="NO" id="3Zm-cr-iIZ">
+                                            <rect key="frame" x="97" y="627" width="180" height="25"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="180" id="XWU-Js-GMU"/>
+                                                <constraint firstAttribute="height" constant="25" id="w2Q-JO-mZi"/>
+                                            </constraints>
+                                        </imageView>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Find where the BANANO is hiding by using the hint provided by the Quest!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQr-cB-bS2">
+                                            <rect key="frame" x="26" y="495" width="323" height="152"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="152" id="JcQ-I3-TOF"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
                                     </subviews>
                                 </view>
                                 <color key="backgroundColor" red="1" green="0.26544584314682362" blue="0.29716329906120365" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailingMargin" secondItem="DQr-cB-bS2" secondAttribute="trailing" constant="10" id="0SO-4K-C42"/>
+                                    <constraint firstItem="3Zm-cr-iIZ" firstAttribute="centerX" secondItem="Dri-Wr-ADq" secondAttribute="centerX" id="1BD-CJ-WYf"/>
+                                    <constraint firstAttribute="trailing" secondItem="aP8-dd-sow" secondAttribute="trailing" id="Ewo-c8-Pme"/>
+                                    <constraint firstAttribute="bottom" secondItem="aP8-dd-sow" secondAttribute="bottom" id="N2o-mZ-sw4"/>
+                                    <constraint firstItem="DQr-cB-bS2" firstAttribute="centerX" secondItem="Dri-Wr-ADq" secondAttribute="centerX" id="TGD-VU-4sP"/>
+                                    <constraint firstItem="aP8-dd-sow" firstAttribute="leading" secondItem="Dri-Wr-ADq" secondAttribute="leading" id="cnQ-uQ-H1O"/>
+                                    <constraint firstItem="aP8-dd-sow" firstAttribute="top" secondItem="Dri-Wr-ADq" secondAttribute="top" constant="-10" id="czq-Ab-h03"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="3Zm-cr-iIZ" secondAttribute="bottom" constant="15" id="wtz-FR-t3R"/>
+                                    <constraint firstItem="DQr-cB-bS2" firstAttribute="leading" secondItem="Dri-Wr-ADq" secondAttribute="leadingMargin" constant="10" id="xRo-VL-SD7"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="DQr-cB-bS2" secondAttribute="bottom" constant="20" id="yOX-05-H5a"/>
+                                </constraints>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Claim" id="UXo-fd-LEb" userLabel="Claim">
-                                <rect key="frame" x="750" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -89,21 +118,20 @@
                                             <rect key="frame" x="0.0" y="-15" width="375" height="682"/>
                                         </imageView>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Collect them all in your account!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ea9-XS-yR6">
-                                            <rect key="frame" x="28" y="522" width="319" height="100"/>
+                                            <rect key="frame" x="28" y="513" width="319" height="60"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="100" id="d3Y-aL-UEI"/>
+                                                <constraint firstAttribute="height" constant="60" id="d3Y-aL-UEI"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQ1-LK-8Ue">
-                                            <rect key="frame" x="125" y="627" width="124" height="30"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQ1-LK-8Ue" userLabel="Play now">
+                                            <rect key="frame" x="114.5" y="583" width="145" height="69"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="124" id="bcr-ux-bZS"/>
+                                                <constraint firstAttribute="width" constant="145" id="bcr-ux-bZS"/>
+                                                <constraint firstAttribute="height" constant="69" id="gse-se-y2y"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <state key="normal" title="Start!">
+                                            <state key="normal" image="PLAY-NOW-BUTTON-X1">
                                                 <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                             </state>
                                             <connections>
@@ -114,13 +142,13 @@
                                 </view>
                                 <color key="backgroundColor" red="0.26657537999243486" green="0.29055825590415607" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="fQ1-LK-8Ue" firstAttribute="top" secondItem="ea9-XS-yR6" secondAttribute="bottom" constant="5" id="1uT-9z-VFU"/>
+                                    <constraint firstItem="fQ1-LK-8Ue" firstAttribute="top" secondItem="ea9-XS-yR6" secondAttribute="bottom" constant="10" id="1uT-9z-VFU"/>
                                     <constraint firstItem="ea9-XS-yR6" firstAttribute="leading" secondItem="UXo-fd-LEb" secondAttribute="leadingMargin" constant="12" id="Kx0-Re-rR6"/>
                                     <constraint firstItem="Do0-xA-1EJ" firstAttribute="leading" secondItem="UXo-fd-LEb" secondAttribute="leading" id="YKi-rC-xS9"/>
                                     <constraint firstItem="Do0-xA-1EJ" firstAttribute="top" secondItem="UXo-fd-LEb" secondAttribute="top" constant="-15" id="ZnU-Ij-t9J"/>
                                     <constraint firstAttribute="trailing" secondItem="Do0-xA-1EJ" secondAttribute="trailing" id="gRI-kx-8ul"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="ea9-XS-yR6" secondAttribute="trailing" constant="12" id="gdy-wX-txj"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="fQ1-LK-8Ue" secondAttribute="bottom" constant="10" id="ix6-dy-iFP"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="fQ1-LK-8Ue" secondAttribute="bottom" constant="15" id="ix6-dy-iFP"/>
                                     <constraint firstAttribute="bottom" secondItem="Do0-xA-1EJ" secondAttribute="bottom" id="srm-gw-OTg"/>
                                     <constraint firstItem="fQ1-LK-8Ue" firstAttribute="centerX" secondItem="UXo-fd-LEb" secondAttribute="centerX" id="yof-s3-tqL"/>
                                 </constraints>
@@ -144,5 +172,8 @@
         <image name="NUXONBOARDING 1-x1" width="375" height="667"/>
         <image name="NUXONBOARDING-2x1" width="750" height="1334"/>
         <image name="NUXONBOARDING-3x1" width="750" height="1334"/>
+        <image name="PAGE-SLIDER-1" width="189" height="23"/>
+        <image name="PAGE-SLIDER-2" width="189" height="23"/>
+        <image name="PLAY-NOW-BUTTON-X1" width="145" height="69"/>
     </resources>
 </document>

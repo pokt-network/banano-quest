@@ -106,7 +106,7 @@ class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate,
         }
         
         let annotationView = MKAnnotationView.init(frame: CGRect(x: 0, y: 0, width: 40, height: 55))
-        let imageView = UIImageView(frame: CGRect(x: 8, y: -13, width: 30, height: 40))
+        let imageView = UIImageView(frame: CGRect(x: 1, y: -14, width: 40, height: 40))
         
         imageView.image = UIImage(named: "BANANO-PIN")
         annotationView.addSubview(imageView)
