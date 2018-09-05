@@ -59,8 +59,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         qrCodeImage.image = ProfileViewController.generateQRCode(from: currentPlayer?.address ?? "")
         if let weiBalanceStr = currentPlayer?.balanceWei {
             let weiBalance = BigInt.init(weiBalanceStr) ?? BigInt.init(0)
-            ethValueLabel.text = "\(EthUtils.convertWeiToEth(wei: weiBalance)) ETH"
-            usdValueLabel.text = "\(EthUtils.convertWeiToUSD(wei: weiBalance)) USD"
+            let eth = String(format: "%.3f", arguments: [EthUtils.convertWeiToEth(wei: weiBalance)])
+            let usd = String(format: "%.3f", arguments: [EthUtils.convertWeiToUSD(wei: weiBalance)])
+            
+            ethValueLabel.text = "\(eth) ETH"
+            usdValueLabel.text = "\(usd) USD"
         }
 
         DispatchQueue.main.async {
@@ -127,7 +130,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if self.quests.count == 0 {
-            return 1
+            return 3
         } else {
             return self.quests.count
         }
@@ -139,11 +142,14 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             
             let quest = quests[indexPath.item]
             cell.quest = quest
-            cell.configureCell(playerLocation: nil)
+            cell.configureCellFor(index: indexPath.item, playerLocation: nil)
             
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerQuestEmptyCell", for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerQuestCell", for: indexPath) as! QuestCollectionViewCell
+            
+            cell.configureEmptyCellFor(index: indexPath.item)
+            
             return cell
         }
     }

@@ -216,13 +216,13 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         currentIndex = indexPath.item
 
         if quests.isEmpty || currentIndex >= quests.count {
-            cell.configureEmptyCell()
+            cell.configureEmptyCellFor(index: indexPath.item)
             return cell
         }
 
         let quest = quests[currentIndex]
         cell.quest = quest
-        cell.configureCell(playerLocation: self.currentPlayerLocation)
+        cell.configureCellFor(index: indexPath.item, playerLocation: self.currentPlayerLocation)
 
         return cell
     }

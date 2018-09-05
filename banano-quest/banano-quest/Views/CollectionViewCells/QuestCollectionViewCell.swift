@@ -12,9 +12,10 @@ import MapKit
 import BigInt
 
 class QuestCollectionViewCell: UICollectionViewCell {
-    
+    // Variables
     var quest: Quest?
     
+    // IBOutlet
     @IBOutlet weak var questNameLabel: UILabel?
     @IBOutlet weak var bananosCountLabel: UILabel?
     @IBOutlet weak var prizeValueLabel: UILabel?
@@ -32,16 +33,16 @@ class QuestCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func configureCell(playerLocation: CLLocation?) {
+    func configureCellFor(index: Int, playerLocation: CLLocation?) {
         // TODO:
         // DISTANCE FROM QUEST
         guard let quest = self.quest else {
-            self.configureEmptyCell()
+            self.configureEmptyCellFor(index: index)
             return
         }
         
         if let questNameLabel = self.questNameLabel {
-            questNameLabel.text = quest.name
+            questNameLabel.text = quest.name.uppercased()
         }
         if quest.maxWinners == "0" {
             if let bananosCountLabel = self.bananosCountLabel {
@@ -108,25 +109,37 @@ class QuestCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func configureEmptyCell() {
+    func configureEmptyCellFor(index: Int) {
+        if let bananoQuestImage = self.bananoStampImage {
+                bananoQuestImage.image = #imageLiteral(resourceName: "NO-BANANO")
+        }
+        
+        if index > 0 {
+            if let questNameLabel = self.questNameLabel {
+                questNameLabel.text = ""
+            }
+            
+            return
+        }
+        
         if let questNameLabel = self.questNameLabel {
-            questNameLabel.text = "NONE"
+            questNameLabel.text = "NO BANANOS YET"
         }
         
         if let bananosCountLabel = self.bananosCountLabel {
-            bananosCountLabel.text = "0/0"
+            bananosCountLabel.text = "N/A"
         }
         
         if let prizeValueLabel = self.prizeValueLabel {
-            prizeValueLabel.text = "0.00 USD"
+            prizeValueLabel.text = "N/A"
         }
         
         if let questDistanceLabel = self.questDistanceLabel {
-            questDistanceLabel.text = "0M"
+            questDistanceLabel.text = "N/A"
         }
         
         if let hintTextView = self.hintTextView {
-            hintTextView.text = "NONE"
+            hintTextView.text = "N/A"
         }
     }
     

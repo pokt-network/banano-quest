@@ -64,6 +64,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        
         // Gray view setup
         grayView = UIView.init(frame: view.frame)
         grayView?.backgroundColor = UIColor.init(white: 1.0, alpha: 0.75)
@@ -179,6 +180,8 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
         bananoImageBackground.layer.cornerRadius = bananoImageBackground.frame.size.width / 2
         
         infiniteBananosSwitch.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
+        
+        addColorView.layer.cornerRadius = addColorView.frame.width / 2
         
         addColorButton.layer.cornerRadius = addColorButton.frame.size.width / 2
         addColorButton.layer.borderWidth = 1
@@ -615,6 +618,10 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
     // MARK: - TextViewDelegate
     // Credit: https://stackoverflow.com/questions/27652227/text-view-placeholder-swift
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
         
         // Combine the textView text and the replacement text to
         // create the updated text string
