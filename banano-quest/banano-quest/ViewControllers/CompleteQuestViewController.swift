@@ -18,11 +18,9 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var bananoBackground: UIView!
     @IBOutlet weak var distanceValueLabel: UILabel!
-    @IBOutlet weak var prizeValueLabel: UILabel!
     @IBOutlet weak var bananosCountLabel: UILabel!
     @IBOutlet weak var questDetailTextView: UITextView!
     @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var prizeLabel: UILabel!
     @IBOutlet weak var questNameLabel: UILabel!
     @IBOutlet weak var completeButton: UIButton!
 
@@ -75,15 +73,6 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
         }else {
             bananosCountLabel.text = "\(quest?.winnersAmount ?? "0")/\(quest?.maxWinners ?? "0")"
             bananosCountLabel.font = bananosCountLabel.font.withSize(17)
-        }
-        
-        // Prize
-        if maxWinnersDouble != 0.0 && quest?.prize != nil {
-            let weiAmount = BigInt.init(quest?.prize ?? "0") ?? BigInt.init(0)
-            let prizeValue = EthUtils.convertWeiToEth(wei: weiAmount) / maxWinnersDouble!
-            prizeValueLabel.text = "\(prizeValue) ETH"
-        } else {
-            prizeValueLabel.text = "No ETH"
         }
         
         // Add color to the banano

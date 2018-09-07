@@ -20,8 +20,6 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
     @IBOutlet weak var addColorButton: UIButton!
     @IBOutlet weak var addColorView: UIView!
     @IBOutlet weak var questNameTextField: UITextField!
-    @IBOutlet weak var prizeAmountUSDTextField: UITextField!
-    @IBOutlet weak var prizeAmountETHTextField: UITextField!
     @IBOutlet weak var howManyBananosTextField: UITextField!
     @IBOutlet weak var hintTextView: UITextView!
     @IBOutlet weak var infiniteBananosSwitch: UISwitch!
@@ -194,11 +192,6 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
         questNameTextField.layer.borderWidth = 1
         questNameTextField.layer.borderColor = UIColor.clear.cgColor
 
-        prizeAmountUSDTextField.addTarget(self, action: #selector(prizeAmountDidChange), for: UIControlEvents.editingChanged)
-        
-        prizeAmountETHTextField.layer.borderWidth = 1
-        prizeAmountETHTextField.layer.borderColor = UIColor.clear.cgColor
-
         howManyBananosTextField.layer.borderWidth = 1
         howManyBananosTextField.layer.borderColor = UIColor.clear.cgColor
 
@@ -234,7 +227,6 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
         addLocationButton.isEnabled = bool
         addColorButton.isEnabled = bool
         questNameTextField.isEnabled = bool
-        prizeAmountETHTextField.isEnabled = bool
         infiniteBananosSwitch.isEnabled = bool
         hintTextView.isEditable = bool
     }
@@ -249,25 +241,6 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
         }else {
             questNameTextField.layer.borderColor = UIColor.clear.cgColor
             newQuest?.name = questNameTextField.text ?? ""
-        }
-        
-        // Validate eth prize
-        let usdAmount = Double(prizeAmountUSDTextField.text ?? "0.0") ?? 0.0
-        let weiAmount = EthUtils.convertEthToWei(eth: EthUtils.convertUSDAmountToEth(usdAmount: usdAmount))
-        if usdAmount > 0 {
-            if infiniteBananosSwitch.isOn {
-                prizeAmountUSDTextField.layer.borderColor = UIColor.red.cgColor
-                prizeAmountETHTextField.layer.borderColor = UIColor.red.cgColor
-                isValid.append(false)
-            } else {
-                prizeAmountUSDTextField.layer.borderColor = UIColor.clear.cgColor
-                prizeAmountETHTextField.layer.borderColor = UIColor.clear.cgColor
-                newQuest?.prize = String.init(weiAmount)
-            }
-        } else {
-            prizeAmountUSDTextField.layer.borderColor = UIColor.clear.cgColor
-            prizeAmountETHTextField.layer.borderColor = UIColor.clear.cgColor
-            newQuest?.prize = String.init(weiAmount)
         }
 
         // Validate banano amount
@@ -470,32 +443,14 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
     }
     
     // MARK: - Selectors
-    @objc func prizeAmountDidChange(textField: UITextField) {
-        if textField.text != "0.0" {
-            if let usdValue = Double(textField.text ?? "0.0") {
-                prizeAmountETHTextField.text = String.init(format: "%.2f", EthUtils.convertUSDAmountToEth(usdAmount: usdValue))
-                if self.infiniteBananosSwitch.isOn {
-                    howManyBananosTextField.isEnabled = true
-                    self.howManyBananosTextField.text = "1"
-                    self.infiniteBananosSwitch.isOn = false
-                }
-            } else {
-                prizeAmountETHTextField.text = "0.0"
-            }
-        } else {
-            prizeAmountETHTextField.text = "0.0"
-        }
-    }
 
     @objc func switchChanged(switchButton: UISwitch) {
         // Checks if the button is On or Off to disable/enable banano amount textField
         toggleBananoAmountTextField()
         if switchButton.isOn {
             self.howManyBananosTextField.text = ""
-            self.prizeAmountUSDTextField.text = "0.0"
-            self.prizeAmountDidChange(textField: self.prizeAmountUSDTextField)
         } else {
-            self.howManyBananosTextField.text = "1"
+            self.howManyBananosTextField.text = ""
         }
     }
 
