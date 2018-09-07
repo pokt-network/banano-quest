@@ -15,6 +15,7 @@ target 'banano-quest' do
   pod 'FlexColorPicker', :git => 'https://github.com/RastislavMirek/FlexColorPicker', :branch => 'master'
   pod 'SwiftHEXColors'
   pod 'BiometricAuthentication'
+  pod 'HDAugmentedReality', '~> 2.3'
     
   target 'banano-questTests' do
     inherit! :search_paths

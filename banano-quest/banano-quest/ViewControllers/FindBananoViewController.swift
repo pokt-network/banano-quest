@@ -12,6 +12,7 @@ import ARKit
 import MapKit
 import BigInt
 import Pocket
+import HDAugmentedReality
 
 class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDelegate {
     @IBOutlet weak var claimButton: UIButton!
@@ -41,8 +42,7 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
 
         // AR Setup
         self.dataSource = self
-        self.maxVisibleAnnotations = 5
-        self.headingSmoothingFactor = 0.05
+        self.presenter.maxVisibleAnnotations = 1
 
     }
 
@@ -84,16 +84,14 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
         let distance = bananoLocationC.distance(from: currentUserLocation!)
 
         if distance <= 50 {
-            let annotation = ARAnnotation()
-            annotation.title = currentQuest?.name
-            annotation.location = bananoLocationC
+            let annotation = ARAnnotation.init(identifier: "quest", title: currentQuest?.name ?? "NONE", location: bananoLocationC)
 
             // AR options
             // Max distance between the player and the Banano
-            maxDistance = 50
+            self.presenter.maxDistance = 50
 
             // We add the annotations that for Banano quest is 1 at a time
-            setAnnotations([annotation])
+            self.setAnnotations([annotation!])
         }else {
             let alertController = bananoAlertView(title: "Not in range", message: "\(currentQuest?.name ?? "") banano is not within 50 meters of your current location")
             present(alertController, animated: false, completion: nil)
