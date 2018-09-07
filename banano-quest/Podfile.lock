@@ -4,6 +4,7 @@ PODS:
   - BiometricAuthentication (2.0.2)
   - CryptoSwift (0.10.0)
   - FlexColorPicker (1.1)
+  - HDAugmentedReality (2.3.0)
   - libsodium (1.0.12)
   - Pocket (0.0.2):
     - RNCryptor (~> 5.0)
@@ -41,6 +42,7 @@ DEPENDENCIES:
   - BiometricAuthentication
   - CryptoSwift
   - FlexColorPicker (from `https://github.com/RastislavMirek/FlexColorPicker`, branch `master`)
+  - HDAugmentedReality (~> 2.3)
   - Pocket (from `https://github.com/pokt-network/pocket-ios-sdk.git`, branch `master`)
   - PocketEth (from `https://github.com/pokt-network/pocket-ios-eth.git`, branch `master`)
   - SidebarOverlay
@@ -53,6 +55,7 @@ SPEC REPOS:
     - BigInt
     - BiometricAuthentication
     - CryptoSwift
+    - HDAugmentedReality
     - libsodium
     - PromiseKit
     - Result
@@ -97,6 +100,7 @@ SPEC CHECKSUMS:
   BiometricAuthentication: ce2f923d4df7a4b340e154137e7b47e544abc1ae
   CryptoSwift: 6c778d69282bed3b4e975ff97a79d074f20bb011
   FlexColorPicker: 795d037b14af62c0fb353a505662846e92296abe
+  HDAugmentedReality: 2ea96cb488aa81298e6557a897b4252d62e55843
   libsodium: 9a8faa5ef2fa0d2d57bd7f7d79bf8fb7c1a9f0ea
   Pocket: 40c168b11a5ac170336445a1d34accc6c8c4989e
   PocketEth: fea0608a72387995790fcb60c727dd0367ae319a
@@ -110,6 +114,6 @@ SPEC CHECKSUMS:
   SwiftKeychainWrapper: fe63ac0e19acd227aa031043de5a8f88a3ff23da
   web3swift: a1db39ac09f6538adb248e2011911348cc88c2c3
 
-PODFILE CHECKSUM: 502326932f01dead91ca8afbb9cbbb56d4786b60
+PODFILE CHECKSUM: e6a169f13d3bfab2ec130fccb8754c61bb7bb07b
 
 COCOAPODS: 1.5.3
