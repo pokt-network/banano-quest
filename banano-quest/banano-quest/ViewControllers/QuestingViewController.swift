@@ -173,6 +173,22 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         }
     }
     
+    // Is player the quest creator?
+    func isQuestCreator(quest: Quest) -> Bool {
+        do {
+            let player = try Player.getPlayer(context: CoreDataUtils.mainPersistentContext)
+            let questCreator = quest.getCreatorHexAddress()
+            
+            if questCreator == player.address {
+                return true
+            }
+            
+        } catch let error as NSError {
+            print("CompleteQuestViewController - isQuestCreator() - Failed to retrieve player information with error: \(error)")
+        }
+        return false
+    }
+    
     // MARK: Location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // Location update
@@ -252,6 +268,13 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         }
 
         if let quest = currentCell.quest {
+            // Check if is the creator playing
+            if isQuestCreator(quest: quest) {
+                let alert = bananoAlertView(title: "Denied", message: "Quest creator can't complete his/her own quest")
+                present(alert, animated: false, completion: nil)
+                return
+            }
+            
             do {
                 let vc = try self.instantiateViewController(identifier: "completeQuestViewControllerID", storyboardName: "Questing") as? CompleteQuestViewController
                 vc?.quest = quest

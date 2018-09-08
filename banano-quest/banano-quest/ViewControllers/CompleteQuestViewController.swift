@@ -64,7 +64,6 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
         // Details view
         
         // Number of Bananos
-        let maxWinnersDouble = Double.init(quest?.maxWinners ?? "0.0")
         let maxWinnersCount = Int(quest?.maxWinners ?? "0")
         
         if maxWinnersCount == 0 {
@@ -164,22 +163,6 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
             print("Failed to get quest quadrant")
         }
     }
-    
-    // Is player the quest creator?
-    func isQuestCreator() -> Bool {
-        do {
-            let player = try Player.getPlayer(context: CoreDataUtils.mainPersistentContext)
-            let questCreator = quest?.getCreatorHexAddress()
-            
-            if questCreator == player.address {
-                return true
-            }
-            
-        } catch let error as NSError {
-            print("CompleteQuestViewController - isQuestCreator() - Failed to retrieve player information with error: \(error)")
-        }
-        return false
-    }
 
     // MARK: LocationManager
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -241,12 +224,6 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
     }
 
     @IBAction func completeButtonPressed(_ sender: Any) {
-        // Check if is the creator playing
-        if isQuestCreator() {
-            let alert = bananoAlertView(title: "Denied", message: "Quest creator can't complete his/her own quest")
-            present(alert, animated: false, completion: nil)
-            return
-        }
         
         if let userLocation = mapView.userLocation.location {
             currentUserLocation = userLocation
