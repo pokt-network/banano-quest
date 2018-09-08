@@ -14,7 +14,6 @@ import CoreData
 class NewWalletViewController: UIViewController {
     @IBOutlet weak var passphraseTextField: UITextField!
     @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var addBalanceButton: UIButton!
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var setupBiometricsButton: UIButton!
@@ -48,7 +47,6 @@ class NewWalletViewController: UIViewController {
         copyAddressButton.isHidden = !copyAddressButton.isHidden
         addressLabel.isHidden = !addressLabel.isHidden
         addressLabelUnderline.isHidden = !addressLabelUnderline.isHidden
-        addBalanceButton.isHidden = !addBalanceButton.isHidden
         continueButton.isHidden = !continueButton.isHidden
         forwardIcon.isHidden = !forwardIcon.isHidden
     }
@@ -176,18 +174,6 @@ class NewWalletViewController: UIViewController {
             self.passphraseTextField.isHidden = true
         } else {
             self.createButton.isEnabled = true
-        }
-    }
-    @IBAction func addBalanceButtonPressed(_ sender: Any) {
-        do {
-            let vc = try instantiateViewController(identifier: "addBalanceViewControllerID", storyboardName: "Profile") as? AddBalanceViewController
-            if currentPlayer != nil {
-                vc?.player = currentPlayer
-                vc?.qrImage = ProfileViewController.generateQRCode(from: currentPlayer?.address ?? "error: no address")
-            }
-            present(vc!, animated: false, completion: nil)
-        } catch let error as NSError {
-            print("Failed to instantiate Add Balance view with error: \(error)")
         }
     }
     

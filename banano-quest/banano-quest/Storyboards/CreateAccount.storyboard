@@ -32,8 +32,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To start collecting BANANOS you will need to create a wallet and add some ETH to it" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBL-BS-15I" userLabel="Top banner text">
-                                <rect key="frame" x="42.5" y="71" width="290.5" height="72"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To start collecting BANANOS you will need to create an account." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBL-BS-15I" userLabel="Top banner text">
+                                <rect key="frame" x="44" y="71" width="287.5" height="72"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="72" id="aJc-qI-nTo"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="301" id="xsb-L0-fZU"/>
@@ -42,19 +42,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZo-ML-kYh" userLabel="Add balance button">
-                                <rect key="frame" x="214" y="464" width="145" height="69"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="145" id="A5h-8p-nIG"/>
-                                    <constraint firstAttribute="height" constant="69" id="jl4-1X-SaK"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="ADD-BANLANCE-BUTTON-X1"/>
-                                <connections>
-                                    <action selector="addBalanceButtonPressed:" destination="G5h-c0-bFX" eventType="touchUpInside" id="rH1-kK-HRv"/>
-                                </connections>
-                            </button>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FORTHx1" translatesAutoresizingMaskIntoConstraints="NO" id="CW6-he-VgH" userLabel="Forward icon">
-                                <rect key="frame" x="329" y="546" width="30" height="30"/>
+                                <rect key="frame" x="329" y="471" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="7Rb-5j-vyu"/>
                                     <constraint firstAttribute="height" constant="30" id="eSd-Uf-fBc"/>
@@ -127,7 +116,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dxS-PE-GhC" userLabel="Continue button">
-                                <rect key="frame" x="210" y="541" width="145" height="40"/>
+                                <rect key="frame" x="210" y="466" width="145" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="TYs-9G-7fM"/>
@@ -145,10 +134,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="bVO-C0-MSG" firstAttribute="leading" secondItem="orW-t7-Rly" secondAttribute="leading" id="0ST-w5-rcb"/>
-                            <constraint firstItem="nZo-ML-kYh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bzD-1I-J4g" secondAttribute="leading" constant="193" id="7G6-6q-Jjf"/>
                             <constraint firstItem="orW-t7-Rly" firstAttribute="top" secondItem="hdb-OT-mAG" secondAttribute="bottom" constant="4" id="7Ig-L6-Fwy"/>
                             <constraint firstItem="w6O-vu-n6F" firstAttribute="leading" secondItem="orW-t7-Rly" secondAttribute="trailing" constant="10" id="8YT-lb-HF2"/>
                             <constraint firstItem="hdb-OT-mAG" firstAttribute="leading" secondItem="bzD-1I-J4g" secondAttribute="leading" constant="16" id="BGN-eS-zdu"/>
+                            <constraint firstItem="CW6-he-VgH" firstAttribute="centerY" secondItem="dxS-PE-GhC" secondAttribute="centerY" id="CXU-lq-24B"/>
                             <constraint firstItem="n6O-yL-iMs" firstAttribute="centerX" secondItem="bzD-1I-J4g" secondAttribute="centerX" id="DYb-bj-FNq"/>
                             <constraint firstItem="bzD-1I-J4g" firstAttribute="trailing" secondItem="dxS-PE-GhC" secondAttribute="trailing" constant="20" id="E9i-00-LnG"/>
                             <constraint firstItem="bzD-1I-J4g" firstAttribute="trailing" secondItem="iLH-kv-fIR" secondAttribute="trailing" constant="81" id="HbX-QU-ppY"/>
@@ -160,16 +149,13 @@
                             <constraint firstItem="bzD-1I-J4g" firstAttribute="trailing" secondItem="bVO-C0-MSG" secondAttribute="trailing" constant="20" id="ReB-BR-zfX"/>
                             <constraint firstItem="9x1-le-WRx" firstAttribute="centerX" secondItem="gG7-4R-rpC" secondAttribute="centerX" id="SHO-Xh-TeT"/>
                             <constraint firstItem="orW-t7-Rly" firstAttribute="bottom" secondItem="w6O-vu-n6F" secondAttribute="bottom" id="UcR-ZH-hhf"/>
-                            <constraint firstItem="CW6-he-VgH" firstAttribute="top" secondItem="nZo-ML-kYh" secondAttribute="bottom" constant="13" id="VhY-Dj-qLK"/>
                             <constraint firstItem="bzD-1I-J4g" firstAttribute="trailing" secondItem="w6O-vu-n6F" secondAttribute="trailing" constant="16" id="WD1-Am-d92"/>
                             <constraint firstItem="dxS-PE-GhC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bzD-1I-J4g" secondAttribute="leading" constant="180" id="bN1-8a-RUp"/>
-                            <constraint firstItem="nZo-ML-kYh" firstAttribute="top" secondItem="orW-t7-Rly" secondAttribute="bottom" constant="58" id="fA1-vO-P76"/>
                             <constraint firstItem="vC3-J6-Xu5" firstAttribute="trailing" secondItem="bzD-1I-J4g" secondAttribute="trailing" id="gGr-fe-Z7O"/>
                             <constraint firstItem="w6O-vu-n6F" firstAttribute="leading" secondItem="hdb-OT-mAG" secondAttribute="trailing" constant="10" id="kRD-kI-Ujm"/>
                             <constraint firstItem="vC3-J6-Xu5" firstAttribute="leading" secondItem="bzD-1I-J4g" secondAttribute="leading" id="mPM-ko-QOs"/>
+                            <constraint firstItem="dxS-PE-GhC" firstAttribute="top" secondItem="w6O-vu-n6F" secondAttribute="bottom" constant="60" id="pGd-fE-kWA"/>
                             <constraint firstItem="bzD-1I-J4g" firstAttribute="trailing" secondItem="CW6-he-VgH" secondAttribute="trailing" constant="16" id="qQm-ny-rVx"/>
-                            <constraint firstItem="bzD-1I-J4g" firstAttribute="trailing" secondItem="nZo-ML-kYh" secondAttribute="trailing" constant="16" id="sjl-n0-tfn"/>
-                            <constraint firstItem="dxS-PE-GhC" firstAttribute="top" secondItem="nZo-ML-kYh" secondAttribute="bottom" constant="8" id="srt-Vg-Oy6"/>
                             <constraint firstItem="orW-t7-Rly" firstAttribute="leading" secondItem="gG7-4R-rpC" secondAttribute="leadingMargin" id="ugY-J0-0Ti"/>
                             <constraint firstItem="n6O-yL-iMs" firstAttribute="top" secondItem="bVO-C0-MSG" secondAttribute="bottom" constant="15" id="vv9-m4-9Ub"/>
                             <constraint firstItem="iLH-kv-fIR" firstAttribute="top" secondItem="n6O-yL-iMs" secondAttribute="bottom" constant="8" id="wxl-c0-nYH"/>
@@ -178,7 +164,6 @@
                         <viewLayoutGuide key="safeArea" id="bzD-1I-J4g"/>
                     </view>
                     <connections>
-                        <outlet property="addBalanceButton" destination="nZo-ML-kYh" id="yvq-00-fXI"/>
                         <outlet property="addressLabel" destination="hdb-OT-mAG" id="i3D-ut-ycO"/>
                         <outlet property="addressLabelUnderline" destination="orW-t7-Rly" id="CpJ-Q6-5XJ"/>
                         <outlet property="continueButton" destination="dxS-PE-GhC" id="5xL-HN-yGW"/>
@@ -195,7 +180,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ADD-BANLANCE-BUTTON-X1" width="316" height="139"/>
         <image name="COPY-x1" width="57" height="57"/>
         <image name="FORTHx1" width="57" height="57"/>
         <image name="SAMALL BANNERx1" width="750" height="330"/>
