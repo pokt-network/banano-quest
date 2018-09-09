@@ -26,7 +26,7 @@ public class AppInitQueueDispatcher: QueueDispatcherProtocol {
         self.setOperationsCompletionBlocks()
     }
     
-    public func initDisplatchSequence(completionHandler: QueueDispatcherCompletionHandler?) {
+    public func initDispatchSequence(completionHandler: QueueDispatcherCompletionHandler?) {
         print("Initializing AppInitQueueDispatcher sequence")
         self.completionHandler = completionHandler
         self.operationQueue.addOperations([self.downloadBalanceOperation, self.transactionCountOperation, self.questAmounOperation, self.ethUsdPriceOperation], waitUntilFinished: false)

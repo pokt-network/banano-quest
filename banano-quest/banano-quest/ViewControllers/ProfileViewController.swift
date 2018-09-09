@@ -19,9 +19,14 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var qrCodeImage: UIImageView!
     
+    // Variables
     var currentPlayer: Player?
     var quests: [Quest] = [Quest]()
-
+    
+    // Activity Indicator
+    var indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+    var grayView: UIView?
+    
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +40,19 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // Gray view setup
+        grayView = UIView.init(frame: view.frame)
+        grayView?.backgroundColor = UIColor.init(white: 1.0, alpha: 0.75)
+        view.addSubview(grayView!)
+        
+        // Activity indicator setup
+        indicator.center = view.center
+        
+        view.addSubview(indicator)
+        indicator.startAnimating()
+        
+        self.view.isUserInteractionEnabled = false
 
         do {
             try refreshView()
@@ -53,7 +71,23 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
 
             return
         }
-
+        
+        func refreshPlayerInfo() {
+            let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: currentPlayer?.address ?? "0", tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
+            appInitQueueDispatcher.initDispatchSequence {
+                DispatchQueue.main.async {
+                    self.detailsSetup()
+                    self.view.isUserInteractionEnabled = true
+                    self.indicator.stopAnimating()
+                    self.grayView?.isHidden = true
+                }
+                
+                print("Player information updated")
+            }
+        }
+    }
+    
+    func detailsSetup() {
         // Labels setup
         walletAddressLabel.text = currentPlayer?.address
         qrCodeImage.image = ProfileViewController.generateQRCode(from: currentPlayer?.address ?? "")
@@ -65,7 +99,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             ethValueLabel.text = "\(eth) ETH"
             usdValueLabel.text = "\(usd) USD"
         }
-
+        
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }

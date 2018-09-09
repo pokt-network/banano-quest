@@ -134,7 +134,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration, UNUserNoti
             if let playerAddress = player.address {
                 print("Player Address: \(playerAddress)")
                 let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
-                appInitQueueDispatcher.initDisplatchSequence {
+                appInitQueueDispatcher.initDispatchSequence {
                     completionHandler(playerAddress)
                 }
             }
@@ -145,7 +145,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration, UNUserNoti
 
     func updateQuestList(playerAddress: String, completionHandler: @escaping () -> Void) {
         let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress, playerAddress: playerAddress)
-        questListQueueDispatcher.initDisplatchSequence(completionHandler: completionHandler)
+        questListQueueDispatcher.initDispatchSequence(completionHandler: completionHandler)
     }
 
     func updatePlayerAndQuestData(completionHandler: @escaping () -> Void) {
