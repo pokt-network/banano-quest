@@ -123,7 +123,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
     }
     
     func retrieveGasEstimate(handler: @escaping (BigInt?) -> Void) {
-        let prizeStr = newQuest?.prize! ?? "0.0"
+        let prizeStr = newQuest?.prize ?? "0.0"
         let questPrize = BigInt.init(prizeStr) ?? BigInt.init(0)
         let operationQueue = OperationQueue.init()
         let gasEstimateOperation = UploadQuestEstimateOperation.init(playerAddress: (currentPlayer?.address)!, tavernAddress: AppConfiguration.tavernAddress, tokenAddress: AppConfiguration.bananoTokenAddress, questName: (newQuest?.name)!, hint: (newQuest?.hint)!, maxWinners: BigInt.init((newQuest?.maxWinners)!)!, merkleRoot: (newQuest?.merkleRoot)!, merkleBody: (newQuest?.merkleBody)!, metadata: setupMetadata()!, ethPrizeWei: questPrize)
