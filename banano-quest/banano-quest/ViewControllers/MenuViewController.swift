@@ -47,6 +47,20 @@ class MenuViewController: UIViewController {
         
     }
     
+    @IBAction func leaderBoardButtonTapped(_ sender: Any) {
+        if let container = self.so_containerViewController {
+            container.isSideViewControllerPresented = false
+        }
+        do {
+            // TODO: Change the identifier and storyboard name accordingly
+            // Replace "CreateQuestViewController" with the leaderboard vc class
+            let vc = try self.instantiateViewController(identifier: "CreateQuestVC", storyboardName: "CreateQuest") as? CreateQuestViewController
+            self.so_containerViewController?.topViewController = vc
+        } catch let error as NSError {
+            print("Failed to instantiate QuestingViewController with error: \(error)")
+        }
+    }
+    
     @IBAction func profileButtonTapped(_ sender: Any) {
         if let container = self.so_containerViewController {
             container.isSideViewControllerPresented = false

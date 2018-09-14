@@ -39,7 +39,7 @@
                                 <rect key="frame" x="-5" y="0.0" width="247.5" height="667"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q0H-0s-oYK">
-                                <rect key="frame" x="16" y="315" width="158" height="57"/>
+                                <rect key="frame" x="16" y="255" width="158" height="57"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="57" id="Q5X-xu-Y93"/>
                                 </constraints>
@@ -51,8 +51,22 @@
                                     <action selector="createQuestButtonTapped:" destination="Zkd-6T-kW6" eventType="touchUpInside" id="Nnc-oe-w4k"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNZ-iF-RDQ">
+                                <rect key="frame" x="16" y="375" width="146" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="igW-JT-brW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <state key="normal" title="     LEADERBOARD" image="LEADER-BOARD-x1">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="createQuestButtonTapped:" destination="Zkd-6T-kW6" eventType="touchUpInside" id="0Pa-qf-qJS"/>
+                                    <action selector="leaderBoardButtonTapped:" destination="Zkd-6T-kW6" eventType="touchUpInside" id="KsO-vJ-Oe2"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTy-kV-IjH">
-                                <rect key="frame" x="16" y="158" width="118" height="57"/>
+                                <rect key="frame" x="16" y="138" width="118" height="57"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="57" id="3NL-Ji-hQV"/>
                                 </constraints>
@@ -65,7 +79,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yze-E9-O7c">
-                                <rect key="frame" x="16" y="472" width="114" height="57"/>
+                                <rect key="frame" x="16" y="492" width="114" height="57"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="57" id="Ym5-Ct-aCe"/>
                                 </constraints>
@@ -79,16 +93,18 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="q0H-0s-oYK" firstAttribute="centerY" secondItem="H9B-NA-o9P" secondAttribute="centerY" id="IPA-VG-qpL"/>
+                            <constraint firstItem="q0H-0s-oYK" firstAttribute="top" secondItem="cTy-kV-IjH" secondAttribute="bottom" constant="60" id="09q-nq-tlc"/>
+                            <constraint firstItem="Yze-E9-O7c" firstAttribute="top" secondItem="cNZ-iF-RDQ" secondAttribute="bottom" constant="60" id="6XS-AQ-rHs"/>
+                            <constraint firstItem="cNZ-iF-RDQ" firstAttribute="leading" secondItem="H9B-NA-o9P" secondAttribute="leading" constant="16" id="8ef-HJ-TmQ"/>
+                            <constraint firstItem="q0H-0s-oYK" firstAttribute="centerY" secondItem="H9B-NA-o9P" secondAttribute="centerY" constant="-60" id="IPA-VG-qpL"/>
                             <constraint firstItem="H9B-NA-o9P" firstAttribute="bottom" secondItem="CTf-LG-GkW" secondAttribute="bottom" id="KSf-Ix-aJc"/>
                             <constraint firstItem="Yze-E9-O7c" firstAttribute="leading" secondItem="H9B-NA-o9P" secondAttribute="leading" constant="16" id="Mqy-Gc-WCi"/>
-                            <constraint firstItem="Yze-E9-O7c" firstAttribute="top" secondItem="q0H-0s-oYK" secondAttribute="bottom" constant="100" id="Pcl-f9-hNH"/>
                             <constraint firstItem="CTf-LG-GkW" firstAttribute="width" secondItem="H9B-NA-o9P" secondAttribute="width" multiplier="0.66" id="Vep-JX-Wfn"/>
                             <constraint firstItem="CTf-LG-GkW" firstAttribute="top" secondItem="hk7-Uy-dIl" secondAttribute="top" id="grw-Za-lJO"/>
                             <constraint firstItem="q0H-0s-oYK" firstAttribute="leading" secondItem="H9B-NA-o9P" secondAttribute="leading" constant="16" id="k1E-9K-eyv"/>
                             <constraint firstItem="cTy-kV-IjH" firstAttribute="leading" secondItem="H9B-NA-o9P" secondAttribute="leading" constant="16" id="nkg-dS-qBN"/>
+                            <constraint firstItem="cNZ-iF-RDQ" firstAttribute="centerY" secondItem="H9B-NA-o9P" secondAttribute="centerY" constant="60" id="o51-Lc-EJe"/>
                             <constraint firstItem="CTf-LG-GkW" firstAttribute="leading" secondItem="hk7-Uy-dIl" secondAttribute="leading" constant="-5" id="qOT-nV-61p"/>
-                            <constraint firstItem="q0H-0s-oYK" firstAttribute="top" secondItem="cTy-kV-IjH" secondAttribute="bottom" constant="100" id="sDk-Rf-8nT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="H9B-NA-o9P"/>
                     </view>
@@ -698,6 +714,7 @@
         <image name="EXPLOREx1" width="57" height="57"/>
         <image name="FIND-BANANO" width="318" height="139"/>
         <image name="FORTHx1" width="57" height="57"/>
+        <image name="LEADER-BOARD-x1" width="57" height="57"/>
         <image name="MENU LAYERx1" width="375" height="1333"/>
         <image name="MENUX1" width="57" height="57"/>
         <image name="PROFILEx1" width="57" height="57"/>
