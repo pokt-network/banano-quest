@@ -21,7 +21,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>15</string>
+	<string>16</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -30,13 +30,13 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Banano Quest needs your permission to access your camera</string>
+	<string>Banano Quest needs your permission to access your camera, this allows the app to properly present the AR functionality</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>This app requires Face ID permission to authenticate using Face recognition.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Banano Quest needs your permission to access your location information</string>
+	<string>Banano Quest needs your permission to access your location information, this allows the app to properly calculate distance from Quest and if near a Banano</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Banano Quest needs your permission to access your location information</string>
+	<string>Banano Quest needs your permission to access your location information, this allows the app to properly calculate distance from Quest and if near a Banano</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
