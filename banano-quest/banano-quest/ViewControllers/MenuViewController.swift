@@ -52,12 +52,10 @@ class MenuViewController: UIViewController {
             container.isSideViewControllerPresented = false
         }
         do {
-            // TODO: Change the identifier and storyboard name accordingly
-            // Replace "CreateQuestViewController" with the leaderboard vc class
-            let vc = try self.instantiateViewController(identifier: "CreateQuestVC", storyboardName: "CreateQuest") as? CreateQuestViewController
+            let vc = try self.instantiateViewController(identifier: "LeaderboardVC", storyboardName: "Leaderboard") as? LeaderboardViewController
             self.so_containerViewController?.topViewController = vc
         } catch let error as NSError {
-            print("Failed to instantiate QuestingViewController with error: \(error)")
+            print("Failed to instantiate LeaderboardViewController with error: \(error)")
         }
     }
     
