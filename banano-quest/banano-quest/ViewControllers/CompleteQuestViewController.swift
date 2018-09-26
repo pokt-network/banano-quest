@@ -155,7 +155,7 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
             let circle = MKCircle(center: center, radius: 200)
             
             self.mapView.setRegion(region, animated: true)
-            self.mapView.add(circle)
+            self.mapView.addOverlay(circle)
             
             questAreaLocation = location
             

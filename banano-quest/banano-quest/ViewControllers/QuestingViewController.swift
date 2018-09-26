@@ -29,7 +29,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action:
             #selector(QuestingViewController.handleRefresh(_:)),
-                                 for: UIControlEvents.valueChanged)
+                                 for: UIControl.Event.valueChanged)
         refreshControl.tintColor = UIColor.yellow
         refreshControl.transform = CGAffineTransform(scaleX: 1.75, y: 1.75)
         return refreshControl

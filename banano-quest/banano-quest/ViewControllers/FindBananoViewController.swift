@@ -26,7 +26,7 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
     var questProof: QuestProofSubmission?
     
     // Activity Indicator
-    var indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+    var indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
     var grayView: UIView?
 
     override func viewDidLoad() {
@@ -133,7 +133,7 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
     }
 
     func openAppSettings() {
-        guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
             return
         }
 

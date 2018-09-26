@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration, UNUserNoti
         return UIApplication.shared.delegate as! AppDelegate
     }()
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Setup background fetch interval: Fetch data once an hour.
         UIApplication.shared.setMinimumBackgroundFetchInterval(3600)
 

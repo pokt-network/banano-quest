@@ -43,7 +43,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
     static let notificationName = Notification.Name("getLocation")
     
     // Activity Indicator
-    var indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+    var indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
     var grayView: UIView?
     
     // MARK: - View
@@ -177,7 +177,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
         
         bananoImageBackground.layer.cornerRadius = bananoImageBackground.frame.size.width / 2
         
-        infiniteBananosSwitch.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
+        infiniteBananosSwitch.addTarget(self, action: #selector(switchChanged), for: UIControl.Event.valueChanged)
         
         addColorView.layer.cornerRadius = addColorView.frame.width / 2
         
