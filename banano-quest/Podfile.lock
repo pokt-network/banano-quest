@@ -46,7 +46,7 @@ DEPENDENCIES:
   - HDAugmentedReality (~> 2.4)
   - Pocket (from `https://github.com/pokt-network/pocket-ios-sdk.git`, branch `master`)
   - PocketEth (from `https://github.com/pokt-network/pocket-ios-eth.git`, branch `master`)
-  - SidebarOverlay
+  - "SidebarOverlay (from `git@github.com:pokt-network/SidebarOverlay.git`, branch `develop`)"
   - SwiftHEXColors
   - "SwiftKeychainWrapper (from `git@github.com:jrendel/SwiftKeychainWrapper.git`, commit `77f73c354d695d976bcf1437fc9fbcea981aa2b4`, branch `develop`)"
   - web3swift
@@ -62,7 +62,6 @@ SPEC REPOS:
     - RNCryptor
     - scrypt
     - secp256k1_ios
-    - SidebarOverlay
     - SipHash
     - SwiftHEXColors
     - web3swift
@@ -77,6 +76,9 @@ EXTERNAL SOURCES:
   PocketEth:
     :branch: master
     :git: https://github.com/pokt-network/pocket-ios-eth.git
+  SidebarOverlay:
+    :branch: develop
+    :git: "git@github.com:pokt-network/SidebarOverlay.git"
   SwiftKeychainWrapper:
     :branch: develop
     :commit: 77f73c354d695d976bcf1437fc9fbcea981aa2b4
@@ -92,6 +94,9 @@ CHECKOUT OPTIONS:
   PocketEth:
     :commit: 1c3a912c17c3635a788e58186ea88fc0a488ffc3
     :git: https://github.com/pokt-network/pocket-ios-eth.git
+  SidebarOverlay:
+    :commit: 828f7d11092b02d8f51491d642011998ca9da1ac
+    :git: "git@github.com:pokt-network/SidebarOverlay.git"
   SwiftKeychainWrapper:
     :commit: 77f73c354d695d976bcf1437fc9fbcea981aa2b4
     :git: "git@github.com:jrendel/SwiftKeychainWrapper.git"
@@ -109,12 +114,12 @@ SPEC CHECKSUMS:
   RNCryptor: c93d19029dcf7ff160aca0f24d6c9e7b0d82f664
   scrypt: 3fe5b1a3b0976f97cd87488673a8f7c65708cc84
   secp256k1_ios: ac9ef04e761f43c58012b28548afa91493761f17
-  SidebarOverlay: a5365455a2f9d54f70d0765764ca1a2806b1b11d
+  SidebarOverlay: a34f9a42b63f7872c531ab7e5b548af12d8ddc7d
   SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
   SwiftHEXColors: 7f9f7e6bdce888d821e11749279733e5ddff5f51
   SwiftKeychainWrapper: fe63ac0e19acd227aa031043de5a8f88a3ff23da
   web3swift: 4895c765c9858eb4737ef222eb8643bb5fc7fdb3
 
-PODFILE CHECKSUM: 408035cbddc91691c898e55e4de0cca8c9117001
+PODFILE CHECKSUM: 7852ba2656ab3e53052e473b4d1f4852ae39f7da
 
 COCOAPODS: 1.5.3

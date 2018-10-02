@@ -60,6 +60,12 @@ class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate,
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // Set current location as default quest location
+        currentLocationPressed(self)
+    }
+    
     // MARK: - Tools
     override func refreshView() throws {
         // UI Elements should be updated here

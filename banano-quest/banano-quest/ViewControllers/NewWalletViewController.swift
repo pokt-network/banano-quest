@@ -48,7 +48,6 @@ class NewWalletViewController: UIViewController {
         addressLabel.isHidden = !addressLabel.isHidden
         addressLabelUnderline.isHidden = !addressLabelUnderline.isHidden
         continueButton.isHidden = !continueButton.isHidden
-        forwardIcon.isHidden = !forwardIcon.isHidden
     }
 
     // MARK: - Tools

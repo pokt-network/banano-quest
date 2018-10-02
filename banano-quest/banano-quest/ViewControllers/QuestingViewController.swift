@@ -60,6 +60,11 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
@@ -166,6 +171,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
             }
             let currentQuestCount = self.quests.count
             let newIndex = cellIndexPath.item + positions
+            
             if newIndex >= 0 && newIndex < currentQuestCount {
                 let newIndexPath = IndexPath(item: newIndex, section: 0)
                 collectionView.scrollToItem(at: newIndexPath, at: .right, animated: true)
@@ -211,6 +217,10 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     }
     
     // MARK: CollectionView
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         completeButtonPressed(self)
     }
@@ -220,7 +230,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = UIScreen.main.bounds.width - 10
+        let width = UIScreen.main.bounds.width
         let height = collectionView.frame.height
 
         return CGSize(width: width, height: height)

@@ -107,14 +107,39 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         self.resolvePlayerWalletAuth(player: player, successHandler: { (wallet) in
             let privateKey = wallet.privateKey
-            let alertView = self.bananoAlertView(title: "WARNING", message: "This is your private key, do not share it with anyone!: " + privateKey)
+
+            let alertView = self.bananoAlertView(title: "WARNING", message: "Your private key has been copied to the clipboard, do not share it with anyone!: \(privateKey)", handler: { (UIAlertAction) in
+                UIPasteboard.general.string = privateKey
+            })
+            
             self.present(alertView, animated: false, completion: nil)
         }) { (error) in
             print("\(error)")
             self.present(self.bananoAlertView(title: "Error", message: "Error retrieving your account details, please try again"), animated: true)
         }
     }
-
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        var yourWidth : CGFloat?
+        var yourHeight : CGFloat?
+        
+        let device = UIDevice.modelName
+        
+        if device == "iPhone SE" || device == "Simulator iPhone SE" {
+            yourWidth = collectionView.bounds.width/2.0
+            yourHeight = yourWidth
+        }else {
+            yourWidth = collectionView.bounds.width/3.0
+            yourHeight = yourWidth
+        }
+        return CGSize(width: yourWidth ?? 375, height: yourHeight ?? 100)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if self.quests.count == 0 {
             return 3

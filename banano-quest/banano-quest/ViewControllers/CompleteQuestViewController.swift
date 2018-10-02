@@ -23,7 +23,7 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var questNameLabel: UILabel!
     @IBOutlet weak var completeButton: UIButton!
-
+    
     var locationManager = CLLocationManager()
     var currentUserLocation: CLLocation?
     var questAreaLocation: CLLocation?
@@ -57,6 +57,18 @@ class CompleteQuestViewController: UIViewController, CLLocationManagerDelegate, 
             try refreshView()
         } catch let error as NSError {
             print("Failed to refresh view with error: \(error)")
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // UI Updates
+        let deviceName = UIDevice.modelName
+        
+        if deviceName == "iPhone X" || deviceName == "iPhone XS" || deviceName == "iPhone XS Max" || deviceName == "Simulator iPhone X" || deviceName == "Simulator iPhone XS" || deviceName == "Simulator iPhone XS Max" {
+            let newSize = CGRect(x: mapView.frame.origin.x, y: mapView.frame.origin.y, width: mapView.frame.width, height: 470)
+            mapView.frame = newSize
         }
     }
 
