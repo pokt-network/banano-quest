@@ -78,12 +78,12 @@
                                                         <constraint firstAttribute="width" constant="25" id="dq7-yK-Igd"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOUR ETHEREUM ADDRESS YOUR ETHEREUM ADDRESS YOUR ETHEREUM ADDRESS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HNh-mt-QaJ">
-                                                    <rect key="frame" x="76" y="29" width="258" height="10"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOUR ETHEREUM ADDRESS YOUR ETHEREUM " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HNh-mt-QaJ">
+                                                    <rect key="frame" x="76" y="29" width="258" height="12"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="258" id="XA6-iS-EEE"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -160,6 +160,7 @@
                     </view>
                     <connections>
                         <outlet property="positionLabel" destination="Qxy-KH-fYh" id="FNQ-ex-Rwr"/>
+                        <outlet property="tableView" destination="xDS-I2-oBP" id="XRE-0X-cDt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q9A-o6-tT1" userLabel="First Responder" sceneMemberID="firstResponder"/>
