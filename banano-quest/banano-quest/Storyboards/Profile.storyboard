@@ -62,7 +62,7 @@
                                             <constraint firstItem="ppy-kx-Mam" firstAttribute="centerY" secondItem="v2i-0T-ExP" secondAttribute="centerY" id="ceZ-0i-n8S"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x00000000000000000000000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tbr-Pa-UBw" userLabel="Account Address label">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x00000000000000000000000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbr-Pa-UBw" userLabel="Account Address label">
                                         <rect key="frame" x="15" y="175" width="305" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
@@ -359,6 +359,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <wkWebView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" allowsBackForwardNavigationGestures="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oev-9m-AIL">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SAMALL BANNERx1" translatesAutoresizingMaskIntoConstraints="NO" id="Agb-3Z-Gyg" userLabel="Top Banner image">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
                                 <constraints>
@@ -376,11 +384,11 @@
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CIRCLE STAMP x1" translatesAutoresizingMaskIntoConstraints="NO" id="3Qd-6k-kae" userLabel="QR Code image">
-                                        <rect key="frame" x="21.5" y="21" width="70" height="70"/>
+                                        <rect key="frame" x="19.5" y="19" width="74" height="74"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="70" id="1i5-LI-ify"/>
-                                            <constraint firstAttribute="width" constant="70" id="eqO-pH-zD9"/>
+                                            <constraint firstAttribute="height" constant="74" id="1i5-LI-ify"/>
+                                            <constraint firstAttribute="width" constant="74" id="eqO-pH-zD9"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -422,7 +430,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x00000000000000000000000" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z2k-1e-bTc" userLabel="Account Address label">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x00000000000000000000000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z2k-1e-bTc" userLabel="Account Address label">
                                 <rect key="frame" x="15" y="196" width="228.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
@@ -445,28 +453,26 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SUMMARY BACKGROUND" translatesAutoresizingMaskIntoConstraints="NO" id="wI8-Bf-hgu">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="366.5"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cV6-VW-Ati" userLabel="Exchange 1 button">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cV6-VW-Ati" userLabel="Exchange 1 button">
                                         <rect key="frame" x="60" y="133" width="80" height="80"/>
-                                        <color key="backgroundColor" red="0.19215686269999999" green="0.66666666669999997" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="eAE-5v-F42"/>
                                             <constraint firstAttribute="width" constant="80" id="yFq-Vt-eO0"/>
                                         </constraints>
-                                        <state key="normal" title="CoinBase">
+                                        <state key="normal" image="COINBASE">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="exchange1ButtonPressed:" destination="DVG-nu-JTb" eventType="touchUpInside" id="oFJ-Xf-tXX"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2eE-fl-rL2" userLabel="Exchange 2 button">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2eE-fl-rL2" userLabel="Exchange 2 button">
                                         <rect key="frame" x="180" y="133" width="80" height="80"/>
-                                        <color key="backgroundColor" red="0.19215686269999999" green="0.66666666669999997" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="EKA-mi-5S7"/>
                                             <constraint firstAttribute="width" constant="80" id="LY2-a9-o70"/>
                                         </constraints>
-                                        <state key="normal" title="Changelly">
+                                        <state key="normal" image="CHANGELLY">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -495,14 +501,6 @@
                                     <constraint firstItem="cV6-VW-Ati" firstAttribute="centerY" secondItem="Zgh-ak-rxU" secondAttribute="centerY" constant="20" id="uVm-hU-kqP"/>
                                 </constraints>
                             </view>
-                            <wkWebView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" allowsBackForwardNavigationGestures="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oev-9m-AIL">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCV-Qy-esw" userLabel="Back Button">
                                 <rect key="frame" x="15" y="30" width="28" height="28"/>
                                 <constraints>
@@ -565,7 +563,9 @@
     <resources>
         <image name="ARROWx1" width="28" height="28"/>
         <image name="BACKx1" width="57" height="57"/>
+        <image name="CHANGELLY" width="57" height="57"/>
         <image name="CIRCLE STAMP x1" width="280" height="280"/>
+        <image name="COINBASE" width="57" height="57"/>
         <image name="COPY-x1" width="57" height="57"/>
         <image name="EXPORT-BUTTON-x1" width="366" height="139"/>
         <image name="FORTHx1" width="57" height="57"/>

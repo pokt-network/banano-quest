@@ -30,7 +30,32 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Input your passphrase" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bVO-C0-MSG" userLabel="Passphrase text">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ucG-PB-emR" userLabel="Passphrase background image">
+                                <rect key="frame" x="0.0" y="309.5" width="375" height="54"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="1tp-19-Iml"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="4" height="-6"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                        <size key="value" width="0.0" height="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Input your passphrase" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bVO-C0-MSG" userLabel="Passphrase text">
                                 <rect key="frame" x="16" y="326.5" width="339" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="XHJ-no-eym"/>
@@ -39,15 +64,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n6O-yL-iMs" userLabel="Create button">
-                                <rect key="frame" x="115" y="380.5" width="145" height="40"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n6O-yL-iMs" userLabel="Create button">
+                                <rect key="frame" x="127.5" y="479" width="120" height="80"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="58o-fW-GMF"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="145" id="u6J-QF-Aff"/>
+                                    <constraint firstAttribute="height" constant="80" id="58o-fW-GMF"/>
+                                    <constraint firstAttribute="width" constant="120" id="u6J-QF-Aff"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
-                                <state key="normal" title="CREATE">
+                                <state key="normal" image="CREATE-BUTTON">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -82,7 +107,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLH-kv-fIR" userLabel="Biometrics Setup">
-                                <rect key="frame" x="80.5" y="423.5" width="214" height="40"/>
+                                <rect key="frame" x="80.5" y="390.5" width="214" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="ifz-pj-5wf"/>
@@ -97,11 +122,11 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dxS-PE-GhC" userLabel="Continue button">
-                                <rect key="frame" x="112.5" y="473.5" width="150" height="80"/>
+                                <rect key="frame" x="115" y="484.5" width="145" height="69"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="TYs-9G-7fM"/>
-                                    <constraint firstAttribute="width" constant="150" id="y7V-CG-B8W"/>
+                                    <constraint firstAttribute="height" constant="69" id="TYs-9G-7fM"/>
+                                    <constraint firstAttribute="width" constant="145" id="y7V-CG-B8W"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <state key="normal" image="PLAY-NOW-BUTTON-X1">
@@ -120,15 +145,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Be aware that you wont be able to change the password if you forget it." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AeE-xU-6cn">
-                                <rect key="frame" x="52.5" y="261" width="270" height="36"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="270" id="TxA-G6-bf7"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zvl-CT-I8v">
                                 <rect key="frame" x="52.5" y="184" width="270" height="67"/>
                                 <constraints>
@@ -136,6 +152,15 @@
                                 </constraints>
                                 <string key="text">In order to protect the BANANOS and/or prizes you collect in your account please create a good password that you can easily remind</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Be aware that you wont be able to change the password if you forget it." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AeE-xU-6cn">
+                                <rect key="frame" x="52.5" y="261" width="270" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="270" id="TxA-G6-bf7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -155,21 +180,24 @@
                             <constraint firstItem="iLH-kv-fIR" firstAttribute="centerX" secondItem="bzD-1I-J4g" secondAttribute="centerX" id="N3k-OT-kzB"/>
                             <constraint firstItem="9x1-le-WRx" firstAttribute="top" secondItem="bzD-1I-J4g" secondAttribute="top" constant="10" id="Qok-xE-VVN"/>
                             <constraint firstItem="bzD-1I-J4g" firstAttribute="trailing" secondItem="bVO-C0-MSG" secondAttribute="trailing" constant="20" id="ReB-BR-zfX"/>
+                            <constraint firstItem="ucG-PB-emR" firstAttribute="centerY" secondItem="bVO-C0-MSG" secondAttribute="centerY" constant="-7" id="S6J-Dl-6ny"/>
                             <constraint firstItem="9x1-le-WRx" firstAttribute="centerX" secondItem="gG7-4R-rpC" secondAttribute="centerX" id="SHO-Xh-TeT"/>
                             <constraint firstItem="orW-t7-Rly" firstAttribute="bottom" secondItem="w6O-vu-n6F" secondAttribute="bottom" id="UcR-ZH-hhf"/>
                             <constraint firstItem="bzD-1I-J4g" firstAttribute="trailing" secondItem="w6O-vu-n6F" secondAttribute="trailing" constant="16" id="WD1-Am-d92"/>
                             <constraint firstItem="Zvl-CT-I8v" firstAttribute="centerX" secondItem="bzD-1I-J4g" secondAttribute="centerX" id="Xzu-tX-avL"/>
+                            <constraint firstItem="ucG-PB-emR" firstAttribute="leading" secondItem="bzD-1I-J4g" secondAttribute="leading" id="csS-IP-4Ou"/>
                             <constraint firstItem="AeE-xU-6cn" firstAttribute="centerX" secondItem="bzD-1I-J4g" secondAttribute="centerX" id="eku-QO-euC"/>
+                            <constraint firstItem="bzD-1I-J4g" firstAttribute="trailing" secondItem="ucG-PB-emR" secondAttribute="trailing" id="g4n-bE-JlI"/>
+                            <constraint firstItem="n6O-yL-iMs" firstAttribute="centerY" secondItem="dxS-PE-GhC" secondAttribute="centerY" id="gBr-0u-HGB"/>
                             <constraint firstItem="Zvl-CT-I8v" firstAttribute="top" secondItem="ePB-DR-aao" secondAttribute="bottom" constant="15" id="i1q-db-K8i"/>
                             <constraint firstItem="UPB-lQ-KG5" firstAttribute="centerY" secondItem="bzD-1I-J4g" secondAttribute="centerY" id="iYi-ko-eYM"/>
                             <constraint firstItem="w6O-vu-n6F" firstAttribute="leading" secondItem="hdb-OT-mAG" secondAttribute="trailing" constant="10" id="kRD-kI-Ujm"/>
+                            <constraint firstItem="iLH-kv-fIR" firstAttribute="top" secondItem="bVO-C0-MSG" secondAttribute="bottom" constant="30" id="myS-0g-CGb"/>
                             <constraint firstItem="AeE-xU-6cn" firstAttribute="top" secondItem="Zvl-CT-I8v" secondAttribute="bottom" constant="10" id="o9V-m2-2Sw"/>
                             <constraint firstItem="dxS-PE-GhC" firstAttribute="centerX" secondItem="bzD-1I-J4g" secondAttribute="centerX" id="qGq-TB-7db"/>
                             <constraint firstItem="dxS-PE-GhC" firstAttribute="bottom" secondItem="UPB-lQ-KG5" secondAttribute="bottom" constant="-40" id="sUA-DR-UXW"/>
                             <constraint firstItem="orW-t7-Rly" firstAttribute="leading" secondItem="gG7-4R-rpC" secondAttribute="leadingMargin" id="ugY-J0-0Ti"/>
                             <constraint firstItem="bVO-C0-MSG" firstAttribute="centerY" secondItem="bzD-1I-J4g" secondAttribute="centerY" id="vvA-Ws-wAe"/>
-                            <constraint firstItem="dxS-PE-GhC" firstAttribute="top" secondItem="iLH-kv-fIR" secondAttribute="bottom" constant="10" id="wQJ-EP-LqA"/>
-                            <constraint firstItem="n6O-yL-iMs" firstAttribute="top" secondItem="bVO-C0-MSG" secondAttribute="bottom" constant="20" id="xxy-cy-1vF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bzD-1I-J4g"/>
                     </view>
@@ -191,6 +219,7 @@
     <resources>
         <image name="CENTER-BACKGROUND" width="750" height="1064"/>
         <image name="COPY-x1" width="57" height="57"/>
+        <image name="CREATE-BUTTON" width="192" height="140"/>
         <image name="PLAY-NOW-BUTTON-X1" width="145" height="69"/>
     </resources>
 </document>

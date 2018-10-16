@@ -35,10 +35,10 @@
                                             <rect key="frame" x="0.0" y="-15" width="375" height="682"/>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PAGE-SLIDER-3" translatesAutoresizingMaskIntoConstraints="NO" id="Xmd-Fp-iV0" userLabel="PAGE-SLIDER-3">
-                                            <rect key="frame" x="112.5" y="622" width="150" height="22"/>
+                                            <rect key="frame" x="132.5" y="622" width="110" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="22" id="4Ag-bJ-yjL"/>
-                                                <constraint firstAttribute="width" constant="150" id="bi9-1h-a8m"/>
+                                                <constraint firstAttribute="width" constant="110" id="bi9-1h-a8m"/>
                                             </constraints>
                                         </imageView>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Collect them all in your account!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ea9-XS-yR6">
@@ -90,9 +90,9 @@
                                             <rect key="frame" x="0.0" y="-50" width="375" height="727"/>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PAGE-SLIDER-1" translatesAutoresizingMaskIntoConstraints="NO" id="oTc-48-0gY">
-                                            <rect key="frame" x="112.5" y="630" width="150" height="22"/>
+                                            <rect key="frame" x="132.5" y="630" width="110" height="22"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="150" id="10l-JU-bB0"/>
+                                                <constraint firstAttribute="width" constant="110" id="10l-JU-bB0"/>
                                                 <constraint firstAttribute="height" constant="22" id="xif-pv-M9Z"/>
                                             </constraints>
                                         </imageView>
@@ -131,9 +131,9 @@
                                             <rect key="frame" x="0.0" y="-10" width="375" height="677"/>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PAGE-SLIDER-2" translatesAutoresizingMaskIntoConstraints="NO" id="3Zm-cr-iIZ">
-                                            <rect key="frame" x="112.5" y="630" width="150" height="22"/>
+                                            <rect key="frame" x="132.5" y="630" width="110" height="22"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="150" id="XWU-Js-GMU"/>
+                                                <constraint firstAttribute="width" constant="110" id="XWU-Js-GMU"/>
                                                 <constraint firstAttribute="height" constant="22" id="w2Q-JO-mZi"/>
                                             </constraints>
                                         </imageView>

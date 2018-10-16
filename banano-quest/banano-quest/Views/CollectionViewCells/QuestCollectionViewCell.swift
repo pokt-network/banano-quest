@@ -37,8 +37,7 @@ class QuestCollectionViewCell: UICollectionViewCell {
     }
     
     func configureCellFor(index: Int, playerLocation: CLLocation?) {
-        // TODO:
-        // DISTANCE FROM QUEST
+        
         guard let quest = self.quest else {
             self.configureEmptyCellFor(index: index)
             return
@@ -105,49 +104,6 @@ class QuestCollectionViewCell: UICollectionViewCell {
         if let hintTextView = self.hintTextView {
             hintTextView.text = quest.hint
             
-            DispatchQueue.main.async {
-                // Adjust textView height and background image depending on text content
-                let fixedWidth = self.frame.size.width
-                // TODO: Find a better way to do this
-
-                if let newSize = self.hintTextView?.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude)) {
-                    
-                    let device = UIDevice.modelName
-                    if device == "iPhone SE" || device == "Simulator iPhone SE"{
-                        // Change hint text view frame
-                        self.hintTextView?.frame = CGRect(x: self.hintTextView?.frame.origin.x ?? 0, y: self.hintTextView?.frame.origin.y ?? 0, width: fixedWidth, height: 45)
-                        
-                        // Change summary background image frame
-                        var originX = self.hintTextView?.frame.origin.x ?? 20
-                        originX = originX - 20
-                        
-                        self.summaryBackgroundImageView?.frame = CGRect(x: originX, y: self.hintTextView?.frame.origin.y ?? 0, width: fixedWidth + 20, height: self.hintTextView!.frame.height + 54)
-                        
-                        // Change bottom separator frame
-                        self.bottomSeparator.frame = CGRect(x: 20, y: self.summaryBackgroundImageView.frame.height + 41, width: self.hintTextView?.frame.width ?? 100 - 20, height: 2)
-                        
-                        // Change hint label frame
-                        self.hintLabel.frame = CGRect(x: 20, y: self.summaryBackgroundImageView.frame.height + 45, width: self.hintTextView?.frame.width ?? 100 - 10, height: 20)
-                    }else{
-                        // Change hint text view frame
-                        self.hintTextView?.frame = CGRect(x: self.hintTextView?.frame.origin.x ?? 0, y: self.hintTextView?.frame.origin.y ?? 0, width: fixedWidth, height: newSize.height)
-                        
-                        // Change summary background image frame
-                        var originX = self.hintTextView?.frame.origin.x ?? 20
-                        originX = originX - 20
-                        
-                        self.summaryBackgroundImageView?.frame = CGRect(x: originX, y: self.hintTextView?.frame.origin.y ?? 0, width: fixedWidth + 20, height: self.hintTextView!.frame.height + 40)
-                        
-                        // Change bottom separator frame
-                        self.bottomSeparator.frame = CGRect(x: 20, y: self.summaryBackgroundImageView.frame.height + 39, width: self.hintTextView?.frame.width ?? 100 - 20, height: 2)
-                        
-                        // Change hint label frame
-                        self.hintLabel.frame = CGRect(x: 20, y: self.summaryBackgroundImageView.frame.height + 43, width: self.hintTextView?.frame.width ?? 100 - 10, height: 20)
-                    }
-
-                }
-                
-            }
         }
         
         if let bananoBackgroundView = self.bananoBackgroundView {
