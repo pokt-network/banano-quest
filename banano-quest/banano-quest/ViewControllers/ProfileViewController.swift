@@ -73,6 +73,25 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
 
     // MARK: - IBActions
     
+    @IBAction func addBalanceButtonPressed(_ sender: Any) {
+        do {
+            let vc = try instantiateViewController(identifier: "addBalanceViewControllerID", storyboardName: "Profile") as? AddBalanceViewController
+            if currentPlayer != nil {
+                vc?.player = currentPlayer
+            }
+            if qrCodeImage.image != nil {
+                vc?.qrImage = qrCodeImage.image
+            }
+            
+            present(vc!, animated: false, completion: nil)
+            
+        } catch let error as NSError {
+            print("Failed to instantiate Add Balance VC with error :\(error)")
+        }
+        
+
+    }
+    
     @IBAction func copyAddressButtonPressed(_ sender: Any) {
         let showError = {
             let alertView = self.bananoAlertView(title: "Error:", message: "Address field is empty, please try again later")
