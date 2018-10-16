@@ -21,6 +21,18 @@ class MenuViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func howToPlayButtonTapped(_ sender: Any) {
+        if let container = self.so_containerViewController {
+            container.isSideViewControllerPresented = false
+        }
+        do {
+            let vc = try self.instantiateViewController(identifier: "howToPlayViewControllerID", storyboardName: "Help") as? HowToPlayViewController
+            self.so_containerViewController?.topViewController = vc
+        } catch let error as NSError {
+            print("Failed to instantiate HowToPlayViewController with error: \(error)")
+        }
+    }
+    
     @IBAction func exploreButtonTapped(_ sender: Any) {
         if let container = self.so_containerViewController {
             container.isSideViewControllerPresented = false

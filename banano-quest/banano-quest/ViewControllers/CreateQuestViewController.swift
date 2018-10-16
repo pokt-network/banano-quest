@@ -542,7 +542,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
                         return
                     }
                     
-                    let message = String.init(format: "Note that the value you have determined as a prize, if any, will be divided by the number of BANANOS allocated for the Quest, giving each Winner a fraction of the total prize. Banano Quest retains %@ of the total prize as comission. Total transaction cost: %@ USD - %@ ETH. Press OK to create your Quest", "10%", String.init(format: "%.4f", gasEstimateUSD), String.init(format: "%.4f", gasEstimateEth))
+                    let message = String.init(format: "Total transaction cost: %@ USD - %@ ETH. Press OK to create your Quest", "10%", String.init(format: "%.4f", gasEstimateUSD), String.init(format: "%.4f", gasEstimateEth))
                     let txDetailsAlertView = self.bananoAlertView(title: "Transaction Details", message: message) { (uiAlertAction) in
                         guard let player = self.currentPlayer else {
                             self.present(self.bananoAlertView(title: "Error", message: "Player account not found, please try again"), animated: true, completion: nil)

@@ -283,8 +283,14 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
 
             // Operation Queue
             operationQueue.addOperations([nonceOperation], waitUntilFinished: false)
-
-            let alertView = bananoAlertView(title: "Submitted", message: "Proof submitted, your request is being processed in the background")
+            let alertView = self.bananoAlertView(title: "Submitted", message: "Proof submitted, your request is being processed in the background") { (UIAlertAction) in
+                do {
+                    let vc = try self.instantiateViewController(identifier: "ProfileVC", storyboardName: "Profile")
+                    self.present(vc, animated: false, completion: nil)
+                }catch let error as NSError{
+                    print("Failed to instantiate Profile VC with error: \(error)")
+                }
+            }
 
             self.present(alertView, animated: false, completion: nil)
 

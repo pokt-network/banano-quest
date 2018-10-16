@@ -106,8 +106,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             return
         } else {
             let alertView = bananoAlertView(title: "Success:", message: "Your Address has been copied to the clipboard.")
-            present(alertView, animated: false, completion: nil)
             UIPasteboard.general.string = walletAddressLabel.text
+            present(alertView, animated: false, completion: nil)
         }
     }
 

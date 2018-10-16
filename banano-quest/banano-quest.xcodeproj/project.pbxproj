@@ -70,6 +70,7 @@
 		C5082FC22162E65E0078D055 /* UIDevice+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5082FC12162E65E0078D055 /* UIDevice+extension.swift */; };
 		C51C079F2104E1C400E423D2 /* Player+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51C079D2104E1C300E423D2 /* Player+CoreDataProperties.swift */; };
 		C51C07A02104E1C400E423D2 /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51C079E2104E1C400E423D2 /* Player+CoreDataClass.swift */; };
+		C529720E21768CD800D918F5 /* HowToPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C529720D21768CD800D918F5 /* HowToPlayViewController.swift */; };
 		C53B586020FFDC390062BD64 /* CreateQuestMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B585F20FFDC390062BD64 /* CreateQuestMapViewController.swift */; };
 		C56473DA210BB14900C0C7A8 /* UIApplication+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56473D9210BB14900C0C7A8 /* UIApplication+extension.swift */; };
 		C56E2D9D21272E5F00CF1707 /* AddBalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56E2D9C21272E5F00CF1707 /* AddBalanceViewController.swift */; };
@@ -182,6 +183,7 @@
 		C5082FC12162E65E0078D055 /* UIDevice+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+extension.swift"; sourceTree = "<group>"; };
 		C51C079D2104E1C300E423D2 /* Player+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C51C079E2104E1C400E423D2 /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C529720D21768CD800D918F5 /* HowToPlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayViewController.swift; sourceTree = "<group>"; };
 		C53B585F20FFDC390062BD64 /* CreateQuestMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuestMapViewController.swift; sourceTree = "<group>"; };
 		C56473D9210BB14900C0C7A8 /* UIApplication+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+extension.swift"; sourceTree = "<group>"; };
 		C56E2D9C21272E5F00CF1707 /* AddBalanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBalanceViewController.swift; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 				1040310A21062BBB0091B5FE /* OnboardingViewController.swift */,
 				C5FA598121077C3A004FB3E0 /* FindBananoViewController.swift */,
 				C56E2D9C21272E5F00CF1707 /* AddBalanceViewController.swift */,
+				C529720D21768CD800D918F5 /* HowToPlayViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -833,6 +836,7 @@
 				10A5600621037DF800B85950 /* DownloadAndUpdateQuestIsWinnerOperation.swift in Sources */,
 				C5FA59A721077F17004FB3E0 /* AnnotationView.swift in Sources */,
 				63091D7E20E13546002253E5 /* NewWalletViewController.swift in Sources */,
+				C529720E21768CD800D918F5 /* HowToPlayViewController.swift in Sources */,
 				635F8A9C20DD590B008BA94E /* LandingViewController.swift in Sources */,
 				10A560022102987D00B85950 /* UploadQuestProofOperation.swift in Sources */,
 				63091D7C20E126A5002253E5 /* QuestingViewController.swift in Sources */,
