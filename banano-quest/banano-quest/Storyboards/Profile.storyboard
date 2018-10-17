@@ -165,7 +165,7 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QUEST NAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OoY-TO-Mb9">
-                                                            <rect key="frame" x="0.0" y="85" width="149" height="38"/>
+                                                            <rect key="frame" x="0.0" y="88" width="149" height="38"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="38" id="8gv-J8-hFB"/>
                                                             </constraints>
@@ -176,7 +176,7 @@
                                                     </subviews>
                                                 </view>
                                                 <constraints>
-                                                    <constraint firstItem="OoY-TO-Mb9" firstAttribute="top" secondItem="f8M-Ty-4e9" secondAttribute="bottom" constant="-25" id="8yR-A6-1c4"/>
+                                                    <constraint firstItem="OoY-TO-Mb9" firstAttribute="top" secondItem="f8M-Ty-4e9" secondAttribute="bottom" constant="-22" id="8yR-A6-1c4"/>
                                                     <constraint firstAttribute="trailing" secondItem="OoY-TO-Mb9" secondAttribute="trailing" id="L0O-ZL-wt0"/>
                                                     <constraint firstItem="f8M-Ty-4e9" firstAttribute="leading" secondItem="BEJ-3G-Xic" secondAttribute="leading" id="NcW-sm-hQz"/>
                                                     <constraint firstItem="OoY-TO-Mb9" firstAttribute="leading" secondItem="BEJ-3G-Xic" secondAttribute="leading" id="aQr-P2-A9m"/>

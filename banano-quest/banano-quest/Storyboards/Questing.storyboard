@@ -267,7 +267,7 @@
                                                     <rect key="frame" x="0.0" y="175" width="379" height="220"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PEA-dV-zhb" userLabel="Top Desc View">
-                                                            <rect key="frame" x="0.0" y="5" width="379" height="90"/>
+                                                            <rect key="frame" x="0.0" y="5" width="379" height="85"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BANANOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ncs-RR-X1Q" userLabel="Bananos label">
                                                                     <rect key="frame" x="100.5" y="41" width="59" height="15"/>
@@ -336,7 +336,7 @@
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstItem="ETl-AQ-FeZ" firstAttribute="leading" secondItem="Ncs-RR-X1Q" secondAttribute="trailing" constant="28" id="1TS-A3-c7L"/>
-                                                                <constraint firstAttribute="height" constant="90" id="5MN-kZ-sUN"/>
+                                                                <constraint firstAttribute="height" constant="85" id="5MN-kZ-sUN"/>
                                                                 <constraint firstItem="Ncs-RR-X1Q" firstAttribute="baseline" secondItem="b37-N8-cjl" secondAttribute="baseline" id="BCF-jD-ohM"/>
                                                                 <constraint firstItem="hfH-gn-ka2" firstAttribute="leading" secondItem="Ncs-RR-X1Q" secondAttribute="leading" constant="-10" id="BwQ-Bm-8qn"/>
                                                                 <constraint firstItem="uxL-Dx-2SD" firstAttribute="centerX" secondItem="b37-N8-cjl" secondAttribute="centerX" id="Udf-Ud-gXl"/>
@@ -353,10 +353,10 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cZs-Hz-iOo" userLabel="Bottom Desc View">
-                                                            <rect key="frame" x="0.0" y="95" width="379" height="125"/>
+                                                            <rect key="frame" x="0.0" y="90" width="379" height="130"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SUMMARY BACKGROUND" translatesAutoresizingMaskIntoConstraints="NO" id="isa-sE-kfb">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="379" height="125"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="379" height="130"/>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y2R-5v-3CH" userLabel="Bottom Separator">
                                                                     <rect key="frame" x="35" y="95" width="309" height="2"/>
@@ -394,7 +394,7 @@
                                                                 <constraint firstItem="AVw-km-WYL" firstAttribute="leading" secondItem="Y2R-5v-3CH" secondAttribute="leading" id="JbN-SA-TeQ"/>
                                                                 <constraint firstAttribute="trailing" secondItem="Y2R-5v-3CH" secondAttribute="trailing" constant="35" id="Mha-wv-0nM"/>
                                                                 <constraint firstItem="isa-sE-kfb" firstAttribute="leading" secondItem="cZs-Hz-iOo" secondAttribute="leading" id="aVb-xI-bEK"/>
-                                                                <constraint firstAttribute="height" constant="125" id="bQG-li-7MA"/>
+                                                                <constraint firstAttribute="height" constant="130" id="bQG-li-7MA"/>
                                                                 <constraint firstAttribute="trailing" secondItem="isa-sE-kfb" secondAttribute="trailing" id="hQS-AQ-xOl"/>
                                                                 <constraint firstItem="Y2R-5v-3CH" firstAttribute="leading" secondItem="cZs-Hz-iOo" secondAttribute="leading" constant="35" id="n00-Ih-6l6"/>
                                                                 <constraint firstItem="GQC-8D-T5W" firstAttribute="leading" secondItem="cZs-Hz-iOo" secondAttribute="leading" constant="35" id="pXa-ww-796"/>
@@ -656,8 +656,8 @@
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" cocoaTouchSystemColor="lightTextColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSe-gL-vVu" userLabel="CompleteButton">
-                                <rect key="frame" x="97" y="567" width="180" height="80"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSe-gL-vVu" userLabel="CompleteButton">
+                                <rect key="frame" x="102.5" y="567" width="170" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="170" id="8c3-GH-mo0"/>
                                     <constraint firstAttribute="height" constant="80" id="c2J-Hx-ULQ"/>
@@ -766,7 +766,7 @@
                                     <action selector="backButtonPressed:" destination="LJR-Yr-7zi" eventType="touchUpInside" id="nF0-OP-UVV"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m7t-yZ-yR6" userLabel="Access permission view">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m7t-yZ-yR6" userLabel="Access permission view">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GIM-IH-JB1" userLabel="Grant Camera access button">
