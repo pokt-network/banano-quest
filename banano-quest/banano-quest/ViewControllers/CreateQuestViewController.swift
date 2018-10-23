@@ -111,7 +111,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
     // MARK: - Tools
     func refreshPlayerInfo() {
         let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: currentPlayer?.address ?? "0", tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
-        appInitQueueDispatcher.initDisplatchSequence {
+        appInitQueueDispatcher.initDispatchSequence {
             DispatchQueue.main.async {
                 self.view.isUserInteractionEnabled = true
                 self.indicator.stopAnimating()

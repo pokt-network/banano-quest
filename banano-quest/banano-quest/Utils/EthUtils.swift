@@ -52,7 +52,7 @@ public struct EthUtils {
             guard let playerAddress = playerInstance.address else {
                 return result
             }
-            AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.tavernAddress).initDisplatchSequence(completionHandler: nil)
+            AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.tavernAddress).initDispatchSequence(completionHandler: nil)
         }
         
         return result

@@ -92,9 +92,9 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
             if let playerAddress = player.address {
                 
                 let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
-                appInitQueueDispatcher.initDisplatchSequence {
+                appInitQueueDispatcher.initDispatchSequence {
                     let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress, playerAddress: playerAddress)
-                    questListQueueDispatcher.initDisplatchSequence(completionHandler: {
+                    questListQueueDispatcher.initDispatchSequence(completionHandler: {
                         
                         do {
                             try self.refreshView()

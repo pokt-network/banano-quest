@@ -86,6 +86,12 @@ public class DownloadAndUpdateQuestIsWinnerOperation: AsynchronousOperation {
                     self.finish()
                     return
                 }
+                
+                if isWinnerBool {
+                    let banano = try Banano.init(obj: quest, context: context)
+                    try banano.save()
+                }
+                
                 quest.winner = isWinnerBool
                 try quest.save()
             } catch {

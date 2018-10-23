@@ -22,7 +22,7 @@
 //        self.questIndex = questIndex
 //    }
 //    
-//    public func initDisplatchSequence(completionHandler: QueueDispatcherCompletionHandler?) {
+//    public func initDispatchSequence(completionHandler: QueueDispatcherCompletionHandler?) {
 //        self.completionHandler = completionHandler
 //        if self.questIndex < 0 {
 //            if let completionHandler = self.completionHandler {

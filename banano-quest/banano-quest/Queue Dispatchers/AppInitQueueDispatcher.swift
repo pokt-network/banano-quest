@@ -13,7 +13,7 @@ public class AppInitQueueDispatcher: QueueDispatcherProtocol {
     private let operationQueue: OperationQueue = OperationQueue()
     private let downloadBalanceOperation: DownloadBalanceOperation
     private let transactionCountOperation: DownloadTransactionCountOperation
-    private let questAmounOperation: DownloadQuestAmountOperation
+    private let questAmountOperation: DownloadQuestAmountOperation
     private let ethUsdPriceOperation: DownloadEthUsdPriceOperation
     private var completionHandler: QueueDispatcherCompletionHandler?
     
@@ -21,15 +21,15 @@ public class AppInitQueueDispatcher: QueueDispatcherProtocol {
         // Init operations
         self.downloadBalanceOperation = DownloadBalanceOperation.init(address: playerAddress)
         self.transactionCountOperation = DownloadTransactionCountOperation.init(address: playerAddress)
-        self.questAmounOperation = DownloadQuestAmountOperation.init(tavernAddress: tavernAddress, tokenAddress: bananoTokenAddress)
+        self.questAmountOperation = DownloadQuestAmountOperation.init(tavernAddress: tavernAddress, tokenAddress: bananoTokenAddress)
         self.ethUsdPriceOperation = DownloadEthUsdPriceOperation.init()
         self.setOperationsCompletionBlocks()
     }
     
-    public func initDisplatchSequence(completionHandler: QueueDispatcherCompletionHandler?) {
+    public func initDispatchSequence(completionHandler: QueueDispatcherCompletionHandler?) {
         print("Initializing AppInitQueueDispatcher sequence")
         self.completionHandler = completionHandler
-        self.operationQueue.addOperations([self.downloadBalanceOperation, self.transactionCountOperation, self.questAmounOperation, self.ethUsdPriceOperation], waitUntilFinished: false)
+        self.operationQueue.addOperations([self.downloadBalanceOperation, self.transactionCountOperation, self.questAmountOperation, self.ethUsdPriceOperation], waitUntilFinished: false)
     }
     
     public func isQueueFinished() -> Bool {
@@ -52,7 +52,7 @@ public class AppInitQueueDispatcher: QueueDispatcherProtocol {
             }
             
             // Update the player record
-            self.operationQueue.addOperations([UpdatePlayerOperation.init(balanceWei: self.downloadBalanceOperation.balance, transactionCount: self.transactionCountOperation.transactionCount, questAmount: self.questAmounOperation.questAmount, ethUsdPrice: self.ethUsdPriceOperation.usdPrice)], waitUntilFinished: false)
+            self.operationQueue.addOperations([UpdatePlayerOperation.init(balanceWei: self.downloadBalanceOperation.balance, transactionCount: self.transactionCountOperation.transactionCount, questAmount: self.questAmountOperation.questAmount, ethUsdPrice: self.ethUsdPriceOperation.usdPrice)], waitUntilFinished: false)
         }
     }
     
@@ -67,8 +67,8 @@ public class AppInitQueueDispatcher: QueueDispatcherProtocol {
             self.attempToExecuteCompletionHandler()
         }
         
-        self.questAmounOperation.completionBlock = {
-            print("Completed questAmounOperation")
+        self.questAmountOperation.completionBlock = {
+            print("Completed questAmountOperation")
             self.attempToExecuteCompletionHandler()
         }
         

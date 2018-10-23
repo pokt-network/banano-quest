@@ -20,7 +20,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var qrCodeImage: UIImageView!
     
     var currentPlayer: Player?
-    var quests: [Quest] = [Quest]()
+    var bananos: [Banano] = [Banano]()
 
     // MARK: - View
     override func viewDidLoad() {
@@ -30,7 +30,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         } catch let error as NSError {
             print("Failed to retrieve current player with error: \(error)")
         }
-        loadPlayerCompletedQuests()
+        loadPlayerBananos()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -160,24 +160,24 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if self.quests.count == 0 {
+        if self.bananos.count == 0 {
             return 3
         } else {
-            return self.quests.count
+            return self.bananos.count
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if quests.count != 0  && indexPath.item < quests.count {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerQuestCell", for: indexPath) as! QuestCollectionViewCell
+        if bananos.count != 0  && indexPath.item < bananos.count {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerQuestCell", for: indexPath) as! BananoCollectionViewCell
             
-            let quest = quests[indexPath.item]
-            cell.quest = quest
+            let banano = bananos[indexPath.item]
+            cell.banano = banano
             cell.configureCellFor(index: indexPath.item, playerLocation: nil)
             
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerQuestCell", for: indexPath) as! QuestCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerQuestCell", for: indexPath) as! BananoCollectionViewCell
             
             cell.configureEmptyCellFor(index: indexPath.item)
             
@@ -201,17 +201,17 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         return nil
     }
     
-    func loadPlayerCompletedQuests() {
-        // Initial load for the local quest list
+    func loadPlayerBananos() {
+        // Initial load for the local bananos list
         do {
-            self.quests = try Quest.questsWonByPlayer(context: CoreDataUtils.mainPersistentContext)
-            if self.quests.count != 0 {
+            self.bananos = try Banano.sortedBananosByIndex(context: CoreDataUtils.mainPersistentContext)
+            if self.bananos.count != 0 {
                 try self.refreshView()
             }
         } catch {
-            let alert = self.bananoAlertView(title: "Error", message: "Failed to retrieve quest list with error:")
+            let alert = self.bananoAlertView(title: "Error", message: "Failed to retrieve current bananos with error:")
             self.present(alert, animated: false, completion: nil)
-            print("Failed to retrieve quest list with error: \(error)")
+            print("Failed to retrieve banano list with error: \(error)")
         }
     }
 
