@@ -49,7 +49,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xDS-I2-oBP">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xDS-I2-oBP">
                                 <rect key="frame" x="0.0" y="215" width="375" height="452"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.98823529409999999" green="0.86274509799999999" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -128,8 +128,8 @@
                                     <outlet property="delegate" destination="Cpr-5n-YN1" id="gCv-GB-Ead"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="##." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Qxy-KH-fYh" userLabel="Distance value label">
-                                <rect key="frame" x="177" y="192" width="21" height="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Position" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Qxy-KH-fYh" userLabel="Distance value label">
+                                <rect key="frame" x="163" y="192" width="49" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="PxO-TL-mbx"/>
                                 </constraints>
@@ -137,16 +137,22 @@
                                 <color key="textColor" red="0.19215686269999999" green="0.66666666669999997" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="jHS-mC-Q2E">
+                                <rect key="frame" x="169.5" y="315.5" width="37" height="37"/>
+                                <color key="color" red="0.98823529409999999" green="0.86274509799999999" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="5sN-bI-JuA" firstAttribute="top" secondItem="cTw-ii-ylY" secondAttribute="top" constant="30" id="0yR-Qf-yLh"/>
                             <constraint firstItem="xDS-I2-oBP" firstAttribute="top" secondItem="Qxy-KH-fYh" secondAttribute="bottom" constant="8" id="6Ua-6R-WJH"/>
+                            <constraint firstItem="jHS-mC-Q2E" firstAttribute="centerX" secondItem="cTw-ii-ylY" secondAttribute="centerX" id="Gd4-X2-teC"/>
                             <constraint firstItem="xDS-I2-oBP" firstAttribute="bottom" secondItem="BiL-Jb-Gcl" secondAttribute="bottom" id="Grc-pn-GPS"/>
                             <constraint firstItem="Qxy-KH-fYh" firstAttribute="centerX" secondItem="cTw-ii-ylY" secondAttribute="centerX" id="KRU-xd-PJz"/>
                             <constraint firstItem="Xd5-qA-axj" firstAttribute="leading" secondItem="BiL-Jb-Gcl" secondAttribute="leading" id="P9f-wJ-moU"/>
                             <constraint firstItem="29R-nE-hBd" firstAttribute="leading" secondItem="BiL-Jb-Gcl" secondAttribute="leading" constant="15" id="QPo-do-g6G"/>
                             <constraint firstItem="Qxy-KH-fYh" firstAttribute="top" secondItem="pFo-OS-aYu" secondAttribute="bottom" constant="8" id="R5v-Ak-3VO"/>
+                            <constraint firstItem="jHS-mC-Q2E" firstAttribute="centerY" secondItem="cTw-ii-ylY" secondAttribute="centerY" id="W7z-us-jDr"/>
                             <constraint firstItem="29R-nE-hBd" firstAttribute="top" secondItem="BiL-Jb-Gcl" secondAttribute="top" constant="20" id="Y7Y-Kl-faf"/>
                             <constraint firstItem="xDS-I2-oBP" firstAttribute="leading" secondItem="BiL-Jb-Gcl" secondAttribute="leading" id="c3T-Ci-h0g"/>
                             <constraint firstItem="pFo-OS-aYu" firstAttribute="centerX" secondItem="cTw-ii-ylY" secondAttribute="centerX" id="ckA-FM-Yoj"/>
@@ -159,6 +165,7 @@
                         <viewLayoutGuide key="safeArea" id="BiL-Jb-Gcl"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="jHS-mC-Q2E" id="6bg-QM-e7v"/>
                         <outlet property="positionLabel" destination="Qxy-KH-fYh" id="FNQ-ex-Rwr"/>
                         <outlet property="tableView" destination="xDS-I2-oBP" id="XRE-0X-cDt"/>
                     </connections>

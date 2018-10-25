@@ -10,16 +10,25 @@ import UIKit
 import BigInt
 
 class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var positionLabel: UILabel!
+    
     var ownersRecords = [LeaderboardRecord]()
-    
-    
+    var ownerPosition: Int?
+    var currentPlayer: Player?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         loadAndSetLeaderboardData()
+        positionLabel.text = ""
+        do {
+            currentPlayer = try Player.getPlayer(context: CoreDataUtils.mainPersistentContext)
+        } catch let error as NSError {
+            print("Failed to retrieve current player with error: \(error)")
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -27,15 +36,34 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
         // Dispose of any resources that can be recreated.
     }
     // MARK: UI
-    
     func refreshTableView() {
         DispatchQueue.main.async() {
             self.tableView.reloadData()
         }
     }
     
+    func setPositionLabelText() {
+        if (ownerPosition == nil) {
+            positionLabel.text = "Collect bananos to get ranked!"
+        } else {
+            positionLabel.text = "You are in position #\(ownerPosition!)!"
+        }
+    }
+    
     // MARK: Data
+    func calculateOwnerPosition() {
+        for i in 0..<ownersRecords.count {
+            let record = ownersRecords[i]
+            let playerAddress = currentPlayer?.address
+            if record.wallet == playerAddress {
+                ownerPosition = i + 1
+                break
+            }
+        }
+    }
+    
     func loadAndSetLeaderboardData() {
+        activityIndicator.startAnimating()
         fetchOwnerCount(completionBlock: { count in
             if count == nil {
                 return
@@ -56,6 +84,9 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
                     return l1.tokenTotal! > l2.tokenTotal!
                 })
                 self.refreshTableView()
+                self.calculateOwnerPosition()
+                self.setPositionLabelText()
+                self.activityIndicator.stopAnimating()
             }
         })
     }
