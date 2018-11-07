@@ -8,12 +8,41 @@
 
 import UIKit
 
-class MenuViewController: UIViewController {
+class MenuViewController: UIViewController, UIGestureRecognizerDelegate {
+    @IBOutlet weak var exploreLabel: UILabel!
+    @IBOutlet weak var createQuestLabel: UILabel!
+    @IBOutlet weak var profileLabel: UILabel!
+    @IBOutlet weak var howToPlayLabel: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        // Gesture for labels tap
+        let exploreGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(self.exploreButtonTapped(_:)))
+        let createQuestGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(self.createQuestButtonTapped(_:)))
+        let profileGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(self.profileButtonTapped(_:)))
+        let howToPlayGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(self.howToPlayButtonTapped(_:)))
+        
+        exploreGestureRecognizer.delegate = self
+        createQuestGestureRecognizer.delegate = self
+        profileGestureRecognizer.delegate = self
+        howToPlayGestureRecognizer.delegate = self
+        
+        exploreLabel.addGestureRecognizer(exploreGestureRecognizer)
+        createQuestLabel.addGestureRecognizer(createQuestGestureRecognizer)
+        profileLabel.addGestureRecognizer(profileGestureRecognizer)
+        howToPlayLabel.addGestureRecognizer(howToPlayGestureRecognizer)
+        
+        do {
+            try refreshView()
+        } catch let error as NSError {
+            print("Failed to refresh view with error \(error)")
+        }
     }
     
     override func didReceiveMemoryWarning() {

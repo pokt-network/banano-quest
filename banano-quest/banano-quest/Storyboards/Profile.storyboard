@@ -466,7 +466,7 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SUMMARY BACKGROUND" translatesAutoresizingMaskIntoConstraints="NO" id="wI8-Bf-hgu">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="366.5"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cV6-VW-Ati" userLabel="Exchange 1 button">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cV6-VW-Ati" userLabel="Exchange 1 button">
                                         <rect key="frame" x="60" y="133" width="80" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="eAE-5v-F42"/>
@@ -479,7 +479,20 @@
                                             <action selector="exchange1ButtonPressed:" destination="DVG-nu-JTb" eventType="touchUpInside" id="oFJ-Xf-tXX"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2eE-fl-rL2" userLabel="Exchange 2 button">
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i7I-m5-kNn" userLabel="Rinkeby faucet button">
+                                        <rect key="frame" x="120" y="113" width="80" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="lFi-vN-dza"/>
+                                            <constraint firstAttribute="height" constant="80" id="zTR-He-gkS"/>
+                                        </constraints>
+                                        <state key="normal" image="FAUCET IMAGE">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="rinkebyButtonPressed:" destination="DVG-nu-JTb" eventType="touchUpInside" id="Ppk-AT-17r"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2eE-fl-rL2" userLabel="Exchange 2 button">
                                         <rect key="frame" x="180" y="133" width="80" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="EKA-mi-5S7"/>
@@ -492,7 +505,7 @@
                                             <action selector="exchange2ButtonPressed:" destination="DVG-nu-JTb" eventType="touchUpInside" id="qdD-on-zUB"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here we give you suggestions of a couple of platforms where you can easily buy some ETH to CLAIM your BANANOS" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQq-pV-dnp" userLabel="Help label">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here we suggest you of a platform where you can easily get some ETH to CLAIM your BANANOS" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQq-pV-dnp" userLabel="Help label">
                                         <rect key="frame" x="15" y="20" width="290" height="54"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                         <nil key="textColor"/>
@@ -504,7 +517,9 @@
                                     <constraint firstAttribute="trailing" secondItem="qQq-pV-dnp" secondAttribute="trailing" constant="15" id="02W-iu-QRS"/>
                                     <constraint firstAttribute="trailing" secondItem="wI8-Bf-hgu" secondAttribute="trailing" id="7zz-og-w3e"/>
                                     <constraint firstAttribute="bottom" secondItem="wI8-Bf-hgu" secondAttribute="bottom" constant="-60" id="9h6-vH-JN4"/>
+                                    <constraint firstItem="i7I-m5-kNn" firstAttribute="centerY" secondItem="Zgh-ak-rxU" secondAttribute="centerY" id="B42-ta-kA5"/>
                                     <constraint firstItem="qQq-pV-dnp" firstAttribute="leading" secondItem="Zgh-ak-rxU" secondAttribute="leading" constant="15" id="DNE-eh-DG1"/>
+                                    <constraint firstItem="i7I-m5-kNn" firstAttribute="centerX" secondItem="Zgh-ak-rxU" secondAttribute="centerX" id="Nyr-JZ-bHG"/>
                                     <constraint firstItem="qQq-pV-dnp" firstAttribute="top" secondItem="Zgh-ak-rxU" secondAttribute="top" constant="20" id="O1a-Tk-CtA"/>
                                     <constraint firstItem="2eE-fl-rL2" firstAttribute="centerX" secondItem="Zgh-ak-rxU" secondAttribute="centerX" constant="60" id="XbO-YU-NZd"/>
                                     <constraint firstItem="cV6-VW-Ati" firstAttribute="centerX" secondItem="Zgh-ak-rxU" secondAttribute="centerX" constant="-60" id="esi-fl-6X4"/>
@@ -564,6 +579,7 @@
                     <connections>
                         <outlet property="addressLabel" destination="z2k-1e-bTc" id="YMq-0v-kFo"/>
                         <outlet property="backButton" destination="TCV-Qy-esw" id="fFf-LZ-dNm"/>
+                        <outlet property="faucetButton" destination="i7I-m5-kNn" id="hZq-Th-QKF"/>
                         <outlet property="qrCodeImage" destination="3Qd-6k-kae" id="wCx-O7-Z75"/>
                         <outlet property="webView" destination="oev-9m-AIL" id="CY6-BP-FiF"/>
                     </connections>
@@ -582,6 +598,7 @@
         <image name="COINBASE" width="57" height="57"/>
         <image name="COPY-x1" width="57" height="57"/>
         <image name="EXPORT-BUTTON-x1" width="366" height="139"/>
+        <image name="FAUCET IMAGE" width="100" height="90"/>
         <image name="FORTHx1" width="57" height="57"/>
         <image name="MENUX1" width="57" height="57"/>
         <image name="SAMALL BANNERx1" width="750" height="330"/>

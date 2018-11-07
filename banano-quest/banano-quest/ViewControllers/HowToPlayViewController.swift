@@ -21,7 +21,7 @@ class HowToPlayViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let request = URLRequest(url: URL(string: "https://bananoquest.com/howtoplay")!)
+        let request = URLRequest(url: URL(string: "https://bananoquest.com/how-to-play/")!)
         webView.load(request)
     }
     
