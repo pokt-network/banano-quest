@@ -6,10 +6,10 @@ target 'banano-quest' do
   use_frameworks!
 
   # Pods for banano-quest
-  pod 'Pocket', :git => 'https://github.com/pokt-network/pocket-ios-sdk.git', :branch => 'master'
-  pod 'PocketEth', :git => 'https://github.com/pokt-network/pocket-ios-eth.git', :branch => 'master'
-  pod 'web3swift'
-  pod 'CryptoSwift'
+  pod 'Pocket', :git => 'https://github.com/pokt-network/pocket-ios-sdk.git', :branch => 'master', :commit => '66242ffa704f100d21e240b59b448d7df9615105'
+  pod 'PocketEth', :git => 'https://github.com/pokt-network/pocket-ios-eth.git', :branch => 'master', :commit => '4df731ba0d00f6138cbaffb8a4cafcefb798ebee'
+  pod 'web3swift', '1.0.1'
+  pod 'CryptoSwift', '0.10.0'
   pod 'SwiftKeychainWrapper', :git => 'git@github.com:jrendel/SwiftKeychainWrapper.git', :branch => 'develop', :commit => '77f73c354d695d976bcf1437fc9fbcea981aa2b4'
   pod 'SidebarOverlay', :git => 'git@github.com:pokt-network/SidebarOverlay.git', :branch => 'develop'
   pod 'FlexColorPicker', :git => 'https://github.com/RastislavMirek/FlexColorPicker', :branch => 'master'

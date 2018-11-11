@@ -54,7 +54,7 @@ public class DownloadAndUpdateQuestIsWinnerOperation: AsynchronousOperation {
             "returnTypes": ["bool"]
             ] as [AnyHashable : Any]
         
-        guard let query = try? PocketEth.createQuery(params: params, decoder: decoder) else {
+        guard let query = try? PocketEth.createQuery(subnetwork: AppConfiguration.subnetwork, params: params, decoder: decoder) else {
             self.error = PocketPluginError.queryCreationError("Query creation error")
             self.finish()
             return

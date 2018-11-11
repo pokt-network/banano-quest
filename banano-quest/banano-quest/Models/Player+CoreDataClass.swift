@@ -55,14 +55,14 @@ public class Player: NSManagedObject {
     public func getWallet(passphrase: String) throws -> Wallet? {
         var result: Wallet?
         if let playerAddress = self.address {
-            result = try Wallet.retrieveWallet(network: "ETH", address: playerAddress, passphrase: passphrase)
+            result = try Wallet.retrieveWallet(network: "ETH", subnetwork: AppConfiguration.subnetwork, address: playerAddress, passphrase: passphrase)
         }
         return result
     }
     
     public static func createPlayer(walletPassphrase: String) throws -> Player {
         // First create the wallet
-        let wallet = try PocketEth.createWallet(data: nil)
+        let wallet = try PocketEth.createWallet(subnetwork: AppConfiguration.subnetwork, data: nil)
         if try wallet.save(passphrase: walletPassphrase) == false {
             throw PlayerPersistenceError.walletCreationError
         }
