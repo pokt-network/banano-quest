@@ -46,6 +46,8 @@
 		10C32ADA2114A7D500F68ACC /* UIColor+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C32AD92114A7D500F68ACC /* UIColor+extension.swift */; };
 		10E9DD5C211E505B00807D90 /* PushNotificationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E9DD5B211E505B00807D90 /* PushNotificationUtils.swift */; };
 		10E9DD5E2120753300807D90 /* RepeatingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E9DD5D2120753300807D90 /* RepeatingTimer.swift */; };
+		10FCD7792195E97400DDC27A /* Banano+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCD7772195E97400DDC27A /* Banano+CoreDataProperties.swift */; };
+		10FCD77A2195E97400DDC27A /* Banano+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCD7782195E97400DDC27A /* Banano+CoreDataClass.swift */; };
 		63091D7C20E126A5002253E5 /* QuestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D7B20E126A5002253E5 /* QuestingViewController.swift */; };
 		63091D7E20E13546002253E5 /* NewWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D7D20E13546002253E5 /* NewWalletViewController.swift */; };
 		63091D8020E3D48C002253E5 /* QuestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63091D7F20E3D48C002253E5 /* QuestCollectionViewCell.swift */; };
@@ -75,8 +77,6 @@
 		C56473DA210BB14900C0C7A8 /* UIApplication+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56473D9210BB14900C0C7A8 /* UIApplication+extension.swift */; };
 		C56E2D9D21272E5F00CF1707 /* AddBalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56E2D9C21272E5F00CF1707 /* AddBalanceViewController.swift */; };
 		C572CFBD20EF920B009428C2 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572CFBC20EF920B009428C2 /* UIViewController+extension.swift */; };
-		C5ABD156217F4B44002DC27E /* Banano+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ABD154217F4B44002DC27E /* Banano+CoreDataProperties.swift */; };
-		C5ABD157217F4B44002DC27E /* Banano+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ABD155217F4B44002DC27E /* Banano+CoreDataClass.swift */; };
 		C5ABD159217F6563002DC27E /* BananoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ABD158217F6563002DC27E /* BananoCollectionViewCell.swift */; };
 		C5F9368D2114FE7200083C2E /* QuestAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F9368C2114FE7200083C2E /* QuestAnnotation.swift */; };
 		C5FA598221077C3A004FB3E0 /* FindBananoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FA598121077C3A004FB3E0 /* FindBananoViewController.swift */; };
@@ -149,6 +149,8 @@
 		10C32AD92114A7D500F68ACC /* UIColor+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
 		10E9DD5B211E505B00807D90 /* PushNotificationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationUtils.swift; sourceTree = "<group>"; };
 		10E9DD5D2120753300807D90 /* RepeatingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatingTimer.swift; sourceTree = "<group>"; };
+		10FCD7772195E97400DDC27A /* Banano+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Banano+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		10FCD7782195E97400DDC27A /* Banano+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Banano+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3D95C478E7E2C26BC8DC176B /* Pods-banano-quest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-quest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-banano-quest/Pods-banano-quest.debug.xcconfig"; sourceTree = "<group>"; };
 		581C9BCFFEE1D399B6CD443F /* Pods-banano-questUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-questUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-banano-questUITests/Pods-banano-questUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5F31C7DBEB8D536175528B49 /* Pods_banano_quest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_banano_quest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,8 +193,6 @@
 		C56473D9210BB14900C0C7A8 /* UIApplication+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+extension.swift"; sourceTree = "<group>"; };
 		C56E2D9C21272E5F00CF1707 /* AddBalanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBalanceViewController.swift; sourceTree = "<group>"; };
 		C572CFBC20EF920B009428C2 /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
-		C5ABD154217F4B44002DC27E /* Banano+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Banano+CoreDataProperties.swift"; path = "/Users/pabelnunezl/Development/banano-quest/banano-quest/banano-quest/Models/Banano+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
-		C5ABD155217F4B44002DC27E /* Banano+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Banano+CoreDataClass.swift"; path = "/Users/pabelnunezl/Development/banano-quest/banano-quest/banano-quest/Models/Banano+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		C5ABD158217F6563002DC27E /* BananoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BananoCollectionViewCell.swift; sourceTree = "<group>"; };
 		C5F9368C2114FE7200083C2E /* QuestAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestAnnotation.swift; sourceTree = "<group>"; };
 		C5FA598121077C3A004FB3E0 /* FindBananoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindBananoViewController.swift; sourceTree = "<group>"; };
@@ -316,13 +316,6 @@
 			path = Upload;
 			sourceTree = "<group>";
 		};
-		10F5E31B2108DADB00CF6F78 /* Transformables */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Transformables;
-			sourceTree = "<group>";
-		};
 		15E2013A40EA654723D98AEE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -394,7 +387,6 @@
 			children = (
 				106F3CD82120F8AE0088BE6C /* Simulated Locations */,
 				106F3CD12120F0980088BE6C /* Repeating Background Tasks */,
-				10F5E31B2108DADB00CF6F78 /* Transformables */,
 				108BDF4721052E1200405693 /* Queue Dispatchers */,
 				1098FD0F210268A100E76682 /* Operations */,
 				C572CFBE20EFA061009428C2 /* Views */,
@@ -448,8 +440,8 @@
 		C535221520E13AF7009745AC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C5ABD155217F4B44002DC27E /* Banano+CoreDataClass.swift */,
-				C5ABD154217F4B44002DC27E /* Banano+CoreDataProperties.swift */,
+				10FCD7782195E97400DDC27A /* Banano+CoreDataClass.swift */,
+				10FCD7772195E97400DDC27A /* Banano+CoreDataProperties.swift */,
 				106F3CCE212092890088BE6C /* Transaction+CoreDataClass.swift */,
 				106F3CCD212092890088BE6C /* Transaction+CoreDataProperties.swift */,
 				C51C079E2104E1C400E423D2 /* Player+CoreDataClass.swift */,
@@ -737,7 +729,7 @@
 				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftHEXColors/SwiftHEXColors.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
-				"${BUILT_PRODUCTS_DIR}/scrypt/scrypt.framework",
+				"${BUILT_PRODUCTS_DIR}/libsodium/libsodium.framework",
 				"${BUILT_PRODUCTS_DIR}/secp256k1_ios/secp256k1_ios.framework",
 				"${BUILT_PRODUCTS_DIR}/web3swift/web3swift.framework",
 			);
@@ -757,7 +749,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SipHash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftHEXColors.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/scrypt.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libsodium.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1_ios.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/web3swift.framework",
 			);
@@ -802,6 +794,7 @@
 				6316E9E920FF4FAC00F7C790 /* ProfileViewController.swift in Sources */,
 				108BDF4B2105382A00405693 /* QueueDispatcherProtocol.swift in Sources */,
 				C5FAB66B20E2B4FD00057041 /* Quest+CoreDataClass.swift in Sources */,
+				10FCD7792195E97400DDC27A /* Banano+CoreDataProperties.swift in Sources */,
 				10A5600421037AB600B85950 /* DownloadQuestIsClaimerOperation.swift in Sources */,
 				1098FD192102729100E76682 /* DownloadBalanceOperation.swift in Sources */,
 				10A560002102882A00B85950 /* UploadQuestOperation.swift in Sources */,
@@ -821,8 +814,6 @@
 				108BDF5121061A7B00405693 /* EthUtils.swift in Sources */,
 				1098FD1321026E0000E76682 /* AsynchronousOperation.swift in Sources */,
 				C51C079F2104E1C400E423D2 /* Player+CoreDataProperties.swift in Sources */,
-				C5ABD156217F4B44002DC27E /* Banano+CoreDataProperties.swift in Sources */,
-				C5ABD157217F4B44002DC27E /* Banano+CoreDataClass.swift in Sources */,
 				106F3CD0212092890088BE6C /* Transaction+CoreDataClass.swift in Sources */,
 				C5FAB66C20E2B4FD00057041 /* Quest+CoreDataProperties.swift in Sources */,
 				63091D8220E3FB7B002253E5 /* CompleteQuestViewController.swift in Sources */,
@@ -832,6 +823,7 @@
 				63091D8020E3D48C002253E5 /* QuestCollectionViewCell.swift in Sources */,
 				10A5600E21038B2600B85950 /* DownloadEthUsdPriceOperation.swift in Sources */,
 				1040310D2106673D0091B5FE /* CoreDataUtils.swift in Sources */,
+				10FCD77A2195E97400DDC27A /* Banano+CoreDataClass.swift in Sources */,
 				C5FA598221077C3A004FB3E0 /* FindBananoViewController.swift in Sources */,
 				1040310B21062BBB0091B5FE /* OnboardingViewController.swift in Sources */,
 				106F3CDB21220DAD0088BE6C /* TransactionReceipt.swift in Sources */,

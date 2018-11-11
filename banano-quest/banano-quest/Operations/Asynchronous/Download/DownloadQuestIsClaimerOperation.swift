@@ -49,7 +49,7 @@ public class DownloadQuestIsClaimerOperation: AsynchronousOperation {
             "rpcParams": [tx, "latest"]
             ] as [AnyHashable: Any]
         
-        guard let query = try? PocketEth.createQuery(params: params, decoder: nil) else {
+        guard let query = try? PocketEth.createQuery(subnetwork: AppConfiguration.subnetwork, params: params, decoder: nil) else {
             self.error = PocketPluginError.queryCreationError("Query creation error")
             self.finish()
             return

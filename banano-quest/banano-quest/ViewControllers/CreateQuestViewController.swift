@@ -344,6 +344,8 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
             AppDelegate.shared.refreshCurrentViewController()
             if let txHash = operation.txHash {
                 let transaction = Transaction.init(txHash: txHash, type: TransactionType.creation, context: CoreDataUtils.backgroundPersistentContext)
+                
+                self.refreshPlayerInfo()
                 do {
                     try transaction.save()
                 } catch {
