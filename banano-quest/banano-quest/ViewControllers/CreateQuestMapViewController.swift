@@ -10,10 +10,17 @@ import Foundation
 import UIKit
 import MapKit
 
-class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate {
+class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     
+    // Search
+    private var searchController: UISearchController!
+    private var localSearchRequest: MKLocalSearchRequest!
+    private var localSearch: MKLocalSearch!
+    private var localSearchResponse: MKLocalSearchResponse!
+    
+    // Location
     var locationManager = CLLocationManager()
     var selectedLocation = [AnyHashable: Any]()
     
@@ -51,6 +58,22 @@ class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate,
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = "Restaurants"
+        request.region = mapView.region
+        
+        let search = MKLocalSearch(request: request)
+        search.start { (response, error) in
+            guard let response = response else {
+                print("Search error: \(String(describing: error))")
+                return
+            }
+            
+            for item in response.mapItems {
+                // ...
+            }
+        }
         
         // Refresh view
         do {

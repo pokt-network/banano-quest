@@ -485,6 +485,12 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uZ8-Yb-pRh">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </mapView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SAMALL BANNERx1" translatesAutoresizingMaskIntoConstraints="NO" id="4cn-D2-Tqe" userLabel="Top Banner image">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="140" id="0Pe-nh-1GW"/>
+                                </constraints>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hf0-st-ts0" userLabel="Back Button">
                                 <rect key="frame" x="15" y="30" width="28" height="28"/>
                                 <constraints>
@@ -525,20 +531,31 @@
                                     <action selector="currentLocationPressed:" destination="S3U-Dw-yc0" eventType="touchUpInside" id="hLH-rN-XUk"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QUEST LOCATION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="viJ-gN-BQz" userLabel="Color selection label">
-                                <rect key="frame" x="116.5" y="30" width="142" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD LOCATION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="viJ-gN-BQz" userLabel="Color selection label">
+                                <rect key="frame" x="127" y="30" width="121.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HbI-Ds-IvB">
+                                <rect key="frame" x="47" y="64" width="281" height="56"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="S3U-Dw-yc0" id="C2I-Io-3cC"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="rZe-ua-Mns" secondAttribute="bottom" constant="-58" id="1Yq-05-pgp"/>
                             <constraint firstItem="RFf-h5-m34" firstAttribute="top" secondItem="rZe-ua-Mns" secondAttribute="top" constant="30" id="7B6-Nz-TSO"/>
                             <constraint firstItem="rZe-ua-Mns" firstAttribute="trailing" secondItem="k4a-lz-Zxj" secondAttribute="trailing" id="9j0-uF-FWd"/>
+                            <constraint firstItem="4cn-D2-Tqe" firstAttribute="leading" secondItem="k4a-lz-Zxj" secondAttribute="leading" id="CqU-Se-zr9"/>
                             <constraint firstItem="hf0-st-ts0" firstAttribute="leading" secondItem="k4a-lz-Zxj" secondAttribute="leading" constant="15" id="EBB-Bv-eoV"/>
                             <constraint firstItem="hf0-st-ts0" firstAttribute="top" secondItem="k4a-lz-Zxj" secondAttribute="top" constant="10" id="FnC-yz-B82"/>
+                            <constraint firstItem="4cn-D2-Tqe" firstAttribute="top" secondItem="Yea-1F-A8a" secondAttribute="top" id="Hzy-Qh-dir"/>
+                            <constraint firstAttribute="trailing" secondItem="4cn-D2-Tqe" secondAttribute="trailing" id="Yyf-ng-VWK"/>
                             <constraint firstItem="RFf-h5-m34" firstAttribute="centerX" secondItem="rZe-ua-Mns" secondAttribute="centerX" id="hwQ-lh-sZV"/>
                             <constraint firstItem="k4a-lz-Zxj" firstAttribute="bottom" secondItem="uZ8-Yb-pRh" secondAttribute="bottom" id="iAE-5H-tDQ"/>
                             <constraint firstItem="rZe-ua-Mns" firstAttribute="leading" secondItem="k4a-lz-Zxj" secondAttribute="leading" id="ip8-u9-MBg"/>
@@ -554,11 +571,21 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="uZ8-Yb-pRh" id="jhG-kI-eUd"/>
+                        <outlet property="searchDisplayController" destination="S0e-t6-wxS" id="dbe-bD-tQZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LDK-Gg-F9Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="S0e-t6-wxS">
+                    <connections>
+                        <outlet property="delegate" destination="S3U-Dw-yc0" id="yfg-Eu-hKF"/>
+                        <outlet property="searchBar" destination="HbI-Ds-IvB" id="fLP-2H-d66"/>
+                        <outlet property="searchContentsController" destination="S3U-Dw-yc0" id="y9P-GN-hKK"/>
+                        <outlet property="searchResultsDataSource" destination="S3U-Dw-yc0" id="fji-cD-RYu"/>
+                        <outlet property="searchResultsDelegate" destination="S3U-Dw-yc0" id="euM-yW-fWy"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1078" y="384"/>
+            <point key="canvasLocation" x="1077.5999999999999" y="383.65817091454278"/>
         </scene>
     </scenes>
     <resources>

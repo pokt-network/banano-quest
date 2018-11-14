@@ -70,6 +70,7 @@
 		637C03F220F50374002D4652 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637C03F120F50374002D4652 /* ColorPickerViewController.swift */; };
 		9BE76E8FF0B142FCA28771F6 /* Pods_banano_quest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F31C7DBEB8D536175528B49 /* Pods_banano_quest.framework */; };
 		C5082FC22162E65E0078D055 /* UIDevice+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5082FC12162E65E0078D055 /* UIDevice+extension.swift */; };
+		C513C16D219C8BF500163CF0 /* MapSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C513C16C219C8BF500163CF0 /* MapSearchTableViewController.swift */; };
 		C51C079F2104E1C400E423D2 /* Player+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51C079D2104E1C300E423D2 /* Player+CoreDataProperties.swift */; };
 		C51C07A02104E1C400E423D2 /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51C079E2104E1C400E423D2 /* Player+CoreDataClass.swift */; };
 		C529720E21768CD800D918F5 /* HowToPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C529720D21768CD800D918F5 /* HowToPlayViewController.swift */; };
@@ -186,6 +187,7 @@
 		BF51D8A915598C85A2C55503 /* Pods-banano-questUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-questUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-banano-questUITests/Pods-banano-questUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C28BAABF78BB4019A5874A1D /* Pods-banano-questTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-questTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-banano-questTests/Pods-banano-questTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C5082FC12162E65E0078D055 /* UIDevice+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+extension.swift"; sourceTree = "<group>"; };
+		C513C16C219C8BF500163CF0 /* MapSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchTableViewController.swift; sourceTree = "<group>"; };
 		C51C079D2104E1C300E423D2 /* Player+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C51C079E2104E1C400E423D2 /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C529720D21768CD800D918F5 /* HowToPlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayViewController.swift; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 		6333170320D9990B0063D856 /* banano-quest */ = {
 			isa = PBXGroup;
 			children = (
+				C513C16B219C88CE00163CF0 /* TableViews */,
 				106F3CD82120F8AE0088BE6C /* Simulated Locations */,
 				106F3CD12120F0980088BE6C /* Repeating Background Tasks */,
 				108BDF4721052E1200405693 /* Queue Dispatchers */,
@@ -435,6 +438,14 @@
 				1040310E21066D960091B5FE /* CreateAccount.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		C513C16B219C88CE00163CF0 /* TableViews */ = {
+			isa = PBXGroup;
+			children = (
+				C513C16C219C8BF500163CF0 /* MapSearchTableViewController.swift */,
+			);
+			path = TableViews;
 			sourceTree = "<group>";
 		};
 		C535221520E13AF7009745AC /* Models */ = {
@@ -801,6 +812,7 @@
 				C5FAB66420E17B8900057041 /* BananoQuest.xcdatamodeld in Sources */,
 				C56473DA210BB14900C0C7A8 /* UIApplication+extension.swift in Sources */,
 				10E9DD5E2120753300807D90 /* RepeatingTimer.swift in Sources */,
+				C513C16D219C8BF500163CF0 /* MapSearchTableViewController.swift in Sources */,
 				10E9DD5C211E505B00807D90 /* PushNotificationUtils.swift in Sources */,
 				102A035120FE3E3C00B47CEA /* QuestMerkleTree.swift in Sources */,
 				C572CFBD20EF920B009428C2 /* UIViewController+extension.swift in Sources */,
