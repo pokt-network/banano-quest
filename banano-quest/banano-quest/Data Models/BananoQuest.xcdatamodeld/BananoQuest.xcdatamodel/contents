@@ -21,6 +21,7 @@
         <attribute name="claimer" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="claimersAmount" attributeType="String" customClassName="BigIntTransformable" syncable="YES"/>
         <attribute name="creator" attributeType="String" syncable="YES"/>
+        <attribute name="distance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="hexColor" attributeType="String" syncable="YES"/>
         <attribute name="hint" attributeType="String" syncable="YES"/>
         <attribute name="index" attributeType="String" valueTransformerName="BigIntTransformableToString" syncable="YES"/>
@@ -54,9 +55,9 @@
         <attribute name="type" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Player" positionX="-56" positionY="213" width="128" height="120"/>
-        <element name="Quest" positionX="-441" positionY="-18" width="128" height="390"/>
-        <element name="Transaction" positionX="-252" positionY="135" width="128" height="105"/>
         <element name="Banano" positionX="-252" positionY="135" width="128" height="90"/>
+        <element name="Player" positionX="-56" positionY="213" width="128" height="120"/>
+        <element name="Quest" positionX="-441" positionY="-18" width="128" height="405"/>
+        <element name="Transaction" positionX="-252" positionY="135" width="128" height="105"/>
     </elements>
 </model>

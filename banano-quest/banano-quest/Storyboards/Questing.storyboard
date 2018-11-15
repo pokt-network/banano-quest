@@ -184,7 +184,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZ7-jz-e8J" userLabel="Menu Button">
-                                <rect key="frame" x="16" y="30" width="36" height="36"/>
+                                <rect key="frame" x="15" y="30" width="36" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="36" id="63S-UI-WLj"/>
                                     <constraint firstAttribute="height" constant="36" id="vYN-Xr-0Gi"/>
@@ -474,13 +474,28 @@
                                     <action selector="nextButtonPressed:" destination="kQ9-IP-T6f" eventType="touchUpInside" id="6zg-2S-9tg"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Jv-gB-pFY" userLabel="Near me button">
+                                <rect key="frame" x="302" y="30" width="58" height="30"/>
+                                <state key="normal" title="Near me"/>
+                                <connections>
+                                    <action selector="nearestButtonTapped:" destination="kQ9-IP-T6f" eventType="touchUpInside" id="v06-E4-Efe"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4y-yz-hMl" userLabel="Newest button">
+                                <rect key="frame" x="308" y="30" width="52" height="30"/>
+                                <state key="normal" title="Newest"/>
+                                <connections>
+                                    <action selector="nearestButtonTapped:" destination="kQ9-IP-T6f" eventType="touchUpInside" id="Lgs-Vf-sEk"/>
+                                    <action selector="newestButtonTapped:" destination="kQ9-IP-T6f" eventType="touchUpInside" id="Hgw-No-spF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Iih-gE-cTX" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ahE-P1-w7Y" secondAttribute="bottom" constant="15" id="0kx-t5-P0u"/>
                             <constraint firstItem="Ghi-o2-IKg" firstAttribute="bottom" secondItem="Iih-gE-cTX" secondAttribute="bottom" constant="30" id="5Ae-iT-Mdo"/>
                             <constraint firstItem="ZLK-pd-2jk" firstAttribute="top" secondItem="W7x-Qh-Vrk" secondAttribute="top" id="7Vn-Qe-tUt"/>
-                            <constraint firstItem="qZ7-jz-e8J" firstAttribute="leading" secondItem="Ghi-o2-IKg" secondAttribute="leading" constant="16" id="BI7-Nd-ztH"/>
+                            <constraint firstItem="qZ7-jz-e8J" firstAttribute="leading" secondItem="Ghi-o2-IKg" secondAttribute="leading" constant="15" id="BI7-Nd-ztH"/>
                             <constraint firstItem="ahE-P1-w7Y" firstAttribute="top" secondItem="Ghi-o2-IKg" secondAttribute="top" constant="42" id="EmT-RQ-v2E"/>
                             <constraint firstItem="ZLK-pd-2jk" firstAttribute="trailing" secondItem="Ghi-o2-IKg" secondAttribute="trailing" id="Kwe-j8-ys8"/>
                             <constraint firstItem="DOZ-XF-u8O" firstAttribute="top" secondItem="qZ7-jz-e8J" secondAttribute="bottom" constant="100" id="NRZ-WO-VvT"/>
@@ -490,10 +505,14 @@
                             <constraint firstItem="ZLK-pd-2jk" firstAttribute="leading" secondItem="Ghi-o2-IKg" secondAttribute="leading" id="SyG-Rq-nPJ"/>
                             <constraint firstItem="Iih-gE-cTX" firstAttribute="centerX" secondItem="W7x-Qh-Vrk" secondAttribute="centerX" id="U2L-Jl-sB6"/>
                             <constraint firstItem="cRb-VL-clM" firstAttribute="centerX" secondItem="Ghi-o2-IKg" secondAttribute="centerX" id="WhU-gg-Khw"/>
+                            <constraint firstItem="Ghi-o2-IKg" firstAttribute="trailing" secondItem="1Jv-gB-pFY" secondAttribute="trailing" constant="15" id="a8g-Kb-wOt"/>
                             <constraint firstItem="Ask-fZ-Xl9" firstAttribute="centerX" secondItem="W7x-Qh-Vrk" secondAttribute="centerX" id="cAO-Nh-Aql"/>
+                            <constraint firstItem="Ghi-o2-IKg" firstAttribute="trailing" secondItem="u4y-yz-hMl" secondAttribute="trailing" constant="15" id="fbF-l8-qtQ"/>
                             <constraint firstItem="Br9-O7-yS5" firstAttribute="centerY" secondItem="DOZ-XF-u8O" secondAttribute="centerY" id="fzL-1q-ImQ"/>
                             <constraint firstItem="Ask-fZ-Xl9" firstAttribute="top" secondItem="Ghi-o2-IKg" secondAttribute="top" constant="10" id="le5-II-Xmj"/>
                             <constraint firstItem="cRb-VL-clM" firstAttribute="centerY" secondItem="Ghi-o2-IKg" secondAttribute="centerY" constant="30" id="mld-j9-Fdc"/>
+                            <constraint firstItem="1Jv-gB-pFY" firstAttribute="top" secondItem="Ask-fZ-Xl9" secondAttribute="top" id="oIb-4V-OSz"/>
+                            <constraint firstItem="u4y-yz-hMl" firstAttribute="top" secondItem="1Jv-gB-pFY" secondAttribute="top" id="qJx-V1-uG9"/>
                             <constraint firstItem="Ghi-o2-IKg" firstAttribute="trailing" secondItem="Br9-O7-yS5" secondAttribute="trailing" constant="16" id="vLe-Zh-J2L"/>
                             <constraint firstItem="DOZ-XF-u8O" firstAttribute="leading" secondItem="Ghi-o2-IKg" secondAttribute="leading" constant="16" id="yPB-6J-FtP"/>
                         </constraints>
@@ -503,6 +522,8 @@
                         <outlet property="collectionView" destination="ahE-P1-w7Y" id="nhv-kG-5Cu"/>
                         <outlet property="completeButton" destination="Iih-gE-cTX" id="kkP-Rp-lYC"/>
                         <outlet property="errorMessageLabel" destination="cRb-VL-clM" id="Es7-QW-sCK"/>
+                        <outlet property="nearestButton" destination="1Jv-gB-pFY" id="IHp-t9-odz"/>
+                        <outlet property="newestButton" destination="u4y-yz-hMl" id="T5v-sf-08x"/>
                         <outlet property="nextButton" destination="Br9-O7-yS5" id="TfE-7v-yF4"/>
                         <outlet property="previousButton" destination="DOZ-XF-u8O" id="Lpw-YO-Srd"/>
                     </connections>

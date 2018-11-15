@@ -42,5 +42,6 @@ extension Quest {
     @NSManaged public var winner: Bool
     @NSManaged public var claimer: Bool
     @NSManaged public var valid: Bool
+    @NSManaged public var distance: Double
 
 }

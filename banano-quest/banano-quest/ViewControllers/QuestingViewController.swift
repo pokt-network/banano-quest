@@ -17,12 +17,18 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var completeButton: UIButton!
     @IBOutlet weak var errorMessageLabel: UILabel!
+    @IBOutlet weak var nearestButton: UIButton!
+    @IBOutlet weak var newestButton: UIButton!
     
     // Variables
     var quests: [Quest] = [Quest]()
     var currentIndex = 0
     var locationManager = CLLocationManager()
     var currentPlayerLocation: CLLocation?
+    
+    // Activity Indicator
+    var indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
+    var grayView: UIView?
     
     // Refresh Control
     lazy var refreshControl: UIRefreshControl = {
@@ -50,7 +56,18 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
+        // Gray view setup
+        grayView = UIView.init(frame: view.frame)
+        grayView?.backgroundColor = UIColor.init(white: 1.0, alpha: 0.75)
+        grayView?.isHidden = true
+        view.addSubview(grayView!)
+        
+        // Activity indicator setup
+        indicator.center = view.center
+        
+        view.addSubview(indicator)
+        
         self.collectionView.addSubview(refreshControl)
         
         do {
@@ -76,9 +93,17 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         }
         
         DispatchQueue.main.async {
+            self.indicator.stopAnimating()
+            self.grayView?.isHidden = true
+            
             self.refreshControl.endRefreshing()
             self.collectionView.isUserInteractionEnabled = true
             self.collectionView.reloadData()
+            
+            if self.quests.count > 0 {
+                let indexPath = IndexPath.init(item: 0, section: 0)
+                self.collectionView.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.left, animated: true)
+            }
         }
     }
     
@@ -133,6 +158,36 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         // Initial load for the local quest list
         do {
             self.quests = try Quest.sortedQuestsByIndex(context: CoreDataUtils.mainPersistentContext)
+            if self.quests.count == 0 {
+                DispatchQueue.main.async {
+                    self.errorMessageLabel.text = "No Quests available, please try again later..."
+                    self.showElements(bool: false)
+                }
+            } else {
+                self.showElements(bool: true)
+                do {
+                    try self.refreshView()
+                }catch let error as NSError {
+                    print("Failed to refreshView with error: \(error)")
+                }
+            }
+        } catch {
+            let alert = self.bananoAlertView(title: "Error", message: "Failed to retrieve quest list with error:")
+            self.present(alert, animated: false, completion: nil)
+            
+            print("Failed to retrieve quest list with error: \(error)")
+        }
+    }
+    
+    func loadQuestListByNearest() {
+        // Loads quests by nearest
+        if currentPlayerLocation == nil {
+            return
+        }
+        
+        do {
+            self.quests = try Quest.sortedQuestsByNearest(context: CoreDataUtils.mainPersistentContext, userLocation: currentPlayerLocation!)
+            
             if self.quests.count == 0 {
                 DispatchQueue.main.async {
                     self.errorMessageLabel.text = "No Quests available, please try again later..."
@@ -254,6 +309,25 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     }
     
     // MARK: IBActions
+    @IBAction func nearestButtonTapped(_ sender: Any) {
+        grayView?.isHidden = false
+        indicator.startAnimating()
+        
+        nearestButton.isHidden = true
+        newestButton.isHidden = false
+        
+        loadQuestListByNearest()
+    }
+    @IBAction func newestButtonTapped(_ sender: Any) {
+        grayView?.isHidden = false
+        indicator.startAnimating()
+        
+        nearestButton.isHidden = false
+        newestButton.isHidden = true
+        
+        loadQuestList()
+    }
+    
     @IBAction func nextButtonPressed(_ sender: Any) {
         scrollToPositionedCell(positions: 1)
     }
