@@ -537,25 +537,58 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HbI-Ds-IvB">
-                                <rect key="frame" x="47" y="64" width="281" height="56"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wyg-VT-Xej" userLabel="TableView">
+                                <rect key="frame" x="0.0" y="63" width="375" height="376"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="mapSearchCell" textLabel="rId-p6-G3z" detailTextLabel="zAU-oq-JBf" style="IBUITableViewCellStyleSubtitle" id="kZJ-bw-Khb" customClass="MapSearchTableViewCell" customModule="banano_quest" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kZJ-bw-Khb" id="Lel-XK-ugx">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rId-p6-G3z">
+                                                    <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zAU-oq-JBf">
+                                                    <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="subtitleLabel" destination="zAU-oq-JBf" id="RJ0-LM-pS7"/>
+                                            <outlet property="titleLabel" destination="rId-p6-G3z" id="Tb5-gE-41I"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
-                                    <outlet property="delegate" destination="S3U-Dw-yc0" id="C2I-Io-3cC"/>
+                                    <outlet property="dataSource" destination="S3U-Dw-yc0" id="oJG-7w-45o"/>
+                                    <outlet property="delegate" destination="S3U-Dw-yc0" id="8hx-3i-bEV"/>
                                 </connections>
-                            </searchBar>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="rZe-ua-Mns" secondAttribute="bottom" constant="-58" id="1Yq-05-pgp"/>
                             <constraint firstItem="RFf-h5-m34" firstAttribute="top" secondItem="rZe-ua-Mns" secondAttribute="top" constant="30" id="7B6-Nz-TSO"/>
                             <constraint firstItem="rZe-ua-Mns" firstAttribute="trailing" secondItem="k4a-lz-Zxj" secondAttribute="trailing" id="9j0-uF-FWd"/>
+                            <constraint firstItem="wyg-VT-Xej" firstAttribute="top" secondItem="hf0-st-ts0" secondAttribute="bottom" constant="5" id="A3Z-e7-8Da"/>
                             <constraint firstItem="4cn-D2-Tqe" firstAttribute="leading" secondItem="k4a-lz-Zxj" secondAttribute="leading" id="CqU-Se-zr9"/>
                             <constraint firstItem="hf0-st-ts0" firstAttribute="leading" secondItem="k4a-lz-Zxj" secondAttribute="leading" constant="15" id="EBB-Bv-eoV"/>
                             <constraint firstItem="hf0-st-ts0" firstAttribute="top" secondItem="k4a-lz-Zxj" secondAttribute="top" constant="10" id="FnC-yz-B82"/>
                             <constraint firstItem="4cn-D2-Tqe" firstAttribute="top" secondItem="Yea-1F-A8a" secondAttribute="top" id="Hzy-Qh-dir"/>
                             <constraint firstAttribute="trailing" secondItem="4cn-D2-Tqe" secondAttribute="trailing" id="Yyf-ng-VWK"/>
+                            <constraint firstItem="wyg-VT-Xej" firstAttribute="leading" secondItem="k4a-lz-Zxj" secondAttribute="leading" id="hOu-pR-dd4"/>
+                            <constraint firstItem="aq2-Ox-ZIh" firstAttribute="top" secondItem="wyg-VT-Xej" secondAttribute="bottom" constant="8" id="hcL-zM-zto"/>
                             <constraint firstItem="RFf-h5-m34" firstAttribute="centerX" secondItem="rZe-ua-Mns" secondAttribute="centerX" id="hwQ-lh-sZV"/>
                             <constraint firstItem="k4a-lz-Zxj" firstAttribute="bottom" secondItem="uZ8-Yb-pRh" secondAttribute="bottom" id="iAE-5H-tDQ"/>
                             <constraint firstItem="rZe-ua-Mns" firstAttribute="leading" secondItem="k4a-lz-Zxj" secondAttribute="leading" id="ip8-u9-MBg"/>
@@ -564,6 +597,7 @@
                             <constraint firstItem="uZ8-Yb-pRh" firstAttribute="leading" secondItem="k4a-lz-Zxj" secondAttribute="leading" id="qWF-dV-l6v"/>
                             <constraint firstItem="uZ8-Yb-pRh" firstAttribute="top" secondItem="k4a-lz-Zxj" secondAttribute="top" constant="-20" id="tdX-NP-d0F"/>
                             <constraint firstItem="viJ-gN-BQz" firstAttribute="centerX" secondItem="k4a-lz-Zxj" secondAttribute="centerX" id="ua6-2V-TaO"/>
+                            <constraint firstItem="wyg-VT-Xej" firstAttribute="trailing" secondItem="k4a-lz-Zxj" secondAttribute="trailing" id="vFe-tF-Xfo"/>
                             <constraint firstItem="k4a-lz-Zxj" firstAttribute="trailing" secondItem="uZ8-Yb-pRh" secondAttribute="trailing" id="w91-zS-SlL"/>
                             <constraint firstItem="viJ-gN-BQz" firstAttribute="top" secondItem="k4a-lz-Zxj" secondAttribute="top" constant="10" id="znF-bS-nYD"/>
                         </constraints>
@@ -571,17 +605,25 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="uZ8-Yb-pRh" id="jhG-kI-eUd"/>
-                        <outlet property="searchDisplayController" destination="S0e-t6-wxS" id="dbe-bD-tQZ"/>
+                        <outlet property="searchDisplayController" destination="iir-QA-tTU" id="8I3-OT-5Mt"/>
+                        <outlet property="tableView" destination="wyg-VT-Xej" id="L5o-Up-2SJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LDK-Gg-F9Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="S0e-t6-wxS">
                     <connections>
                         <outlet property="delegate" destination="S3U-Dw-yc0" id="yfg-Eu-hKF"/>
-                        <outlet property="searchBar" destination="HbI-Ds-IvB" id="fLP-2H-d66"/>
                         <outlet property="searchContentsController" destination="S3U-Dw-yc0" id="y9P-GN-hKK"/>
                         <outlet property="searchResultsDataSource" destination="S3U-Dw-yc0" id="fji-cD-RYu"/>
                         <outlet property="searchResultsDelegate" destination="S3U-Dw-yc0" id="euM-yW-fWy"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="iir-QA-tTU">
+                    <connections>
+                        <outlet property="delegate" destination="S3U-Dw-yc0" id="v8v-SG-i1T"/>
+                        <outlet property="searchContentsController" destination="S3U-Dw-yc0" id="Ve4-im-hIZ"/>
+                        <outlet property="searchResultsDataSource" destination="S3U-Dw-yc0" id="Yjo-ni-13P"/>
+                        <outlet property="searchResultsDelegate" destination="S3U-Dw-yc0" id="P0h-zH-Cbu"/>
                     </connections>
                 </searchDisplayController>
             </objects>
