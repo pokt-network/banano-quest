@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -475,15 +475,15 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Jv-gB-pFY" userLabel="Near me button">
-                                <rect key="frame" x="302" y="30" width="58" height="30"/>
-                                <state key="normal" title="Near me"/>
+                                <rect key="frame" x="295" y="25" width="65" height="30"/>
+                                <state key="normal" title="NEAR ME"/>
                                 <connections>
                                     <action selector="nearestButtonTapped:" destination="kQ9-IP-T6f" eventType="touchUpInside" id="v06-E4-Efe"/>
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4y-yz-hMl" userLabel="Newest button">
-                                <rect key="frame" x="308" y="30" width="52" height="30"/>
-                                <state key="normal" title="Newest"/>
+                                <rect key="frame" x="298" y="25" width="62" height="30"/>
+                                <state key="normal" title="NEWEST"/>
                                 <connections>
                                     <action selector="nearestButtonTapped:" destination="kQ9-IP-T6f" eventType="touchUpInside" id="Lgs-Vf-sEk"/>
                                     <action selector="newestButtonTapped:" destination="kQ9-IP-T6f" eventType="touchUpInside" id="Hgw-No-spF"/>
@@ -511,7 +511,7 @@
                             <constraint firstItem="Br9-O7-yS5" firstAttribute="centerY" secondItem="DOZ-XF-u8O" secondAttribute="centerY" id="fzL-1q-ImQ"/>
                             <constraint firstItem="Ask-fZ-Xl9" firstAttribute="top" secondItem="Ghi-o2-IKg" secondAttribute="top" constant="10" id="le5-II-Xmj"/>
                             <constraint firstItem="cRb-VL-clM" firstAttribute="centerY" secondItem="Ghi-o2-IKg" secondAttribute="centerY" constant="30" id="mld-j9-Fdc"/>
-                            <constraint firstItem="1Jv-gB-pFY" firstAttribute="top" secondItem="Ask-fZ-Xl9" secondAttribute="top" id="oIb-4V-OSz"/>
+                            <constraint firstItem="1Jv-gB-pFY" firstAttribute="top" secondItem="Ask-fZ-Xl9" secondAttribute="top" constant="-5" id="oIb-4V-OSz"/>
                             <constraint firstItem="u4y-yz-hMl" firstAttribute="top" secondItem="1Jv-gB-pFY" secondAttribute="top" id="qJx-V1-uG9"/>
                             <constraint firstItem="Ghi-o2-IKg" firstAttribute="trailing" secondItem="Br9-O7-yS5" secondAttribute="trailing" constant="16" id="vLe-Zh-J2L"/>
                             <constraint firstItem="DOZ-XF-u8O" firstAttribute="leading" secondItem="Ghi-o2-IKg" secondAttribute="leading" constant="16" id="yPB-6J-FtP"/>
@@ -848,22 +848,22 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ARROWx1" width="28" height="28"/>
-        <image name="BACKx1" width="57" height="57"/>
-        <image name="BOTTOM BANNERx1" width="748" height="220"/>
-        <image name="CIRCLE STAMP x1" width="280" height="280"/>
-        <image name="CLAIM-BANANO" width="83" height="69"/>
-        <image name="COMPLETE-BUTTON-x1" width="267" height="140"/>
-        <image name="CREATE-QX1" width="57" height="57"/>
-        <image name="EXPLOREx1" width="57" height="57"/>
-        <image name="FIND-BANANO" width="318" height="139"/>
-        <image name="FORTHx1" width="57" height="57"/>
-        <image name="HOW TO PLAY" width="57" height="57"/>
-        <image name="MENU LAYERx1" width="375" height="1333"/>
-        <image name="MENUX1" width="57" height="57"/>
-        <image name="PROFILEx1" width="57" height="57"/>
-        <image name="SAMALL BANNERx1" width="750" height="330"/>
-        <image name="SUMMARY BACKGROUND" width="626" height="198"/>
-        <image name="SUMMARY-BACKGROUND-NO-SHADOW" width="1123" height="272"/>
+        <image name="ARROWx1" width="57" height="57"/>
+        <image name="BACKx1" width="114" height="114"/>
+        <image name="BOTTOM BANNERx1" width="1496" height="440"/>
+        <image name="CIRCLE STAMP x1" width="560" height="560"/>
+        <image name="CLAIM-BANANO" width="167" height="139"/>
+        <image name="COMPLETE-BUTTON-x1" width="534" height="280"/>
+        <image name="CREATE-QX1" width="114" height="114"/>
+        <image name="EXPLOREx1" width="114" height="114"/>
+        <image name="FIND-BANANO" width="636" height="278"/>
+        <image name="FORTHx1" width="114" height="114"/>
+        <image name="HOW TO PLAY" width="114" height="114"/>
+        <image name="MENU LAYERx1" width="750" height="2666"/>
+        <image name="MENUX1" width="114" height="114"/>
+        <image name="PROFILEx1" width="114" height="114"/>
+        <image name="SAMALL BANNERx1" width="1500" height="660"/>
+        <image name="SUMMARY BACKGROUND" width="1253" height="397"/>
+        <image name="SUMMARY-BACKGROUND-NO-SHADOW" width="2247" height="544"/>
     </resources>
 </document>
