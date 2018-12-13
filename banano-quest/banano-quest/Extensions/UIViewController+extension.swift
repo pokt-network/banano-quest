@@ -107,7 +107,7 @@ extension UIViewController {
                     let button = UIButton.init(frame: CGRect.init(x: view.frame.width - 27, y: 2, width: 25, height: 25))
                     button.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
                     button.layer.cornerRadius = button.frame.width / 2
-                    button.setTitle("X", for: UIControlState.normal)
+                    button.setTitle("X", for: UIControl.State.normal)
                     button.titleLabel?.textColor = UIColor.black
                     button.titleLabel?.font = UIFont.init(name: "System", size: 12)
 

@@ -27,7 +27,7 @@ public class AllQuestsQueueDispatcher: QueueDispatcherProtocol {
         self.playerAddress = playerAddress
     }
     
-    public func initDisplatchSequence(completionHandler: QueueDispatcherCompletionHandler?) {
+    public func initDispatchSequence(completionHandler: QueueDispatcherCompletionHandler?) {
         self.completionHandler = completionHandler
         let questAmountOperation = DownloadQuestAmountOperation.init(tavernAddress: self.tavernAddress, tokenAddress: self.bananoTokenAddress)
         questAmountOperation.completionBlock = {

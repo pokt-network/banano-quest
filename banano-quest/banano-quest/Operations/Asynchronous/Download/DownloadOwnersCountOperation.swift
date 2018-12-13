@@ -48,7 +48,7 @@ public class DownloadOwnersCountOperation: AsynchronousOperation {
             "returnTypes": "uint256"
             ] as [AnyHashable : Any]
         
-        guard let query = try? PocketEth.createQuery(params: params, decoder: decoder) else {
+        guard let query = try? PocketEth.createQuery(subnetwork: AppConfiguration.subnetwork, params: params, decoder: decoder) else {
             self.error = PocketPluginError.queryCreationError("Error creating query")
             self.finish()
             return

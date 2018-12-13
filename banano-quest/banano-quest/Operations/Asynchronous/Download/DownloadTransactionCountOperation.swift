@@ -31,7 +31,7 @@ public class DownloadTransactionCountOperation: AsynchronousOperation {
             "rpcParams": [address, "latest"]
             ] as [AnyHashable: Any]
         
-        guard let query = try? PocketEth.createQuery(params: params, decoder: nil) else {
+        guard let query = try? PocketEth.createQuery(subnetwork: AppConfiguration.subnetwork, params: params, decoder: nil) else {
             self.error = PocketPluginError.queryCreationError("Error creating query")
             self.finish()
             return

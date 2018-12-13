@@ -6,17 +6,14 @@ target 'banano-quest' do
   use_frameworks!
 
   # Pods for banano-quest
-  pod 'Pocket', :git => 'https://github.com/pokt-network/pocket-ios-sdk.git', :branch => 'master'
-  pod 'PocketEth', :git => 'https://github.com/pokt-network/pocket-ios-eth.git', :branch => 'master'
-  pod 'web3swift'
-  pod 'CryptoSwift'
-  pod 'SwiftKeychainWrapper', :git => 'git@github.com:jrendel/SwiftKeychainWrapper.git', :branch => 'develop', :commit => '77f73c354d695d976bcf1437fc9fbcea981aa2b4'
-  pod 'SidebarOverlay'
+  pod 'PocketEth', '~> 0.0.3'
+
+  pod 'SidebarOverlay', :git => 'git@github.com:pokt-network/SidebarOverlay.git', :branch => 'develop'
   pod 'FlexColorPicker', :git => 'https://github.com/RastislavMirek/FlexColorPicker', :branch => 'master'
   pod 'SwiftHEXColors'
   pod 'BiometricAuthentication'
-  pod 'HDAugmentedReality', '~> 2.3'
-    
+  pod 'HDAugmentedReality', '~> 2.4'
+
   target 'banano-questTests' do
     inherit! :search_paths
     # Pods for testing
@@ -35,5 +32,3 @@ post_install do |installer|
         config.build_settings.delete('CODE_SIGNING_REQUIRED')
     end
 end
-
-

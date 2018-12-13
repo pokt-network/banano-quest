@@ -81,6 +81,8 @@ public class Quest: NSManagedObject {
                         self.lon4 = Float(metaElements[8]) ?? 0.0
                     }
                 }
+            case "distance":
+                self.distance = 0.0
             case .none:
                 return
             case .some(_):
@@ -115,6 +117,20 @@ public class Quest: NSManagedObject {
         let sort = NSSortDescriptor.init(key: "index", ascending: false, selector: #selector(NSString.localizedStandardCompare))
         fetchRequest.sortDescriptors = [sort]
         return try context.fetch(fetchRequest) as [Quest]
+    }
+    
+    public static func sortedQuestsByNearest(context: NSManagedObjectContext, userLocation: CLLocation) throws -> [Quest] {
+        let fetchRequest: NSFetchRequest<Quest> = Quest.fetchRequest()
+        let sort = NSSortDescriptor.init(key: "index", ascending: false, selector: #selector(NSString.localizedStandardCompare))
+        fetchRequest.sortDescriptors = [sort]
+
+        let quests = try context.fetch(fetchRequest) as [Quest]
+        
+        for quest in quests {
+            quest.distance = LocationUtils.questDistanceToPlayerLocation(quest: quest, playerLocation: userLocation)
+        }
+        
+        return quests.sorted(by: { $0.distance < $1.distance })
     }
     
     public static func getQuestByIndex(questIndex: String, context: NSManagedObjectContext) -> Quest? {
@@ -175,7 +191,8 @@ public class Quest: NSManagedObject {
         dict["claimersAmount"] = claimersAmount
         dict["winner"] = winner
         dict["claimer"] = claimer
-        
+        dict["distance"] = distance
+
         return dict
     }
     

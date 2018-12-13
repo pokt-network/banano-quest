@@ -16,12 +16,14 @@ class AddBalanceViewController: UIViewController, WKUIDelegate {
     @IBOutlet weak var qrCodeImage: UIImageView!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var faucetButton: UIButton!
     
     // Variables
     var player: Player?
     var qrImage: UIImage?
     let exchange1URL = URL(string: "https://www.coinbase.com/")
     let exchange2URL = URL(string: "https://changelly.com")
+    let rinkebyFaucetURL = URL(string: "https://faucet.rinkeby.io/")
     
     // MARK: View
     override func viewDidLoad() {
@@ -48,6 +50,8 @@ class AddBalanceViewController: UIViewController, WKUIDelegate {
     }
     
     override func refreshView() throws {
+        faucetButton.layer.cornerRadius = 5
+        
         addressLabel.text = player?.address ?? "0x0000000000000000"
         qrCodeImage.image = qrImage ?? #imageLiteral(resourceName: "CIRCLE STAMP x1")
     }
@@ -97,6 +101,9 @@ class AddBalanceViewController: UIViewController, WKUIDelegate {
     
     @IBAction func exchange2ButtonPressed(_ sender: Any) {
         showWebFor(exchange: exchange2URL!)
+    }
+    @IBAction func rinkebyButtonPressed(_ sender: Any) {
+        showWebFor(exchange: rinkebyFaucetURL!)
     }
     
 }

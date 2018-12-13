@@ -23,6 +23,9 @@ class QuestCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var bananoBackgroundView: UIImageView?
     @IBOutlet weak var bananoStampImage: UIImageView?
     @IBOutlet weak var hintTextView: UITextView?
+    @IBOutlet weak var summaryBackgroundImageView: UIImageView!
+    @IBOutlet weak var bottomSeparator: UILabel!
+    @IBOutlet weak var hintLabel: UILabel!
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -34,8 +37,7 @@ class QuestCollectionViewCell: UICollectionViewCell {
     }
     
     func configureCellFor(index: Int, playerLocation: CLLocation?) {
-        // TODO:
-        // DISTANCE FROM QUEST
+        
         guard let quest = self.quest else {
             self.configureEmptyCellFor(index: index)
             return
@@ -101,6 +103,7 @@ class QuestCollectionViewCell: UICollectionViewCell {
         }
         if let hintTextView = self.hintTextView {
             hintTextView.text = quest.hint
+            
         }
         
         if let bananoBackgroundView = self.bananoBackgroundView {

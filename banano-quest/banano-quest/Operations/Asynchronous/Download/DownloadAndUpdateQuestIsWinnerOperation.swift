@@ -54,7 +54,7 @@ public class DownloadAndUpdateQuestIsWinnerOperation: AsynchronousOperation {
             "returnTypes": ["bool"]
             ] as [AnyHashable : Any]
         
-        guard let query = try? PocketEth.createQuery(params: params, decoder: decoder) else {
+        guard let query = try? PocketEth.createQuery(subnetwork: AppConfiguration.subnetwork, params: params, decoder: decoder) else {
             self.error = PocketPluginError.queryCreationError("Query creation error")
             self.finish()
             return
@@ -86,6 +86,12 @@ public class DownloadAndUpdateQuestIsWinnerOperation: AsynchronousOperation {
                     self.finish()
                     return
                 }
+                
+                if isWinnerBool {
+                    let banano = try Banano.init(obj: quest, context: context)
+                    try banano.save()
+                }
+                
                 quest.winner = isWinnerBool
                 try quest.save()
             } catch {

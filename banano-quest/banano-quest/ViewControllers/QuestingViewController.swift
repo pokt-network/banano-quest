@@ -17,6 +17,8 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var completeButton: UIButton!
     @IBOutlet weak var errorMessageLabel: UILabel!
+    @IBOutlet weak var nearestButton: UIButton!
+    @IBOutlet weak var newestButton: UIButton!
     
     // Variables
     var quests: [Quest] = [Quest]()
@@ -24,12 +26,16 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     var locationManager = CLLocationManager()
     var currentPlayerLocation: CLLocation?
     
+    // Activity Indicator
+    var indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
+    var grayView: UIView?
+    
     // Refresh Control
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action:
             #selector(QuestingViewController.handleRefresh(_:)),
-                                 for: UIControlEvents.valueChanged)
+                                 for: UIControl.Event.valueChanged)
         refreshControl.tintColor = UIColor.yellow
         refreshControl.transform = CGAffineTransform(scaleX: 1.75, y: 1.75)
         return refreshControl
@@ -50,7 +56,18 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
+        // Gray view setup
+        grayView = UIView.init(frame: view.frame)
+        grayView?.backgroundColor = UIColor.init(white: 1.0, alpha: 0.75)
+        grayView?.isHidden = true
+        view.addSubview(grayView!)
+        
+        // Activity indicator setup
+        indicator.center = view.center
+        
+        view.addSubview(indicator)
+        
         self.collectionView.addSubview(refreshControl)
         
         do {
@@ -58,6 +75,11 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         } catch let error as NSError {
             print("Failed to refresh view with error: \(error)")
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -71,9 +93,17 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
         }
         
         DispatchQueue.main.async {
+            self.indicator.stopAnimating()
+            self.grayView?.isHidden = true
+            
             self.refreshControl.endRefreshing()
             self.collectionView.isUserInteractionEnabled = true
             self.collectionView.reloadData()
+            
+            if self.quests.count > 0 {
+                let indexPath = IndexPath.init(item: 0, section: 0)
+                self.collectionView.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.left, animated: true)
+            }
         }
     }
     
@@ -87,9 +117,9 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
             if let playerAddress = player.address {
                 
                 let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
-                appInitQueueDispatcher.initDisplatchSequence {
+                appInitQueueDispatcher.initDispatchSequence {
                     let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress, playerAddress: playerAddress)
-                    questListQueueDispatcher.initDisplatchSequence(completionHandler: {
+                    questListQueueDispatcher.initDispatchSequence(completionHandler: {
                         
                         do {
                             try self.refreshView()
@@ -148,6 +178,36 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
             print("Failed to retrieve quest list with error: \(error)")
         }
     }
+    
+    func loadQuestListByNearest() {
+        // Loads quests by nearest
+        if currentPlayerLocation == nil {
+            return
+        }
+        
+        do {
+            self.quests = try Quest.sortedQuestsByNearest(context: CoreDataUtils.mainPersistentContext, userLocation: currentPlayerLocation!)
+            
+            if self.quests.count == 0 {
+                DispatchQueue.main.async {
+                    self.errorMessageLabel.text = "No Quests available, please try again later..."
+                    self.showElements(bool: false)
+                }
+            } else {
+                self.showElements(bool: true)
+                do {
+                    try self.refreshView()
+                }catch let error as NSError {
+                    print("Failed to refreshView with error: \(error)")
+                }
+            }
+        } catch {
+            let alert = self.bananoAlertView(title: "Error", message: "Failed to retrieve quest list with error:")
+            self.present(alert, animated: false, completion: nil)
+            
+            print("Failed to retrieve quest list with error: \(error)")
+        }
+    }
 
     func showElements(bool: Bool) {
         DispatchQueue.main.async {
@@ -166,6 +226,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
             }
             let currentQuestCount = self.quests.count
             let newIndex = cellIndexPath.item + positions
+            
             if newIndex >= 0 && newIndex < currentQuestCount {
                 let newIndexPath = IndexPath(item: newIndex, section: 0)
                 collectionView.scrollToItem(at: newIndexPath, at: .right, animated: true)
@@ -211,6 +272,10 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     }
     
     // MARK: CollectionView
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         completeButtonPressed(self)
     }
@@ -220,7 +285,7 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = UIScreen.main.bounds.width - 10
+        let width = UIScreen.main.bounds.width
         let height = collectionView.frame.height
 
         return CGSize(width: width, height: height)
@@ -244,6 +309,25 @@ class QuestingViewController: UIViewController, UICollectionViewDelegateFlowLayo
     }
     
     // MARK: IBActions
+    @IBAction func nearestButtonTapped(_ sender: Any) {
+        grayView?.isHidden = false
+        indicator.startAnimating()
+        
+        nearestButton.isHidden = true
+        newestButton.isHidden = false
+        
+        loadQuestListByNearest()
+    }
+    @IBAction func newestButtonTapped(_ sender: Any) {
+        grayView?.isHidden = false
+        indicator.startAnimating()
+        
+        nearestButton.isHidden = false
+        newestButton.isHidden = true
+        
+        loadQuestList()
+    }
+    
     @IBAction func nextButtonPressed(_ sender: Any) {
         scrollToPositionedCell(positions: 1)
     }

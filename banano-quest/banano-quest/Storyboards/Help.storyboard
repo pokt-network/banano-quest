@@ -1,7 +1,64 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--HOW TO PLAY-->
+        <scene sceneID="Tax-ms-ieq">
+            <objects>
+                <viewController storyboardIdentifier="howToPlayViewControllerID" title="HOW TO PLAY" id="hnr-rN-4NB" customClass="HowToPlayViewController" customModule="banano_quest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sjD-gQ-KBa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MeE-zK-Xyq">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rcq-39-7V7" userLabel="Back Button">
+                                <rect key="frame" x="15" y="40" width="28" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="Zkh-dr-Rc4"/>
+                                    <constraint firstAttribute="width" constant="28" id="u37-0z-3v0"/>
+                                </constraints>
+                                <state key="normal" image="ARROWx1"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="hnr-rN-4NB" eventType="touchUpInside" id="XUz-mc-a2t"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="MeE-zK-Xyq" firstAttribute="leading" secondItem="cQ1-AI-e1j" secondAttribute="leading" id="3Zv-On-Has"/>
+                            <constraint firstItem="rcq-39-7V7" firstAttribute="top" secondItem="cQ1-AI-e1j" secondAttribute="top" constant="20" id="5ma-df-hlA"/>
+                            <constraint firstItem="MeE-zK-Xyq" firstAttribute="top" secondItem="cQ1-AI-e1j" secondAttribute="top" id="FlJ-pa-HMj"/>
+                            <constraint firstItem="rcq-39-7V7" firstAttribute="leading" secondItem="cQ1-AI-e1j" secondAttribute="leading" constant="15" id="bS0-km-Gtc"/>
+                            <constraint firstItem="cQ1-AI-e1j" firstAttribute="bottom" secondItem="MeE-zK-Xyq" secondAttribute="bottom" id="eaK-rq-LZq"/>
+                            <constraint firstItem="cQ1-AI-e1j" firstAttribute="trailing" secondItem="MeE-zK-Xyq" secondAttribute="trailing" id="lOe-N1-SYL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cQ1-AI-e1j"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="MeE-zK-Xyq" id="cmC-ZT-po5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="axS-6C-uJk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="79" y="195"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ARROWx1" width="28" height="28"/>
+    </resources>
 </document>

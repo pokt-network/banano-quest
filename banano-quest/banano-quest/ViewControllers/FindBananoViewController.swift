@@ -26,7 +26,7 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
     var questProof: QuestProofSubmission?
     
     // Activity Indicator
-    var indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+    var indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
     var grayView: UIView?
 
     override func viewDidLoad() {
@@ -133,7 +133,7 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
     }
 
     func openAppSettings() {
-        guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
             return
         }
 
@@ -205,7 +205,7 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
     // MARK: Tools
     func refreshPlayerInfo() {
         let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: currentPlayer?.address ?? "0", tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
-        appInitQueueDispatcher.initDisplatchSequence {
+        appInitQueueDispatcher.initDispatchSequence {
             DispatchQueue.main.async {
                 self.view.isUserInteractionEnabled = true
                 self.indicator.stopAnimating()
@@ -283,8 +283,10 @@ class FindBananoViewController: ARViewController, ARDataSource, AnnotationViewDe
 
             // Operation Queue
             operationQueue.addOperations([nonceOperation], waitUntilFinished: false)
-
-            let alertView = bananoAlertView(title: "Submitted", message: "Proof submitted, your request is being processed in the background")
+            let alertView = self.bananoAlertView(title: "Submitted", message: "Proof submitted, your request is being processed in the background") { (UIAlertAction) in
+                
+                self.backButtonPressed(self)
+            }
 
             self.present(alertView, animated: false, completion: nil)
 

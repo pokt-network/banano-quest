@@ -41,7 +41,7 @@ public struct PushNotificationUtils {
         let content = UNMutableNotificationContent()
         content.title = title
         content.body = body
-        content.sound = UNNotificationSound.default()
+        content.sound = UNNotificationSound.default
         
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: nil)
         

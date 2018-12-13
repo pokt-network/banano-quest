@@ -10,10 +10,18 @@ import Foundation
 import UIKit
 import MapKit
 
-class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate {
+class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var tableView: UITableView!
     
+    // Search
+    var resultSearchController: UISearchController? = nil
+    var mapItems = [MKMapItem]()
+    var searchController: UISearchController!
+    var searchBar: UISearchBar!
+    
+    // Location
     var locationManager = CLLocationManager()
     var selectedLocation = [AnyHashable: Any]()
     
@@ -21,7 +29,29 @@ class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        // TableView
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        // Setup the Search Controller
+        // Initializing with searchResultsController set to nil means that
+        // searchController will use this view controller to display the search results
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        
+        // If we are using this same view controller to present the results
+        // dimming it out wouldn't make sense. Should probably only set
+        // this to yes if using another controller to display the search results.
+        searchController.dimsBackgroundDuringPresentation = false
+        searchBar = searchController.searchBar
+        searchBar.placeholder = "Search for a place"
+        searchBar.delegate = self
+        searchController.searchBar.sizeToFit()
+        tableView.tableHeaderView = searchController.searchBar
+        
+        // Sets this view controller as presenting view controller for the search interface
+        definesPresentationContext = true
+        
         // Map settings
         mapView.delegate = self
         mapView.showsUserLocation = true
@@ -51,6 +81,27 @@ class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate,
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        tableView.backgroundColor = UIColor.clear
+        searchBar.backgroundColor = UIColor.clear
+        searchBar.searchBarStyle = UISearchBar.Style.minimal
+        searchBar.isTranslucent = true
+        searchBar.showsCancelButton = true
+        searchBar.barTintColor = UIColor.clear
+        searchBar.tintColor = UIColor.clear
+        
+        // TextField Color Customization
+        let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar?.textColor = UIColor.black
+        
+        // Placeholder Customization
+        let textFieldInsideSearchBarLabel = textFieldInsideSearchBar!.value(forKey: "placeholderLabel") as? UILabel
+        textFieldInsideSearchBarLabel?.textColor = UIColor.black
+        
+        // Glass Icon Customization
+        let glassIconView = textFieldInsideSearchBar?.leftView as? UIImageView
+        glassIconView?.image = glassIconView?.image?.withRenderingMode(.alwaysTemplate)
+        glassIconView?.tintColor = UIColor.black
         
         // Refresh view
         do {
@@ -60,16 +111,48 @@ class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate,
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // Set current location as default quest location
+        currentLocationPressed(self)
+    }
+    
     // MARK: - Tools
     override func refreshView() throws {
         // UI Elements should be updated here
+        DispatchQueue.main.async {
+            self.tableView.frame = CGRect(x: self.tableView.frame.origin.x, y: self.tableView.frame.origin.y, width: self.tableView.frame.width, height: 55)
+        }
+
     }
     
-    // MARK: - Gestures
-    @objc func handleTap(gestureReconizer: UIGestureRecognizer) {
+    func searchBarIsEmpty() -> Bool {
+        // Returns true if the text is empty or nil
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.showsCancelButton = false
         
-        let location = gestureReconizer.location(in: mapView)
-        let coordinate = mapView.convert(location,toCoordinateFrom: mapView)
+        // UI Elements should be updated here
+        DispatchQueue.main.async {
+            self.tableView.frame = CGRect(x: self.tableView.frame.origin.x, y: self.tableView.frame.origin.y, width: self.tableView.frame.width, height: 55)
+        }
+    }
+    
+    func addLocationToMap(location: CGPoint?, coordinates: CLLocationCoordinate2D?) {
+        var locationPoint = CGPoint()
+        var coordinate = CLLocationCoordinate2D()
+        
+        if location != nil {
+            locationPoint = location!
+            coordinate = mapView.convert(locationPoint,toCoordinateFrom: mapView)
+        }
+        
+        if coordinates != nil {
+            coordinate = coordinates!
+        }
         
         // Add annotation:
         let annotation = MKPointAnnotation()
@@ -80,12 +163,64 @@ class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate,
         }
         selectedLocation["lat"] = annotation.coordinate.latitude.description
         selectedLocation["lon"] = annotation.coordinate.longitude.description
-
+        
         mapView.addAnnotation(annotation)
     }
     
+    // MARK: - Gestures
+    @objc func handleTap(gestureReconizer: UIGestureRecognizer) {
+        let location = gestureReconizer.location(in: mapView)
+        
+        addLocationToMap(location: location, coordinates: nil)
+    }
+    
+    // MARK: - TableView
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if mapItems.count > 0 {
+            return mapItems.count
+        }
+        return 0
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "mapSearchCell", for: indexPath) as? MapSearchTableViewCell {
+            if indexPath.row >= mapItems.count {
+                cell.configureEmptyCell()
+            }else {
+                cell.place = mapItems[indexPath.row]
+                cell.configureCell()
+            }
+            
+            return cell
+        }else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "mapSearchCell", for: indexPath)
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // span: is how much it should zoom into the user location
+        let cell = tableView.cellForRow(at: indexPath) as? MapSearchTableViewCell
+        
+        let span = MKCoordinateSpan(latitudeDelta: 0.010, longitudeDelta: 0.010)
+        let region = MKCoordinateRegion(center: cell?.place?.placemark.location?.coordinate ?? CLLocationCoordinate2D(), span: span)
+        // updates map with current user location
+        mapView.setRegion(region, animated: true)
+        
+        let coordinate = cell?.place?.placemark.location?.coordinate ?? CLLocationCoordinate2D()
+        addLocationToMap(location: nil, coordinates: coordinate)
+        
+        searchController.searchBar.text = ""
+        tableView.frame = CGRect(x: tableView.frame.origin.x, y: tableView.frame.origin.y, width: tableView.frame.width, height: 110)
+    }
+    
     // MARK: - MKMapView
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationView.DragState, fromOldState oldState: MKAnnotationView.DragState) {
         switch newState {
         case .starting:
             view.dragState = .dragging
@@ -203,5 +338,27 @@ class CreateQuestMapViewController: UIViewController, CLLocationManagerDelegate,
             NotificationCenter.default.post(name: CreateQuestViewController.notificationName, object: nil, userInfo:self.selectedLocation)
         }
         self.dismiss(animated: false, completion: nil)
+    }
+}
+extension CreateQuestMapViewController: UISearchResultsUpdating {
+    // MARK: - UISearchResultsUpdating Delegate
+    func updateSearchResults(for searchController: UISearchController) {
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = searchController.searchBar.text
+        //request.region = mapView.region
+        
+        let search = MKLocalSearch(request: request)
+        search.start { (response, error) in
+            guard let response = response else {
+                print("Search error: \(String(describing: error))")
+                return
+            }
+            
+            if response.mapItems.count > 0 {
+                self.mapItems = response.mapItems
+                self.tableView.frame = CGRect(x: self.tableView.frame.origin.x, y: self.tableView.frame.origin.y, width: self.tableView.frame.width, height: self.view.frame.height)
+                self.tableView.reloadData()
+            }
+        }
     }
 }

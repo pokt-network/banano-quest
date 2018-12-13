@@ -20,7 +20,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var qrCodeImage: UIImageView!
     
     var currentPlayer: Player?
-    var quests: [Quest] = [Quest]()
+    var bananos: [Banano] = [Banano]()
 
     // MARK: - View
     override func viewDidLoad() {
@@ -30,7 +30,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         } catch let error as NSError {
             print("Failed to retrieve current player with error: \(error)")
         }
-        loadPlayerCompletedQuests()
+        loadPlayerBananos()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -73,6 +73,25 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
 
     // MARK: - IBActions
     
+    @IBAction func addBalanceButtonPressed(_ sender: Any) {
+        do {
+            let vc = try instantiateViewController(identifier: "addBalanceViewControllerID", storyboardName: "Profile") as? AddBalanceViewController
+            if currentPlayer != nil {
+                vc?.player = currentPlayer
+            }
+            if qrCodeImage.image != nil {
+                vc?.qrImage = qrCodeImage.image
+            }
+            
+            present(vc!, animated: false, completion: nil)
+            
+        } catch let error as NSError {
+            print("Failed to instantiate Add Balance VC with error :\(error)")
+        }
+        
+
+    }
+    
     @IBAction func copyAddressButtonPressed(_ sender: Any) {
         let showError = {
             let alertView = self.bananoAlertView(title: "Error:", message: "Address field is empty, please try again later")
@@ -87,8 +106,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             return
         } else {
             let alertView = bananoAlertView(title: "Success:", message: "Your Address has been copied to the clipboard.")
-            present(alertView, animated: false, completion: nil)
             UIPasteboard.general.string = walletAddressLabel.text
+            present(alertView, animated: false, completion: nil)
         }
     }
 
@@ -107,33 +126,58 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         self.resolvePlayerWalletAuth(player: player, successHandler: { (wallet) in
             let privateKey = wallet.privateKey
-            let alertView = self.bananoAlertView(title: "WARNING", message: "This is your private key, do not share it with anyone!: " + privateKey)
+
+            let alertView = self.bananoAlertView(title: "WARNING", message: "Your private key has been copied to the clipboard, do not share it with anyone!: \(privateKey)", handler: { (UIAlertAction) in
+                UIPasteboard.general.string = privateKey
+            })
+            
             self.present(alertView, animated: false, completion: nil)
         }) { (error) in
             print("\(error)")
             self.present(self.bananoAlertView(title: "Error", message: "Error retrieving your account details, please try again"), animated: true)
         }
     }
-
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        var yourWidth : CGFloat?
+        var yourHeight : CGFloat?
+        
+        let device = UIDevice.modelName
+        
+        if device == "iPhone SE" || device == "Simulator iPhone SE" {
+            yourWidth = collectionView.bounds.width/2.0
+            yourHeight = yourWidth
+        }else {
+            yourWidth = collectionView.bounds.width/3.0
+            yourHeight = yourWidth
+        }
+        return CGSize(width: yourWidth ?? 375, height: yourHeight ?? 100)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if self.quests.count == 0 {
+        if self.bananos.count == 0 {
             return 3
         } else {
-            return self.quests.count
+            return self.bananos.count
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if quests.count != 0  && indexPath.item < quests.count {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerQuestCell", for: indexPath) as! QuestCollectionViewCell
+        if bananos.count != 0  && indexPath.item < bananos.count {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerQuestCell", for: indexPath) as! BananoCollectionViewCell
             
-            let quest = quests[indexPath.item]
-            cell.quest = quest
+            let banano = bananos[indexPath.item]
+            cell.banano = banano
             cell.configureCellFor(index: indexPath.item, playerLocation: nil)
             
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerQuestCell", for: indexPath) as! QuestCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerQuestCell", for: indexPath) as! BananoCollectionViewCell
             
             cell.configureEmptyCellFor(index: indexPath.item)
             
@@ -157,17 +201,17 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         return nil
     }
     
-    func loadPlayerCompletedQuests() {
-        // Initial load for the local quest list
+    func loadPlayerBananos() {
+        // Initial load for the local bananos list
         do {
-            self.quests = try Quest.questsWonByPlayer(context: CoreDataUtils.mainPersistentContext)
-            if self.quests.count != 0 {
+            self.bananos = try Banano.sortedBananosByIndex(context: CoreDataUtils.mainPersistentContext)
+            if self.bananos.count != 0 {
                 try self.refreshView()
             }
         } catch {
-            let alert = self.bananoAlertView(title: "Error", message: "Failed to retrieve quest list with error:")
+            let alert = self.bananoAlertView(title: "Error", message: "Failed to retrieve current bananos with error:")
             self.present(alert, animated: false, completion: nil)
-            print("Failed to retrieve quest list with error: \(error)")
+            print("Failed to retrieve banano list with error: \(error)")
         }
     }
 

@@ -14,6 +14,7 @@ public struct AppConfiguration {
     public static let tavernAddress = "0xd480083db34e8c87987652ee90f41ddb311f37ff"
     public static let bananoTokenAddress = "0x75ff16d15dfe4c3a92c97f11ff41644d790035a2"
     public static let chainID = 4
+    public static let subnetwork = "4"
     private static let displayedOnboardingKey = "displayedOnboarding"
     
     public static func clearUserDefaults() {

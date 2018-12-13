@@ -17,7 +17,7 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate, Configuration, UNUserNotificationCenterDelegate {
     var nodeURL: URL {
         get {
-            return URL.init(string: "https://red.pokt.network")!
+            return URL.init(string: "https://ethereum.pokt.network")!
         }
     }
     var window: UIWindow?
@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration, UNUserNoti
         return UIApplication.shared.delegate as! AppDelegate
     }()
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Setup background fetch interval: Fetch data once an hour.
         UIApplication.shared.setMinimumBackgroundFetchInterval(3600)
 
@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration, UNUserNoti
 
         // Pocket configuration
         Pocket.shared.setConfiguration(config: self)
-
+        
         // Refresh app data
         self.updatePlayerAndQuestData(completionHandler: refreshCurrentViewController)
 
@@ -134,7 +134,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration, UNUserNoti
             if let playerAddress = player.address {
                 print("Player Address: \(playerAddress)")
                 let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
-                appInitQueueDispatcher.initDisplatchSequence {
+                appInitQueueDispatcher.initDispatchSequence {
                     completionHandler(playerAddress)
                 }
             }
@@ -145,7 +145,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Configuration, UNUserNoti
 
     func updateQuestList(playerAddress: String, completionHandler: @escaping () -> Void) {
         let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress, playerAddress: playerAddress)
-        questListQueueDispatcher.initDisplatchSequence(completionHandler: completionHandler)
+        questListQueueDispatcher.initDispatchSequence(completionHandler: completionHandler)
     }
 
     func updatePlayerAndQuestData(completionHandler: @escaping () -> Void) {

@@ -12,7 +12,7 @@ public typealias QueueDispatcherCompletionHandler = () -> Void
 
 public protocol QueueDispatcherProtocol {
     
-    func initDisplatchSequence(completionHandler: QueueDispatcherCompletionHandler?)
+    func initDispatchSequence(completionHandler: QueueDispatcherCompletionHandler?)
     func isQueueFinished() -> Bool
     func cancelAllOperations()
 }

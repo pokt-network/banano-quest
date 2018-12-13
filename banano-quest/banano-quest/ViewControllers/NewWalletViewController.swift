@@ -48,7 +48,6 @@ class NewWalletViewController: UIViewController {
         addressLabel.isHidden = !addressLabel.isHidden
         addressLabelUnderline.isHidden = !addressLabelUnderline.isHidden
         continueButton.isHidden = !continueButton.isHidden
-        forwardIcon.isHidden = !forwardIcon.isHidden
     }
 
     // MARK: - Tools
@@ -61,9 +60,9 @@ class NewWalletViewController: UIViewController {
     
     func startDataDownload(playerAddress: String) {
         let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: playerAddress, tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
-        appInitQueueDispatcher.initDisplatchSequence {
+        appInitQueueDispatcher.initDispatchSequence {
             let questListQueueDispatcher = AllQuestsQueueDispatcher.init(tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress, playerAddress: playerAddress)
-            questListQueueDispatcher.initDisplatchSequence(completionHandler: {
+            questListQueueDispatcher.initDispatchSequence(completionHandler: {
                 
                 UIApplication.getPresentedViewController(handler: { (topVC) in
                     if topVC == nil {

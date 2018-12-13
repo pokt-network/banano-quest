@@ -43,7 +43,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
     static let notificationName = Notification.Name("getLocation")
     
     // Activity Indicator
-    var indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+    var indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
     var grayView: UIView?
     
     // MARK: - View
@@ -111,7 +111,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
     // MARK: - Tools
     func refreshPlayerInfo() {
         let appInitQueueDispatcher = AppInitQueueDispatcher.init(playerAddress: currentPlayer?.address ?? "0", tavernAddress: AppConfiguration.tavernAddress, bananoTokenAddress: AppConfiguration.bananoTokenAddress)
-        appInitQueueDispatcher.initDisplatchSequence {
+        appInitQueueDispatcher.initDispatchSequence {
             DispatchQueue.main.async {
                 self.view.isUserInteractionEnabled = true
                 self.indicator.stopAnimating()
@@ -177,7 +177,7 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
         
         bananoImageBackground.layer.cornerRadius = bananoImageBackground.frame.size.width / 2
         
-        infiniteBananosSwitch.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
+        infiniteBananosSwitch.addTarget(self, action: #selector(switchChanged), for: UIControl.Event.valueChanged)
         
         addColorView.layer.cornerRadius = addColorView.frame.width / 2
         
@@ -344,6 +344,8 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
             AppDelegate.shared.refreshCurrentViewController()
             if let txHash = operation.txHash {
                 let transaction = Transaction.init(txHash: txHash, type: TransactionType.creation, context: CoreDataUtils.backgroundPersistentContext)
+                
+                self.refreshPlayerInfo()
                 do {
                     try transaction.save()
                 } catch {
@@ -542,7 +544,8 @@ class CreateQuestViewController: UIViewController, ColorPickerDelegate, UITextVi
                         return
                     }
                     
-                    let message = String.init(format: "Note that the value you have determined as a prize, if any, will be divided by the number of BANANOS allocated for the Quest, giving each Winner a fraction of the total prize. Banano Quest retains %@ of the total prize as comission. Total transaction cost: %@ USD - %@ ETH. Press OK to create your Quest", "10%", String.init(format: "%.4f", gasEstimateUSD), String.init(format: "%.4f", gasEstimateEth))
+                    let message = String.init(format: "Total transaction cost: %@ USD - %@ ETH. Press OK to create your Quest", String.init(format: "%.4f", gasEstimateUSD), String.init(format: "%.4f", gasEstimateEth))
+                    
                     let txDetailsAlertView = self.bananoAlertView(title: "Transaction Details", message: message) { (uiAlertAction) in
                         guard let player = self.currentPlayer else {
                             self.present(self.bananoAlertView(title: "Error", message: "Player account not found, please try again"), animated: true, completion: nil)
