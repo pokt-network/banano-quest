@@ -68,6 +68,12 @@
 		637C03EC20EFB8BD002D4652 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637C03EB20EFB8BD002D4652 /* ContainerViewController.swift */; };
 		637C03EE20EFC0A2002D4652 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637C03ED20EFC0A2002D4652 /* MenuViewController.swift */; };
 		637C03F220F50374002D4652 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637C03F120F50374002D4652 /* ColorPickerViewController.swift */; };
+		791EC02B216D418B002ABE54 /* DownloadOwnerTokenCountOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791EC02A216D418B002ABE54 /* DownloadOwnerTokenCountOperation.swift */; };
+		791EC02D216D6CFE002ABE54 /* LeaderboardRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791EC02C216D6CFE002ABE54 /* LeaderboardRecord.swift */; };
+		79A9D3E9215A647700AB721B /* Leaderboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79A9D3E8215A647700AB721B /* Leaderboard.storyboard */; };
+		79A9D3EB215A650400AB721B /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A9D3EA215A650400AB721B /* LeaderboardViewController.swift */; };
+		79A9D3EE215A68E500AB721B /* WalletScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A9D3ED215A68E500AB721B /* WalletScoreTableViewCell.swift */; };
+		79A9D3F0215A72A700AB721B /* DownloadOwnersCountOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A9D3EF215A72A700AB721B /* DownloadOwnersCountOperation.swift */; };
 		9BE76E8FF0B142FCA28771F6 /* Pods_banano_quest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F31C7DBEB8D536175528B49 /* Pods_banano_quest.framework */; };
 		C5082FC22162E65E0078D055 /* UIDevice+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5082FC12162E65E0078D055 /* UIDevice+extension.swift */; };
 		C513C17021A2EC5A00163CF0 /* MapSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C513C16F21A2EC5900163CF0 /* MapSearchTableViewCell.swift */; };
@@ -181,6 +187,12 @@
 		637C03EB20EFB8BD002D4652 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		637C03ED20EFC0A2002D4652 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		637C03F120F50374002D4652 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
+		791EC02A216D418B002ABE54 /* DownloadOwnerTokenCountOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadOwnerTokenCountOperation.swift; sourceTree = "<group>"; };
+		791EC02C216D6CFE002ABE54 /* LeaderboardRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardRecord.swift; sourceTree = "<group>"; };
+		79A9D3E8215A647700AB721B /* Leaderboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Leaderboard.storyboard; sourceTree = "<group>"; };
+		79A9D3EA215A650400AB721B /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
+		79A9D3ED215A68E500AB721B /* WalletScoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletScoreTableViewCell.swift; sourceTree = "<group>"; };
+		79A9D3EF215A72A700AB721B /* DownloadOwnersCountOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadOwnersCountOperation.swift; sourceTree = "<group>"; };
 		7DD1DAF199528BC137A9ECE3 /* Pods-banano-questTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-questTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-banano-questTests/Pods-banano-questTests.release.xcconfig"; sourceTree = "<group>"; };
 		8107D9C5769F10E6C4459743 /* Pods_banano_questUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_banano_questUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A680A22957A731ACB3BB75BC /* Pods-banano-quest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banano-quest.release.xcconfig"; path = "Pods/Target Support Files/Pods-banano-quest/Pods-banano-quest.release.xcconfig"; sourceTree = "<group>"; };
@@ -303,6 +315,8 @@
 				10A5600521037DF800B85950 /* DownloadAndUpdateQuestIsWinnerOperation.swift */,
 				10A5600D21038B2600B85950 /* DownloadEthUsdPriceOperation.swift */,
 				106F3CD62120F0FF0088BE6C /* DownloadTransactionReceiptOperation.swift */,
+				79A9D3EF215A72A700AB721B /* DownloadOwnersCountOperation.swift */,
+				791EC02A216D418B002ABE54 /* DownloadOwnerTokenCountOperation.swift */,
 			);
 			path = Download;
 			sourceTree = "<group>";
@@ -358,6 +372,7 @@
 				C5FA598121077C3A004FB3E0 /* FindBananoViewController.swift */,
 				C56E2D9C21272E5F00CF1707 /* AddBalanceViewController.swift */,
 				C529720D21768CD800D918F5 /* HowToPlayViewController.swift */,
+				79A9D3EA215A650400AB721B /* LeaderboardViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -428,6 +443,7 @@
 		635F8A9220DD50A8008BA94E /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				79A9D3E8215A647700AB721B /* Leaderboard.storyboard */,
 				6333170820D9990B0063D856 /* Main.storyboard */,
 				635F8A9320DD50C3008BA94E /* Profile.storyboard */,
 				635F8A9520DD50CC008BA94E /* Help.storyboard */,
@@ -443,6 +459,7 @@
 			isa = PBXGroup;
 			children = (
 				C513C16F21A2EC5900163CF0 /* MapSearchTableViewCell.swift */,
+				79A9D3ED215A68E500AB721B /* WalletScoreTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -460,6 +477,7 @@
 				C5FAB66620E2B4FD00057041 /* Quest+CoreDataProperties.swift */,
 				C5F9368C2114FE7200083C2E /* QuestAnnotation.swift */,
 				106F3CDA21220DAD0088BE6C /* TransactionReceipt.swift */,
+				791EC02C216D6CFE002ABE54 /* LeaderboardRecord.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -658,6 +676,7 @@
 				635F8A9A20DD50E1008BA94E /* CreateQuest.storyboard in Resources */,
 				6333170C20D9990D0063D856 /* Assets.xcassets in Resources */,
 				635F8A9620DD50CC008BA94E /* Help.storyboard in Resources */,
+				79A9D3E9215A647700AB721B /* Leaderboard.storyboard in Resources */,
 				635F8A9420DD50C3008BA94E /* Profile.storyboard in Resources */,
 				6333170A20D9990B0063D856 /* Main.storyboard in Resources */,
 				C5FA59A421077E22004FB3E0 /* banano.scn in Resources */,
@@ -729,40 +748,44 @@
 				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
 				"${BUILT_PRODUCTS_DIR}/BiometricAuthentication/BiometricAuthentication.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/EthereumABI/EthereumABI.framework",
+				"${BUILT_PRODUCTS_DIR}/EthereumAddress/EthereumAddress.framework",
 				"${BUILT_PRODUCTS_DIR}/FlexColorPicker/FlexColorPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/HDAugmentedReality/HDAugmentedReality.framework",
 				"${BUILT_PRODUCTS_DIR}/Pocket/Pocket.framework",
 				"${BUILT_PRODUCTS_DIR}/PocketEth/PocketEth.framework",
+				"${BUILT_PRODUCTS_DIR}/PocketSwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RNCryptor/RNCryptor.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SidebarOverlay/SidebarOverlay.framework",
 				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftHEXColors/SwiftHEXColors.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
-				"${BUILT_PRODUCTS_DIR}/libsodium/libsodium.framework",
-				"${BUILT_PRODUCTS_DIR}/secp256k1_ios/secp256k1_ios.framework",
-				"${BUILT_PRODUCTS_DIR}/web3swift/web3swift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftRLP/SwiftRLP.framework",
+				"${BUILT_PRODUCTS_DIR}/scrypt/scrypt.framework",
+				"${BUILT_PRODUCTS_DIR}/secp256k1_swift/secp256k1_swift.framework",
+				"${BUILT_PRODUCTS_DIR}/web3swift/Web3swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BiometricAuthentication.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EthereumABI.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EthereumAddress.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FlexColorPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HDAugmentedReality.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketEth.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCryptor.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SidebarOverlay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SipHash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftHEXColors.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libsodium.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1_ios.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/web3swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftRLP.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/scrypt.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1_swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Web3swift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -798,6 +821,7 @@
 				108BDF4D21053B7100405693 /* AllQuestsQueueDispatcher.swift in Sources */,
 				637C03F220F50374002D4652 /* ColorPickerViewController.swift in Sources */,
 				10C32AD82114A7A000F68ACC /* CGFloat+extension.swift in Sources */,
+				79A9D3EE215A68E500AB721B /* WalletScoreTableViewCell.swift in Sources */,
 				10A560162104EEB900B85950 /* UpdateQuestOperation.swift in Sources */,
 				10A55FFE21027BF600B85950 /* DownloadQuestOperation.swift in Sources */,
 				108BDF4921052E3000405693 /* AppInitQueueDispatcher.swift in Sources */,
@@ -809,6 +833,7 @@
 				10A5600421037AB600B85950 /* DownloadQuestIsClaimerOperation.swift in Sources */,
 				1098FD192102729100E76682 /* DownloadBalanceOperation.swift in Sources */,
 				10A560002102882A00B85950 /* UploadQuestOperation.swift in Sources */,
+				791EC02B216D418B002ABE54 /* DownloadOwnerTokenCountOperation.swift in Sources */,
 				C5FAB66420E17B8900057041 /* BananoQuest.xcdatamodeld in Sources */,
 				C56473DA210BB14900C0C7A8 /* UIApplication+extension.swift in Sources */,
 				10E9DD5E2120753300807D90 /* RepeatingTimer.swift in Sources */,
@@ -817,6 +842,7 @@
 				C572CFBD20EF920B009428C2 /* UIViewController+extension.swift in Sources */,
 				1098FD1521026E6900E76682 /* SynchronousOperation.swift in Sources */,
 				637C03EE20EFC0A2002D4652 /* MenuViewController.swift in Sources */,
+				79A9D3EB215A650400AB721B /* LeaderboardViewController.swift in Sources */,
 				108BDF5321061BF400405693 /* AppConfiguration.swift in Sources */,
 				100E7E1C211753340096B765 /* BiometricsUtils.swift in Sources */,
 				C513C17021A2EC5A00163CF0 /* MapSearchTableViewCell.swift in Sources */,
@@ -831,6 +857,7 @@
 				63091D8220E3FB7B002253E5 /* CompleteQuestViewController.swift in Sources */,
 				10A5600A21037FF700B85950 /* UploadQuestProofEstimateOperation.swift in Sources */,
 				C5F9368D2114FE7200083C2E /* QuestAnnotation.swift in Sources */,
+				791EC02D216D6CFE002ABE54 /* LeaderboardRecord.swift in Sources */,
 				1098FD1D2102764400E76682 /* DownloadQuestAmountOperation.swift in Sources */,
 				63091D8020E3D48C002253E5 /* QuestCollectionViewCell.swift in Sources */,
 				10A5600E21038B2600B85950 /* DownloadEthUsdPriceOperation.swift in Sources */,
@@ -848,6 +875,7 @@
 				106F3CD72120F0FF0088BE6C /* DownloadTransactionReceiptOperation.swift in Sources */,
 				C51C07A02104E1C400E423D2 /* Player+CoreDataClass.swift in Sources */,
 				C5082FC22162E65E0078D055 /* UIDevice+extension.swift in Sources */,
+				79A9D3F0215A72A700AB721B /* DownloadOwnersCountOperation.swift in Sources */,
 				1098FD1B2102756900E76682 /* DownloadTransactionCountOperation.swift in Sources */,
 				10A5600621037DF800B85950 /* DownloadAndUpdateQuestIsWinnerOperation.swift in Sources */,
 				C5FA59A721077F17004FB3E0 /* AnnotationView.swift in Sources */,

@@ -37,7 +37,7 @@
                                 <rect key="frame" x="-5" y="0.0" width="274" height="667"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q0H-0s-oYK">
-                                <rect key="frame" x="15" y="243.5" width="40" height="40"/>
+                                <rect key="frame" x="15" y="253.5" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Q5X-xu-Y93"/>
                                     <constraint firstAttribute="width" constant="40" id="ocC-7w-XWL"/>
@@ -50,8 +50,24 @@
                                     <action selector="createQuestButtonTapped:" destination="Zkd-6T-kW6" eventType="touchUpInside" id="Nnc-oe-w4k"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNZ-iF-RDQ" userLabel="LEADERBOARD BUTTON">
+                                <rect key="frame" x="15" y="523.5" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="4La-ag-zqO"/>
+                                    <constraint firstAttribute="height" constant="40" id="7Hy-VK-xWI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <state key="normal" title="     LEADERBOARD" image="LEADER-BOARD-x1">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="createQuestButtonTapped:" destination="Zkd-6T-kW6" eventType="touchUpInside" id="0Pa-qf-qJS"/>
+                                    <action selector="leaderBoardButtonTapped:" destination="Zkd-6T-kW6" eventType="touchUpInside" id="KsO-vJ-Oe2"/>
+                                    <action selector="leaderboardButtonTapped:" destination="Zkd-6T-kW6" eventType="touchUpInside" id="k03-y1-RG6"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTy-kV-IjH">
-                                <rect key="frame" x="15" y="143.5" width="40" height="40"/>
+                                <rect key="frame" x="15" y="163.5" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="3NL-Ji-hQV"/>
                                     <constraint firstAttribute="width" constant="40" id="ifY-aZ-KyC"/>
@@ -79,7 +95,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="joi-Cg-JtO" userLabel="HOW TO PLAY">
-                                <rect key="frame" x="15" y="443.5" width="40" height="40"/>
+                                <rect key="frame" x="15" y="433.5" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="8PY-7g-rI9"/>
                                     <constraint firstAttribute="height" constant="40" id="NKn-TV-7xx"/>
@@ -99,7 +115,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EXPLORE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bId-89-MNu" userLabel="EXPLORE LABEL">
-                                <rect key="frame" x="75" y="157.5" width="46" height="12"/>
+                                <rect key="frame" x="75" y="177.5" width="46" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -111,13 +127,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CREATE A QUEST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fP2-cv-qeH" userLabel="CREATE A QUEST LABEL">
-                                <rect key="frame" x="75" y="257.5" width="86" height="12"/>
+                                <rect key="frame" x="75" y="267.5" width="86" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HOW TO PLAY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkr-Un-Tqe" userLabel="HOW TO PLAY LABEL">
-                                <rect key="frame" x="75" y="457.5" width="70" height="12"/>
+                                <rect key="frame" x="75" y="447.5" width="70" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LEADERBOARD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYG-bb-md0" userLabel="LEADERBOARD LABEL">
+                                <rect key="frame" x="75" y="537.5" width="74" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -125,7 +147,7 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="lzf-Pp-x4B" firstAttribute="leading" secondItem="Yze-E9-O7c" secondAttribute="trailing" constant="20" id="1C0-SL-dP1"/>
-                            <constraint firstItem="q0H-0s-oYK" firstAttribute="top" secondItem="cTy-kV-IjH" secondAttribute="bottom" constant="60" id="999-XU-8T8"/>
+                            <constraint firstItem="q0H-0s-oYK" firstAttribute="top" secondItem="cTy-kV-IjH" secondAttribute="bottom" constant="50" id="999-XU-8T8"/>
                             <constraint firstItem="FAj-JZ-SMH" firstAttribute="leading" secondItem="hk7-Uy-dIl" secondAttribute="leading" id="CB9-Mq-5l1"/>
                             <constraint firstAttribute="bottom" secondItem="CTf-LG-GkW" secondAttribute="bottom" id="KSf-Ix-aJc"/>
                             <constraint firstItem="bId-89-MNu" firstAttribute="centerY" secondItem="cTy-kV-IjH" secondAttribute="centerY" id="PC2-Ng-nsV"/>
@@ -136,18 +158,22 @@
                             <constraint firstItem="CTf-LG-GkW" firstAttribute="width" secondItem="H9B-NA-o9P" secondAttribute="width" multiplier="0.73" id="Vep-JX-Wfn"/>
                             <constraint firstItem="joi-Cg-JtO" firstAttribute="leading" secondItem="cTy-kV-IjH" secondAttribute="leading" id="Wyb-Rj-CuQ"/>
                             <constraint firstItem="fP2-cv-qeH" firstAttribute="centerY" secondItem="q0H-0s-oYK" secondAttribute="centerY" id="Xa5-aA-IZ1"/>
+                            <constraint firstItem="cNZ-iF-RDQ" firstAttribute="top" secondItem="joi-Cg-JtO" secondAttribute="bottom" constant="50" id="Zp6-tc-8Iw"/>
                             <constraint firstItem="q0H-0s-oYK" firstAttribute="leading" secondItem="cTy-kV-IjH" secondAttribute="leading" id="aJy-Bl-rEw"/>
                             <constraint firstAttribute="trailing" secondItem="FAj-JZ-SMH" secondAttribute="trailing" id="b3A-0X-rD0"/>
                             <constraint firstItem="Yze-E9-O7c" firstAttribute="leading" secondItem="cTy-kV-IjH" secondAttribute="leading" id="fRR-XF-fC9"/>
                             <constraint firstItem="fP2-cv-qeH" firstAttribute="leading" secondItem="q0H-0s-oYK" secondAttribute="trailing" constant="20" id="gGz-yE-NZP"/>
                             <constraint firstItem="CTf-LG-GkW" firstAttribute="top" secondItem="hk7-Uy-dIl" secondAttribute="top" id="grw-Za-lJO"/>
-                            <constraint firstItem="joi-Cg-JtO" firstAttribute="top" secondItem="Yze-E9-O7c" secondAttribute="bottom" constant="60" id="l5S-9Q-5BR"/>
+                            <constraint firstItem="joi-Cg-JtO" firstAttribute="top" secondItem="Yze-E9-O7c" secondAttribute="bottom" constant="50" id="l5S-9Q-5BR"/>
                             <constraint firstItem="cTy-kV-IjH" firstAttribute="leading" secondItem="H9B-NA-o9P" secondAttribute="leading" constant="15" id="oec-Wd-Zkh"/>
                             <constraint firstItem="vkr-Un-Tqe" firstAttribute="leading" secondItem="joi-Cg-JtO" secondAttribute="trailing" constant="20" id="pU6-Rz-kl0"/>
                             <constraint firstItem="bId-89-MNu" firstAttribute="leading" secondItem="cTy-kV-IjH" secondAttribute="trailing" constant="20" id="pVf-Wq-c80"/>
                             <constraint firstItem="CTf-LG-GkW" firstAttribute="leading" secondItem="hk7-Uy-dIl" secondAttribute="leading" constant="-5" id="qOT-nV-61p"/>
+                            <constraint firstItem="VYG-bb-md0" firstAttribute="leading" secondItem="cNZ-iF-RDQ" secondAttribute="trailing" constant="20" id="s0J-Nk-0uR"/>
+                            <constraint firstItem="VYG-bb-md0" firstAttribute="centerY" secondItem="cNZ-iF-RDQ" secondAttribute="centerY" id="sWD-5H-thK"/>
                             <constraint firstItem="vkr-Un-Tqe" firstAttribute="centerY" secondItem="joi-Cg-JtO" secondAttribute="centerY" id="ty0-jr-uE3"/>
-                            <constraint firstItem="FAj-JZ-SMH" firstAttribute="top" secondItem="q0H-0s-oYK" secondAttribute="bottom" constant="60" id="uao-vj-J3a"/>
+                            <constraint firstItem="FAj-JZ-SMH" firstAttribute="top" secondItem="q0H-0s-oYK" secondAttribute="bottom" constant="50" id="uao-vj-J3a"/>
+                            <constraint firstItem="cNZ-iF-RDQ" firstAttribute="leading" secondItem="joi-Cg-JtO" secondAttribute="leading" id="v1w-oZ-T9h"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="H9B-NA-o9P"/>
                     </view>
@@ -155,6 +181,7 @@
                         <outlet property="createQuestLabel" destination="fP2-cv-qeH" id="sSX-mR-dD2"/>
                         <outlet property="exploreLabel" destination="bId-89-MNu" id="uiX-hS-B1m"/>
                         <outlet property="howToPlayLabel" destination="joi-Cg-JtO" id="X9u-oY-epY"/>
+                        <outlet property="leaderboardLabel" destination="VYG-bb-md0" id="8cV-hD-f0p"/>
                         <outlet property="profileLabel" destination="lzf-Pp-x4B" id="wqZ-bM-f9p"/>
                     </connections>
                 </viewController>
@@ -859,6 +886,7 @@
         <image name="FIND-BANANO" width="636" height="278"/>
         <image name="FORTHx1" width="114" height="114"/>
         <image name="HOW TO PLAY" width="114" height="114"/>
+        <image name="LEADER-BOARD-x1" width="114" height="114"/>
         <image name="MENU LAYERx1" width="750" height="2666"/>
         <image name="MENUX1" width="114" height="114"/>
         <image name="PROFILEx1" width="114" height="114"/>
