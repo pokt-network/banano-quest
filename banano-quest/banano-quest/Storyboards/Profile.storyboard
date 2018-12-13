@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -372,14 +372,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <wkWebView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" allowsBackForwardNavigationGestures="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oev-9m-AIL">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SAMALL BANNERx1" translatesAutoresizingMaskIntoConstraints="NO" id="Agb-3Z-Gyg" userLabel="Top Banner image">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
                                 <constraints>
@@ -529,6 +521,14 @@
                                     <constraint firstItem="cV6-VW-Ati" firstAttribute="centerY" secondItem="Zgh-ak-rxU" secondAttribute="centerY" constant="20" id="uVm-hU-kqP"/>
                                 </constraints>
                             </view>
+                            <wkWebView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" allowsBackForwardNavigationGestures="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oev-9m-AIL">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="0.36078431372549019" green="0.38823529411764707" blue="0.40392156862745099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCV-Qy-esw" userLabel="Back Button">
                                 <rect key="frame" x="15" y="30" width="28" height="28"/>
                                 <constraints>
@@ -590,18 +590,18 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ADD-BANLANCE-BUTTON-X1" width="316" height="139"/>
-        <image name="ARROWx1" width="28" height="28"/>
-        <image name="BACKx1" width="57" height="57"/>
-        <image name="CHANGELLY" width="57" height="57"/>
-        <image name="CIRCLE STAMP x1" width="280" height="280"/>
-        <image name="COINBASE" width="57" height="57"/>
-        <image name="COPY-x1" width="57" height="57"/>
-        <image name="EXPORT-BUTTON-x1" width="366" height="139"/>
-        <image name="FAUCET IMAGE" width="100" height="90"/>
-        <image name="FORTHx1" width="57" height="57"/>
-        <image name="MENUX1" width="57" height="57"/>
-        <image name="SAMALL BANNERx1" width="750" height="330"/>
-        <image name="SUMMARY BACKGROUND" width="626" height="198"/>
+        <image name="ADD-BANLANCE-BUTTON-X1" width="632" height="278"/>
+        <image name="ARROWx1" width="57" height="57"/>
+        <image name="BACKx1" width="114" height="114"/>
+        <image name="CHANGELLY" width="114" height="114"/>
+        <image name="CIRCLE STAMP x1" width="560" height="560"/>
+        <image name="COINBASE" width="114" height="114"/>
+        <image name="COPY-x1" width="114" height="114"/>
+        <image name="EXPORT-BUTTON-x1" width="732" height="278"/>
+        <image name="FAUCET IMAGE" width="50" height="45"/>
+        <image name="FORTHx1" width="114" height="114"/>
+        <image name="MENUX1" width="114" height="114"/>
+        <image name="SAMALL BANNERx1" width="1500" height="660"/>
+        <image name="SUMMARY BACKGROUND" width="1253" height="397"/>
     </resources>
 </document>
